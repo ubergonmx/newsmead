@@ -28,5 +28,7 @@ class MainActivity : AppCompatActivity() {
         this.navController = navHostFragment.navController
         val bottomNavigationView = this.viewBinding.bottomNavigationView
         setupWithNavController(bottomNavigationView, navController)
+
+
     }
 }

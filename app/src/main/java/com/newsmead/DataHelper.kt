@@ -3,7 +3,7 @@ package com.newsmead
 import java.util.ArrayList
 
 // This is for testing purposes only. You can delete this class.
-class DataHelper {
+object DataHelper {
     fun loadArticleData(): ArrayList<Article> {
         val data = ArrayList<Article>()
         data.add(

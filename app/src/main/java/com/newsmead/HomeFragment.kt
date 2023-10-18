@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.newsmead.databinding.FragmentHomeBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +23,9 @@ class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var adapter: FeedArticleAdapter
+    private lateinit var viewBinding: FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +43,24 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Set up Feed RecyclerView
+        data = DataHelper.loadArticleData()
+        this.adapter = FeedArticleAdapter(data)
+        this.viewBinding.rvFeed.adapter = this.adapter
+        val linearLayoutManager = LinearLayoutManager(this.context)
+        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+        this.viewBinding.rvFeed.layoutManager = linearLayoutManager
+
+        // Add divider between items
+        val dividerItemDecoration = DividerItemDecoration(this.context, linearLayoutManager.orientation)
+        this.viewBinding.rvFeed.addItemDecoration(dividerItemDecoration)
+    }
+
     companion object {
+        private var data = ArrayList<Article>()
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
