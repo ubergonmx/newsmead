@@ -9,7 +9,7 @@ app_version: 1.18.13
 
 A good read: [https://alt-tutors-docs.vercel.app/getting-started/workflow/contributing#how-to-commit-better](https://alt-tutors-docs.vercel.app/getting-started/workflow/contributing#how-to-commit-better)
 
-*   If you're committing code, follow the general instructions:
+*   If you're committing code, follow the **general** instructions:
 
     *   Capitalize the subject line
 
@@ -17,7 +17,17 @@ A good read: [https://alt-tutors-docs.vercel.app/getting-started/workflow/contri
 
     *   **Use the imperative mood in the subject line**
 
-*   If you're committing docs (Swimm), add `docs:` before anything else and then follow the instructions above
+*   If you're committing docs (Swimm), follow the instructions below:
+
+    *   **Commit one documentation at a time**
+
+    *   Add `docs:` before anything else
+
+    *   Always include the whole title of the doc in lowercase (unless required to uppercase)
+
+    *   Always enclose the title with quotations if it is a playlist or a phrase
+
+    *   and then follow the general instructions above
 
 Example (code):
 
@@ -27,9 +37,11 @@ Example (code):
 
 Example (docs):
 
-> docs: Update coding standards
-
-<br/>
+> docs: Update "A flow in the code" doc
+> 
+> docs: Update firebase crashlytics
+> 
+> docs: Delete "Start Here" playlist
 
 <br/>
 
