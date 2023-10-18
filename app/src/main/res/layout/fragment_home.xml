@@ -18,7 +18,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/arial"
             android:text="@string/home_title"
-            android:textColor="@color/black"
+            android:textColor="?android:colorPrimary"
             android:textSize="16pt"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
