@@ -5,6 +5,24 @@ file_version: 1.1.3
 app_version: 1.18.13
 ---
 
+# View Binding
+
+By default, we will be using view binding, which is currently enabled in the gradle settings
+
+<br/>
+
+Enabled `viewBinding`
+<!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
+### 📄 app/build.gradle.kts
+```kotlin
+43         // Enable viewBinding
+44         buildFeatures {
+45             viewBinding = true
+46         }
+```
+
+<br/>
+
 # Reference
 
 An excellent read to start: [https://kotlinlang.org/docs/coding-conventions.html](https://kotlinlang.org/docs/coding-conventions.html)
