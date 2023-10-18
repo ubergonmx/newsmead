@@ -23,11 +23,11 @@ Enabled `viewBinding`
 
 <br/>
 
-# Reference
+# Reference (actual coding standard)
 
 An excellent read to start: [https://kotlinlang.org/docs/coding-conventions.html](https://kotlinlang.org/docs/coding-conventions.html)
 
-_I will update this documentation once for TLDR -Aaron_
+_I will update this documentation for a summary -Aaron_
 
 <br/>
 
