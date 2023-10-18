@@ -40,7 +40,8 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        this.viewBinding = FragmentHomeBinding.inflate(inflater, container, false)
+        return this.viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,12 +51,12 @@ class HomeFragment : Fragment() {
         data = DataHelper.loadArticleData()
         this.adapter = FeedArticleAdapter(data)
         this.viewBinding.rvFeed.adapter = this.adapter
-        val linearLayoutManager = LinearLayoutManager(this.context)
+        val linearLayoutManager = LinearLayoutManager(context)
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         this.viewBinding.rvFeed.layoutManager = linearLayoutManager
 
         // Add divider between items
-        val dividerItemDecoration = DividerItemDecoration(this.context, linearLayoutManager.orientation)
+        val dividerItemDecoration = DividerItemDecoration(context, linearLayoutManager.orientation)
         this.viewBinding.rvFeed.addItemDecoration(dividerItemDecoration)
     }
 
