@@ -13,13 +13,13 @@ A good read: [https://alt-tutors-docs.vercel.app/getting-started/workflow/contri
 
     *   Capitalize the subject line
 
+    *   50 characters max; use newline to elaborate further and if necessary
+
     *   Do not end with a period
 
     *   **Use the imperative mood in the subject line**
 
 *   If you're committing docs (Swimm), follow the instructions below:
-
-    *   **Commit one documentation at a time**
 
     *   Add `docs:` before anything else
 
@@ -39,7 +39,7 @@ Example (docs):
 
 > docs: Update "A flow in the code" doc
 > 
-> docs: Update firebase crashlytics
+> docs: Update firebase crashlytics & coding standards
 > 
 > docs: Delete "Start Here" playlist
 
