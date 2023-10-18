@@ -7,7 +7,7 @@ app_version: 1.18.13
 
 # Prerequisite
 
-Before tinkering with the code, set up the Firebase project and download the `google-services.json` and place it inside the `/app` folder (e.g., `📄 app/google-services.json`)
+Before tinkering with the code, set up the Firebase project and download the `google-services.json` and place it inside the `/app` folder (e.g., `📄 app/google-services.json`).
 
 # Gradle
 
@@ -41,7 +41,7 @@ app-level gradle (plugins)
 
 <br/>
 
-app-level gradle (dependencies
+app-level gradle (dependencies)
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 app/build.gradle.kts
 ```kotlin
@@ -58,7 +58,7 @@ app-level gradle (dependencies
 
 # Test crash
 
-Insert this example test crash anywhere in the code that can be executed to show if its working
+Insert this example test crash anywhere in the code that can be executed immediately to show if it's working.
 
 ```kotlin
 val crashlytics = Firebase.crashlytics
