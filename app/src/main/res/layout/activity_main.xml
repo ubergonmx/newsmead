@@ -23,11 +23,15 @@
         android:layout_width="0dp"
         android:layout_height="84dp"
         android:background="@color/gray_300"
-        app:menu="@menu/bottom_nav_menu"
         app:itemIconTint="@drawable/bottom_nav_icon_colors"
+        app:itemPaddingBottom="28dp"
+        app:itemTextAppearanceActive="@style/BottomNavigationView"
+        app:itemTextAppearanceInactive="@style/BottomNavigationView"
         app:itemTextColor="@drawable/bottom_nav_text_colors"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
