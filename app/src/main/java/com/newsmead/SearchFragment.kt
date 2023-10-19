@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.chip.Chip
+import com.newsmead.DataHelper.loadCategoryData
+import com.newsmead.DataHelper.loadSourcesData
+import com.newsmead.databinding.FragmentSearchBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +38,31 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        val binding = FragmentSearchBinding.inflate(
+            inflater, container, false
+        )
+        
+        val categoryData = loadCategoryData()
+        val sourcesData = loadSourcesData()
+
+        // Clear existing chips
+        binding.cgCategory.removeAllViews()
+        binding.cgSources.removeAllViews()
+
+        // Fill with chips
+        for (category in categoryData) {
+            val chip = Chip(context)
+            chip.text = category
+            binding.cgCategory.addView(chip)
+        }
+
+        for (source in sourcesData) {
+            val chip = Chip(context)
+            chip.text = source
+            binding.cgSources.addView(chip)
+        }
+
+        return binding.root
     }
 
     companion object {
