@@ -41,6 +41,9 @@ class SearchFragment : Fragment() {
         val binding = FragmentSearchBinding.inflate(
             inflater, container, false
         )
+
+        // Change text to date today m d, y
+        binding.tvSearchDate.text = DataHelper.getDateToday()
         
         val categoryData = loadCategoryData()
         val sourcesData = loadSourcesData()
