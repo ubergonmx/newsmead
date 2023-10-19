@@ -54,13 +54,13 @@ class SearchFragment : Fragment() {
 
         // Fill with chips
         for (category in categoryData) {
-            val chip = Chip(context)
+            val chip = inflater.inflate(R.layout.chip_search, null) as Chip
             chip.text = category
             binding.cgCategory.addView(chip)
         }
 
         for (source in sourcesData) {
-            val chip = Chip(context)
+            val chip = inflater.inflate(R.layout.chip_search, null) as Chip
             chip.text = source
             binding.cgSources.addView(chip)
         }
