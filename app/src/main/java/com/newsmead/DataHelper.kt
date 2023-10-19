@@ -1,6 +1,9 @@
 package com.newsmead
 
+import java.text.DateFormat
+import java.time.LocalDate
 import java.util.ArrayList
+import java.util.Date
 
 // This is for testing purposes only. You can delete this class.
 object DataHelper {
@@ -84,5 +87,9 @@ object DataHelper {
         data.add("ABS-CBN News")
         data.add("GMA Network")
         return data
+    }
+
+    fun getDateToday(): CharSequence {
+        return DateFormat.getDateInstance(DateFormat.MEDIUM).format(Date())
     }
 }
