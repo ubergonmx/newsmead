@@ -13,7 +13,7 @@ Dynamically set the font color of TextViews by doing the following:
 
 Take note of the question mark.
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
-### 📄 app/src/main/res/layout/item_feed_layout.xml
+### 📄 app/src/main/res/layout/item_feed_article.xml
 ```xml
 34                 android:textColor="?android:colorPrimary"
 ```

@@ -29,7 +29,7 @@ This is used in the following:
 
 The (news) source image
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
-### 📄 app/src/main/res/layout/item_feed_layout.xml
+### 📄 app/src/main/res/layout/item_feed_article.xml
 ```xml
 19             <com.google.android.material.imageview.ShapeableImageView
 20                 android:id="@+id/ivSourceImage"
