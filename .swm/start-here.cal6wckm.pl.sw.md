@@ -10,11 +10,10 @@ Welcome to NewsMead documentation!<br/>
 
 <br/>
 
-<br/>
-
 <!-- Steps - Do not remove this comment -->
 1. [A flow in the code](a-flow-in-the-code.wpv1xvw2.sw.md)
 2. [Coding Standards](coding-standards.sqb1kzd4.sw.md)
+3. [Contributing Guidelines](contributing-guidelines.nvo9apr1.sw.md)
 
 
 <br/>
