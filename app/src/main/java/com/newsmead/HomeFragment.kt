@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
         this.viewBinding.rvFeed.layoutManager = linearLayoutManager
 
         // Add divider between items
-        val customDividerItemDecoration = CustomDividerItemDecoration(context, R.drawable.line_divider)
+        val customDividerItemDecoration = CustomDividerItemDecoration(context, R.drawable.line_divider, FeedHeaderViewHolder::class.java)
         this.viewBinding.rvFeed.addItemDecoration(customDividerItemDecoration)
     }
 
