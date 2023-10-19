@@ -37,7 +37,7 @@ object DataHelper {
             Article(
                 "Rappler",
                 "Spacex launches 60 more Starlink satellites into orbit",
-                " 29, 2022",
+                "Dec 29, 2022",
                 "5 min read",
                 "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
             )
