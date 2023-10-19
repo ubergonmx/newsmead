@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnCreateList"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/saved_create"
@@ -21,5 +21,5 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateList" />
 </androidx.constraintlayout.widget.ConstraintLayout>
