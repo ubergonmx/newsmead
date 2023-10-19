@@ -1,9 +1,9 @@
 package com.newsmead
 
 import androidx.recyclerview.widget.RecyclerView
-import com.newsmead.databinding.ItemFeedLayoutBinding
+import com.newsmead.databinding.ItemFeedArticleBinding
 
-class FeedArticleViewHolder(private val viewBinding: ItemFeedLayoutBinding): RecyclerView.ViewHolder(viewBinding.root) {
+class FeedArticleViewHolder(private val viewBinding: ItemFeedArticleBinding): RecyclerView.ViewHolder(viewBinding.root) {
 
     // Performs the binding of the article data to the views in the ViewHolder
     fun bindData(article: Article) {

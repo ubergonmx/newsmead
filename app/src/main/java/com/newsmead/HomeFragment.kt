@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.databinding.FragmentHomeBinding
 
@@ -24,7 +24,8 @@ class HomeFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var adapter: FeedArticleAdapter
+    private lateinit var feedArticleAdapter: FeedArticleAdapter
+    private lateinit var feedHeaderAdapter: FeedHeaderAdapter
     private lateinit var viewBinding: FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,15 +50,18 @@ class HomeFragment : Fragment() {
 
         // Set up Feed RecyclerView
         data = DataHelper.loadArticleData()
-        this.adapter = FeedArticleAdapter(data)
-        this.viewBinding.rvFeed.adapter = this.adapter
+        this.feedArticleAdapter = FeedArticleAdapter(data)
+        this.feedHeaderAdapter = FeedHeaderAdapter()
+        val concatAdapter = ConcatAdapter(feedHeaderAdapter, feedArticleAdapter)
+
+        this.viewBinding.rvFeed.adapter = concatAdapter
         val linearLayoutManager = LinearLayoutManager(context)
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         this.viewBinding.rvFeed.layoutManager = linearLayoutManager
 
         // Add divider between items
-        val dividerItemDecoration = DividerItemDecoration(context, linearLayoutManager.orientation)
-        this.viewBinding.rvFeed.addItemDecoration(dividerItemDecoration)
+        val customDividerItemDecoration = CustomDividerItemDecoration(context, R.drawable.line_divider)
+        this.viewBinding.rvFeed.addItemDecoration(customDividerItemDecoration)
     }
 
     companion object {
