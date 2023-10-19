@@ -14,6 +14,9 @@
     <string name="saved_all">Al</string>
     <string name="saved_create">Create new list</string>
 
+    <string name="saved_list_placeholder_title">List Title</string>
+    <string name="saved_list_placeholder_number">X articles</string>
+
     <string name="profile_title">Profile</string>
     <string name="profile_subtitle">Update your account</string>
     <string name="profile_name">Name</string>
