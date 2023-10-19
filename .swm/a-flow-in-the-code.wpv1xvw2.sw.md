@@ -9,6 +9,14 @@ app_version: 1.18.13
 
 This doc describes the flow in our system. We will follow its implementation across the various locations so you can understand how the different parts create the full picture.
 
+> For public view (?):
+> 
+> _This document provides an overview of the flow in the codebase of our repository. It will guide you through the different parts of the system and explain how they are interconnected. By following this flow, you will gain a better understanding of how our application works and how different components interact with each other._
+> 
+> _Please note that this document assumes you have a basic understanding of the codebase and its structure. If you are new to the project, we recommend familiarizing yourself with the codebase before proceeding with this document._
+
+Let's dive into the flow of our codebase and explore how different components work together to achieve the desired functionality.
+
 ## Following the flow
 
 {{Keep adding snippets from the next steps of the flow}}

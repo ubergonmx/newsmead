@@ -7,11 +7,11 @@ app_version: 1.18.13
 
 # View Binding
 
-By default, we will be using view binding, which is currently enabled in the gradle settings
+Always use `viewBinding` instead of `findViewByID(R.id.something)`
 
 <br/>
 
-Enabled `viewBinding`
+By default, we will be using view binding, which is currently enabled in the gradle settings
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 app/build.gradle.kts
 ```kotlin
@@ -27,7 +27,18 @@ Enabled `viewBinding`
 
 An excellent read to start: [https://kotlinlang.org/docs/coding-conventions.html](https://kotlinlang.org/docs/coding-conventions.html)
 
-_I will update this documentation for a summary -Aaron_
+## Naming ids
+
+When naming an id for a view, let's follow `<acronym><Name>` in camelCase format. Examples:
+
+*   `tvArticleTitle` - A TextView with a name Article Title
+
+*   `ivSourceImage` - An ImageView with a name Source Image
+<br/>
+
+<br/>
+
+_I will keep updating this documentation, kulang pa siya as of now -Aaron_
 
 <br/>
 

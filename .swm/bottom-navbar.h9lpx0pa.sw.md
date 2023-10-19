@@ -1,6 +1,6 @@
 ---
 id: h9lpx0pa
-title: Adding Bottom Navbar
+title: Bottom Navbar
 file_version: 1.1.3
 app_version: 1.18.13
 ---

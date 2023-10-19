@@ -6,15 +6,22 @@ app_version: 1.18.13
 ---
 
 <!-- Intro - Do not remove this comment -->
-Welcome to NewsMead documentation!<br/>
+# Welcome to NewsMead documentation!
 
-<br/>
+Please start reading first:
+
+## Coding Standards
+
+and
+
+## Contributing Guidelines
 
 <br/>
 
 <!-- Steps - Do not remove this comment -->
 1. [A flow in the code](a-flow-in-the-code.wpv1xvw2.sw.md)
 2. [Coding Standards](coding-standards.sqb1kzd4.sw.md)
+3. [Contributing Guidelines](contributing-guidelines.nvo9apr1.sw.md)
 
 
 <br/>
