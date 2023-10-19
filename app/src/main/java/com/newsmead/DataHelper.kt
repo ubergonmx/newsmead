@@ -62,4 +62,27 @@ object DataHelper {
         )
         return data
     }
+
+    fun loadCategoryData(): ArrayList<String> {
+        val data = ArrayList<String>()
+        data.add("News")
+        data.add("Opinion")
+        data.add("Sports")
+        data.add("Technology")
+        data.add("Lifestyle")
+        data.add("Business")
+        data.add("Entertainment")
+        return data
+    }
+
+    fun loadSourcesData(): ArrayList<String> {
+        val data = ArrayList<String>()
+        data.add("CNN Philippiens")
+        data.add("INQUIRER.NET")
+        data.add("Rappler")
+        data.add("The Manila Bulletin")
+        data.add("ABS-CBN News")
+        data.add("GMA Network")
+        return data
+    }
 }
