@@ -77,7 +77,7 @@ object DataHelper {
 
     fun loadSourcesData(): ArrayList<String> {
         val data = ArrayList<String>()
-        data.add("CNN Philippiens")
+        data.add("CNN Philippines")
         data.add("INQUIRER.NET")
         data.add("Rappler")
         data.add("The Manila Bulletin")
