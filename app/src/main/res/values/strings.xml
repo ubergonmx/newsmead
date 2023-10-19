@@ -9,6 +9,14 @@
     <string name="search_sources">Sources</string>
     <string name="search_latest_news">Latest News</string>
 
+    <string name="profile_title">Profile</string>
+    <string name="profile_subtitle">Update your account</string>
+    <string name="profile_name">Name</string>
+    <string name="profile_email">Email Address</string>
+    <string name="profile_password">Password</string>
+    <string name="profile_save">Save Changes</string>
+    <string name="profile_logout">Logout</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
