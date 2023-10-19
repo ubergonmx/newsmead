@@ -6,7 +6,15 @@ app_version: 1.18.13
 ---
 
 <!-- Intro - Do not remove this comment -->
-Welcome to NewsMead documentation!<br/>
+# Welcome to NewsMead documentation!
+
+Please start reading first:
+
+## Coding Standards
+
+and
+
+## Contributing Guidelines
 
 <br/>
 
