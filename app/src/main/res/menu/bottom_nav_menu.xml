@@ -6,23 +6,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/ic_home"
-        android:title="Home" />
+        android:title="@string/nav_home" />
     <item
         android:id="@+id/searchFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/ic_search"
-        android:title="Search" />
+        android:title="@string/nav_search" />
     <item
         android:id="@+id/savedFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/ic_bookmark"
-        android:title="Saved" />
+        android:title="@string/nav_saved" />
     <item
         android:id="@+id/profileFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/ic_person"
-        android:title="Profile" />
+        android:title="@string/nav_profile" />
 </menu>

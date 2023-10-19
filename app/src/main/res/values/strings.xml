@@ -11,4 +11,10 @@
     <string name="sample_date">Jun 2, 2023</string>
     <string name="bullet">•</string>
     <string name="sample_read_time">5 min read</string>
+
+    <!-- Bottom Navbar Strings -->
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_saved">Saved</string>
+    <string name="nav_profile">Profile</string>
 </resources>
