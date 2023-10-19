@@ -9,6 +9,11 @@
     <string name="search_sources">Sources</string>
     <string name="search_latest_news">Latest News</string>
 
+    <string name="saved_title">Saved Articles</string>
+    <string name="saved_your_lists">Your Lists</string>
+    <string name="saved_all">Al</string>
+    <string name="saved_create">Create new list</string>
+
     <string name="profile_title">Profile</string>
     <string name="profile_subtitle">Update your account</string>
     <string name="profile_name">Name</string>
