@@ -57,7 +57,7 @@
             android:layout_height="0dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/arial"
-            android:maxLines="4"
+            android:maxLines="3"
             android:text="@string/sample_title"
             android:textColor="?android:colorPrimary"
             android:textSize="20sp"
