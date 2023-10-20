@@ -100,6 +100,47 @@ object DataHelper {
         return data
     }
 
+    fun loadRecommendedArticlesData(): ArrayList<Article> {
+        val data = ArrayList<Article>()
+        data.add(
+            Article(
+                "CNN Philippines",
+                "Recommended Article 1",
+                "Oct 20, 2023",
+                "9 min read",
+                "http://www.cnnphilippines.com/news/2023/10/20/marcos-says-15k-filipinos-to-benefit-with-saudi-deal.html"
+            )
+        )
+        data.add(
+            Article(
+                "INQUIRER.NET",
+                "Recommended Article 2",
+                "Oct 19, 2023",
+                "9 min read",
+                "http://www.cnnphilippines.com/news/2023/10/20/marcos-says-15k-filipinos-to-benefit-with-saudi-deal.html"
+            )
+        )
+        data.add(
+            Article(
+                "ABS-CBN News",
+                "Recommended Article 3",
+                "Oct 18, 2023",
+                "9 min read",
+                "http://www.cnnphilippines.com/news/2023/10/20/marcos-says-15k-filipinos-to-benefit-with-saudi-deal.html"
+            )
+        )
+        data.add(
+            Article(
+                "Rappler",
+                "Recommended Article 4",
+                "Oct 17, 2023",
+                "9 min read",
+                "http://www.cnnphilippines.com/news/2023/10/20/marcos-says-15k-filipinos-to-benefit-with-saudi-deal.html"
+            )
+        )
+        return data
+    }
+
     fun loadCategoryData(): ArrayList<String> {
         val data = ArrayList<String>()
         data.add("News")
