@@ -5,6 +5,8 @@ import java.time.LocalDate
 import java.util.ArrayList
 import java.util.Date
 
+import com.newsmead.List
+
 // This is for testing purposes only. You can delete this class.
 object DataHelper {
     fun loadArticleData(): ArrayList<Article> {
@@ -86,6 +88,19 @@ object DataHelper {
         data.add("The Manila Bulletin")
         data.add("ABS-CBN News")
         data.add("GMA Network")
+        return data
+    }
+
+    fun loadListData(): ArrayList<List> {
+        val data = ArrayList<List>()
+        data.add(List("Politics", 5))
+        data.add(List("Sports", 3))
+        data.add(List("Entertainment", 2))
+        data.add(List("School", 1))
+        data.add(List("Technology", 11))
+        data.add(List("Business", 2))
+        data.add(List("Lifestyle", 3))
+        data.add(List("Opinion", 1))
         return data
     }
 
