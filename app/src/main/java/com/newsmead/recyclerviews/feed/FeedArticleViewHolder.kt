@@ -1,7 +1,7 @@
 package com.newsmead.recyclerviews.feed
 
 import androidx.recyclerview.widget.RecyclerView
-import com.newsmead.Article
+import com.newsmead.models.Article
 import com.newsmead.databinding.ItemFeedArticleBinding
 
 class FeedArticleViewHolder(private val viewBinding: ItemFeedArticleBinding): RecyclerView.ViewHolder(viewBinding.root) {

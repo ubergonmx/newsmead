@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.databinding.FragmentHomeBinding
+import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.FeedArticleAdapter
 import com.newsmead.recyclerviews.feed.FeedHeaderAdapter
 import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder

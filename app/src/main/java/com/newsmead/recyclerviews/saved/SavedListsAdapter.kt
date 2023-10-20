@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.newsmead.databinding.ItemSavedListBinding
+import com.newsmead.models.SavedList
+
 class SavedListsAdapter(private val listSavedList: ArrayList<SavedList>) : RecyclerView.Adapter<SavedListsViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SavedListsViewHolder {

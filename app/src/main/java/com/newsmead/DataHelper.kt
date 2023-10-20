@@ -1,10 +1,11 @@
 package com.newsmead
 
+import com.newsmead.models.Article
 import java.text.DateFormat
 import java.util.ArrayList
 import java.util.Date
 
-import com.newsmead.recyclerviews.saved.SavedList
+import com.newsmead.models.SavedList
 
 // This is for testing purposes only. You can delete this class.
 object DataHelper {

@@ -1,4 +1,4 @@
-package com.newsmead.recyclerviews.saved
+package com.newsmead.models
 
 class SavedList {
     var title: String

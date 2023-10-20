@@ -1,4 +1,6 @@
-package com.newsmead
+package com.newsmead.models
+
+import com.newsmead.R
 
 class Article {
     var source: String

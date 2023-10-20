@@ -1,11 +1,11 @@
 package com.newsmead.recyclerviews.saved
 
-import android.view.View
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.newsmead.R
 import com.newsmead.databinding.ItemSavedListBinding
 import com.newsmead.fragments.saved.SavedListsFragment
+import com.newsmead.models.SavedList
 
 class SavedListsViewHolder(private val viewBinding: ItemSavedListBinding): RecyclerView.ViewHolder(viewBinding.root) {
 
