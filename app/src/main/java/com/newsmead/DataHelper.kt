@@ -67,6 +67,38 @@ object DataHelper {
         return data
     }
 
+    fun loadArticleDataLatest(): ArrayList<Article> {
+        val data = ArrayList<Article>()
+        data.add(
+            Article(
+                "CNN Philippines",
+                "PH secures over \$4.26-B investment deals from Marcos' Saudi Arabia visit",
+                "Oct 20, 2023",
+                "9 min read",
+                "http://www.cnnphilippines.com/news/2023/10/20/marcos-says-15k-filipinos-to-benefit-with-saudi-deal.html"
+            )
+        )
+        data.add(
+            Article(
+                "Philstar.com",
+                "CHED to extend educational assistance to children of slain Filipinos in Israel",
+                "Oct 20, 2023",
+                "5 min read",
+                "https://www.philstar.com/headlines/2023/10/20/2305252/ched-extend-educational-assistance-children-slain-filipinos-israel"
+            )
+        )
+        data.add(
+            Article(
+                "ABS-CBN News",
+                "Napoles found guilty, lawmaker acquitted in P20-M PDAF case",
+                "Oct 20, 2023",
+                "4 min read",
+                "https://news.abs-cbn.com/news/10/20/23/napoles-found-guilty-lawmaker-acquitted-in-p20-m-pdaf-case"
+            )
+        )
+        return data
+    }
+
     fun loadCategoryData(): ArrayList<String> {
         val data = ArrayList<String>()
         data.add("News")
