@@ -1,5 +1,6 @@
 package com.newsmead
 
+import TabFragmentAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -40,6 +41,7 @@ class SavedFragment : Fragment() {
             inflater, container, false
         )
 
+        binding.vpViewPager.adapter = TabFragmentAdapter(this)
 
         return binding.root
     }
