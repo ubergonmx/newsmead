@@ -41,6 +41,22 @@
     <string name="nav_search">Search</string>
     <string name="nav_saved">Saved</string>
     <string name="nav_profile">Profile</string>
+
+    <string name="small_text">
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultricies velit eu arcu molestie,"
+        "quis pretium quam venenatis. Fusce leo odio, aliquam bibendum justo at, imperdiet aliquet elit."
+        "Nulla interdum magna et nunc finibus tincidunt ac non nunc. Morbi vulputate libero at mattis fringilla. "
+        "Sed vitae nunc eu mauris porta consectetur at non ante. Aenean aliquam odio ut felis porttitor iaculis. "
+        "Sed ut risus in libero dapibus faucibus.\n"
+
+        "Aenean ornare ligula et euismod commodo. Pellentesque laoreet in quam sed porttitor. Donec aliquam dolor"
+        "enim, in euismod massa auctor eget. Maecenas in justo arcu. Cras dignissim est vitae lectus interdum, tincidunt "
+        "consequat elit pretium. Aenean lectus justo, dignissim nec lorem quis, sodales aliquam dui. Sed vitae magna libero. "
+        "Aenean posuere eu nibh at gravida. Duis et libero feugiat arcu viverra fermentum et id odio. Ut dapibus imperdiet iaculis. "
+        "In rutrum at urna eget tempus. Etiam euismod ligula efficitur, tincidunt lorem ac, pellentesque nisl. Praesent elementum ultricies "
+        "mauris nec tincidunt. Ut a ligula id nisl interdum pellentesque. Nulla arcu eros, varius vel libero sagittis, sollicitudin "
+        "bibendum massa. "
+    </string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
