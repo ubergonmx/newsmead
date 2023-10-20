@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:src="@android:drawable/btn_star"
+                android:src="@drawable/folder_filled_weight400"
                 android:tint="@color/gray_200"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
