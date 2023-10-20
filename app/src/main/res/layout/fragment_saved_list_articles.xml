@@ -9,7 +9,7 @@
         android:id="@+id/clSavedTopBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -41,18 +41,19 @@
         android:id="@+id/clSavedListDetails"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clSavedTopBar">
 
         <ImageView
             android:id="@+id/ivSavedListIcon"
-            android:layout_width="11dp"
-            android:layout_height="12dp"
+            android:layout_width="21dp"
+            android:layout_height="18dp"
             android:layout_marginStart="8dp"
             android:adjustViewBounds="true"
             android:src="@drawable/folder_nofill_weight400"
+            android:tint="@color/gray_100"
             app:layout_constraintBottom_toBottomOf="@+id/tvSavedListName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvSavedListName" />
@@ -64,7 +65,7 @@
             android:layout_marginStart="8dp"
             android:text="@string/saved_list_placeholder_title"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/ivSavedListIcon"
             app:layout_constraintTop_toTopOf="parent" />
@@ -75,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@string/saved_list_placeholder_number"
-            android:textSize="8sp"
+            android:textSize="10sp"
             app:layout_constraintStart_toStartOf="@+id/ivSavedListIcon"
             app:layout_constraintTop_toBottomOf="@+id/tvSavedListName" />
 
@@ -97,7 +98,6 @@
             app:iconGravity="textStart"
             app:iconPadding="4dp"
             app:iconSize="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvSavedListName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvSavedListName" />
     </androidx.constraintlayout.widget.ConstraintLayout>
