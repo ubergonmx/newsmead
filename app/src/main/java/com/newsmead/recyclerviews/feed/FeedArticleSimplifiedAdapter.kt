@@ -1,8 +1,10 @@
 package com.newsmead.recyclerviews.feed
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.newsmead.ArticleActivity
 import com.newsmead.models.Article
 import com.newsmead.databinding.ItemFeedArticleSimplifiedBinding
 
@@ -31,6 +33,12 @@ class FeedArticleSimplifiedAdapter(private val articleList: ArrayList<Article>) 
 
     override fun onBindViewHolder(holder: FeedArticleSimplifiedViewHolder, position: Int) {
         holder.bindData(articleList[position])
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, ArticleActivity::class.java)
+            intent.putExtra("articleId", "1")
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
 }
