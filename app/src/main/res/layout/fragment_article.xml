@@ -64,7 +64,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -73,142 +73,163 @@
         app:layout_constraintTop_toBottomOf="@+id/clArticleTopBar"
         tools:context=".fragments.article.ArticleFragment">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            tools:context=".fragments.article.ArticleFragment">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clArticleHeading"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/linearLayoutSource"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clArticleHeading"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_height="wrap_content">
 
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/ivSourceImage"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:scaleType="fitCenter"
-                        app:shapeAppearanceOverlay="@style/Theme.NewsMead.Circular"
-                        tools:srcCompat="@tools:sample/avatars" />
+                    <LinearLayout
+                        android:id="@+id/linearLayoutSource"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/ivSourceImage"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:scaleType="fitCenter"
+                            app:shapeAppearanceOverlay="@style/Theme.NewsMead.Circular"
+                            tools:srcCompat="@tools:sample/avatars" />
+
+                        <TextView
+                            android:id="@+id/tvSource"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/arial"
+                            android:text="@string/sample_source"
+                            android:textColor="?android:colorPrimary"
+                            android:textSize="16sp" />
+                    </LinearLayout>
 
                     <TextView
-                        android:id="@+id/tvSource"
+                        android:id="@+id/tvArticleHeadline"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/arial"
+                        android:text="@string/sample_title"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayoutSource" />
+
+                    <TextView
+                        android:id="@+id/tvArticleBy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/arial"
+                        android:text="by"
+                        android:textSize="10sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvArticleHeadline" />
+
+                    <TextView
+                        android:id="@+id/tvArticleAuthor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:fontFamily="@font/arial"
                         android:text="@string/sample_source"
-                        android:textColor="?android:colorPrimary"
-                        android:textSize="16sp" />
-                </LinearLayout>
+                        android:textSize="10sp"
+                        app:layout_constraintStart_toEndOf="@+id/tvArticleBy"
+                        app:layout_constraintTop_toTopOf="@+id/tvArticleBy" />
+
+                    <TextView
+                        android:id="@+id/tvByDot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/arial"
+                        android:text="•"
+                        android:textSize="10sp"
+                        app:layout_constraintStart_toEndOf="@+id/tvArticleAuthor"
+                        app:layout_constraintTop_toTopOf="@+id/tvArticleAuthor" />
+
+                    <TextView
+                        android:id="@+id/tvArticleMins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/arial"
+                        android:text="0"
+                        android:textSize="10sp"
+                        app:layout_constraintStart_toEndOf="@+id/tvByDot"
+                        app:layout_constraintTop_toTopOf="@+id/tvByDot" />
+
+                    <TextView
+                        android:id="@+id/tvArticleMinRead"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/arial"
+                        android:text="min read"
+                        android:textSize="10sp"
+                        app:layout_constraintStart_toEndOf="@+id/tvArticleMins"
+                        app:layout_constraintTop_toTopOf="@+id/tvArticleMins" />
+
+                    <ImageView
+                        android:id="@+id/ivArticleFullImage"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:adjustViewBounds="true"
+                        android:src="@tools:sample/avatars"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvArticleBy"
+                        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/tvArticleHeadline"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:fontFamily="@font/arial"
-                    android:text="@string/sample_title"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayoutSource" />
-
-                <TextView
-                    android:id="@+id/tvArticleBy"
+                    android:id="@+id/tvArticleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_margin="@dimen/text_margin"
                     android:fontFamily="@font/arial"
-                    android:text="by"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvArticleHeadline" />
+                    android:text="@string/large_text"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
-                <TextView
-                    android:id="@+id/tvArticleAuthor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/arial"
-                    android:text="@string/sample_source"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toEndOf="@+id/tvArticleBy"
-                    app:layout_constraintTop_toTopOf="@+id/tvArticleBy" />
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:layout_anchorGravity="top"
+            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior">
 
-                <TextView
-                    android:id="@+id/tvByDot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/arial"
-                    android:text="•"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toEndOf="@+id/tvArticleAuthor"
-                    app:layout_constraintTop_toTopOf="@+id/tvArticleAuthor" />
+            <!-- Content for the bottom bar (article settings) goes here -->
 
-                <TextView
-                    android:id="@+id/tvArticleMins"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/arial"
-                    android:text="0"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toEndOf="@+id/tvByDot"
-                    app:layout_constraintTop_toTopOf="@+id/tvByDot" />
+        </com.google.android.material.bottomappbar.BottomAppBar>
 
-                <TextView
-                    android:id="@+id/tvArticleMinRead"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/arial"
-                    android:text="min read"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toEndOf="@+id/tvArticleMins"
-                    app:layout_constraintTop_toTopOf="@+id/tvArticleMins" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-                <ImageView
-                    android:id="@+id/ivArticleFullImage"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:adjustViewBounds="true"
-                    android:src="@tools:sample/avatars"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvArticleBy"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/tvArticleText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:fontFamily="@font/arial"
-                android:text="@string/large_text"
-                android:textSize="16sp" />
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
