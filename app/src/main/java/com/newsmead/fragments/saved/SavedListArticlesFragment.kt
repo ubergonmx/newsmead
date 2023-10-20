@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.DataHelper.loadArticleData
 import com.newsmead.FeedArticleAdapter
@@ -25,6 +26,12 @@ class SavedListArticlesFragment: Fragment() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvSavedArticles.layoutManager = layoutManager
 
+        // Back button
+        binding.btnSavedBack.setOnClickListener {
+            // Simply pop the current fragment off the stack
+            val navController = binding.root.findNavController()
+            navController.popBackStack()
+        }
         return binding.root
     }
 }
