@@ -5,7 +5,7 @@ import java.time.LocalDate
 import java.util.ArrayList
 import java.util.Date
 
-import com.newsmead.List
+import com.newsmead.recyclerviews.saved.List
 
 // This is for testing purposes only. You can delete this class.
 object DataHelper {
