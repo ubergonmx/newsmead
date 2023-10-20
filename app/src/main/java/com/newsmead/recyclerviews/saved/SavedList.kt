@@ -1,6 +1,6 @@
 package com.newsmead.recyclerviews.saved
 
-class List {
+class SavedList {
     var title: String
         private set
     var numArticles: Int

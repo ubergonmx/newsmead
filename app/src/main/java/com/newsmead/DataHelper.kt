@@ -1,11 +1,10 @@
 package com.newsmead
 
 import java.text.DateFormat
-import java.time.LocalDate
 import java.util.ArrayList
 import java.util.Date
 
-import com.newsmead.recyclerviews.saved.List
+import com.newsmead.recyclerviews.saved.SavedList
 
 // This is for testing purposes only. You can delete this class.
 object DataHelper {
@@ -91,16 +90,16 @@ object DataHelper {
         return data
     }
 
-    fun loadListData(): ArrayList<List> {
-        val data = ArrayList<List>()
-        data.add(List("Politics", 5))
-        data.add(List("Sports", 3))
-        data.add(List("manila updates", 2))
-        data.add(List("Business", 2))
-        data.add(List("Health Advice", 3))
-        data.add(List("Opinion", 1))
-        data.add(List("important news", 1))
-        data.add(List("NBA", 11))
+    fun loadListData(): ArrayList<SavedList> {
+        val data = ArrayList<SavedList>()
+        data.add(SavedList("Politics", 5))
+        data.add(SavedList("Sports", 3))
+        data.add(SavedList("manila updates", 2))
+        data.add(SavedList("Business", 2))
+        data.add(SavedList("Health Advice", 3))
+        data.add(SavedList("Opinion", 1))
+        data.add(SavedList("important news", 1))
+        data.add(SavedList("NBA", 11))
         return data
     }
 

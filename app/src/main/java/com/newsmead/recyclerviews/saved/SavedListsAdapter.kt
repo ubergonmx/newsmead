@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.newsmead.databinding.ItemSavedListBinding
-class SavedListsAdapter(private val listList: ArrayList<List>) : RecyclerView.Adapter<SavedListsViewHolder>(){
+class SavedListsAdapter(private val listSavedList: ArrayList<SavedList>) : RecyclerView.Adapter<SavedListsViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SavedListsViewHolder {
         val itemViewBinding: ItemSavedListBinding = ItemSavedListBinding.inflate(
@@ -22,11 +22,11 @@ class SavedListsAdapter(private val listList: ArrayList<List>) : RecyclerView.Ad
     }
 
     override fun getItemCount(): Int {
-        return listList.size
+        return listSavedList.size
     }
 
     override fun onBindViewHolder(holder: SavedListsViewHolder, position: Int) {
-        holder.bindData(listList[position])
+        holder.bindData(listSavedList[position])
     }
 
 }
