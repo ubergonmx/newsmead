@@ -95,12 +95,12 @@ object DataHelper {
         val data = ArrayList<List>()
         data.add(List("Politics", 5))
         data.add(List("Sports", 3))
-        data.add(List("Entertainment", 2))
-        data.add(List("School", 1))
-        data.add(List("Technology", 11))
+        data.add(List("manila updates", 2))
         data.add(List("Business", 2))
-        data.add(List("Lifestyle", 3))
+        data.add(List("Health Advice", 3))
         data.add(List("Opinion", 1))
+        data.add(List("important news", 1))
+        data.add(List("NBA", 11))
         return data
     }
 
