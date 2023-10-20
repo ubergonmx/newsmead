@@ -74,6 +74,7 @@
         tools:context=".fragments.article.ArticleFragment">
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsvArticleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:context=".fragments.article.ArticleFragment">
