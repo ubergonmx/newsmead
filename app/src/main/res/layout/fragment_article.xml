@@ -222,11 +222,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:outlineProvider="bounds"
+            app:backgroundTint="@color/white"
             app:layout_anchorGravity="top"
             app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior">
 
             <!-- Content for the bottom bar (article settings) goes here -->
-
+            <Button
+                android:id="@+id/btnArticleTextSmaller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/gray_300"
+                android:fontFamily="@font/arial"
+                android:minHeight="0dp"
+                android:padding="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:text="Smaller Text"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:icon="@drawable/remove_nofill_weight400"
+                app:iconGravity="top"
+                app:iconPadding="4dp"
+                app:iconSize="24dp"
+                app:iconTint="@color/black" />
+            <Button
+                android:id="@+id/btnArticleTextLarger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/gray_300"
+                android:fontFamily="@font/arial"
+                android:minHeight="0dp"
+                android:padding="6dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:text="Larger Text"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:icon="@drawable/add_nofill_weight400"
+                app:iconGravity="top"
+                app:iconPadding="4dp"
+                app:iconSize="24dp"
+                app:iconTint="@color/black" />
         </com.google.android.material.bottomappbar.BottomAppBar>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
