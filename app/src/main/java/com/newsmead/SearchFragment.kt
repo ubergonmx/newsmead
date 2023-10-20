@@ -5,10 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
+import com.newsmead.DataHelper.loadArticleDataLatest
 import com.newsmead.DataHelper.loadCategoryData
 import com.newsmead.DataHelper.loadSourcesData
 import com.newsmead.databinding.FragmentSearchBinding
+import com.newsmead.recyclerviews.feed.FeedArticleSimplifiedAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,6 +67,12 @@ class SearchFragment : Fragment() {
             chip.text = source
             binding.cgSources.addView(chip)
         }
+
+        val dataRecentNews = loadArticleDataLatest()
+        binding.rvSearchLatestNews.adapter = FeedArticleSimplifiedAdapter(dataRecentNews)
+        val layoutManager = LinearLayoutManager(context)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        binding.rvSearchLatestNews.layoutManager = layoutManager
 
         return binding.root
     }
