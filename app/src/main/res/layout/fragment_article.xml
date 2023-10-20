@@ -241,11 +241,17 @@
                 android:text="Smaller Text"
                 android:textColor="@color/black"
                 android:textSize="12sp"
+                app:cornerRadius="16dp"
                 app:icon="@drawable/remove_nofill_weight400"
                 app:iconGravity="top"
                 app:iconPadding="4dp"
                 app:iconSize="24dp"
                 app:iconTint="@color/black" />
+
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="wrap_content" />
+
             <Button
                 android:id="@+id/btnArticleTextLarger"
                 android:layout_width="wrap_content"
@@ -259,6 +265,7 @@
                 android:text="Larger Text"
                 android:textColor="@color/black"
                 android:textSize="12sp"
+                app:cornerRadius="16dp"
                 app:icon="@drawable/add_nofill_weight400"
                 app:iconGravity="top"
                 app:iconPadding="4dp"
