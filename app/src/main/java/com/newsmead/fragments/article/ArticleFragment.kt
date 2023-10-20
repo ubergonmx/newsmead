@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
+import com.newsmead.databinding.FragmentArticleBinding
+
 class ArticleFragment : Fragment() {
 
     override fun onCreateView(
@@ -13,6 +15,7 @@ class ArticleFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_article, container, false)
+        val binding = FragmentArticleBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }
