@@ -1,12 +1,16 @@
 package com.newsmead.fragments.article
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.newsmead.ArticleActivity
+import com.newsmead.DataHelper.loadRecommendedArticlesData
 
 import com.newsmead.databinding.FragmentArticleBinding
+import com.newsmead.databinding.ItemFeedArticleSimplifiedBinding
 
 class ArticleFragment : Fragment() {
 
@@ -16,6 +20,28 @@ class ArticleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentArticleBinding.inflate(inflater, container, false)
+
+        // Supply linear layout with FeedArticleSimplified items (not a recycler view)
+        val recommendedData = loadRecommendedArticlesData()
+        for (article in recommendedData) {
+            val itemFeedArticleSimplified = ItemFeedArticleSimplifiedBinding.inflate(inflater, container, false)
+            itemFeedArticleSimplified.tvArticleTitle.text = article.title
+            itemFeedArticleSimplified.tvSource.text = article.source
+            itemFeedArticleSimplified.tvArticleDate.text = article.date
+            itemFeedArticleSimplified.tvReadTime.text = article.readTime
+            itemFeedArticleSimplified.ivSourceImage.setImageResource(article.imageId)
+
+            // Add onClick to open article
+            itemFeedArticleSimplified.root.setOnClickListener {
+                val intent = Intent(requireContext(), ArticleActivity::class.java)
+                intent.putExtra("articleId", "TEST")
+                requireContext().startActivity(intent)
+            }
+
+            binding.llArticleRecommended.addView(itemFeedArticleSimplified.root)
+
+        }
+
         return binding.root
     }
 }
