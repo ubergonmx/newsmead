@@ -52,11 +52,10 @@
             android:layout_height="12dp"
             android:layout_marginStart="8dp"
             android:adjustViewBounds="true"
-            android:src="@tools:sample/avatars"
+            android:src="@drawable/folder_nofill_weight400"
             app:layout_constraintBottom_toBottomOf="@+id/tvSavedListName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvSavedListName"
-            tools:srcCompat="@drawable/folder_nofill_weight400" />
+            app:layout_constraintTop_toTopOf="@+id/tvSavedListName" />
 
         <TextView
             android:id="@+id/tvSavedListName"
