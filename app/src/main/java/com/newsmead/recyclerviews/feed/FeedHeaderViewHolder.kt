@@ -1,4 +1,4 @@
-package com.newsmead
+package com.newsmead.recyclerviews.feed
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

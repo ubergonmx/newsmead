@@ -1,8 +1,9 @@
-package com.newsmead
+package com.newsmead.recyclerviews.feed
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.newsmead.Article
 import com.newsmead.databinding.ItemFeedArticleBinding
 
 class FeedArticleAdapter(private val articleList: ArrayList<Article>) : RecyclerView.Adapter<FeedArticleViewHolder>(){

@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.databinding.FragmentHomeBinding
+import com.newsmead.recyclerviews.feed.FeedArticleAdapter
+import com.newsmead.recyclerviews.feed.FeedHeaderAdapter
+import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

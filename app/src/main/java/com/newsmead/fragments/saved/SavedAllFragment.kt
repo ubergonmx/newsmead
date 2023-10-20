@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.DataHelper.loadArticleData
-import com.newsmead.FeedArticleAdapter
+import com.newsmead.recyclerviews.feed.FeedArticleAdapter
 import com.newsmead.databinding.FragmentSavedAllBinding
 class SavedAllFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
