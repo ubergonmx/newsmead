@@ -31,7 +31,7 @@ class ArticleFragment : Fragment() {
             itemFeedArticleSimplified.tvSource.text = article.source
             itemFeedArticleSimplified.tvArticleDate.text = article.date
             itemFeedArticleSimplified.tvReadTime.text = article.readTime
-//            itemFeedArticleSimplified.ivSourceImage.setImageResource(article.imageId)
+            itemFeedArticleSimplified.ivSourceImage.setImageResource(article.imageId)
 
             // Add onClick to open article
             itemFeedArticleSimplified.root.setOnClickListener {
