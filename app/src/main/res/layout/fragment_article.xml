@@ -128,7 +128,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/arial"
-                        android:text="@string/sample_title"
+                        android:text="NBA Western Conference Preview: 2023-2024 Season"
                         android:textColor="@color/black"
                         android:textSize="24sp"
                         android:textStyle="bold"
