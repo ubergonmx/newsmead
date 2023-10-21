@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.newsmead.ArticleActivity
+import com.newsmead.CustomDividerItemDecoration
 import com.newsmead.DataHelper.loadRecommendedArticlesData
 import com.newsmead.R
 
 import com.newsmead.databinding.FragmentArticleBinding
 import com.newsmead.databinding.ItemFeedArticleSimplifiedBinding
 import com.newsmead.fragments.layouts.BottomSheetDialogSaveFragment
+import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder
 
 class ArticleFragment : Fragment() {
     private lateinit var binding: FragmentArticleBinding
@@ -42,7 +44,16 @@ class ArticleFragment : Fragment() {
 
             binding.llArticleRecommended.addView(itemFeedArticleSimplified.root)
 
+            // Add divider between items
+            val viewDivider = View(requireContext())
+            viewDivider.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1)
+            viewDivider.setBackgroundResource(R.drawable.line_divider)
+            binding.llArticleRecommended.addView(viewDivider)
+
         }
+
+
+
 
         // Bottom sheet dialog for saving articles
         binding.btnSaveList.setOnClickListener {
