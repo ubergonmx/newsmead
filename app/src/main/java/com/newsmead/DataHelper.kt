@@ -209,6 +209,21 @@ object DataHelper {
         return data
     }
 
+    fun loadCategoryLongerData(): ArrayList<String> {
+        val data = ArrayList<String>()
+        data.add("News")
+        data.add("Opinion")
+        data.add("Sports")
+        data.add("Technology")
+        data.add("Lifestyle")
+        data.add("Business")
+        data.add("Entertainment")
+        data.add("Health & Fitness")
+        data.add("Travel")
+        data.add("Money")
+        return data
+    }
+
     fun loadSourcesData(): ArrayList<String> {
         val data = ArrayList<String>()
         data.add("CNN Philippines")
