@@ -16,7 +16,7 @@
             android:name=".activities.AccountActivity"
             android:exported="false" />
         <activity
-            android:name=".ArticleActivity"
+            android:name=".activities.ArticleActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

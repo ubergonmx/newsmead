@@ -4,7 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.newsmead.ArticleActivity
+import com.newsmead.activities.ArticleActivity
 import com.newsmead.models.Article
 import com.newsmead.databinding.ItemFeedArticleBinding
 

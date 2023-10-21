@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.newsmead.ArticleActivity
+import com.newsmead.activities.ArticleActivity
 import com.newsmead.DataHelper.loadRecommendedArticlesData
 import com.newsmead.R
 
