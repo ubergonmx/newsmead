@@ -2,6 +2,7 @@ package com.newsmead
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
@@ -29,5 +30,27 @@ class MainActivity : AppCompatActivity() {
         this.navController = navHostFragment.navController
         val bottomNavigationView = this.viewBinding.bottomNavigationView
         setupWithNavController(bottomNavigationView, navController)
+
+        // OnDestinationChangedListener
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.homeFragment -> {
+                    this.viewBinding.bottomNavigationView.visibility = View.VISIBLE
+                }
+                R.id.searchFragment -> {
+                    this.viewBinding.bottomNavigationView.visibility = View.VISIBLE
+                }
+                R.id.savedFragment -> {
+                    this.viewBinding.bottomNavigationView.visibility = View.VISIBLE
+                }
+                R.id.profileFragment -> {
+                    this.viewBinding.bottomNavigationView.visibility = View.VISIBLE
+                }
+                else -> {
+                    this.viewBinding.bottomNavigationView.visibility = View.GONE
+                }
+            }
+        }
+        
     }
 }
