@@ -2,8 +2,10 @@ package com.newsmead.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.newsmead.R
 
 import com.newsmead.databinding.AccountActivityBinding
+import com.newsmead.fragments.account.LogInFragment
 import com.newsmead.fragments.account.SignUpFragment
 
 class AccountActivity : AppCompatActivity() {
@@ -15,11 +17,20 @@ class AccountActivity : AppCompatActivity() {
         this.viewBinding = AccountActivityBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        // Display Starting Fragment (Sign Up)
-        val signUpFragment = SignUpFragment()
-        supportFragmentManager.beginTransaction()
-            .replace(this.viewBinding.flAccountContainer.id, signUpFragment)
-            .commit()
+        val intent = intent
+        if (intent != null) {
+            val initialFragment = intent.getStringExtra("initial_fragment")
+
+            if ("sign_up" == initialFragment) {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.flAccountContainer, SignUpFragment())
+                    .commit()
+            } else {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.flAccountContainer, LogInFragment())
+                    .commit()
+            }
+        }
 
     }
 }
