@@ -12,7 +12,8 @@ class SavedListsViewHolder(private val viewBinding: ItemSavedListBinding): Recyc
     // Performs the binding of the article data to the views in the ViewHolder
     fun bindData(savedList: SavedList) {
         this.viewBinding.tvListTitle.text = savedList.title
-        this.viewBinding.tvListNumArticles.text = savedList.numArticles.toString()
+        val articleNumber = savedList.numArticles.toString() + " articles"
+        this.viewBinding.tvListNumArticles.text = articleNumber
 
         // Special icon for Read Later list
         if (savedList.title == "Read Later") {
