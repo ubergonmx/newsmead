@@ -24,6 +24,10 @@ class SavedListsFragment: Fragment() {
 
         binding.rvSavedLists.layoutManager = layoutManager
 
+        // Add spacing between items
+        val spacing = 48
+        binding.rvSavedLists.addItemDecoration(com.newsmead.custom.CustomDividerSpacer(spacing))
+
         return binding.root
     }
 }
