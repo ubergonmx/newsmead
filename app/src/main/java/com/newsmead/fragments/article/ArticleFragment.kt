@@ -51,24 +51,24 @@ class ArticleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Add bottom app bar logic (it must stick and then only disappear
         // once it reaches recommendations
-        binding.btnArticleRecommendations.post {
-            val btnLocation = IntArray(2)
-            binding.btnArticleRecommendations.getLocationOnScreen(btnLocation)
-            val btnY = btnLocation[1]
-
-            val nestedScrollView = binding.nsvArticleText
-            val bottomAppBar = binding.bottomAppBar
-            nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
-                Log.d("Y_COORDINATE", "btnY: $btnY scrollY: $scrollY")
-                // Check if the scroll position is past the Y-coordinate of btnArticleRecommendations
-                if (scrollY > btnY -1000) {
-                    Log.d("SCROLL", "Hiding Bottom App Bar")
-                    bottomAppBar.performHide()
-                } else {
-                    bottomAppBar.performShow()
-                }
-            })
-        }
+//        binding.btnArticleRecommendations.post {
+//            val btnLocation = IntArray(2)
+//            binding.btnArticleRecommendations.getLocationOnScreen(btnLocation)
+//            val btnY = btnLocation[1]
+//
+//            val nestedScrollView = binding.nsvArticleText
+//            val bottomAppBar = binding.bottomAppBar
+//            nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
+//                Log.d("Y_COORDINATE", "btnY: $btnY scrollY: $scrollY")
+//                // Check if the scroll position is past the Y-coordinate of btnArticleRecommendations
+//                if (scrollY > btnY -1000) {
+//                    Log.d("SCROLL", "Hiding Bottom App Bar")
+//                    bottomAppBar.performHide()
+//                } else {
+//                    bottomAppBar.performShow()
+//                }
+//            })
+//        }
 
 
     }
