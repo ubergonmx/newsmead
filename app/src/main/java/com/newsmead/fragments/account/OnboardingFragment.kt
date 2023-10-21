@@ -64,7 +64,13 @@ class OnboardingFragment : Fragment() {
                     checkedChips -= buttonView.id
                 }
 
-                binding.btnFinishOnboarding.isEnabled = checkedChips.size >= 3
+                if (checkedChips.size >= 3) {
+                    binding.btnFinishOnboarding.isEnabled = true
+                    binding.btnFinishOnboarding.alpha = 1.0f
+                } else {
+                    binding.btnFinishOnboarding.isEnabled = false
+                    binding.btnFinishOnboarding.alpha = 0.5f
+                }
             }
 
             chipGroup.addView(chip)
@@ -72,6 +78,7 @@ class OnboardingFragment : Fragment() {
 
         // Disable button if less than 3 categories are selected
         binding.btnFinishOnboarding.isEnabled = false
+        binding.btnFinishOnboarding.alpha = 0.5f
 
         // Button for onboarding
         binding.btnFinishOnboarding.setOnClickListener {
