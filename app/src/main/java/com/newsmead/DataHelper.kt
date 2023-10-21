@@ -2,7 +2,6 @@ package com.newsmead
 
 import com.newsmead.models.Article
 import java.text.DateFormat
-import java.util.ArrayList
 import java.util.Date
 
 import com.newsmead.models.SavedList

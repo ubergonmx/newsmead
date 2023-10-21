@@ -12,10 +12,12 @@ import com.google.android.material.chip.Chip
 import com.newsmead.DataHelper.loadArticleDataLatest
 import com.newsmead.DataHelper.loadCategoryData
 import com.newsmead.DataHelper.loadSourcesData
+import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentSearchBinding
 import com.newsmead.fragments.article.ArticleSourceFragment
 import com.newsmead.recyclerviews.feed.FeedArticleSimplifiedAdapter
+import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,12 +65,19 @@ class SearchFragment : Fragment() {
         for (category in categoryData) {
             val chip = ChipSearchBinding.inflate(inflater, null, false).root
             chip.text = category
+
+            // Launch category fragment when chip is clicked
+            chip.setOnClickListener(View.OnClickListener {
+                Navigation.findNavController(it).navigate(com.newsmead.R.id.action_searchFragment_to_articleCategoryFragment)
+            })
+
             binding.cgCategory.addView(chip)
         }
 
         for (source in sourcesData) {
             val chip = ChipSearchBinding.inflate(inflater, null, false).root
             chip.text = source
+
             // Launch source fragment when chip is clicked
             chip.setOnClickListener(View.OnClickListener {
                 Navigation.findNavController(it).navigate(com.newsmead.R.id.action_searchFragment_to_articleSourceFragment)
@@ -77,11 +86,16 @@ class SearchFragment : Fragment() {
             binding.cgSources.addView(chip)
         }
 
+        // RecyclerView of Recent Articles
         val dataRecentNews = loadArticleDataLatest()
         binding.rvSearchLatestNews.adapter = FeedArticleSimplifiedAdapter(dataRecentNews)
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvSearchLatestNews.layoutManager = layoutManager
+
+        // Add divider between items
+        val customDividerItemDecoration = CustomDividerItemDecoration(context, R.drawable.line_divider, FeedHeaderViewHolder::class.java)
+        binding.rvSearchLatestNews.addItemDecoration(customDividerItemDecoration)
 
         return binding.root
     }
