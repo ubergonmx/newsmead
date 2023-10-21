@@ -136,6 +136,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvAccPassword" />
 
+        <ImageButton
+            android:id="@+id/btnAccPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_visibility"
+            android:tint="@color/gray_100"
+            app:layout_constraintBottom_toBottomOf="@+id/etAccPassword"
+            app:layout_constraintEnd_toEndOf="@+id/etAccPassword"
+            app:layout_constraintTop_toTopOf="@+id/etAccPassword" />
+
         <TextView
             android:id="@+id/tvAccConfirmPassword"
             android:layout_width="wrap_content"
@@ -158,6 +171,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvAccConfirmPassword" />
+
+        <ImageButton
+            android:id="@+id/btnAccConfirmPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_visibility"
+            android:tint="@color/gray_100"
+            app:layout_constraintBottom_toBottomOf="@+id/etAccConfirmPassword"
+            app:layout_constraintEnd_toEndOf="@+id/etAccConfirmPassword"
+            app:layout_constraintTop_toTopOf="@+id/etAccConfirmPassword" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
