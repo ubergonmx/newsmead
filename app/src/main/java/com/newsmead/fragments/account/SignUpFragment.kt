@@ -23,7 +23,15 @@ class SignUpFragment: Fragment() {
                 .commit()
         }
 
-        
+        this.viewBinding.btnAccStart.setOnClickListener {
+            // Goes to Onboarding Fragment
+            val onboardingFragment = OnboardingFragment()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(com.newsmead.R.id.flAccountContainer, onboardingFragment)
+                .commit()
+        }
+
+
 
         return this.viewBinding.root
     }
