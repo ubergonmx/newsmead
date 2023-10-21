@@ -49,7 +49,10 @@ class OnboardingFragment : Fragment() {
             chipGroup.addView(chip)
         }
 
-
+        // Button for onboarding
+        binding.btnFinishOnboarding.setOnClickListener {
+            activity?.finish()
+        }
 
         return binding.root
     }

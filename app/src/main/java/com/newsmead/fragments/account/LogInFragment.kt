@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.newsmead.R
 
 import com.newsmead.databinding.FragmentLogInBinding
 
@@ -40,6 +41,16 @@ class LogInFragment : Fragment() {
         val binding = FragmentLogInBinding.inflate(inflater, container, false)
 
         // Buttons
+        binding.btnAccCreate.setOnClickListener {
+            val signUpFragment = SignUpFragment()
+            val transaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.flAccountContainer, signUpFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
+        binding.btnAccLogIn.setOnClickListener {
+            activity?.finish()
+        }
 
         // Inflate the layout for this fragment
         return binding.root
