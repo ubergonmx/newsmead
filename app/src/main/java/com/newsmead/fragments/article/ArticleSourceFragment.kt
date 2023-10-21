@@ -10,19 +10,19 @@ import com.google.android.material.chip.Chip
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.DataHelper
 import com.newsmead.R
-import com.newsmead.databinding.FragmentArticleRecommendedBinding
+import com.newsmead.databinding.FragmentArticleSourceBinding
 import com.newsmead.recyclerviews.feed.FeedArticleAdapter
 import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder
 
 class ArticleSourceFragment: Fragment() {
-    private lateinit var binding: FragmentArticleRecommendedBinding
+    private lateinit var binding: FragmentArticleSourceBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentArticleRecommendedBinding.inflate(inflater, container, false)
+        binding = FragmentArticleSourceBinding.inflate(inflater, container, false)
 
         // RecyclerView of Articles
         val sourceArticlesData = DataHelper.loadSourceArticlesData()
