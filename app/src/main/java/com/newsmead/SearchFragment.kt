@@ -10,6 +10,7 @@ import com.google.android.material.chip.Chip
 import com.newsmead.DataHelper.loadArticleDataLatest
 import com.newsmead.DataHelper.loadCategoryData
 import com.newsmead.DataHelper.loadSourcesData
+import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentSearchBinding
 import com.newsmead.recyclerviews.feed.FeedArticleSimplifiedAdapter
 
@@ -57,13 +58,13 @@ class SearchFragment : Fragment() {
 
         // Fill with chips
         for (category in categoryData) {
-            val chip = inflater.inflate(R.layout.chip_search, null) as Chip
+            val chip = ChipSearchBinding.inflate(inflater, null, false).root
             chip.text = category
             binding.cgCategory.addView(chip)
         }
 
         for (source in sourcesData) {
-            val chip = inflater.inflate(R.layout.chip_search, null) as Chip
+            val chip = ChipSearchBinding.inflate(inflater, null, false).root
             chip.text = source
             binding.cgSources.addView(chip)
         }
