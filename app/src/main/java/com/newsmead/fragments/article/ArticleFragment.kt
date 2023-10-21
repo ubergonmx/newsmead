@@ -13,6 +13,7 @@ import com.newsmead.DataHelper.loadRecommendedArticlesData
 
 import com.newsmead.databinding.FragmentArticleBinding
 import com.newsmead.databinding.ItemFeedArticleSimplifiedBinding
+import com.newsmead.fragments.layouts.BottomSheetDialogSaveFragment
 
 class ArticleFragment : Fragment() {
     private lateinit var binding: FragmentArticleBinding
@@ -42,6 +43,12 @@ class ArticleFragment : Fragment() {
 
             binding.llArticleRecommended.addView(itemFeedArticleSimplified.root)
 
+        }
+
+        // Bottom sheet dialog for saving articles
+        binding.btnSaveList.setOnClickListener {
+            val bottomSheetDialogFragment = BottomSheetDialogSaveFragment()
+            bottomSheetDialogFragment.show(requireActivity().supportFragmentManager, "save")
         }
 
 
