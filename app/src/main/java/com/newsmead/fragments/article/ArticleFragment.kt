@@ -2,14 +2,13 @@ package com.newsmead.fragments.article
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import com.newsmead.ArticleActivity
 import com.newsmead.DataHelper.loadRecommendedArticlesData
+import com.newsmead.R
 
 import com.newsmead.databinding.FragmentArticleBinding
 import com.newsmead.databinding.ItemFeedArticleSimplifiedBinding
@@ -54,6 +53,20 @@ class ArticleFragment : Fragment() {
         // Back button to go back to previous fragment
         binding.btnArticleBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
+        // Show more button to show more articles
+        binding.btnArticleRecommendations.setOnClickListener {
+            val articleSourceFragment = ArticleSourceFragment()
+            val articleFragment = ArticleFragment()
+            val args = Bundle()
+            args.putString("sourceId", "INQUIRER.NET")
+            articleFragment.arguments = args
+
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.flMainArticleContainer, articleSourceFragment)
+                .addToBackStack(null)
+                .commit()
         }
 
 
