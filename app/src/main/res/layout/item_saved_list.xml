@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:outlineProvider="none"
         app:cardBackgroundColor="@color/gray_300"
-        app:cardCornerRadius="24dp"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,8 +33,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/saved_list_placeholder_title"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp" />
 
                 <TextView
                     android:id="@+id/tvListNumArticles"
@@ -49,6 +53,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
+                android:cropToPadding="true"
+                android:padding="8dp"
                 android:src="@drawable/folder_filled_weight400"
                 android:tint="@color/gray_200"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -57,5 +63,5 @@
                 tools:src="@drawable/folder_filled_weight400" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
