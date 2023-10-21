@@ -177,6 +177,19 @@ object DataHelper {
         return data
     }
 
+    fun loadListNamesData(): ArrayList<String> {
+        val data = ArrayList<String>()
+        data.add("Politics")
+        data.add("Sports")
+        data.add("manila updates")
+        data.add("Business")
+        data.add("Health Advice")
+        data.add("Opinion")
+        data.add("important news")
+        data.add("NBA")
+        return data
+    }
+
     fun getDateToday(): CharSequence {
         return DateFormat.getDateInstance(DateFormat.MEDIUM).format(Date())
     }
