@@ -14,6 +14,11 @@ class SavedListsViewHolder(private val viewBinding: ItemSavedListBinding): Recyc
         this.viewBinding.tvListTitle.text = savedList.title
         this.viewBinding.tvListNumArticles.text = savedList.numArticles.toString()
 
+        // Special icon for Read Later list
+        if (savedList.title == "Read Later") {
+            this.viewBinding.btnList.setImageResource(R.drawable.star_filled_weight400)
+        }
+
         // On clicking folder button, open fragment to open saved list
         this.viewBinding.btnList.setOnClickListener {
             val listFragment = SavedListsFragment()
