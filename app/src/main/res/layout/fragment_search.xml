@@ -32,7 +32,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <SearchView
+            <android.widget.SearchView
                 android:id="@+id/svSearchBar"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
@@ -40,12 +40,14 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/searchbar_background"
+                android:iconifiedByDefault="false"
                 android:queryBackground="@android:color/transparent"
+                app:iconifiedByDefault="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvSearch">
 
-            </SearchView>
+            </android.widget.SearchView>
 
             <TextView
                 android:id="@+id/tvSearchCategory"
