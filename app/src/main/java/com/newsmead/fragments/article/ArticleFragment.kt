@@ -50,7 +50,8 @@ class ArticleFragment : Fragment() {
 
         }
 
-
+        // Set imageview
+        binding.ivSourceImage.setImageResource(R.drawable.sample_source_image)
 
 
         // Bottom sheet dialog for saving articles
