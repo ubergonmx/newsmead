@@ -250,6 +250,7 @@
             android:layout_gravity="bottom"
             android:outlineProvider="bounds"
             app:backgroundTint="@color/white"
+            app:hideOnScroll="false"
             app:layout_anchorGravity="top"
             app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior">
 
