@@ -17,7 +17,6 @@ import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentSearchBinding
 import com.newsmead.fragments.article.ArticleSourceFragment
 import com.newsmead.recyclerviews.feed.FeedArticleSimplifiedAdapter
-import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -94,7 +93,7 @@ class SearchFragment : Fragment() {
         binding.rvSearchLatestNews.layoutManager = layoutManager
 
         // Add divider between items
-        val customDividerItemDecoration = CustomDividerItemDecoration(context, R.drawable.line_divider, FeedHeaderViewHolder::class.java)
+        val customDividerItemDecoration = CustomDividerItemDecoration(context, R.drawable.line_divider)
         binding.rvSearchLatestNews.addItemDecoration(customDividerItemDecoration)
 
         return binding.root

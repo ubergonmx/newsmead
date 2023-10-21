@@ -54,7 +54,7 @@ class ArticleCategoryFragment : Fragment() {
         binding.rvCategoryArticles.layoutManager = layoutManager
 
         // Add divider between items
-        val customDividerItemDecoration = CustomDividerItemDecoration(context, R.drawable.line_divider, FeedHeaderViewHolder::class.java)
+        val customDividerItemDecoration = CustomDividerItemDecoration(context, R.drawable.line_divider)
         binding.rvCategoryArticles.addItemDecoration(customDividerItemDecoration)
 
         // Fill chips

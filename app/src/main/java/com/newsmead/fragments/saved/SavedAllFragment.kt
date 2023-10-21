@@ -11,7 +11,6 @@ import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.recyclerviews.feed.FeedArticleAdapter
 import com.newsmead.databinding.FragmentSavedAllBinding
-import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder
 
 class SavedAllFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +29,7 @@ class SavedAllFragment: Fragment() {
         binding.rvSavedAll.layoutManager = layoutManager
 
         // Add divider
-        val customDivider = CustomDividerItemDecoration(context, R.drawable.line_divider, FeedHeaderViewHolder::class.java)
+        val customDivider = CustomDividerItemDecoration(context, R.drawable.line_divider)
         binding.rvSavedAll.addItemDecoration(customDivider)
 
 
