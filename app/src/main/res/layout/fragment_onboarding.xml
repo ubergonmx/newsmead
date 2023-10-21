@@ -6,14 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".fragments.account.OnboardingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/tvWelcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/arial"
-        android:text="Welcome to Newsmead"
+        android:text="Welcome to NewsMead"
         android:textAlignment="center"
         android:textColor="@color/gray_100"
         android:textStyle="bold"
