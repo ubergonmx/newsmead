@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.DataHelper
+import com.newsmead.R
+import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.FragmentHistoryBinding
 import com.newsmead.recyclerviews.feed.FeedArticleSimplifiedAdapter
+import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder
 
 class HistoryFragment: Fragment() {
     private lateinit var binding: FragmentHistoryBinding
@@ -31,6 +34,9 @@ class HistoryFragment: Fragment() {
         val layoutManager = LinearLayoutManager(requireContext())
         binding.rvHistory.layoutManager = layoutManager
 
+        // Divider
+        val customDivider = CustomDividerItemDecoration(context, R.drawable.line_divider, FeedHeaderViewHolder::class.java)
+        binding.rvHistory.addItemDecoration(customDivider)
 
 
         return binding.root
