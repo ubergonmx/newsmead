@@ -1,6 +1,7 @@
 package com.newsmead.fragments.account
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,9 @@ class OnboardingFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var binding: FragmentOnboardingBinding
+    private lateinit var checkedChips: List<Int>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -38,16 +42,36 @@ class OnboardingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentOnboardingBinding.inflate(inflater, container, false)
+        binding = FragmentOnboardingBinding.inflate(inflater, container, false)
 
         val chipData = loadCategoryLongerData()
         val chipGroup = binding.cgCategoryTopics
 
+        checkedChips = listOf()
+
         for (category in chipData) {
             val chip = layoutInflater.inflate(R.layout.chip_search, chipGroup, false) as Chip
             chip.text = category
+
+            // Make chips toggleable
+            chip.isCheckable = true
+
+            // Add listener to enable button when 3 categories are selected
+            chip.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    checkedChips += buttonView.id
+                } else {
+                    checkedChips -= buttonView.id
+                }
+
+                binding.btnFinishOnboarding.isEnabled = checkedChips.size >= 3
+            }
+
             chipGroup.addView(chip)
         }
+
+        // Disable button if less than 3 categories are selected
+        binding.btnFinishOnboarding.isEnabled = false
 
         // Button for onboarding
         binding.btnFinishOnboarding.setOnClickListener {
