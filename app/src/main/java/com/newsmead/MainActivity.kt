@@ -9,6 +9,11 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.crashlytics.ktx.setCustomKeys
 import com.google.firebase.ktx.Firebase
+
+import android.content.Intent
+import com.newsmead.activities.AccountActivity
+
+
 import com.newsmead.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -28,5 +33,11 @@ class MainActivity : AppCompatActivity() {
         this.navController = navHostFragment.navController
         val bottomNavigationView = this.viewBinding.bottomNavigationView
         setupWithNavController(bottomNavigationView, navController)
+
+        // Signup/Login Screen
+        val intent = Intent(this, AccountActivity::class.java)
+        intent.putExtra("initial_fragment", "sign_up") // You can use any identifier you prefer
+        startActivity(intent)
+
     }
 }
