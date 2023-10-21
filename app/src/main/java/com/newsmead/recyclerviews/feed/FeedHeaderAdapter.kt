@@ -22,7 +22,7 @@ class FeedHeaderAdapter: RecyclerView.Adapter<FeedHeaderViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: FeedHeaderViewHolder, position: Int) {
-
+        holder.bindData()
     }
 
 }
