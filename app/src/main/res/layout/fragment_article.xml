@@ -2,8 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    layout_height="match_parent"
-    layout_width="match_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -23,7 +21,7 @@
             android:layout_marginStart="16dp"
             android:background="@null"
             android:src="@drawable/arrow_back_ios_nofill_weight400"
-            android:tint="@color/gray_100"
+            app:tint="@color/gray_100"
             app:layout_constraintBottom_toBottomOf="@+id/btnSaveList"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/btnSaveList" />
@@ -57,7 +55,7 @@
             android:layout_marginEnd="16dp"
             android:background="@null"
             android:src="@drawable/share_nofill_weight400"
-            android:tint="@color/gray_100"
+            app:tint="@color/gray_100"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/btnSaveList" />
