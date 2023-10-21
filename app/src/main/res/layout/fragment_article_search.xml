@@ -6,113 +6,122 @@
     android:layout_height="match_parent"
     tools:context=".fragments.article.ArticleSearchFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
 
-        <Button
-            android:id="@+id/btnHistory2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/gray_300"
-            android:drawableStart="@drawable/ic_baseline_history_24"
-            android:fontFamily="@font/arial"
-            android:paddingStart="6dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="8dp"
-            android:text="@string/btn_filter"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:icon="@drawable/filter_filled_weigh400"
-            app:iconPadding="0dp"
-            app:iconTint="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/svSearchBar" />
-
-        <TextView
-            android:id="@+id/tvSearch2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/arial"
-            android:text="@string/search_title"
-            android:textColor="?android:colorPrimary"
-            android:textSize="16pt"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <android.widget.SearchView
-            android:id="@+id/svSearchBar"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/searchbar_background"
-            android:iconifiedByDefault="false"
-            android:queryBackground="@android:color/transparent"
-            app:iconifiedByDefault="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSearch2">
-
-        </android.widget.SearchView>
-
-        <TextView
-            android:id="@+id/tvSearchingForLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/arial"
-            android:text="@string/search_label"
-            android:textColor="?android:colorPrimary"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/svSearchBar" />
-
-        <TextView
-            android:id="@+id/tvSearchingForPrompt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/arial"
-            android:text="@string/search_prompt"
-            android:textColor="?android:colorPrimary"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/tvSearchingForLabel"
-            app:layout_constraintTop_toBottomOf="@id/svSearchBar" />
-
-        <TextView
-            android:id="@+id/tvResultCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/arial"
-            android:text="@string/search_results"
-            android:textColor="@color/gray_100"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSearchingForLabel" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvSearchArticles"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvResultCount" />
+            android:layout_height="match_parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/btnHistory2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/gray_300"
+                android:drawableStart="@drawable/ic_baseline_history_24"
+                android:fontFamily="@font/arial"
+                android:paddingStart="6dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+                android:text="@string/btn_filter"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:icon="@drawable/filter_filled_weigh400"
+                app:iconPadding="0dp"
+                app:iconTint="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/svSearchBar" />
+
+            <TextView
+                android:id="@+id/tvSearch2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/arial"
+                android:text="@string/search_title"
+                android:textColor="?android:colorPrimary"
+                android:textSize="16pt"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.widget.SearchView
+                android:id="@+id/svSearchBar"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/searchbar_background"
+                android:iconifiedByDefault="false"
+                android:queryBackground="@android:color/transparent"
+                app:iconifiedByDefault="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSearch2">
+
+            </android.widget.SearchView>
+
+            <TextView
+                android:id="@+id/tvSearchingForLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/arial"
+                android:text="@string/search_label"
+                android:textColor="?android:colorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/svSearchBar" />
+
+            <TextView
+                android:id="@+id/tvSearchingForPrompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/arial"
+                android:text="@string/search_prompt"
+                android:textColor="?android:colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/tvSearchingForLabel"
+                app:layout_constraintTop_toBottomOf="@id/svSearchBar" />
+
+            <TextView
+                android:id="@+id/tvResultCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/arial"
+                android:text="@string/search_results"
+                android:textColor="@color/gray_100"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSearchingForLabel" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSearchArticles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvResultCount" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </FrameLayout>

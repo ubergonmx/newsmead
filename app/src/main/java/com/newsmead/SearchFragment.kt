@@ -3,8 +3,12 @@ package com.newsmead
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.SearchView
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -84,6 +88,21 @@ class SearchFragment : Fragment() {
 
             binding.cgSources.addView(chip)
         }
+
+        // svSearchBar setOnQueryTextListener
+        binding.svSearchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // Launch search fragment when search button is clicked
+                Navigation.findNavController(binding.root)
+                    .navigate(com.newsmead.R.id.action_searchFragment_to_articleSearchFragment)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+
 
         // RecyclerView of Recent Articles
         val dataRecentNews = loadArticleDataLatest()
