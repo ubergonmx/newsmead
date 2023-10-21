@@ -283,6 +283,7 @@
                         android:background="?android:attr/selectableItemBackground"
                         android:contentDescription="Light Button"
                         android:onClick="onLightButtonClick"
+                        android:enabled="false"
                         android:src="@drawable/circle_filled_weight400light" />
 
                     <TextView
@@ -309,7 +310,8 @@
                         android:background="?android:attr/selectableItemBackground"
                         android:contentDescription="Dark Button"
                         android:onClick="onDarkButtonClick"
-                        android:src="@drawable/circle_filled_weight400dark" />
+                        android:src="@drawable/circle_filled_weight400dark"
+                        android:enabled="false"/>
 
                     <TextView
                         android:id="@+id/tvArticleClrDark"
@@ -335,7 +337,8 @@
                         android:background="?android:attr/selectableItemBackground"
                         android:contentDescription="Sepia Button"
                         android:onClick="onSepiaButtonClick"
-                        android:src="@drawable/circle_filled_weight400sepia" />
+                        android:src="@drawable/circle_filled_weight400sepia"
+                        android:enabled="false"/>
 
                     <TextView
                         android:id="@+id/tvArticleClrSepia"
