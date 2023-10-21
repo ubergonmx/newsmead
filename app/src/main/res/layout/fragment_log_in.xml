@@ -76,11 +76,10 @@
             android:fontFamily="@font/arial"
             android:text="Email Address"
             android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etAccName" />
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <EditText
-            android:id="@+id/etAccEmail"
+            android:id="@+id/etAccLogEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -92,7 +91,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvAccLogEmail" />
 
         <TextView
-            android:id="@+id/tvAccPassword"
+            android:id="@+id/tvAccLogPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -100,10 +99,10 @@
             android:text="Password"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etAccEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/etAccLogEmail" />
 
         <EditText
-            android:id="@+id/etAccPassword"
+            android:id="@+id/etAccLogPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -112,7 +111,7 @@
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAccLogPassword" />
 
         <CheckBox
             android:layout_width="0dp"
@@ -121,12 +120,12 @@
             android:fontFamily="@font/arial"
             android:text="Remember Me?"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etAccPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/etAccLogPassword" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/btnAccStart"
+        android:id="@+id/btnAccLogIn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -137,12 +136,12 @@
         android:text="Log In"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnAccLog"
+        app:layout_constraintBottom_toTopOf="@+id/btnAccCreate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnAccLog"
+        android:id="@+id/btnAccCreate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
