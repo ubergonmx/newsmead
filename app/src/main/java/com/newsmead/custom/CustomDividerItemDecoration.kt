@@ -1,4 +1,4 @@
-package com.newsmead
+package com.newsmead.custom
 
 import android.content.Context
 import android.graphics.Canvas

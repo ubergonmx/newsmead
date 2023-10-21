@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
-import com.newsmead.CustomDividerItemDecoration
+import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.DataHelper
 import com.newsmead.R
 import com.newsmead.databinding.FragmentArticleRecommendedBinding
-import com.newsmead.databinding.ItemFeedArticleBinding
 import com.newsmead.recyclerviews.feed.FeedArticleAdapter
 import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder
 

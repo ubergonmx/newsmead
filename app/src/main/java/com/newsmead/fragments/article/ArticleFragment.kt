@@ -7,14 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.newsmead.ArticleActivity
-import com.newsmead.CustomDividerItemDecoration
 import com.newsmead.DataHelper.loadRecommendedArticlesData
 import com.newsmead.R
 
 import com.newsmead.databinding.FragmentArticleBinding
 import com.newsmead.databinding.ItemFeedArticleSimplifiedBinding
 import com.newsmead.fragments.layouts.BottomSheetDialogSaveFragment
-import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder
 
 class ArticleFragment : Fragment() {
     private lateinit var binding: FragmentArticleBinding

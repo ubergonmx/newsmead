@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.FragmentHomeBinding
 import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.FeedArticleAdapter
