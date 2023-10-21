@@ -3,11 +3,16 @@
 
     <string name="home_title">Home</string>
     <string name="btn_history">History</string>
+    <string name="btn_filter">Filter</string>
 
     <string name="search_title">Search</string>
     <string name="search_category">Category</string>
     <string name="search_sources">Sources</string>
     <string name="search_latest_news">Latest News</string>
+    <string name="search_label">Searching for:</string>
+    <string name="search_prompt">Lorem ipsum</string>
+    <string name="search_results">3 results</string>
+    <string name="search_no_results">No results found</string>
 
     <string name="saved_title">Saved Articles</string>
     <string name="saved_your_lists">Your Lists</string>
