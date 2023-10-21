@@ -51,6 +51,11 @@ class ArticleFragment : Fragment() {
             bottomSheetDialogFragment.show(requireActivity().supportFragmentManager, "save")
         }
 
+        // Back button to go back to previous fragment
+        binding.btnArticleBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
 
         return binding.root
     }
