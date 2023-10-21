@@ -6,6 +6,7 @@ import java.util.ArrayList
 import java.util.Date
 
 import com.newsmead.models.SavedList
+import kotlin.collections.ArrayList
 
 // This is for testing purposes only. You can delete this class.
 object DataHelper {
@@ -139,6 +140,10 @@ object DataHelper {
             )
         )
         return data
+    }
+
+    fun loadCategoryArticlesData(): ArrayList<Article> {
+        return loadSourceArticlesData()
     }
 
     fun loadSourceArticlesData(): ArrayList<Article> {
