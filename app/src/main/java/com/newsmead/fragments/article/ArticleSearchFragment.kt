@@ -10,6 +10,7 @@ import com.newsmead.DataHelper
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.FragmentArticleSearchBinding
+import com.newsmead.fragments.layouts.BottomSheetDialogSearchFilter
 import com.newsmead.recyclerviews.feed.FeedArticleAdapter
 
 // TODO: Rename parameter arguments, choose names that match
@@ -59,6 +60,11 @@ class ArticleSearchFragment : Fragment() {
 //            requireActivity().onBackPressedDispatcher.onBackPressed()
 //        }
 
+        // Dialog to show when user clicks on filter
+        binding.btnSearchFilter.setOnClickListener {
+            val bottomSheetDialogSearchFilter = BottomSheetDialogSearchFilter()
+            bottomSheetDialogSearchFilter.show(requireActivity().supportFragmentManager, "BottomSheetDialogSearchFilter")
+        }
 
         // Inflate the layout for this fragment
         return binding.root
