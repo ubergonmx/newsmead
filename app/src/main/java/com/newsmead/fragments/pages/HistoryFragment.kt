@@ -11,7 +11,6 @@ import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.FragmentHistoryBinding
 import com.newsmead.recyclerviews.feed.FeedArticleSimplifiedAdapter
-import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder
 
 class HistoryFragment: Fragment() {
     private lateinit var binding: FragmentHistoryBinding
@@ -35,7 +34,7 @@ class HistoryFragment: Fragment() {
         binding.rvHistory.layoutManager = layoutManager
 
         // Divider
-        val customDivider = CustomDividerItemDecoration(context, R.drawable.line_divider, FeedHeaderViewHolder::class.java)
+        val customDivider = CustomDividerItemDecoration(context, R.drawable.line_divider)
         binding.rvHistory.addItemDecoration(customDivider)
 
 

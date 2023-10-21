@@ -20,7 +20,18 @@
         android:id="@+id/searchFragment"
         android:name="com.newsmead.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_articleSourceFragment"
+            app:destination="@id/articleSourceFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_searchFragment_to_articleCategoryFragment"
+            app:destination="@id/articleCategoryFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/savedFragment"
         android:name="com.newsmead.SavedFragment"
@@ -44,4 +55,13 @@
         android:id="@+id/historyFragment"
         android:name="com.newsmead.fragments.pages.HistoryFragment"
         android:label="HistoryFragment" />
+    <fragment
+        android:id="@+id/articleSourceFragment"
+        android:name="com.newsmead.fragments.article.ArticleSourceFragment"
+        android:label="ArticleSourceFragment" />
+    <fragment
+        android:id="@+id/articleCategoryFragment"
+        android:name="com.newsmead.fragments.article.ArticleCategoryFragment"
+        android:label="fragment_article_category"
+        tools:layout="@layout/fragment_article_category" />
 </navigation>
