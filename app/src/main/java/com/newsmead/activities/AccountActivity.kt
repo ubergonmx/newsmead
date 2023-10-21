@@ -1,5 +1,6 @@
 package com.newsmead.activities
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.newsmead.R
@@ -32,5 +33,10 @@ class AccountActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        // Do Nothing
     }
 }
