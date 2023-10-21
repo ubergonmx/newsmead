@@ -33,18 +33,18 @@
         app:layout_constraintTop_toBottomOf="@+id/ivHandle">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/ivFolderIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:tint="@color/gray_100"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:tint="@color/gray_100"
+            app:layout_constraintBottom_toBottomOf="@+id/tvSaveToDialog"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/tvSaveToDialog"
             tools:srcCompat="@drawable/folder_nofill_weight400" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tvSaveToDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -54,7 +54,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/ivFolderIcon"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -94,7 +94,9 @@
         android:id="@+id/btnListDone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="@color/gray_100"
         android:text="Done"
         android:textColor="@color/white"
