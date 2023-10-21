@@ -26,8 +26,8 @@
             android:text="@string/btn_filter"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:icon="@drawable/ic_baseline_history_24"
-            app:iconPadding="8dp"
+            app:icon="@drawable/filter_filled_weigh400"
+            app:iconPadding="0dp"
             app:iconTint="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/svSearchBar" />
