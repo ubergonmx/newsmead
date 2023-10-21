@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.chip.Chip
+import com.newsmead.DataHelper.loadCategoryLongerData
 import com.newsmead.R
 
 import com.newsmead.databinding.FragmentOnboardingBinding
@@ -37,6 +39,15 @@ class OnboardingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentOnboardingBinding.inflate(inflater, container, false)
+
+        val chipData = loadCategoryLongerData()
+        val chipGroup = binding.cgCategoryTopics
+
+        for (category in chipData) {
+            val chip = layoutInflater.inflate(R.layout.chip_search, chipGroup, false) as Chip
+            chip.text = category
+            chipGroup.addView(chip)
+        }
 
 
 
