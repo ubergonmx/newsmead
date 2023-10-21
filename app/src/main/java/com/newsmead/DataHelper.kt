@@ -141,6 +141,11 @@ object DataHelper {
         return data
     }
 
+
+    fun loadSearchArticlesData(): ArrayList<Article> {
+        return loadSourceArticlesData()
+    }
+
     fun loadCategoryArticlesData(): ArrayList<Article> {
         return loadSourceArticlesData()
     }
@@ -265,4 +270,5 @@ object DataHelper {
     fun getDateToday(): CharSequence {
         return DateFormat.getDateInstance(DateFormat.MEDIUM).format(Date())
     }
+
 }
