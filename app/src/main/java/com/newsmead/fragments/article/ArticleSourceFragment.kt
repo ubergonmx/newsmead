@@ -10,6 +10,7 @@ import com.google.android.material.chip.Chip
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.DataHelper
 import com.newsmead.R
+import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentArticleSourceBinding
 import com.newsmead.recyclerviews.feed.FeedArticleAdapter
 import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder
@@ -26,20 +27,20 @@ class ArticleSourceFragment: Fragment() {
 
         // RecyclerView of Articles
         val sourceArticlesData = DataHelper.loadSourceArticlesData()
-        binding.rvRecommendedArticles.adapter = FeedArticleAdapter(sourceArticlesData)
+        binding.rvSourceArticles.adapter = FeedArticleAdapter(sourceArticlesData)
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-        binding.rvRecommendedArticles.layoutManager = layoutManager
+        binding.rvSourceArticles.layoutManager = layoutManager
 
         // Add divider between items
         val customDividerItemDecoration = CustomDividerItemDecoration(context, R.drawable.line_divider, FeedHeaderViewHolder::class.java)
-        binding.rvRecommendedArticles.addItemDecoration(customDividerItemDecoration)
+        binding.rvSourceArticles.addItemDecoration(customDividerItemDecoration)
 
         // Fill chips
         val chipData = DataHelper.loadCategoryData()
         binding.cgCategory.removeAllViews()
         for (category in chipData) {
-            val chip = inflater.inflate(R.layout.chip_search, null) as Chip
+            val chip = ChipSearchBinding.inflate(inflater, container, false).root
             chip.text = category
             binding.cgCategory.addView(chip)
         }
