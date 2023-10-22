@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.newsmead.DataHelper
-import com.newsmead.databinding.BotttomSheetDialogSaveListBinding
+import com.newsmead.databinding.BottomSheetDialogSaveListBinding
 import com.newsmead.recyclerviews.dialog.SheetDialogAdapter
 
 class BottomSheetDialogSaveFragment: BottomSheetDialogFragment() {
@@ -16,7 +16,7 @@ class BottomSheetDialogSaveFragment: BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = BotttomSheetDialogSaveListBinding.inflate(inflater, container, false)
+        val binding = BottomSheetDialogSaveListBinding.inflate(inflater, container, false)
 
         binding.btnListDone.setOnClickListener {
             // Save details here
