@@ -13,6 +13,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <Button
+            android:id="@+id/btnDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/gray_300"
+            android:fontFamily="@font/arial"
+            android:minHeight="45dp"
+            android:paddingStart="14dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:text="Date"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:icon="@drawable/date_range_nofill_weight400"
+            app:iconPadding="4dp"
+            app:iconSize="20dp"
+            app:iconTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageButton
             android:id="@+id/btnHistoryBack"
             android:layout_width="wrap_content"
@@ -20,7 +43,7 @@
             android:layout_marginStart="16dp"
             android:background="@null"
             android:src="@drawable/arrow_back_ios_nofill_weight400"
-            android:tint="@color/gray_100"
+            app:tint="@color/gray_100"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
