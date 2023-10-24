@@ -1,6 +1,27 @@
 <resources>
     <string name="app_name">NewsMead</string>
 
+    <!-- fragment_log_in & fragment_sign_up commons -->
+    <string name="commons_welcome_to">Welcome to</string>
+    <string name="commons_email_address">Email Address</string>
+    <string name="commons_email_address_hint">Enter email here</string>
+    <string name="commons_password">Password</string>
+    <string name="commons_password_hint">Enter password here</string>
+
+    <!-- fragment_sign_up -->
+    <string name="sign_up_title">Create an account</string>
+    <string name="sign_up_name">Name</string>
+    <string name="sign_up_name_hint">Enter name here</string>
+    <string name="sign_up_confirm_password">Confirm Password</string>
+    <string name="sign_up_get_started_btn">Get Started</string>
+    <string name="sign_up_log_back_in_btn">Log back in</string>
+
+    <!-- fragment_log_in -->
+    <string name="log_in_title">Welcome Back! Log in</string>
+    <string name="log_in_remember_me">Remember Me?</string>
+    <string name="log_in_btn">Log in</string>
+    <string name="log_in_create_account_btn">Create an Account</string>
+
     <string name="home_title">Home</string>
     <string name="btn_history">History</string>
     <string name="btn_filter">Filter</string>
@@ -29,9 +50,6 @@
     <string name="profile_password">Password</string>
     <string name="profile_save">Save Changes</string>
     <string name="profile_logout">Logout</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="sample_category">Technology</string>
     <string name="sample_source">INQUIRER.NET</string>

@@ -57,6 +57,12 @@ class LogInFragment : Fragment() {
             requireActivity().finish()
         }
 
+        binding.cbViewPassword.setOnClickListener {
+            val cursorPosition = binding.etAccLogPassword.selectionStart
+            binding.etAccLogPassword.transformationMethod = if (binding.cbViewPassword.isChecked) null else android.text.method.PasswordTransformationMethod()
+            binding.etAccLogPassword.setSelection(cursorPosition)
+        }
+
         // Inflate the layout for this fragment
         return binding.root
     }
