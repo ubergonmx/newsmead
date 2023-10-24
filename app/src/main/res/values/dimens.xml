@@ -10,11 +10,15 @@
     <dimen name="normal_text_size">16sp</dimen>
     <dimen name="large_text_size">18sp</dimen>
     <dimen name="title_text_size">20sp</dimen>
+    <dimen name="title_text_size_large">24sp</dimen>
+
 
     <!-- Margins -->
     <dimen name="common_margin">16dp</dimen>
     <dimen name="common_margin_half">8dp</dimen>
+    <dimen name="common_margin_one_and_half">24dp</dimen>
     <dimen name="common_margin_double">32dp</dimen>
+    <dimen name="common_margin_double_and_half">40dp</dimen>
     <dimen name="common_margin_triple">48dp</dimen>
 
     <dimen name="welcome_layout_marginTop">48dp</dimen>
