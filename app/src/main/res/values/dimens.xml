@@ -16,8 +16,7 @@
     <dimen name="common_margin_half">8dp</dimen>
     <dimen name="common_margin_double">32dp</dimen>
 
-    <dimen name="welcome_layout_marginTop">64dp</dimen>
-    <dimen name="welcome_layout_marginStartEnd">32dp</dimen>
+    <dimen name="welcome_layout_marginTop">48dp</dimen>
 
     <dimen name="text_margin">16dp</dimen>
 

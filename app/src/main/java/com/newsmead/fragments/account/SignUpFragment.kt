@@ -5,21 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.newsmead.R
 
-import com.newsmead.databinding.FragmentSignupBinding
+import com.newsmead.databinding.FragmentSignUpBinding
 
 class SignUpFragment: Fragment() {
-    private lateinit var viewBinding: FragmentSignupBinding
+    private lateinit var viewBinding: FragmentSignUpBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        this.viewBinding = FragmentSignupBinding.inflate(inflater, container, false)
+        this.viewBinding = FragmentSignUpBinding.inflate(inflater, container, false)
 
         // Buttons
         this.viewBinding.btnAccLog.setOnClickListener {
             // Goes to Log In Fragment
             val logInFragment = LogInFragment()
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(com.newsmead.R.id.flAccountContainer, logInFragment)
+                .replace(R.id.flAccountContainer, logInFragment)
                 .commit()
         }
 
@@ -27,7 +28,7 @@ class SignUpFragment: Fragment() {
             // Goes to Onboarding Fragment
             val onboardingFragment = OnboardingFragment()
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(com.newsmead.R.id.flAccountContainer, onboardingFragment)
+                .replace(R.id.flAccountContainer, onboardingFragment)
                 .commit()
         }
 
