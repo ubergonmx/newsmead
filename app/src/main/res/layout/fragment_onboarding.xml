@@ -70,6 +70,7 @@
         android:backgroundTint="@color/gray_100"
         android:text="@string/onboarding_next_btn"
         android:textColor="@color/white"
+        android:textSize="@dimen/normal_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

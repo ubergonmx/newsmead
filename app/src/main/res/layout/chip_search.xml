@@ -6,5 +6,6 @@
     android:layout_height="wrap_content"
     android:fontFamily="@font/arial_regular"
     android:text="@string/sample_chip"
+    android:textSize="@dimen/normal_text_size"
     app:chipCornerRadius="12dp"
-    app:ensureMinTouchTargetSize="false"/>
+    app:ensureMinTouchTargetSize="false" />
