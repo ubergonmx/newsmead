@@ -28,5 +28,8 @@
     <!-- Paddings -->
     <dimen name="common_padding">16dp</dimen>
     <dimen name="common_padding_half">8dp</dimen>
+    <dimen name="common_padding_one_and_half">24dp</dimen>
     <dimen name="common_padding_double">32dp</dimen>
+    <dimen name="common_padding_double_and_half">40dp</dimen>
+    <dimen name="common_padding_triple">48dp</dimen>
 </resources>

@@ -11,6 +11,7 @@ import com.google.android.material.chip.Chip
 import com.newsmead.DataHelper.loadCategoryLongerData
 import com.newsmead.MainActivity
 import com.newsmead.R
+import com.newsmead.databinding.ChipOnboardingBinding
 import com.newsmead.databinding.ChipSearchBinding
 
 import com.newsmead.databinding.FragmentOnboardingBinding
@@ -53,7 +54,7 @@ class OnboardingFragment : Fragment() {
         checkedChips = listOf()
 
         for (category in chipData) {
-            val chip = ChipSearchBinding.inflate(inflater, chipGroup, false).root
+            val chip = ChipOnboardingBinding.inflate(inflater, chipGroup, false).root
             chip.text = category
 
             // Make chips toggleable
