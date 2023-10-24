@@ -1,5 +1,5 @@
 <resources>
-    <!-- Views    -->
+    <!-- Views -->
     <dimen name="edit_text_height">48dp</dimen>
 
     <!-- Font text sizes -->
@@ -12,5 +12,17 @@
     <dimen name="title_text_size">20sp</dimen>
 
     <!-- Margins -->
+    <dimen name="common_margin">16dp</dimen>
+    <dimen name="common_margin_half">8dp</dimen>
+    <dimen name="common_margin_double">32dp</dimen>
+
+    <dimen name="welcome_layout_marginTop">64dp</dimen>
+    <dimen name="welcome_layout_marginStartEnd">32dp</dimen>
+
     <dimen name="text_margin">16dp</dimen>
+
+    <!-- Paddings -->
+    <dimen name="common_padding">16dp</dimen>
+    <dimen name="common_padding_half">8dp</dimen>
+    <dimen name="common_padding_double">32dp</dimen>
 </resources>
