@@ -1,3 +1,16 @@
 <resources>
+    <!-- Views    -->
+    <dimen name="edit_text_height">48dp</dimen>
+
+    <!-- Font text sizes -->
+    <dimen name="welcome_text_size">32sp</dimen>
+    <dimen name="app_title_text_size">60sp</dimen>
+
+    <dimen name="small_text_size">14sp</dimen>
+    <dimen name="normal_text_size">16sp</dimen>
+    <dimen name="large_text_size">18sp</dimen>
+    <dimen name="title_text_size">20sp</dimen>
+
+    <!-- Margins -->
     <dimen name="text_margin">16dp</dimen>
 </resources>

@@ -24,7 +24,7 @@
             android:fontFamily="@font/arial_regular"
             android:text="Welcome to"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="@dimen/welcome_text_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,10 +33,10 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/arial_regular"
+            android:fontFamily="@font/garamond_regular"
             android:text="NewsMead"
             android:textColor="@color/black"
-            android:textSize="48sp"
+            android:textSize="@dimen/app_title_text_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
@@ -52,7 +52,7 @@
         android:fontFamily="@font/arial_regular"
         android:text="Welcome Back! Log in"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="@dimen/title_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clTitle" />
@@ -72,16 +72,17 @@
             android:id="@+id/tvAccLogEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:fontFamily="@font/arial_regular"
             android:text="Email Address"
             android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:textSize="@dimen/normal_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/etAccLogEmail"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/edit_text_height"
             android:ems="10"
             android:fontFamily="@font/arial_regular"
             android:inputType="textEmailAddress"
@@ -98,13 +99,14 @@
             android:fontFamily="@font/arial_regular"
             android:text="Password"
             android:textColor="@color/black"
+            android:textSize="@dimen/normal_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etAccLogEmail" />
 
         <EditText
             android:id="@+id/etAccLogPassword"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/edit_text_height"
             android:ems="10"
             android:fontFamily="@font/arial_regular"
             android:inputType="textPassword"
@@ -127,11 +129,13 @@
             app:layout_constraintTop_toTopOf="@+id/etAccLogPassword" />
 
         <CheckBox
+            android:id="@+id/cbRememberMe"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/arial_regular"
             android:text="Remember Me?"
+            android:textSize="@dimen/small_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etAccLogPassword" />
 
@@ -147,7 +151,7 @@
         android:backgroundTint="@color/gray_100"
         android:fontFamily="@font/arial_regular"
         android:text="Log In"
-        android:textSize="14sp"
+        android:textSize="@dimen/normal_text_size"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnAccCreate"
         app:layout_constraintEnd_toEndOf="parent"
@@ -164,7 +168,7 @@
         android:fontFamily="@font/arial_regular"
         android:text="Create an Account"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="@dimen/normal_text_size"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
