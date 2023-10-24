@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/gray_300"
-        android:fontFamily="@font/arial"
+        android:fontFamily="@font/arial_regular"
         android:minHeight="48dip"
         android:text="@string/saved_create"
         android:textColor="@color/black"

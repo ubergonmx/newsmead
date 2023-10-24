@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:fontFamily="@font/arial"
+            android:fontFamily="@font/arial_regular"
             android:text="@string/sample_source"
             android:textColor="?android:colorPrimary"
             android:textSize="16sp" />
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ellipsize="end"
-        android:fontFamily="@font/arial"
+        android:fontFamily="@font/arial_regular"
         android:maxLines="3"
         android:text="@string/sample_title"
         android:textColor="?android:colorPrimary"
@@ -63,7 +63,7 @@
             android:id="@+id/tvArticleDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/arial"
+            android:fontFamily="@font/arial_regular"
             android:text="@string/sample_date"
             android:textColor="?customColor"
             android:textSize="16sp" />
@@ -82,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:fontFamily="@font/arial"
+            android:fontFamily="@font/arial_regular"
             android:text="@string/sample_read_time"
             android:textColor="?customColor"
             android:textSize="16sp" />

@@ -22,7 +22,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/arial"
+            android:fontFamily="@font/arial_regular"
             android:text="NewsMead"
             android:textColor="@color/black"
             android:textSize="48sp"

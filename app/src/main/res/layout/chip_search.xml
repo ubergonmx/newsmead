@@ -4,7 +4,7 @@
     android:id="@+id/chipCustom"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:fontFamily="@font/arial"
+    android:fontFamily="@font/arial_regular"
     android:text="@string/sample_chip"
     app:chipCornerRadius="12dp"
     app:ensureMinTouchTargetSize="false"/>
