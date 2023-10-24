@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.newsmead.MainActivity
 import com.newsmead.R
 import com.newsmead.databinding.ActivitySplashBinding
@@ -13,6 +14,9 @@ import com.newsmead.databinding.ActivitySplashBinding
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Thread.sleep(3000)
+        installSplashScreen()
 
         // Initialize viewBinding for SplashActivity
         val viewBinding = ActivitySplashBinding.inflate(layoutInflater)
