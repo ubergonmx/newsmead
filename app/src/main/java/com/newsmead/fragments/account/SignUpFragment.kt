@@ -32,7 +32,17 @@ class SignUpFragment: Fragment() {
                 .commit()
         }
 
+        this.viewBinding.cbViewPassword.setOnClickListener {
+            val cursorPosition = this.viewBinding.etAccPassword.selectionStart
+            this.viewBinding.etAccPassword.transformationMethod = if (this.viewBinding.cbViewPassword.isChecked) null else android.text.method.PasswordTransformationMethod()
+            this.viewBinding.etAccPassword.setSelection(cursorPosition)
+        }
 
+        this.viewBinding.cbViewConfirmPassword.setOnClickListener {
+            val cursorPosition = this.viewBinding.etAccConfirmPassword.selectionStart
+            this.viewBinding.etAccConfirmPassword.transformationMethod = if (this.viewBinding.cbViewConfirmPassword.isChecked) null else android.text.method.PasswordTransformationMethod()
+            this.viewBinding.etAccConfirmPassword.setSelection(cursorPosition)
+        }
 
         return this.viewBinding.root
     }

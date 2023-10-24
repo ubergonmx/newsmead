@@ -139,14 +139,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvAccPassword" />
 
-        <ImageButton
-            android:id="@+id/btnAccPassword"
+        <CheckBox
+            android:id="@+id/cbViewPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_visibility"
+            android:button="@drawable/ic_visibility"
             android:tint="@color/gray_100"
             app:layout_constraintBottom_toBottomOf="@+id/etAccPassword"
             app:layout_constraintEnd_toEndOf="@+id/etAccPassword"
@@ -176,14 +174,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvAccConfirmPassword" />
 
-        <ImageButton
-            android:id="@+id/btnAccConfirmPassword"
+        <CheckBox
+            android:id="@+id/cbViewConfirmPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_visibility"
+            android:button="@drawable/ic_visibility"
             android:tint="@color/gray_100"
             app:layout_constraintBottom_toBottomOf="@+id/etAccConfirmPassword"
             app:layout_constraintEnd_toEndOf="@+id/etAccConfirmPassword"
@@ -195,9 +191,9 @@
         android:id="@+id/btnAccStart"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="@dimen/common_margin"
+        android:layout_marginEnd="@dimen/common_margin"
+        android:layout_marginBottom="@dimen/common_margin_half"
         android:backgroundTint="@color/gray_100"
         android:fontFamily="@font/arial_regular"
         android:text="@string/sign_up_get_started_btn"
@@ -211,9 +207,9 @@
         android:id="@+id/btnAccLog"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginStart="@dimen/common_margin"
+        android:layout_marginEnd="@dimen/common_margin"
+        android:layout_marginBottom="@dimen/common_margin_triple"
         android:background="@android:color/transparent"
         android:fontFamily="@font/arial_regular"
         android:text="@string/sign_up_log_back_in_btn"

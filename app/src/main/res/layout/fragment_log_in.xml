@@ -163,7 +163,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_margin"
         android:layout_marginEnd="@dimen/common_margin"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="@dimen/common_margin_triple"
         android:background="@android:color/transparent"
         android:fontFamily="@font/arial_regular"
         android:text="@string/log_in_create_account_btn"
