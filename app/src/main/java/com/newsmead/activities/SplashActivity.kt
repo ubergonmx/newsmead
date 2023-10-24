@@ -15,7 +15,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Thread.sleep(3000)
+        Thread.sleep(1000)
         installSplashScreen()
 
         // Initialize viewBinding for SplashActivity
@@ -40,6 +40,6 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-        }, 3000)
+        }, 2000)
     }
 }
