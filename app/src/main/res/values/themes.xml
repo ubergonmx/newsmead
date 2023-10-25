@@ -4,10 +4,16 @@
         <!-- Customize your light theme here. -->
         <item name="primaryTextColor">@color/black</item>
         <item name="secondaryTextColor">@color/gray_100</item>
+
         <item name="primaryBackgroundColor">@color/white</item>
         <item name="secondaryBackgroundColor">@color/gray_300</item>
+
         <item name="primaryIconColor">@color/black</item>
         <item name="secondaryIconColor">@color/black</item>
+
+        <item name="primaryButtonTextColor">@color/white</item>
+        <item name="primaryButtonBgColor">@color/gray_100</item>
+
         <item name="dividerColor">@color/divider_color</item>
     </style>
 

@@ -114,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/arial_regular"
-                android:text="RadioButton" />
+                android:text="Popularity" />
         </RadioGroup>
 
         <Button
@@ -129,11 +129,11 @@
             android:text="Date"
             android:textAlignment="textStart"
             android:textColor="?primaryTextColor"
-            app:backgroundTint="@color/white"
+            app:backgroundTint="?primaryBackgroundColor"
             app:icon="@drawable/date_range_nofill_weight400"
             app:iconGravity="start"
             app:iconPadding="8dp"
-            app:iconTint="?secondaryIconColor"
+            app:iconTint="?primaryIconColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
@@ -144,9 +144,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:backgroundTint="@color/gray_100"
+            android:backgroundTint="?primaryButtonBgColor"
             android:text="Apply Filters"
-            android:textColor="@color/white"
+            android:textColor="?primaryButtonTextColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnDateFilter" />
