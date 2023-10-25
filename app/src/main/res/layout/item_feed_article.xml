@@ -31,7 +31,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/arial_regular"
             android:text="@string/sample_source"
-            android:textColor="?android:colorPrimary"
+            android:textColor="?primaryTextColor"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -54,7 +54,7 @@
         android:fontFamily="@font/arial_regular"
         android:maxLines="3"
         android:text="@string/sample_title"
-        android:textColor="?android:colorPrimary"
+        android:textColor="?primaryTextColor"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/ivArticleImage"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/arial_regular"
             android:text="@string/sample_date"
-            android:textColor="?customColor"
+            android:textColor="?secondaryTextColor"
             android:textSize="16sp" />
 
         <TextView
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/bullet"
-            android:textColor="?customColor"
+            android:textColor="?secondaryTextColor"
             android:textSize="16sp" />
 
         <TextView
@@ -95,7 +95,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/arial_regular"
             android:text="@string/sample_read_time"
-            android:textColor="?customColor"
+            android:textColor="?secondaryTextColor"
             android:textSize="16sp" />
     </LinearLayout>
 

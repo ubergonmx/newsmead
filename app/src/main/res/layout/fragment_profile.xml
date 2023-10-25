@@ -19,7 +19,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/arial_regular"
             android:text="@string/profile_title"
-            android:textColor="?android:colorPrimary"
+            android:textColor="?primaryTextColor"
             android:textSize="16pt"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/arial_regular"
             android:text="@string/profile_subtitle"
-            android:textColor="?android:colorPrimary"
+            android:textColor="?primaryTextColor"
             android:textSize="8pt"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvProfile" />

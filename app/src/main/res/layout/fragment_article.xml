@@ -116,7 +116,7 @@
                             android:layout_marginStart="8dp"
                             android:fontFamily="@font/arial_regular"
                             android:text="@string/sample_source"
-                            android:textColor="?android:colorPrimary"
+                            android:textColor="?primaryTextColor"
                             android:textSize="16sp" />
                     </LinearLayout>
 

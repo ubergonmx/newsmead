@@ -7,15 +7,18 @@ app_version: 1.18.13
 
 Dynamically set the font color of TextViews by doing the following:
 
-*   set the value of `textColor` to `?android:<name of custom color>`.
+- set the value of `textColor` to `?android:<name of custom color>`.
 
 <br/>
 
 Take note of the question mark.
+
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
+
 ### 📄 app/src/main/res/layout/item_feed_article.xml
+
 ```xml
-34                 android:textColor="?android:colorPrimary"
+34                 android:textColor="?primaryTextColor"
 ```
 
 <br/>
@@ -25,19 +28,25 @@ The custom color can be created in `themes.xml` , you have to add that color on 
 <br/>
 
 The following is a custom color `colorPrimary` in light mode.
+
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
+
 ### 📄 app/src/main/res/values/themes.xml
+
 ```xml
-6              <item name="android:colorPrimary">@color/black</item>
+6              <item name="primaryTextColor">@color/black</item>
 ```
 
 <br/>
 
 The following is a custom color `colorPrimary` in dark/night mode.
+
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
+
 ### 📄 app/src/main/res/values-night/themes.xml
+
 ```xml
-6              <item name="android:colorPrimary">@color/white</item>
+6              <item name="primaryTextColor">@color/white</item>
 ```
 
 <br/>

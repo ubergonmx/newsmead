@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="customColor" format="color" />
+
+    <attr name="primaryTextColor" format="color" />
+    <attr name="secondaryTextColor" format="color" />
+    <attr name="accentTextColor" format="color" />
+    <attr name="linkTextColor" format="color" />
+    <attr name="highlightedTextColor" format="color" />
+
+    <attr name="primaryBackgroundColor" format="color" />
+    <attr name="secondaryBackgroundColor" format="color" />
+    <attr name="accentBackgroundColor" format="color" />
+    <attr name="highlightedBackgroundColor" format="color" />
+
+    <attr name="dividerColor" format="color" />
+
+<!--    <attr name="cardBackgroundColor" format="color" />-->
+
+<!--    <attr name="chipTextColor" format="color" />-->
+<!--    <attr name="chipBackgroundColor" format="color" />-->
+<!--    <attr name="chipIconColor" format="color" />-->
+<!--    <attr name="chipSelectedBackgroundColor" format="color" />-->
+<!--    <attr name="chipSelectedTextColor" format="color" />-->
+<!--    <attr name="chipSelectedIconColor" format="color" />-->
+<!--    <attr name="chipStrokeColor" format="color" />-->
+<!--    <attr name="chipStrokeSelectedColor" format="color" />-->
 </resources>
