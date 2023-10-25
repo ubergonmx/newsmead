@@ -35,7 +35,7 @@
         android:textSize="16sp"
         app:icon="@drawable/ic_baseline_history_24"
         app:iconPadding="8dp"
-        app:iconTint="@color/black"
+        app:iconTint="?secondaryIconColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -133,7 +133,7 @@
             app:icon="@drawable/date_range_nofill_weight400"
             app:iconGravity="start"
             app:iconPadding="8dp"
-            app:iconTint="@color/black"
+            app:iconTint="?secondaryIconColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup" />

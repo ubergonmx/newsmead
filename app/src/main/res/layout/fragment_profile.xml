@@ -136,7 +136,7 @@
             app:cornerRadius="0dp"
             app:icon="@drawable/logout_nofill_weight400"
             app:iconGravity="end"
-            app:iconTint="@color/gray_100"
+            app:iconTint="?primaryIconColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnSave" />

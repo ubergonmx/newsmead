@@ -31,7 +31,7 @@
             app:icon="@drawable/date_range_nofill_weight400"
             app:iconPadding="4dp"
             app:iconSize="20dp"
-            app:iconTint="@color/black"
+            app:iconTint="?secondaryIconColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

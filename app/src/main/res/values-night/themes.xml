@@ -6,6 +6,7 @@
         <item name="secondaryTextColor">@color/gray_250</item>
         <item name="primaryBackgroundColor">@color/black_200</item>
         <item name="secondaryBackgroundColor">@color/black_100</item>
+        <item name="primaryIconColor">@color/gray_250</item>
         <item name="secondaryIconColor">@color/white</item>
         <item name="dividerColor">@color/gray_100</item>
     </style>
