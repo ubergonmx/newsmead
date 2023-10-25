@@ -13,7 +13,7 @@
         android:fontFamily="@font/arial_regular"
         android:minHeight="48dip"
         android:text="@string/saved_create"
-        android:textColor="@color/black"
+        android:textColor="?primaryTextColor"
         app:icon="@drawable/add_nofill_weight400"
         app:iconGravity="textStart"
         app:iconTint="@color/black"

@@ -31,7 +31,7 @@
                 android:paddingEnd="8dp"
                 android:paddingBottom="8dp"
                 android:text="@string/btn_filter"
-                android:textColor="@color/black"
+                android:textColor="?primaryTextColor"
                 android:textSize="16sp"
                 app:icon="@drawable/filter_filled_weigh400"
                 app:iconPadding="0dp"

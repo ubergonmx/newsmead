@@ -28,7 +28,7 @@
         android:layout_marginTop="@dimen/common_margin_one_and_half"
         android:fontFamily="@font/arial_regular"
         android:text="@string/onboarding_interest"
-        android:textColor="@color/black"
+        android:textColor="?primaryTextColor"
         android:textSize="@dimen/title_text_size_large"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

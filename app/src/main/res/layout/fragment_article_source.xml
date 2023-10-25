@@ -54,7 +54,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/arial_regular"
                     android:text="@string/sample_source"
-                    android:textColor="@color/black"
+                    android:textColor="?primaryTextColor"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"

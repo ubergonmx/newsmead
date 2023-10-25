@@ -26,7 +26,7 @@
             android:paddingEnd="16dp"
             android:paddingBottom="8dp"
             android:text="Date"
-            android:textColor="@color/black"
+            android:textColor="?primaryTextColor"
             android:textSize="16sp"
             app:icon="@drawable/date_range_nofill_weight400"
             app:iconPadding="4dp"

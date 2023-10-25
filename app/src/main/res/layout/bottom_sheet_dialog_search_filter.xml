@@ -128,7 +128,7 @@
             android:paddingRight="0dp"
             android:text="Date"
             android:textAlignment="textStart"
-            android:textColor="@color/black"
+            android:textColor="?primaryTextColor"
             app:backgroundTint="@color/white"
             app:icon="@drawable/date_range_nofill_weight400"
             app:iconGravity="start"

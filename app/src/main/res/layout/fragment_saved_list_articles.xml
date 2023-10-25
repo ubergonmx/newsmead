@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/saved_list_placeholder_title"
-            android:textColor="@color/black"
+            android:textColor="?primaryTextColor"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/ivSavedListIcon"

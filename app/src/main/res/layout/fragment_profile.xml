@@ -132,7 +132,7 @@
             android:fontFamily="@font/arial_regular"
             android:text="@string/profile_logout"
             android:textAlignment="textStart"
-            android:textColor="@color/black"
+            android:textColor="?primaryTextColor"
             app:cornerRadius="0dp"
             app:icon="@drawable/logout_nofill_weight400"
             app:iconGravity="end"

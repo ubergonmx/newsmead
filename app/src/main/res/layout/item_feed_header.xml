@@ -31,7 +31,7 @@
         android:paddingEnd="8dp"
         android:paddingBottom="8dp"
         android:text="@string/btn_history"
-        android:textColor="@color/black"
+        android:textColor="?primaryTextColor"
         android:textSize="16sp"
         app:icon="@drawable/ic_baseline_history_24"
         app:iconPadding="8dp"
