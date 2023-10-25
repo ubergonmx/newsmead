@@ -3,7 +3,10 @@
     <style name="Base.Theme.NewsMead" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <item name="primaryTextColor">@color/white</item>
-        <item name="secondaryTextColor">@color/gray_100</item>
+        <item name="secondaryTextColor">@color/gray_250</item>
+        <item name="primaryBackgroundColor">@color/black_200</item>
+        <item name="secondaryBackgroundColor">@color/black_100</item>
+        <item name="secondaryIconColor">@color/white</item>
         <item name="dividerColor">@color/gray_100</item>
     </style>
 </resources>

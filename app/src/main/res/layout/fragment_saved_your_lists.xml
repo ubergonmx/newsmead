@@ -9,7 +9,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/gray_300"
+        android:backgroundTint="?secondaryBackgroundColor"
         android:fontFamily="@font/arial_regular"
         android:minHeight="48dip"
         android:text="@string/saved_create"

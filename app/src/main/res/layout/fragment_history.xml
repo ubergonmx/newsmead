@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/gray_300"
+            android:backgroundTint="?secondaryBackgroundColor"
             android:fontFamily="@font/arial_regular"
             android:minHeight="45dp"
             android:paddingStart="14dp"

@@ -12,6 +12,8 @@
     <attr name="accentBackgroundColor" format="color" />
     <attr name="highlightedBackgroundColor" format="color" />
 
+    <attr name="primaryIconColor" format="color" />
+    <attr name="secondaryIconColor" format="color" />
     <attr name="dividerColor" format="color" />
 
 <!--    <attr name="cardBackgroundColor" format="color" />-->
