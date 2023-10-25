@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?primaryBackgroundColor"
     tools:context=".SavedFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -31,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:background="@drawable/m3_tabs_custom_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSaved">
@@ -43,6 +45,7 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:text="@string/saved_all" />
 
         </com.google.android.material.tabs.TabLayout>
