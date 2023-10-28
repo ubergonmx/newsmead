@@ -34,7 +34,6 @@ data class ArticleObject(
     val title: String,
     val description: String,
     val url: String,
-    // Add other fields as needed
 )
 
 object DataHelper {
