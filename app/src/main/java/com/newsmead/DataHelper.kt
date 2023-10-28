@@ -37,7 +37,6 @@ data class ArticleObject(
     // Add other fields as needed
 )
 
-// This is for testing purposes only. You can delete this class.
 object DataHelper {
     fun loadArticleData(): ArrayList<Article> {
         // Get JSON data from API endpoint: https://newsapi.org/v2/top-headlines?country=ph&apiKey=API_KEY
