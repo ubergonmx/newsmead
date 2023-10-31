@@ -56,8 +56,14 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Set up Feed RecyclerView
-        data = DataHelper.loadArticleData()
+        //data = DataHelper.loadArticleData()
         this.feedArticleAdapter = FeedArticleAdapter(data)
+        // Load data and update the adapter when available
+        DataHelper.loadArticleData { articles ->
+            // Update the adapter with the retrieved articles
+            feedArticleAdapter.updateData(articles)
+        }
+
         this.feedHeaderAdapter = FeedHeaderAdapter()
         val concatAdapter = ConcatAdapter(feedHeaderAdapter, feedArticleAdapter)
 

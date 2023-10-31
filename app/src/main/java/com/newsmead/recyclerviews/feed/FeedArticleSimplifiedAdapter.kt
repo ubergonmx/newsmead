@@ -41,4 +41,10 @@ class FeedArticleSimplifiedAdapter(private val articleList: ArrayList<Article>) 
         }
     }
 
+    fun updateData(articles: List<Article>) {
+        articleList.clear()
+        articleList.addAll(articles)
+        notifyDataSetChanged()
+    }
+
 }

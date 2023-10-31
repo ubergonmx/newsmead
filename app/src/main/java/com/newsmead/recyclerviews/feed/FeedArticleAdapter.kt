@@ -45,4 +45,10 @@ class FeedArticleAdapter(private val articleList: ArrayList<Article>) : Recycler
     override fun getItemCount(): Int {
         return articleList.size
     }
+
+    fun updateData(articles: List<Article>) {
+        articleList.clear()
+        articleList.addAll(articles)
+        notifyDataSetChanged()
+    }
 }

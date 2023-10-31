@@ -10,6 +10,7 @@ import com.newsmead.data.DataHelper
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.FragmentHistoryBinding
+import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.FeedArticleSimplifiedAdapter
 
 class HistoryFragment: Fragment() {
@@ -28,8 +29,12 @@ class HistoryFragment: Fragment() {
         }
 
         // RecyclerView
-        val data = DataHelper.loadArticleData()
-        binding.rvHistory.adapter = FeedArticleSimplifiedAdapter(data)
+        // val data = DataHelper.loadArticleData()
+        binding.rvHistory.adapter = FeedArticleSimplifiedAdapter(ArrayList())
+        // Load data and update adapter
+        DataHelper.loadArticleData { articles ->
+            (binding.rvHistory.adapter as FeedArticleSimplifiedAdapter).updateData(articles)
+        }
         val layoutManager = LinearLayoutManager(requireContext())
         binding.rvHistory.layoutManager = layoutManager
 
