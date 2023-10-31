@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.newsmead.DataHelper
+import com.newsmead.data.DataHelper
 import com.newsmead.databinding.BottomSheetDialogSaveListBinding
 import com.newsmead.recyclerviews.dialog.SheetDialogAdapter
 

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.newsmead.activities.ArticleActivity
-import com.newsmead.DataHelper.loadRecommendedArticlesData
+import com.newsmead.data.DataHelper.loadRecommendedArticlesData
 import com.newsmead.R
 
 import com.newsmead.databinding.FragmentArticleBinding

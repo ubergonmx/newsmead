@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.newsmead.DataHelper.loadCategoryLongerData
+import com.newsmead.data.DataHelper.loadCategoryLongerData
 import com.newsmead.activities.MainActivity
 import com.newsmead.databinding.ChipOnboardingBinding
 

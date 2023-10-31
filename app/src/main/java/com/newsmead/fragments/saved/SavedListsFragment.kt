@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.newsmead.DataHelper.loadListData
+import com.newsmead.data.DataHelper.loadListData
 import com.newsmead.databinding.FragmentSavedYourListsBinding
 import com.newsmead.recyclerviews.saved.SavedListsAdapter
 

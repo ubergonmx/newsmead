@@ -1,4 +1,4 @@
-package com.newsmead
+package com.newsmead.data
 
 import android.util.Log
 import com.google.android.gms.common.api.Response

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
-import com.newsmead.DataHelper
+import com.newsmead.data.DataHelper
 
 import com.newsmead.databinding.BottomSheetDialogSearchFilterBinding
 import com.newsmead.databinding.ChipSearchBinding

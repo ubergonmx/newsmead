@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.newsmead.DataHelper
-import com.newsmead.DataHelper.loadArticleDataLatest
-import com.newsmead.DataHelper.loadCategoryData
-import com.newsmead.DataHelper.loadSourcesData
+import com.newsmead.data.DataHelper
+import com.newsmead.data.DataHelper.loadArticleDataLatest
+import com.newsmead.data.DataHelper.loadCategoryData
+import com.newsmead.data.DataHelper.loadSourcesData
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.ChipSearchBinding
