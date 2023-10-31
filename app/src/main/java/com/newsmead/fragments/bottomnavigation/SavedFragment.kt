@@ -1,4 +1,4 @@
-package com.newsmead
+package com.newsmead.fragments.bottomnavigation
 
 import TabFragmentAdapter
 import android.os.Bundle
@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.tabs.TabLayoutMediator
 import com.newsmead.databinding.FragmentSavedBinding
-import com.newsmead.databinding.FragmentSearchBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

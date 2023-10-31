@@ -1,25 +1,21 @@
-package com.newsmead
+package com.newsmead.fragments.bottomnavigation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.SearchView
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.chip.Chip
+import com.newsmead.DataHelper
 import com.newsmead.DataHelper.loadArticleDataLatest
 import com.newsmead.DataHelper.loadCategoryData
 import com.newsmead.DataHelper.loadSourcesData
+import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentSearchBinding
-import com.newsmead.fragments.article.ArticleSourceFragment
 import com.newsmead.recyclerviews.feed.FeedArticleSimplifiedAdapter
 
 // TODO: Rename parameter arguments, choose names that match
@@ -71,7 +67,7 @@ class SearchFragment : Fragment() {
 
             // Launch category fragment when chip is clicked
             chip.setOnClickListener(View.OnClickListener {
-                Navigation.findNavController(it).navigate(com.newsmead.R.id.action_searchFragment_to_articleCategoryFragment)
+                Navigation.findNavController(it).navigate(R.id.action_searchFragment_to_articleCategoryFragment)
             })
 
             binding.cgCategory.addView(chip)
@@ -83,7 +79,7 @@ class SearchFragment : Fragment() {
 
             // Launch source fragment when chip is clicked
             chip.setOnClickListener(View.OnClickListener {
-                Navigation.findNavController(it).navigate(com.newsmead.R.id.action_searchFragment_to_articleSourceFragment)
+                Navigation.findNavController(it).navigate(R.id.action_searchFragment_to_articleSourceFragment)
             })
 
             binding.cgSources.addView(chip)
@@ -94,7 +90,7 @@ class SearchFragment : Fragment() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 // Launch search fragment when search button is clicked
                 Navigation.findNavController(binding.root)
-                    .navigate(com.newsmead.R.id.action_searchFragment_to_articleSearchFragment)
+                    .navigate(R.id.action_searchFragment_to_articleSearchFragment)
                 return false
             }
 
@@ -112,7 +108,9 @@ class SearchFragment : Fragment() {
         binding.rvSearchLatestNews.layoutManager = layoutManager
 
         // Add divider between items
-        val customDividerItemDecoration = CustomDividerItemDecoration(context, R.drawable.line_divider)
+        val customDividerItemDecoration = CustomDividerItemDecoration(context,
+            R.drawable.line_divider
+        )
         binding.rvSearchLatestNews.addItemDecoration(customDividerItemDecoration)
 
         return binding.root
