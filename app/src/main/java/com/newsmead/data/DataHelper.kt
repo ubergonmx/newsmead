@@ -1,61 +1,51 @@
 package com.newsmead.data
 
-import android.util.Log
-import com.google.android.gms.common.api.Response
 import com.newsmead.models.Article
 import java.text.DateFormat
 import java.util.Date
 
 import com.newsmead.models.SavedList
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 import kotlin.collections.ArrayList
 
-interface NewsApiService {
-    @GET("top-headlines")
-    fun getTopHeadlines(
-        @Query("apiKey") apiKey: String,
-        @Query("country") country: String = "ph", // Change as needed
-        @Query("category") category: String? = null
-    ): Call<NewsResponse>
-}
+//interface NewsApiService {
+//    @GET("top-headlines")
+//    fun getTopHeadlines(
+//        @Query("apiKey") apiKey: String,
+//        @Query("country") country: String = "ph", // Change as needed
+//        @Query("category") category: String? = null
+//    ): Call<NewsResponse>
+//}
 
-data class NewsResponse(
-    val status: String,
-    val totalResults: Int,
-    val articles: List<ArticleObject>
-)
-
-data class ArticleObject(
-    val title: String,
-    val description: String,
-    val url: String,
-)
+//data class NewsResponse(
+//    val status: String,
+//    val totalResults: Int,
+//    val articles: List<ArticleObject>
+//)
+//
+//data class ArticleObject(
+//    val title: String,
+//    val description: String,
+//    val url: String,
+//)
 
 object DataHelper {
     fun loadArticleData(): ArrayList<Article> {
         // Get JSON data from API endpoint: https://newsapi.org/v2/top-headlines?country=ph&apiKey=API_KEY
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://newsapi.org/v2/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val newsApiService = retrofit.create(NewsApiService::class.java)
-
-        val apiKey = "13328281630540aaa6c2750b76b5ee12"
-
-        val call = newsApiService.getTopHeadlines(apiKey)
-//        val response = call.execute()
-//        if (response.isSuccessful) {
-//            val newsResponse = response.body()
-//            if (newsResponse != null) {
-//                return newsResponse.articles as ArrayList<Article>
-//            }
-//        }
+//        val retrofit = Retrofit.Builder()
+//            .baseUrl("https://newsapi.org/v2/")
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//
+//        val newsApiService = retrofit.create(NewsApiService::class.java)
+//
+//        val apiKey = "13328281630540aaa6c2750b76b5ee12"
+//
+//        val call = newsApiService.getTopHeadlines(apiKey)
 
 
         val data = ArrayList<Article>()

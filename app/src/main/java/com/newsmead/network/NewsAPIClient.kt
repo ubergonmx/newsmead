@@ -1,4 +1,14 @@
 package com.newsmead.network
 
-class NewsAPIClient {
+import com.newsmead.models.NewsResponse
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+interface NewsAPIClient {
+    @GET("top-headlines")
+    fun getTopHeadlines(
+        @Query("country") country: String,
+        @Query("apiKey") apiKey: String
+    ): Call<NewsResponse>
 }

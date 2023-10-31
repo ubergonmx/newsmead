@@ -1,4 +1,7 @@
 package com.newsmead.models
 
-class NewsResponse {
-}
+data class NewsResponse (
+    val status: String,
+    val totalResults: Int,
+    val articles: List<Article> = emptyList()
+)

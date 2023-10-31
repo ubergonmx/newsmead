@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.chip.Chip
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.data.DataHelper
 import com.newsmead.R
 import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentArticleSourceBinding
 import com.newsmead.recyclerviews.feed.FeedArticleAdapter
-import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder
 
 class ArticleSourceFragment: Fragment() {
     private lateinit var binding: FragmentArticleSourceBinding

@@ -6,14 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.chip.Chip
 import com.newsmead.data.DataHelper
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentArticleCategoryBinding
 import com.newsmead.recyclerviews.feed.FeedArticleAdapter
-import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
