@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.newsmead.MainActivity
-import com.newsmead.R
 import com.newsmead.databinding.ActivitySplashBinding
 
 @Suppress("DEPRECATION")

@@ -2,17 +2,13 @@ package com.newsmead.fragments.account
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.material.chip.Chip
 import com.newsmead.DataHelper.loadCategoryLongerData
-import com.newsmead.MainActivity
-import com.newsmead.R
+import com.newsmead.activities.MainActivity
 import com.newsmead.databinding.ChipOnboardingBinding
-import com.newsmead.databinding.ChipSearchBinding
 
 import com.newsmead.databinding.FragmentOnboardingBinding
 
