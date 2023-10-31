@@ -1,109 +1,121 @@
 package com.newsmead.data
 
+import android.icu.text.SimpleDateFormat
+import android.util.Log
+import com.newsmead.data.sources.RemoteDataSource
 import com.newsmead.models.Article
+import com.newsmead.models.NewsResponse
 import java.text.DateFormat
 import java.util.Date
 
 import com.newsmead.models.SavedList
-import retrofit2.Call
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Query
+import com.newsmead.network.NewsAPIClientFactory
+import java.util.Locale
 import kotlin.collections.ArrayList
 
-//interface NewsApiService {
-//    @GET("top-headlines")
-//    fun getTopHeadlines(
-//        @Query("apiKey") apiKey: String,
-//        @Query("country") country: String = "ph", // Change as needed
-//        @Query("category") category: String? = null
-//    ): Call<NewsResponse>
-//}
-
-//data class NewsResponse(
-//    val status: String,
-//    val totalResults: Int,
-//    val articles: List<ArticleObject>
-//)
-//
-//data class ArticleObject(
-//    val title: String,
-//    val description: String,
-//    val url: String,
-//)
-
 object DataHelper {
+
+    fun formatDate(date: String): String {
+        // Format date "2023-10-31T13:03:00Z" string to Mmm dd, yyyy
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US)
+        val outputFormat = SimpleDateFormat("MMM dd, yyyy", Locale.US)
+
+        val parsed = inputFormat.parse(date)
+        return outputFormat.format(parsed)
+    }
     fun loadArticleData(): ArrayList<Article> {
-        // Get JSON data from API endpoint: https://newsapi.org/v2/top-headlines?country=ph&apiKey=API_KEY
-//        val retrofit = Retrofit.Builder()
-//            .baseUrl("https://newsapi.org/v2/")
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//
-//        val newsApiService = retrofit.create(NewsApiService::class.java)
-//
-//        val apiKey = "13328281630540aaa6c2750b76b5ee12"
-//
-//        val call = newsApiService.getTopHeadlines(apiKey)
+        // Create an empty ArrayList
+        val articles = ArrayList<Article>()
+
+        // Create an instance of the DataRepository
+        val dataRepository = DataRepository(RemoteDataSource(NewsAPIClientFactory.create()))
+
+        // Fetch top headlines using the repository
+        dataRepository.getTopHeadlines("ph", "13328281630540aaa6c2750b76b5ee12", object : DataRepository.DataCallback<NewsResponse> {
+            override fun onSuccess(response: NewsResponse) {
+                // Process the data here
+                for (data in response.articles) {
+                    Log.d("DataHelper", data.toString())
+                    data.source.name?.let {
+                        Article(
+                            it,
+                            data.title,
+                            formatDate(data.publishedAt),
+                            "9 min read",
+                            data.url
+                        )
+                    }?.let {
+                        articles.add(
+                            it
+                        )
+                    }
+                }
+            }
+
+            override fun onError(error: Throwable) {
+                // Handle errors
+                Log.e("DataHelper", error.toString())
+                articles.add(
+                    Article(
+                        "CNN",
+                        "Biden's first 100 days: What he's gotten done",
+                        "Apr 29, 2021",
+                        "9 min read",
+                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
+                    )
+                )
+                articles.add(
+                    Article(
+                        "INQUIRER.NET",
+                        "BTS to perform new single 'Butter' at Billboard Music Awards",
+                        "Jan 28, 2022",
+                        "3 min read",
+                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
+                    )
+                )
+                articles.add(
+                    Article(
+                        "ABS-CBN News",
+                        "Showbiz couple Kylie Padilla, Aljur Abrenica split",
+                        "Mar 12, 2023",
+                        "4 min read",
+                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
+                    )
+                )
+                articles.add(
+                    Article(
+                        "Rappler",
+                        "Spacex launches 60 more Starlink satellites into orbit",
+                        "Dec 29, 2022",
+                        "5 min read",
+                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
+                    )
+                )
+                articles.add(
+                    Article(
+                        "Manila Bulletin",
+                        "Duterte to meet with Chinese envoy over West Philippine Sea issue",
+                        "Nov 17, 2020",
+                        "7 min read",
+                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
+                    )
+                )
+                articles.add(
+                    Article(
+                        "Philippine Star",
+                        "Comelec: 59 party-list groups to join 2022 polls",
+                        "Jul 02, 2022",
+                        "4 min read",
+                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
+                    )
+                )
+            }
+        })
 
 
-        val data = ArrayList<Article>()
-        data.add(
-            Article(
-                "CNN",
-                "Biden's first 100 days: What he's gotten done",
-                "Apr 29, 2021",
-                "9 min read",
-                "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
-            )
-        )
-        data.add(
-            Article(
-                "INQUIRER.NET",
-                "BTS to perform new single 'Butter' at Billboard Music Awards",
-                "Jan 28, 2022",
-                "3 min read",
-                "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
-            )
-        )
-        data.add(
-            Article(
-                "ABS-CBN News",
-                "Showbiz couple Kylie Padilla, Aljur Abrenica split",
-                "Mar 12, 2023",
-                "4 min read",
-                "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
-            )
-        )
-        data.add(
-            Article(
-                "Rappler",
-                "Spacex launches 60 more Starlink satellites into orbit",
-                "Dec 29, 2022",
-                "5 min read",
-                "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
-            )
-        )
-        data.add(
-            Article(
-                "Manila Bulletin",
-                "Duterte to meet with Chinese envoy over West Philippine Sea issue",
-                "Nov 17, 2020",
-                "7 min read",
-                "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
-            )
-        )
-        data.add(
-            Article(
-                "Philippine Star",
-                "Comelec: 59 party-list groups to join 2022 polls",
-                "Jul 02, 2022",
-                "4 min read",
-                "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
-            )
-        )
-        return data
+
+
+        return articles
     }
 
     fun loadArticleDataLatest(): ArrayList<Article> {
