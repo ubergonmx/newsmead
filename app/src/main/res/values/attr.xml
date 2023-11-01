@@ -20,6 +20,7 @@
     <attr name="primaryButtonHighlightColor" format="color" />
 
     <attr name="dividerColor" format="color" />
+    <attr name="shimmerColor" format="color" />
 
 <!--    <attr name="cardBackgroundColor" format="color" />-->
 

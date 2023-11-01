@@ -15,6 +15,7 @@
         <item name="primaryButtonBgColor">@color/gray_100</item>
 
         <item name="dividerColor">@color/divider_color</item>
+        <item name="shimmerColor">@color/gray_200</item>
     </style>
 
     <style name="Theme.NewsMead" parent="Base.Theme.NewsMead" />
