@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutSource"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivSourceImageShimmer"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="?shimmerColor"
+            android:scaleType="fitCenter"
+            app:shapeAppearanceOverlay="@style/Theme.NewsMead.Circular" />
+
+        <TextView
+            android:id="@+id/tvSourceShimmer"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="?shimmerColor"
+            android:fontFamily="@font/arial_regular"
+            android:textColor="?primaryTextColor"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivArticleImageShimmer"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="8dp"
+        android:background="?shimmerColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutSource" />
+
+    <TextView
+        android:id="@+id/tvArticleTitleShimmer"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:background="?shimmerColor"
+        android:ellipsize="end"
+        android:fontFamily="@font/arial_regular"
+        android:maxLines="3"
+        android:textColor="?primaryTextColor"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/ivArticleImageShimmer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutSource" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutArticleFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvArticleTitleShimmer">
+
+        <TextView
+            android:id="@+id/tvArticleDateShimmer"
+            android:layout_width="85dp"
+            android:layout_height="20dp"
+            android:background="?shimmerColor"
+            android:fontFamily="@font/arial_regular"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvBulletShimmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/bullet"
+            android:textColor="?shimmerColor"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvReadTimeShimmer"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="8dp"
+            android:background="?shimmerColor"
+            android:fontFamily="@font/arial_regular"
+            android:textColor="?secondaryTextColor"
+            android:textSize="16sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
