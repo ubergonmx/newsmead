@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.newsmead.data.DataHelper
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
@@ -32,6 +33,7 @@ class HomeFragment : Fragment() {
     private var param2: String? = null
 
     private lateinit var feedArticleAdapter: FeedArticleAdapter
+    private lateinit var shimmerFrameLayout : ShimmerFrameLayout
     private lateinit var feedHeaderAdapter: FeedHeaderAdapter
     private lateinit var viewBinding: FragmentHomeBinding
 
@@ -55,11 +57,19 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Set up Shimmer
+        this.shimmerFrameLayout = viewBinding.shimmerFeed
+        this.shimmerFrameLayout.startShimmer()
+
         // Set up Feed RecyclerView
         //data = DataHelper.loadArticleData()
         this.feedArticleAdapter = FeedArticleAdapter(data)
         // Load data and update the adapter when available
         DataHelper.loadArticleData { articles ->
+            // Stop the shimmer
+            this.shimmerFrameLayout.stopShimmer()
+            this.shimmerFrameLayout.visibility = View.GONE
+
             // Update the adapter with the retrieved articles
             feedArticleAdapter.updateData(articles)
         }
