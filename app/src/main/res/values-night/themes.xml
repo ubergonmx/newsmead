@@ -11,7 +11,6 @@
         <item name="secondaryTextColor">@color/gray_250</item>
 
         <item name="primaryBackgroundColor">@color/black_200</item>
-
         <item name="primaryIconColor">@color/gray_250</item>
         <item name="secondaryIconColor">@color/gray_200</item>
 

@@ -8,7 +8,7 @@
     <attr name="highlightedTextColor" format="color" />
 
     <attr name="primaryBackgroundColor" format="color" />
-    <attr name="secondaryButtonBgColor" format="color" />
+    <attr name="secondaryBackgroundColor" format="color" />
     <attr name="accentBackgroundColor" format="color" />
     <attr name="highlightedBackgroundColor" format="color" />
 
