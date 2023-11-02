@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:outlineProvider="none"
-        app:cardBackgroundColor="@color/gray_300"
+        app:cardBackgroundColor="?cardBackgroundColor"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,9 +34,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/sample_saved_list_title"
+                    android:textColor="?primaryTextColor"
                     android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="?primaryTextColor"/>
+                    android:textStyle="bold" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -58,10 +58,10 @@
                 android:cropToPadding="true"
                 android:padding="8dp"
                 android:src="@drawable/folder_filled_weight400"
-                app:tint="@color/gray_200"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/gray_200"
                 tools:src="@drawable/folder_filled_weight400" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

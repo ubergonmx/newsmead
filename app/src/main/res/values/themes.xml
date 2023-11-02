@@ -16,6 +16,7 @@
 
         <item name="dividerColor">@color/divider_color</item>
         <item name="shimmerColor">@color/gray_200</item>
+        <item name="cardBackgroundColor">@color/gray_300</item>
     </style>
 
     <style name="Theme.NewsMead" parent="Base.Theme.NewsMead" />
