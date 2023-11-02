@@ -5,17 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.newsmead.R
 
-import com.newsmead.databinding.AccountActivityBinding
+import com.newsmead.databinding.ActivityAccountBinding
 import com.newsmead.fragments.account.LogInFragment
 import com.newsmead.fragments.account.SignUpFragment
 
 class AccountActivity : AppCompatActivity() {
 
-    private lateinit var viewBinding: AccountActivityBinding
+    private lateinit var viewBinding: ActivityAccountBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        this.viewBinding = AccountActivityBinding.inflate(layoutInflater)
+        this.viewBinding = ActivityAccountBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
         val intent = intent
