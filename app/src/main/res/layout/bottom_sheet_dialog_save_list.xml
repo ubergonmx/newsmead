@@ -18,7 +18,7 @@
         android:layout_marginTop="8dp"
         android:adjustViewBounds="true"
         android:cropToPadding="false"
-        app:tint="@color/gray_100"
+        app:tint="?secondaryIconColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +41,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/tvSaveToDialog"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvSaveToDialog"
-            app:tint="@color/gray_100"
+            app:tint="?secondaryIconColor"
             tools:srcCompat="@drawable/folder_nofill_weight400" />
 
         <TextView

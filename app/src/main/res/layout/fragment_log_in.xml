@@ -124,7 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:button="@drawable/ic_visibility"
-            android:tint="@color/gray_100"
+            android:tint="?secondaryIconColor"
             app:layout_constraintBottom_toBottomOf="@+id/etAccLogPassword"
             app:layout_constraintEnd_toEndOf="@+id/etAccLogPassword"
             app:layout_constraintTop_toTopOf="@+id/etAccLogPassword" />

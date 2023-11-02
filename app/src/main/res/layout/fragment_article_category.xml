@@ -37,7 +37,7 @@
                     android:src="@drawable/arrow_back_ios_nofill_weight400"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/gray_100" />
+                    app:tint="?secondaryIconColor" />
 
                 <TextView
                     android:id="@+id/tvSourceName"

@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:cropToPadding="false"
-        app:tint="@color/gray_100"
+        app:tint="?secondaryIconColor"
         tools:srcCompat="@drawable/drag_handle_nofill_weight400" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

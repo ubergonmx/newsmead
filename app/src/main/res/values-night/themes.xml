@@ -9,7 +9,7 @@
         <item name="secondaryBackgroundColor">@color/black_100</item>
 
         <item name="primaryIconColor">@color/gray_250</item>
-        <item name="secondaryIconColor">@color/gray_100</item>
+        <item name="secondaryIconColor">@color/gray_200</item>
 
         <item name="primaryButtonTextColor">@color/white</item>
         <item name="primaryButtonBgColor">@color/gray_100</item>
