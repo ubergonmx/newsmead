@@ -113,12 +113,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@color/gray_100"
+            android:backgroundTint="?primaryButtonBgColor"
             android:fontFamily="@font/arial_regular"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:text="@string/profile_save"
-            android:textColor="@color/white"
+            android:textColor="?primaryButtonTextColor"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
