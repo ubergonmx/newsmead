@@ -40,7 +40,7 @@
             android:paddingTop="8dp"
             android:paddingEnd="8dp"
             android:paddingBottom="8dp"
-            android:text="Save to List"
+            android:text="@string/article_save_to_list_btn"
             android:textColor="?primaryTextColor"
             android:textSize="16sp"
             app:icon="@drawable/ic_bookmark"
@@ -130,7 +130,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/arial_regular"
-                        android:text="NBA Western Conference Preview: 2023-2024 Season"
+                        android:text="@string/sample_article_headline"
                         android:textColor="?primaryTextColor"
                         android:textSize="24sp"
                         android:textStyle="bold"
@@ -145,7 +145,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/arial_regular"
-                        android:text="by"
+                        android:text="@string/article_by"
                         android:textSize="10sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvArticleHeadline" />
@@ -167,21 +167,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:fontFamily="@font/arial_regular"
-                        android:text="•"
+                        android:text="@string/symbol_bullet"
                         android:textSize="10sp"
                         app:layout_constraintStart_toEndOf="@+id/tvArticleAuthor"
                         app:layout_constraintTop_toTopOf="@+id/tvArticleAuthor" />
-
-                    <TextView
-                        android:id="@+id/tvArticleMins"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/arial_regular"
-                        android:text="0"
-                        android:textSize="10sp"
-                        app:layout_constraintStart_toEndOf="@+id/tvByDot"
-                        app:layout_constraintTop_toTopOf="@+id/tvByDot" />
 
                     <TextView
                         android:id="@+id/tvArticleMinRead"
@@ -189,10 +178,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:fontFamily="@font/arial_regular"
-                        android:text="min read"
+                        android:text="@string/sample_read_time"
                         android:textSize="10sp"
-                        app:layout_constraintStart_toEndOf="@+id/tvArticleMins"
-                        app:layout_constraintTop_toTopOf="@+id/tvArticleMins" />
+                        app:layout_constraintStart_toEndOf="@+id/tvByDot"
+                        tools:layout_editor_absoluteY="123dp" />
 
                     <ImageView
                         android:id="@+id/ivArticleFullImage"
@@ -231,7 +220,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="@color/gray_100"
-                    android:text="Show more from AUTHOR"
+                    android:text="@string/article_show_more_btn"
                     android:textColor="@color/white" />
 
                 <TextView
@@ -239,7 +228,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Recommended for you"
+                    android:text="@string/article_recommended"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -290,7 +279,7 @@
                         android:id="@+id/tvArticleClrLight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Light"
+                        android:text="@string/article_theme_light"
                         android:textSize="12sp" />
                 </LinearLayout>
 
@@ -315,7 +304,7 @@
                         android:id="@+id/tvArticleClrDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Dark"
+                        android:text="@string/article_theme_dark"
                         android:textSize="12sp" />
                 </LinearLayout>
 
@@ -340,7 +329,7 @@
                         android:id="@+id/tvArticleClrSepia"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sepia"
+                        android:text="@string/article_theme_sepia"
                         android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -362,7 +351,7 @@
                     android:padding="6dp"
                     android:paddingLeft="6dp"
                     android:paddingRight="6dp"
-                    android:text="Smaller Text"
+                    android:text="@string/article_text_smaller_btn"
                     android:textColor="?primaryTextColor"
                     android:textSize="12sp"
                     app:cornerRadius="16dp"
@@ -386,7 +375,7 @@
                     android:padding="6dp"
                     android:paddingLeft="6dp"
                     android:paddingRight="6dp"
-                    android:text="Larger Text"
+                    android:text="@string/article_text_larger_btn"
                     android:textColor="?primaryTextColor"
                     android:textSize="12sp"
                     app:cornerRadius="16dp"

@@ -33,7 +33,7 @@
                     android:id="@+id/tvListTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/saved_list_placeholder_title"
+                    android:text="@string/sample_saved_list_title"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
                     android:id="@+id/tvListNumArticles"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/saved_list_placeholder_number"
+                    android:text="@string/sample_saved_list_number"
                     android:textColor="@color/gray_100" />
             </LinearLayout>
 

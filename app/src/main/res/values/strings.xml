@@ -1,6 +1,32 @@
 <resources>
     <string name="app_name">NewsMead</string>
 
+    <!-- symbol -->
+    <string name="symbol_bullet">•</string>
+
+    <!-- text commons -->
+    <string name="commons_category">Category</string>
+    <string name="commons_sources">Sources</string>
+
+    <!-- button text commons -->
+    <string name="btn_next">Next</string>
+    <string name="btn_continue">Continue</string>
+    <string name="btn_skip">Skip</string>
+    <string name="btn_done">Done</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_save">Save Changes</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_edit">Edit</string>
+    <string name="btn_update">Update</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="btn_yes">Yes</string>
+    <string name="btn_no">No</string>
+    <string name="btn_ok">Ok</string>
+    <string name="btn_retry">Retry</string>
+    <string name="btn_date">Date</string>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~ Log in, Sign up, Onboarding ~~~~~~~~~~~~~~~~~~~~ -->
+
     <!-- fragment_log_in & fragment_sign_up commons -->
     <string name="commons_welcome_to">Welcome to</string>
     <string name="commons_email_address">Email Address</string>
@@ -26,28 +52,50 @@
     <string name="onboarding_title">Welcome to NewsMead</string>
     <string name="onboarding_interest">What are you interested in?</string>
     <string name="onboarding_choose">Choose three (3) or more.</string>
-    <string name="onboarding_next_btn">Next</string>
 
+    <!-- ~~~~~~~~~~~~~~~~~~~~ Bottom Nav Bar ~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- NOTE: If nav text will be the same as title text, consider moving to commons instead -->
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_saved">Saved</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~ Home ~~~~~~~~~~~~~~~~~~~~ -->
+
+    <!-- item_feed_header (fragment_home) -->
     <string name="home_title">Home</string>
-    <string name="btn_history">History</string>
-    <string name="btn_filter">Filter</string>
+    <string name="home_history_btn">History</string>
+
+    <!-- fragment_history -->
+    <string name="history_title">Reading History</string>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~ Search ~~~~~~~~~~~~~~~~~~~~ -->
 
     <string name="search_title">Search</string>
-    <string name="search_category">Category</string>
-    <string name="search_sources">Sources</string>
-    <string name="search_latest_news">Latest News</string>
-    <string name="search_label">Searching for:</string>
-    <string name="search_prompt">Lorem ipsum</string>
-    <string name="search_results">3 results</string>
-    <string name="search_no_results">No results found</string>
 
+    <!-- fragment_search -->
+    <string name="search_latest_news">Latest News</string>
+
+    <!-- fragment_article_search -->
+    <string name="search_label">Searching for:</string>
+    <string name="search_no_results">No results found</string>
+    <string name="search_filter_btn">Filter</string>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~ Saved ~~~~~~~~~~~~~~~~~~~~ -->
+
+    <!-- fragment_saved -->
     <string name="saved_title">Saved Articles</string>
     <string name="saved_your_lists">Your Lists</string>
     <string name="saved_all">All</string>
+
+    <!-- fragment_saved_your_lists -->
     <string name="saved_create">Create new list</string>
 
-    <string name="saved_list_placeholder_title">List Title</string>
-    <string name="saved_list_placeholder_number">X articles</string>
+    <!-- fragment_saved_list_articles -->
+    <string name="saved_sort_btn">Sort</string>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~ Profile ~~~~~~~~~~~~~~~~~~~~ -->
 
     <string name="profile_title">Profile</string>
     <string name="profile_subtitle">Update your account</string>
@@ -57,21 +105,55 @@
     <string name="profile_save">Save Changes</string>
     <string name="profile_logout">Logout</string>
 
+    <!-- ~~~~~~~~~~~~~~~~~~~~ Article ~~~~~~~~~~~~~~~~~~~~ -->
+
+    <!-- activity_article -->
+    <string name="article_save_to_list_btn">Save to List</string>
+    <string name="article_by">by</string>
+    <string name="article_show_more_btn">Show more from AUTHOR</string>
+    <string name="article_recommended">Recommended for you</string>
+    <string name="article_theme_light">Light</string>
+    <string name="article_theme_dark">Dark</string>
+    <string name="article_theme_sepia">Sepia</string>
+    <string name="article_text_smaller_btn">Smaller Text</string>
+    <string name="article_text_larger_btn">Larger Text</string>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~ Bottom Sheet ~~~~~~~~~~~~~~~~~~~~ -->
+
+    <!-- bottom_sheet_dialog_save_list -->
+    <string name="save_list_title">Save to...</string>
+    <string name="save_list_new">New List</string>
+
+    <!-- bottom_sheet_dialog_search_filter -->
+    <string name="search_filter_sort_by">Sort By</string>
+    <string name="search_filter_sort_by_most_relevant">Most Relevant</string>
+    <string name="search_filter_sort_by_recent">Recent</string>
+    <string name="search_filter_sort_by_popularity">Popularity</string>
+    <string name="search_filter_apply_btn">Apply Filters</string>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~ Sample Text ~~~~~~~~~~~~~~~~~~~~ -->
+
+    <!-- sample item -->
+    <string name="sample_checkbox">Checkbox</string>
+
+    <!-- sample saved list -->
+    <string name="sample_saved_list_title">List Title</string>
+    <string name="sample_saved_list_number">10 articles</string>
+
+    <!-- sample search -->
+    <string name="sample_search_prompt">Lorem ipsum</string>
+    <string name="sample_search_results">3 results</string>
+
+    <!-- sample article (magazine) -->
     <string name="sample_category">Technology</string>
     <string name="sample_source">INQUIRER.NET</string>
     <string name="sample_title">Lorem ipsum dolor sit amet consectetur. Pharetra metus  at id lacus at. porttitor</string>
     <string name="sample_date">Jun 2, 2023</string>
-    <string name="bullet">•</string>
     <string name="sample_read_time">5 min read</string>
-
     <string name="sample_chip">Lorem Ipsum</string>
 
-    <!-- Bottom Navbar Strings -->
-    <string name="nav_home">Home</string>
-    <string name="nav_search">Search</string>
-    <string name="nav_saved">Saved</string>
-    <string name="nav_profile">Profile</string>
-
+    <!-- sample article -->
+    <string name="sample_article_headline">NBA Western Conference Preview: 2023-2024 Season</string>
     <string name="small_text">
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultricies velit eu arcu molestie,"
         "quis pretium quam venenatis. Fusce leo odio, aliquam bibendum justo at, imperdiet aliquet elit."

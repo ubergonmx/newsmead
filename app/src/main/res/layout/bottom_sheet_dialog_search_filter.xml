@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/search_category"
+            android:text="@string/commons_category"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="@string/search_sources"
+            android:text="@string/commons_sources"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cgDialogCategory" />
 
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="Sort By"
+            android:text="@string/search_filter_sort_by"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -100,21 +100,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/arial_regular"
-                android:text="Most relevant" />
+                android:text="@string/search_filter_sort_by_most_relevant" />
 
             <RadioButton
                 android:id="@+id/rbRecent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/arial_regular"
-                android:text="Recent" />
+                android:text="@string/search_filter_sort_by_recent" />
 
             <RadioButton
                 android:id="@+id/rbPopularity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/arial_regular"
-                android:text="Popularity" />
+                android:text="@string/search_filter_sort_by_popularity" />
         </RadioGroup>
 
         <Button
@@ -126,7 +126,7 @@
             android:fontFamily="@font/arial_regular"
             android:paddingLeft="8dp"
             android:paddingRight="0dp"
-            android:text="Date"
+            android:text="@string/btn_date"
             android:textAlignment="textStart"
             android:textColor="?primaryTextColor"
             app:backgroundTint="?primaryBackgroundColor"
@@ -145,7 +145,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:backgroundTint="?primaryButtonBgColor"
-            android:text="Apply Filters"
+            android:text="@string/search_filter_apply_btn"
             android:textColor="?primaryButtonTextColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
