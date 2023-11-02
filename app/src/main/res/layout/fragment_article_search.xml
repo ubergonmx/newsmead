@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:backgroundTint="?secondaryBackgroundColor"
+                android:backgroundTint="?secondaryButtonBgColor"
                 android:drawableStart="@drawable/ic_baseline_history_24"
                 android:fontFamily="@font/arial_regular"
                 android:paddingStart="6dp"
@@ -32,11 +32,11 @@
                 android:paddingEnd="8dp"
                 android:paddingBottom="8dp"
                 android:text="@string/search_filter_btn"
-                android:textColor="?primaryTextColor"
+                android:textColor="secondaryButtonTextColor"
                 android:textSize="16sp"
                 app:icon="@drawable/filter_filled_weigh400"
                 app:iconPadding="0dp"
-                app:iconTint="?primaryButtonIconColor"
+                app:iconTint="?secondaryButtonIconColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/svSearchBar" />
 

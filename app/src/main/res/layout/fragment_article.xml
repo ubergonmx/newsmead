@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:backgroundTint="?secondaryBackgroundColor"
+            android:backgroundTint="?secondaryButtonBgColor"
             android:fontFamily="@font/arial_regular"
             android:minHeight="0dp"
             android:paddingStart="6dp"
@@ -41,12 +41,12 @@
             android:paddingEnd="8dp"
             android:paddingBottom="8dp"
             android:text="@string/article_save_to_list_btn"
-            android:textColor="?primaryTextColor"
+            android:textColor="?secondaryButtonTextColor"
             android:textSize="16sp"
             app:icon="@drawable/ic_bookmark"
             app:iconPadding="4dp"
             app:iconSize="20dp"
-            app:iconTint="?primaryButtonIconColor"
+            app:iconTint="?secondaryButtonIconColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnArticleShare"
             app:layout_constraintTop_toTopOf="parent" />
@@ -345,7 +345,7 @@
                     android:id="@+id/btnArticleTextSmaller"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="?secondaryBackgroundColor"
+                    android:backgroundTint="?secondaryButtonBgColor"
                     android:fontFamily="@font/arial_regular"
                     android:minHeight="0dp"
                     android:padding="6dp"
@@ -359,7 +359,7 @@
                     app:iconGravity="top"
                     app:iconPadding="4dp"
                     app:iconSize="24dp"
-                    app:iconTint="?primaryButtonIconColor" />
+                    app:iconTint="?secondaryButtonIconColor" />
 
                 <Space
                     android:layout_width="8dp"
@@ -369,21 +369,21 @@
                     android:id="@+id/btnArticleTextLarger"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="?secondaryBackgroundColor"
+                    android:backgroundTint="?secondaryButtonBgColor"
                     android:fontFamily="@font/arial_regular"
                     android:minHeight="0dp"
                     android:padding="6dp"
                     android:paddingLeft="6dp"
                     android:paddingRight="6dp"
                     android:text="@string/article_text_larger_btn"
-                    android:textColor="?primaryTextColor"
+                    android:textColor="?secondaryButtonTextColor"
                     android:textSize="12sp"
                     app:cornerRadius="16dp"
                     app:icon="@drawable/add_nofill_weight400"
                     app:iconGravity="top"
                     app:iconPadding="4dp"
                     app:iconSize="24dp"
-                    app:iconTint="?primaryButtonIconColor" />
+                    app:iconTint="?secondaryButtonIconColor" />
             </LinearLayout>
 
         </com.google.android.material.bottomappbar.BottomAppBar>

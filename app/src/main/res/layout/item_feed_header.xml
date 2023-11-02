@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="?secondaryBackgroundColor"
+        android:backgroundTint="?secondaryButtonBgColor"
         android:drawableStart="@drawable/ic_baseline_history_24"
         android:fontFamily="@font/arial_regular"
         android:paddingStart="6dp"
@@ -32,11 +32,12 @@
         android:paddingEnd="8dp"
         android:paddingBottom="8dp"
         android:text="@string/home_history_btn"
-        android:textColor="?primaryTextColor"
+        android:textColor="?secondaryButtonTextColor"
         android:textSize="16sp"
         app:icon="@drawable/ic_baseline_history_24"
         app:iconPadding="8dp"
-        app:iconTint="?primaryButtonIconColor"
+        app:iconTint="?secondaryButtonIconColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:rippleColor="?primaryButtonRippleColor" />
 </androidx.constraintlayout.widget.ConstraintLayout>

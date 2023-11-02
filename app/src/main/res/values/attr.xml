@@ -8,7 +8,7 @@
     <attr name="highlightedTextColor" format="color" />
 
     <attr name="primaryBackgroundColor" format="color" />
-    <attr name="secondaryBackgroundColor" format="color" />
+    <attr name="secondaryButtonBgColor" format="color" />
     <attr name="accentBackgroundColor" format="color" />
     <attr name="highlightedBackgroundColor" format="color" />
 
@@ -18,6 +18,11 @@
     <attr name="primaryButtonTextColor" format="color" />
     <attr name="primaryButtonBgColor" format="color" />
     <attr name="primaryButtonIconColor" format="color" />
+    <attr name="primaryButtonRippleColor" format="color" />
+    <attr name="secondaryButtonTextColor" format="color" />
+    <attr name="secondaryButtonBgColor" format="color" />
+    <attr name="secondaryButtonIconColor" format="color" />
+    <attr name="secondaryButtonRippleColor" format="color" />
 
     <attr name="dividerColor" format="color" />
     <attr name="shimmerColor" format="color" />

@@ -128,7 +128,7 @@
             android:paddingRight="0dp"
             android:text="@string/btn_date"
             android:textAlignment="textStart"
-            android:textColor="?primaryTextColor"
+            android:textColor="?secondaryButtonTextColor"
             app:backgroundTint="?primaryBackgroundColor"
             app:icon="@drawable/date_range_nofill_weight400"
             app:iconGravity="start"

@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:backgroundTint="?secondaryBackgroundColor"
+            android:backgroundTint="?secondaryButtonBgColor"
             android:fontFamily="@font/arial_regular"
             android:minHeight="45dp"
             android:paddingStart="14dp"
@@ -29,15 +29,16 @@
             android:paddingEnd="16dp"
             android:paddingBottom="8dp"
             android:text="@string/btn_date"
-            android:textColor="?primaryTextColor"
+            android:textColor="?secondaryButtonTextColor"
             android:textSize="16sp"
             app:icon="@drawable/date_range_nofill_weight400"
             app:iconPadding="4dp"
             app:iconSize="20dp"
-            app:iconTint="?primaryButtonIconColor"
+            app:iconTint="?secondaryButtonIconColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="?primaryButtonRippleColor" />
 
         <ImageButton
             android:id="@+id/btnHistoryBack"

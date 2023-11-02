@@ -2,18 +2,26 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.NewsMead" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
+        <!-- Notification bar -->
+        <item name="colorPrimaryDark">@color/black_200</item> <!-- NOTE: Refer to primaryBackgroundColor -->
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Application colors -->
         <item name="primaryTextColor">@color/white</item>
         <item name="secondaryTextColor">@color/gray_250</item>
 
         <item name="primaryBackgroundColor">@color/black_200</item>
-        <item name="secondaryBackgroundColor">@color/black_100</item>
 
         <item name="primaryIconColor">@color/gray_250</item>
         <item name="secondaryIconColor">@color/gray_200</item>
 
         <item name="primaryButtonTextColor">@color/white</item>
         <item name="primaryButtonBgColor">@color/gray_100</item>
-        <item name="primaryButtonIconColor">@color/white</item>
+        <item name="primaryButtonRippleColor">@color/gray_100</item>
+
+        <item name="secondaryButtonTextColor">@color/white</item>
+        <item name="secondaryButtonBgColor">@color/black_100</item>
+        <item name="secondaryButtonIconColor">@color/white</item>
 
         <item name="dividerColor">@color/gray_100</item>
         <item name="shimmerColor">@color/gray_100</item>
