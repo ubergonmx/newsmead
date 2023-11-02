@@ -25,7 +25,7 @@ class ArticleActivity : AppCompatActivity() {
 
             // Replace the fragment_container view with the ArticleFragment
             supportFragmentManager.beginTransaction()
-                .replace(R.id.flMainArticleContainer, articleFragment)
+                .replace(binding.flMainArticleContainer.id, articleFragment)
                 .commit()
         }
     }

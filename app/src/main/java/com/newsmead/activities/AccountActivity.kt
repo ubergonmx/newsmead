@@ -24,11 +24,11 @@ class AccountActivity : AppCompatActivity() {
 
             if ("sign_up" == initialFragment) {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.flAccountContainer, SignUpFragment())
+                    .replace(viewBinding.flAccountContainer.id, SignUpFragment())
                     .commit()
             } else {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.flAccountContainer, LogInFragment())
+                    .replace(viewBinding.flAccountContainer.id, LogInFragment())
                     .commit()
             }
         }

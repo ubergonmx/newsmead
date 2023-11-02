@@ -32,7 +32,7 @@
                 android:paddingEnd="8dp"
                 android:paddingBottom="8dp"
                 android:text="@string/search_filter_btn"
-                android:textColor="secondaryButtonTextColor"
+                android:textColor="?secondaryButtonTextColor"
                 android:textSize="16sp"
                 app:icon="@drawable/filter_filled_weigh400"
                 app:iconPadding="0dp"
