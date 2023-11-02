@@ -21,7 +21,7 @@
             android:fontFamily="@font/arial_regular"
             android:text="@string/saved_title"
             android:textColor="?primaryTextColor"
-            android:textSize="12pt"
+            android:textSize="@dimen/header_text_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -12,6 +12,8 @@
     <dimen name="title_text_size">20sp</dimen>
     <dimen name="title_text_size_large">24sp</dimen>
 
+    <dimen name="header_text_size">16pt</dimen>
+
 
     <!-- Margins -->
     <dimen name="common_margin">16dp</dimen>

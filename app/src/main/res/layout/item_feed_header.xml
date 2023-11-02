@@ -14,7 +14,7 @@
         android:fontFamily="@font/arial_regular"
         android:text="@string/home_title"
         android:textColor="?primaryTextColor"
-        android:textSize="16pt"
+        android:textSize="@dimen/header_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
