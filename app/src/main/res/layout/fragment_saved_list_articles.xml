@@ -23,9 +23,9 @@
             android:layout_marginStart="16dp"
             android:background="@null"
             android:src="@drawable/arrow_back_ios_nofill_weight400"
-            android:tint="@color/gray_100"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/gray_100" />
 
         <ImageButton
             android:id="@+id/btnSavedDelete"
@@ -34,9 +34,9 @@
             android:layout_marginEnd="16dp"
             android:background="@null"
             android:src="@drawable/do_not_disturb_on_nofill_weight400"
-            android:tint="@color/gray_100"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/gray_100" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,10 +55,10 @@
             android:layout_marginStart="8dp"
             android:adjustViewBounds="true"
             android:src="@drawable/folder_nofill_weight400"
-            android:tint="@color/gray_100"
             app:layout_constraintBottom_toBottomOf="@+id/tvSavedListName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvSavedListName" />
+            app:layout_constraintTop_toTopOf="@+id/tvSavedListName"
+            app:tint="@color/gray_100" />
 
         <TextView
             android:id="@+id/tvSavedListName"
