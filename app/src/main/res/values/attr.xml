@@ -17,7 +17,7 @@
 
     <attr name="primaryButtonTextColor" format="color" />
     <attr name="primaryButtonBgColor" format="color" />
-    <attr name="primaryButtonHighlightColor" format="color" />
+    <attr name="primaryButtonIconColor" format="color" />
 
     <attr name="dividerColor" format="color" />
     <attr name="shimmerColor" format="color" />

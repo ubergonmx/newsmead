@@ -61,7 +61,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/gray_200"
+                app:tint="@color/gray_100"
                 tools:src="@drawable/folder_filled_weight400" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

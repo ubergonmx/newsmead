@@ -19,7 +19,7 @@
         android:textColor="?primaryTextColor"
         app:icon="@drawable/add_nofill_weight400"
         app:iconGravity="textStart"
-        app:iconTint="?secondaryIconColor"
+        app:iconTint="?primaryButtonIconColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

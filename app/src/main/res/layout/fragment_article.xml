@@ -46,7 +46,7 @@
             app:icon="@drawable/ic_bookmark"
             app:iconPadding="4dp"
             app:iconSize="20dp"
-            app:iconTint="?secondaryIconColor"
+            app:iconTint="?primaryButtonIconColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnArticleShare"
             app:layout_constraintTop_toTopOf="parent" />
@@ -359,7 +359,7 @@
                     app:iconGravity="top"
                     app:iconPadding="4dp"
                     app:iconSize="24dp"
-                    app:iconTint="?secondaryIconColor" />
+                    app:iconTint="?primaryButtonIconColor" />
 
                 <Space
                     android:layout_width="8dp"
@@ -383,7 +383,7 @@
                     app:iconGravity="top"
                     app:iconPadding="4dp"
                     app:iconSize="24dp"
-                    app:iconTint="?secondaryIconColor" />
+                    app:iconTint="?primaryButtonIconColor" />
             </LinearLayout>
 
         </com.google.android.material.bottomappbar.BottomAppBar>
