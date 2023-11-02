@@ -59,7 +59,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/arial_regular"
                 android:text="@string/commons_category"
-                android:textColor="@color/gray_100"
+                android:textColor="?secondaryTextColor"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/svSearchBar" />
@@ -86,7 +86,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/arial_regular"
                 android:text="@string/commons_sources"
-                android:textColor="@color/gray_100"
+                android:textColor="?secondaryTextColor"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cgCategory" />
@@ -125,7 +125,7 @@
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/arial_regular"
                 android:text="@string/search_latest_news"
-                android:textColor="@color/gray_100"
+                android:textColor="?secondaryTextColor"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"

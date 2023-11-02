@@ -8,7 +8,7 @@
     android:padding="16dp">
 
     <LinearLayout
-        android:id="@+id/linearLayoutSource"
+        android:id="@+id/llSource"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -42,7 +42,7 @@
         android:layout_height="96dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutSource"
+        app:layout_constraintTop_toBottomOf="@+id/llSource"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -60,10 +60,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/ivArticleImage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutSource" />
+        app:layout_constraintTop_toBottomOf="@+id/llSource" />
 
     <LinearLayout
-        android:id="@+id/linearLayoutArticleFooter"
+        android:id="@+id/llArticleFooter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
