@@ -15,6 +15,10 @@ import kotlin.collections.ArrayList
 
 object DataHelper {
 
+    fun formatTitle(title: String): String {
+        // Remove the source from the title
+        return title.substring(0, title.indexOf(" - "))
+    }
     fun formatDate(date: String): String {
         // Format date "2023-10-31T13:03:00Z" string to Mmm dd, yyyy
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US)
@@ -99,7 +103,7 @@ object DataHelper {
                     data.author?.let {
                         Article(
                             it,
-                            data.title,
+                            formatTitle(data.title),
                             formatDate(data.publishedAt),
                             (3..9).random().toString() + " min read",
                             data.url

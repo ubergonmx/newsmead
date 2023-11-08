@@ -33,6 +33,11 @@ class HistoryFragment: Fragment() {
         binding.rvHistory.adapter = FeedArticleSimplifiedAdapter(ArrayList())
         // Load data and update adapter
         DataHelper.loadArticleData { articles ->
+            // Stop the shimmer
+            binding.shimmerHistory.stopShimmer()
+            binding.shimmerHistory.visibility = View.GONE
+
+            // Update the adapter with the data
             (binding.rvHistory.adapter as FeedArticleSimplifiedAdapter).updateData(articles)
         }
         val layoutManager = LinearLayoutManager(requireContext())

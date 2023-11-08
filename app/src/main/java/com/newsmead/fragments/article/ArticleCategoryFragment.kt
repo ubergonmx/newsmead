@@ -57,11 +57,11 @@ class ArticleCategoryFragment : Fragment() {
 
         // Fill chips
         val chipData = DataHelper.loadSourcesData()
-        binding.cgSources.removeAllViews()
+        binding.cgCategory.removeAllViews()
         for (category in chipData) {
             val chip = ChipSearchBinding.inflate(inflater, container, false).root
             chip.text = category
-            binding.cgSources.addView(chip)
+            binding.cgCategory.addView(chip)
         }
 
         // Back button to go back to previous fragment
