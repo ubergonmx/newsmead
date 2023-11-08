@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -98,12 +100,12 @@ class ArticleFragment : Fragment() {
 
         // Increase font size when btnArticleTextLarger is clicked
         binding.btnArticleTextLarger.setOnClickListener {
-            binding.tvArticleText.textSize = binding.tvArticleText.textSize + 1
+            binding.tvArticleText.textSize = convertPixelsToDp(binding.tvArticleText.textSize + 1)
         }
 
         // Decrease font size when btnArticleTextSmaller is clicked
         binding.btnArticleTextSmaller.setOnClickListener {
-            binding.tvArticleText.textSize = binding.tvArticleText.textSize - 1
+            binding.tvArticleText.textSize = convertPixelsToDp(binding.tvArticleText.textSize - 1)
         }
 
         // Set to light mode when btnArticleClrLight is clicked
@@ -118,6 +120,14 @@ class ArticleFragment : Fragment() {
 
         // Set to background color to F5EED9 when btnArticleClrSepia is clicked
         binding.btnArticleClrSepia.setOnClickListener{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            val activity = requireActivity()
+            val window = activity.window
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.statusBarColor = ContextCompat.getColor(activity,R.color.sepia);
+            window.navigationBarColor = ContextCompat.getColor(activity,R.color.sepia);
+            binding.root.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia))
             binding.nsvArticleText.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia))
             binding.bottomAppBar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia))
             binding.clArticleTopBar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia))
@@ -127,6 +137,9 @@ class ArticleFragment : Fragment() {
         }
 
         return binding.root
+    }
+    fun convertPixelsToDp(px: Float): Float {
+        return px / (requireContext().resources.displayMetrics.densityDpi.toFloat() / 160f)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
