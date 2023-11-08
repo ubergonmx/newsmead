@@ -105,7 +105,7 @@ class ArticleFragment : Fragment() {
 
         // Decrease font size when btnArticleTextSmaller is clicked
         binding.btnArticleTextSmaller.setOnClickListener {
-            binding.tvArticleText.textSize = convertPixelsToDp(binding.tvArticleText.textSize - 1)
+            binding.tvArticleText.textSize = convertPixelsToDp(binding.tvArticleText.textSize) -3
         }
 
         // Set to light mode when btnArticleClrLight is clicked
@@ -120,7 +120,7 @@ class ArticleFragment : Fragment() {
 
         // Set to background color to F5EED9 when btnArticleClrSepia is clicked
         binding.btnArticleClrSepia.setOnClickListener{
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             val activity = requireActivity()
             val window = activity.window
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

@@ -345,6 +345,7 @@
                     android:id="@+id/btnArticleTextSmaller"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
                     android:backgroundTint="?secondaryButtonBgColor"
                     android:fontFamily="@font/arial_regular"
                     android:minHeight="0dp"
@@ -360,10 +361,6 @@
                     app:iconPadding="4dp"
                     app:iconSize="24dp"
                     app:iconTint="?secondaryButtonIconColor" />
-
-                <Space
-                    android:layout_width="8dp"
-                    android:layout_height="wrap_content" />
 
                 <Button
                     android:id="@+id/btnArticleTextLarger"
