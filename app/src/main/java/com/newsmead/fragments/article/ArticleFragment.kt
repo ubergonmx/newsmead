@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.newsmead.activities.ArticleActivity
 import com.newsmead.data.DataHelper.loadRecommendedArticlesData
@@ -79,6 +81,50 @@ class ArticleFragment : Fragment() {
                 .commit()
         }
 
+        // Share button to share article
+        binding.btnArticleShare.setOnClickListener {
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TITLE, "NewsMead")
+
+                var articleText = binding.tvArticleHeadline.text.toString() + " by " + binding.tvSource.text.toString()
+                putExtra(Intent.EXTRA_TEXT, articleText)
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, "Share this article")
+            startActivity(shareIntent)
+        }
+
+        // Increase font size when btnArticleTextLarger is clicked
+        binding.btnArticleTextLarger.setOnClickListener {
+            binding.tvArticleText.textSize = binding.tvArticleText.textSize + 1
+        }
+
+        // Decrease font size when btnArticleTextSmaller is clicked
+        binding.btnArticleTextSmaller.setOnClickListener {
+            binding.tvArticleText.textSize = binding.tvArticleText.textSize - 1
+        }
+
+        // Set to light mode when btnArticleClrLight is clicked
+        binding.btnArticleClrLight.setOnClickListener{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+
+        // Set to dark mode when btnArticleClrDark is clicked
+        binding.btnArticleClrDark.setOnClickListener{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+
+        // Set to background color to F5EED9 when btnArticleClrSepia is clicked
+        binding.btnArticleClrSepia.setOnClickListener{
+            binding.nsvArticleText.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia))
+            binding.bottomAppBar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia))
+            binding.clArticleTopBar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia))
+            binding.btnArticleTextLarger.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia_btn))
+            binding.btnArticleTextSmaller.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia_btn))
+            binding.btnSaveList.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia_btn))
+        }
 
         return binding.root
     }

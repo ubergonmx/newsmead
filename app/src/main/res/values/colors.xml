@@ -2,6 +2,8 @@
 <resources>
     <color name="black">#FF1A1A1A</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="sepia">#FFF5EED9</color>
+    <color name="sepia_btn">#FFEBDEB5</color>
     <color name="gray_100">#FF666666</color>
     <color name="gray_200">#FFB3B3B3</color>
     <color name="gray_250">#FFC1C1C1</color>
