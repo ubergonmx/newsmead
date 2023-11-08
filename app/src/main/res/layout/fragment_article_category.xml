@@ -66,24 +66,24 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/tvCategoryCategory"
+                android:id="@+id/tvCategorySources"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/arial_regular"
-                android:text="@string/commons_Categorys"
+                android:text="@string/commons_sources"
                 android:textColor="?secondaryTextColor"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/clArticleTopBar" />
 
             <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cgCategorys"
+                android:id="@+id/cgCategory"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvCategoryCategory"
+                app:layout_constraintTop_toBottomOf="@+id/tvCategorySources"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -99,7 +99,7 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cgCategorys" />
+                app:layout_constraintTop_toBottomOf="@+id/cgCategory" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

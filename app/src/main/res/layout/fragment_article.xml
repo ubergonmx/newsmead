@@ -146,7 +146,7 @@
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/arial_regular"
                         android:text="@string/article_by"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvArticleHeadline" />
 
@@ -157,7 +157,7 @@
                         android:layout_marginStart="8dp"
                         android:fontFamily="@font/arial_regular"
                         android:text="@string/sample_source"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         app:layout_constraintStart_toEndOf="@+id/tvArticleBy"
                         app:layout_constraintTop_toTopOf="@+id/tvArticleBy" />
 
@@ -168,7 +168,7 @@
                         android:layout_marginStart="8dp"
                         android:fontFamily="@font/arial_regular"
                         android:text="@string/symbol_bullet"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         app:layout_constraintStart_toEndOf="@+id/tvArticleAuthor"
                         app:layout_constraintTop_toTopOf="@+id/tvArticleAuthor" />
 
@@ -179,7 +179,7 @@
                         android:layout_marginStart="8dp"
                         android:fontFamily="@font/arial_regular"
                         android:text="@string/sample_read_time"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         app:layout_constraintStart_toEndOf="@+id/tvByDot"
                         app:layout_constraintTop_toTopOf="@+id/tvByDot" />
 

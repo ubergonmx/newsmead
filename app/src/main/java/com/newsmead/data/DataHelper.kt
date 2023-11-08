@@ -96,12 +96,12 @@ object DataHelper {
                 // Process the data here
                 for (data in response.articles) {
                     Log.d("DataHelper", data.toString())
-                    data.source.name?.let {
+                    data.author?.let {
                         Article(
                             it,
                             data.title,
                             formatDate(data.publishedAt),
-                            "9 min read",
+                            (3..9).random().toString() + " min read",
                             data.url
                         )
                     }?.let {
