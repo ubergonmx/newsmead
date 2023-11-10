@@ -100,12 +100,12 @@ class ArticleFragment : Fragment() {
 
         // Increase font size when btnArticleTextLarger is clicked
         binding.btnArticleTextLarger.setOnClickListener {
-            binding.tvArticleText.textSize = convertPixelsToDp(binding.tvArticleText.textSize + 1)
+            binding.tvArticleText.textSize = convertPixelsToSp(binding.tvArticleText.textSize + 1)
         }
 
         // Decrease font size when btnArticleTextSmaller is clicked
         binding.btnArticleTextSmaller.setOnClickListener {
-            binding.tvArticleText.textSize = convertPixelsToDp(binding.tvArticleText.textSize) -3
+            binding.tvArticleText.textSize = convertPixelsToSp(binding.tvArticleText.textSize) -3
         }
 
         // Set to light mode when btnArticleClrLight is clicked
@@ -138,8 +138,8 @@ class ArticleFragment : Fragment() {
 
         return binding.root
     }
-    fun convertPixelsToDp(px: Float): Float {
-        return px / (requireContext().resources.displayMetrics.densityDpi.toFloat() / 160f)
+    fun convertPixelsToSp(px: Float): Float {
+        return px / (requireContext().resources.displayMetrics.scaledDensity)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
