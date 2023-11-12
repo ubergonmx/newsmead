@@ -3,7 +3,6 @@ package com.newsmead.activities
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.newsmead.R
 
 import com.newsmead.databinding.ActivityAccountBinding
 import com.newsmead.fragments.account.LogInFragment

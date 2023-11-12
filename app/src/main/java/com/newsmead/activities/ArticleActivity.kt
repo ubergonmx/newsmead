@@ -2,7 +2,6 @@ package com.newsmead.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.newsmead.R
 
 import com.newsmead.databinding.ActivityArticleBinding
 import com.newsmead.fragments.article.ArticleFragment
