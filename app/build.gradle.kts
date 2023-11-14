@@ -56,6 +56,7 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-auth-ktx")
 
     // Import navigation dependencies
     implementation("androidx.navigation:navigation-fragment-ktx:2.4.1")
