@@ -6,14 +6,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.newsmead.databinding.ActivitySplashBinding
 
 @Suppress("DEPRECATION")
 class SplashActivity : AppCompatActivity() {
+
+    private lateinit var auth : FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Thread.sleep(1000)
+        // Thread.sleep(1000)
+        auth = Firebase.auth
+        if (auth.currentUser != null) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         installSplashScreen()
 
         // Initialize viewBinding for SplashActivity
