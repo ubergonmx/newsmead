@@ -54,20 +54,20 @@ class SignUpFragment: Fragment() {
                 return@setOnClickListener
             }
 
-            if (password.length < 4) {
-                this.viewBinding.etAccPassword.error = "Min password length should be 4 characters"
+            if (password.length < 6) {
+                this.viewBinding.etAccPassword.error = "Min password length should be 6 characters"
                 this.viewBinding.etAccPassword.requestFocus()
                 return@setOnClickListener
             }
 
             if (confirmPassword.isEmpty()) {
-                this.viewBinding.etAccConfirmPassword.setError("Confirm Password is required")
+                this.viewBinding.etAccConfirmPassword.error = "Confirm Password is required"
                 this.viewBinding.etAccConfirmPassword.requestFocus()
                 return@setOnClickListener
             }
 
-            if (!password.equals(confirmPassword)) {
-                this.viewBinding.etAccConfirmPassword.setError("Password and Confirm Password does not match")
+            if (password != confirmPassword) {
+                this.viewBinding.etAccConfirmPassword.error = "Password and Confirm Password does not match"
                 this.viewBinding.etAccConfirmPassword.requestFocus()
                 return@setOnClickListener
             }
@@ -79,8 +79,8 @@ class SignUpFragment: Fragment() {
                         // Sign in success, update UI with the signed-in user's information
                         val user = this.auth.currentUser
                         user!!.sendEmailVerification()
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
+                            .addOnCompleteListener { taskEmail ->
+                                if (taskEmail.isSuccessful) {
                                     // Email sent.
                                     this.viewBinding.etAccEmail.setText("")
                                     this.viewBinding.etAccPassword.setText("")
@@ -94,7 +94,7 @@ class SignUpFragment: Fragment() {
                     } else {
                         // If sign in fails, display a message to the user.
                          Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                         Toast.makeText(requireActivity(), "Authentication failed.",
+                         Toast.makeText(requireActivity(), "Authentication failed. Please try again.",
                              Toast.LENGTH_SHORT).show()
                         // updateUI(null)
                     }
