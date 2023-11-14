@@ -26,6 +26,8 @@ class LogInFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var viewBinding: FragmentLogInBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -40,31 +42,31 @@ class LogInFragment : Fragment() {
     ): View? {
 
         // Initialize viewBinding for LogInFragment
-        val binding = FragmentLogInBinding.inflate(inflater, container, false)
+        this.viewBinding = FragmentLogInBinding.inflate(inflater, container, false)
 
         // Buttons
-        binding.btnAccCreate.setOnClickListener {
+        this.viewBinding.btnAccCreate.setOnClickListener {
             val signUpFragment = SignUpFragment()
             val transaction = parentFragmentManager.beginTransaction()
             transaction.replace(R.id.flAccountContainer, signUpFragment)
             transaction.addToBackStack(null)
             transaction.commit()
         }
-        binding.btnAccLogIn.setOnClickListener {
+        this.viewBinding.btnAccLogIn.setOnClickListener {
             val intent = Intent(requireActivity(), MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
             requireActivity().startActivity(intent)
             requireActivity().finish()
         }
 
-        binding.cbViewPassword.setOnClickListener {
-            val cursorPosition = binding.etAccLogPassword.selectionStart
-            binding.etAccLogPassword.transformationMethod = if (binding.cbViewPassword.isChecked) null else android.text.method.PasswordTransformationMethod()
-            binding.etAccLogPassword.setSelection(cursorPosition)
+        this.viewBinding.cbViewPassword.setOnClickListener {
+            val cursorPosition = viewBinding.etAccLogPassword.selectionStart
+            this.viewBinding.etAccLogPassword.transformationMethod = if (this.viewBinding.cbViewPassword.isChecked) null else android.text.method.PasswordTransformationMethod()
+            this.viewBinding.etAccLogPassword.setSelection(cursorPosition)
         }
 
         // Inflate the layout for this fragment
-        return binding.root
+        return this.viewBinding.root
     }
 
     companion object {
