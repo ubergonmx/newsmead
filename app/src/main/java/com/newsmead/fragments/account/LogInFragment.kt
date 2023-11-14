@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.newsmead.activities.MainActivity
 import com.newsmead.R
 
@@ -27,6 +29,7 @@ class LogInFragment : Fragment() {
     private var param2: String? = null
 
     private lateinit var viewBinding: FragmentLogInBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +47,9 @@ class LogInFragment : Fragment() {
         // Initialize viewBinding for LogInFragment
         this.viewBinding = FragmentLogInBinding.inflate(inflater, container, false)
 
+        // Initialize Firebase Auth
+        this.auth = FirebaseAuth.getInstance()
+
         // Buttons
         this.viewBinding.btnAccCreate.setOnClickListener {
             val signUpFragment = SignUpFragment()
@@ -53,10 +59,47 @@ class LogInFragment : Fragment() {
             transaction.commit()
         }
         this.viewBinding.btnAccLogIn.setOnClickListener {
-            val intent = Intent(requireActivity(), MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            requireActivity().startActivity(intent)
-            requireActivity().finish()
+
+            // Log In Validation
+            val email = this.viewBinding.etAccLogEmail.text.toString()
+            val password = this.viewBinding.etAccLogPassword.text.toString()
+
+            if (email.isEmpty()) {
+                this.viewBinding.etAccLogEmail.error = "Email is required"
+                this.viewBinding.etAccLogEmail.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                this.viewBinding.etAccLogEmail.error = "Please provide valid email"
+                this.viewBinding.etAccLogEmail.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (password.isEmpty()) {
+                this.viewBinding.etAccLogPassword.error = "Password is required"
+                this.viewBinding.etAccLogPassword.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (password.length < 6) {
+                this.viewBinding.etAccLogPassword.error = "Min password length should be 6 characters"
+                this.viewBinding.etAccLogPassword.requestFocus()
+                return@setOnClickListener
+            }
+
+            // Log In User
+            this.auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(requireActivity()) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        successfulLogIn()
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(requireActivity(), "Authentication failed.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
         }
 
         this.viewBinding.cbViewPassword.setOnClickListener {
@@ -67,6 +110,13 @@ class LogInFragment : Fragment() {
 
         // Inflate the layout for this fragment
         return this.viewBinding.root
+    }
+
+    private fun successfulLogIn() {
+        val intent = Intent(requireActivity(), MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        requireActivity().startActivity(intent)
+        requireActivity().finish()
     }
 
     companion object {
