@@ -259,4 +259,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="profile_confirm_password">Confirm Password</string>
+    <string name="new_list_name">Name of List</string>
+    <string name="new_list_create">Create List</string>
 </resources>
