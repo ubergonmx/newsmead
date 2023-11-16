@@ -43,6 +43,9 @@ class ProfileFragment : Fragment() {
         // Connect to Firebase Auth
         this.auth = FirebaseAuth.getInstance()
 
+        // Fill Email Field
+        this.viewBinding.etEmail.setText(this.auth.currentUser?.email)
+
         // Buttons
         this.viewBinding.btnLogout.setOnClickListener {
             this.auth.signOut()
