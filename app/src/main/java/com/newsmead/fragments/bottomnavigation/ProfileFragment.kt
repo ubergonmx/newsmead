@@ -47,10 +47,11 @@ class ProfileFragment : Fragment() {
         this.viewBinding.btnLogout.setOnClickListener {
             this.auth.signOut()
 
-            // Go to AccountActivity and reset the back stack
+            // Finish Activity and Go to AccountActivity and reset the back stack
             val intent = Intent(requireActivity(), AccountActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
+            requireActivity().finish()
         }
 
         this.viewBinding.btnSave.setOnClickListener {
