@@ -52,6 +52,17 @@ class ProfileFragment : Fragment() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
+
+        this.viewBinding.btnSave.setOnClickListener {
+            val password = this.viewBinding.etPassword.text.toString()
+            val confirmPassword = this.viewBinding.etConfirmPassword.text.toString()
+
+            if (checkPasswordError(password, confirmPassword)) {
+                return@setOnClickListener
+            } else {
+                // Firebase updates password of user
+            }
+        }
     }
 
     override fun onCreateView(
@@ -80,5 +91,31 @@ class ProfileFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    /**
+     * Provides all error checking for password and confirm password
+     * @param password The password entered by the user
+     * @param confirmPassword The confirm password entered by the user
+     */
+    private fun checkPasswordError(password: String, confirmPassword: String): Boolean {
+        if (password.isEmpty()) {
+            this.viewBinding.etPassword.error = "Password is required"
+            this.viewBinding.etPassword.requestFocus()
+            return true
+        } else if (password.length < 6) {
+            this.viewBinding.etPassword.error = "Min password length should be 6 characters"
+            this.viewBinding.etPassword.requestFocus()
+            return true
+        } else if (confirmPassword.isEmpty()) {
+            this.viewBinding.etConfirmPassword.error = "Confirm Password is required"
+            this.viewBinding.etConfirmPassword.requestFocus()
+            return true
+        } else if (password != confirmPassword) {
+            this.viewBinding.etConfirmPassword.error = "Password and Confirm Password does not match"
+            this.viewBinding.etConfirmPassword.requestFocus()
+            return true
+        }
+        return false
     }
 }
