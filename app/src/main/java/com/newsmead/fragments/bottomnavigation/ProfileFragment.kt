@@ -64,12 +64,7 @@ class ProfileFragment : Fragment() {
                 this.auth.currentUser?.updatePassword(password)?.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         // Password updated successfully
-                        this.viewBinding.etPassword.setText("")
-                        this.viewBinding.etConfirmPassword.setText("")
-                        this.viewBinding.etPassword.clearFocus()
-                        this.viewBinding.etConfirmPassword.clearFocus()
-                        this.viewBinding.etPassword.error = null
-                        this.viewBinding.etConfirmPassword.error = null
+                        resetTextFields()
                     } else {
                         // Password update failed
                         this.viewBinding.etPassword.error = task.exception?.message
@@ -132,5 +127,14 @@ class ProfileFragment : Fragment() {
             return true
         }
         return false
+    }
+
+    private fun resetTextFields() {
+        this.viewBinding.etPassword.setText("")
+        this.viewBinding.etConfirmPassword.setText("")
+        this.viewBinding.etPassword.clearFocus()
+        this.viewBinding.etConfirmPassword.clearFocus()
+        this.viewBinding.etPassword.error = null
+        this.viewBinding.etConfirmPassword.error = null
     }
 }
