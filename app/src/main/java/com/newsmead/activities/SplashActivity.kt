@@ -22,34 +22,27 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Thread.sleep(1000)
-        auth = Firebase.auth
-        if (auth.currentUser != null) {
-            navigateToMainActivity()
-        }
         installSplashScreen()
 
         // Initialize viewBinding for SplashActivity
         val viewBinding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        // Check shared preferences for signup status
-        this.sharedPreferences = getSharedPreferences("com.newsmead", Context.MODE_PRIVATE)
-        val hasCompletedSignup = this.sharedPreferences.getBoolean("has_completed_signup", false)
-
-        // Navigate to appropriate activity after 3 seconds
-        Handler().postDelayed({
-            if (hasCompletedSignup) {
-                // User has completed signup, navigate to the main part of your app
-                navigateToMainActivity()
-            } else {
+        auth = Firebase.auth
+        if (auth.currentUser != null) {
+            navigateToMainActivity()
+        } else {
+            // Check shared preferences for signup status
+            this.sharedPreferences = getSharedPreferences("com.newsmead", Context.MODE_PRIVATE)
+            // Navigate to appropriate activity after 3 seconds
+            Handler().postDelayed({
                 // User has not completed signup, navigate to the signup process
                 val intent = Intent(this, AccountActivity::class.java)
                 intent.putExtra("initial_fragment", "sign_up")
                 startActivity(intent)
                 finish()
-            }
-        }, 2000)
+            }, 2000)
+        }
     }
 
     private fun navigateToMainActivity() {
