@@ -32,43 +32,16 @@ class SignUpFragment: Fragment() {
         }
 
         this.viewBinding.btnAccStart.setOnClickListener {
+            // Temporarily disable button
+            this.viewBinding.btnAccStart.isEnabled = false
+
             val email = this.viewBinding.etAccEmail.text.toString()
             val password = this.viewBinding.etAccPassword.text.toString()
             val confirmPassword = this.viewBinding.etAccConfirmPassword.text.toString()
 
-            if (email.isEmpty()) {
-                this.viewBinding.etAccEmail.error = "Email is required"
-                this.viewBinding.etAccEmail.requestFocus()
-                return@setOnClickListener
-            }
-
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                this.viewBinding.etAccEmail.error = "Please provide valid email"
-                this.viewBinding.etAccEmail.requestFocus()
-                return@setOnClickListener
-            }
-
-            if (password.isEmpty()) {
-                this.viewBinding.etAccPassword.error = "Password is required"
-                this.viewBinding.etAccPassword.requestFocus()
-                return@setOnClickListener
-            }
-
-            if (password.length < 6) {
-                this.viewBinding.etAccPassword.error = "Min password length should be 6 characters"
-                this.viewBinding.etAccPassword.requestFocus()
-                return@setOnClickListener
-            }
-
-            if (confirmPassword.isEmpty()) {
-                this.viewBinding.etAccConfirmPassword.error = "Confirm Password is required"
-                this.viewBinding.etAccConfirmPassword.requestFocus()
-                return@setOnClickListener
-            }
-
-            if (password != confirmPassword) {
-                this.viewBinding.etAccConfirmPassword.error = "Password and Confirm Password does not match"
-                this.viewBinding.etAccConfirmPassword.requestFocus()
+            if (checkAccountErrors(email, password, confirmPassword)) {
+                // Re-enable button
+                this.viewBinding.btnAccStart.isEnabled = true
                 return@setOnClickListener
             }
 
@@ -81,12 +54,6 @@ class SignUpFragment: Fragment() {
                         user!!.sendEmailVerification()
                             .addOnCompleteListener { taskEmail ->
                                 if (taskEmail.isSuccessful) {
-                                    // Email sent.
-                                    this.viewBinding.etAccEmail.setText("")
-                                    this.viewBinding.etAccPassword.setText("")
-                                    this.viewBinding.etAccConfirmPassword.setText("")
-                                    this.viewBinding.etAccEmail.requestFocus()
-
                                     // Goes to Onboarding Fragment
                                     finishSignUp()
                                 }
@@ -96,7 +63,9 @@ class SignUpFragment: Fragment() {
                          Log.w(TAG, "createUserWithEmail:failure", task.exception)
                          Toast.makeText(requireActivity(), "Authentication failed. Please try again.",
                              Toast.LENGTH_SHORT).show()
-                        // updateUI(null)
+
+                        // Re-enable button
+                        this.viewBinding.btnAccStart.isEnabled = true
                     }
                 }
         }
@@ -116,11 +85,66 @@ class SignUpFragment: Fragment() {
         return this.viewBinding.root
     }
 
-    fun finishSignUp() {
+    /**
+     * Goes to Onboarding Fragment
+     */
+    private fun finishSignUp() {
         // Goes to Onboarding Fragment
         val onboardingFragment = OnboardingFragment()
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.flAccountContainer, onboardingFragment)
             .commit()
+    }
+
+    /**
+     * Provides all error checking for email, password, and confirm password
+     * @param email The email entered by the user
+     * @param password The password entered by the user
+     * @param confirmPassword The confirm password entered by the user
+     */
+    private fun checkAccountErrors(email: String, password: String, confirmPassword: String): Boolean {
+        if (email.isEmpty()) {
+            this.viewBinding.etAccEmail.error = "Email is required"
+            this.viewBinding.etAccEmail.requestFocus()
+            return true
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            this.viewBinding.etAccEmail.error = "Please provide valid email"
+            this.viewBinding.etAccEmail.requestFocus()
+            return true
+        }
+
+        if (password.isEmpty()) {
+            this.viewBinding.etAccPassword.error = "Password is required"
+            this.viewBinding.etAccPassword.requestFocus()
+            return true
+        } else if (password.length < 6) {
+            this.viewBinding.etAccPassword.error = "Min password length should be 6 characters"
+            this.viewBinding.etAccPassword.requestFocus()
+            return true
+        }
+
+        if (confirmPassword.isEmpty()) {
+            this.viewBinding.etAccConfirmPassword.error = "Confirm Password is required"
+            this.viewBinding.etAccConfirmPassword.requestFocus()
+            return true
+        } else if (password != confirmPassword) {
+            this.viewBinding.etAccConfirmPassword.error = "Password and Confirm Password does not match"
+            this.viewBinding.etAccConfirmPassword.requestFocus()
+            return true
+        }
+
+        return false
+    }
+
+    private fun clearTextFields() {
+        this.viewBinding.etAccEmail.setText("")
+        this.viewBinding.etAccPassword.setText("")
+        this.viewBinding.etAccConfirmPassword.setText("")
+        this.viewBinding.etAccEmail.clearFocus()
+        this.viewBinding.etAccPassword.clearFocus()
+        this.viewBinding.etAccConfirmPassword.clearFocus()
+        this.viewBinding.etAccEmail.error = null
+        this.viewBinding.etAccPassword.error = null
+        this.viewBinding.etAccConfirmPassword.error = null
     }
 }

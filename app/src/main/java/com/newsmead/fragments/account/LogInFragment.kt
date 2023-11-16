@@ -64,27 +64,7 @@ class LogInFragment : Fragment() {
             val email = this.viewBinding.etAccLogEmail.text.toString()
             val password = this.viewBinding.etAccLogPassword.text.toString()
 
-            if (email.isEmpty()) {
-                this.viewBinding.etAccLogEmail.error = "Email is required"
-                this.viewBinding.etAccLogEmail.requestFocus()
-                return@setOnClickListener
-            }
-
-            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                this.viewBinding.etAccLogEmail.error = "Please provide valid email"
-                this.viewBinding.etAccLogEmail.requestFocus()
-                return@setOnClickListener
-            }
-
-            if (password.isEmpty()) {
-                this.viewBinding.etAccLogPassword.error = "Password is required"
-                this.viewBinding.etAccLogPassword.requestFocus()
-                return@setOnClickListener
-            }
-
-            if (password.length < 6) {
-                this.viewBinding.etAccLogPassword.error = "Min password length should be 6 characters"
-                this.viewBinding.etAccLogPassword.requestFocus()
+            if (checkAccountErrors(email, password, "")) {
                 return@setOnClickListener
             }
 
@@ -112,13 +92,6 @@ class LogInFragment : Fragment() {
         return this.viewBinding.root
     }
 
-    private fun successfulLogIn() {
-        val intent = Intent(requireActivity(), MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-        requireActivity().startActivity(intent)
-        requireActivity().finish()
-    }
-
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -137,5 +110,45 @@ class LogInFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    /**
+     * Goes to MainActivity while clearing all other activities
+     */
+    private fun successfulLogIn() {
+        val intent = Intent(requireActivity(), MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        requireActivity().startActivity(intent)
+        requireActivity().finish()
+    }
+
+    /**
+     * Provides all error checking for email, password, and confirm password
+     * @param email The email entered by the user
+     * @param password The password entered by the user
+     * @param confirmPassword The confirm password entered by the user
+     */
+    private fun checkAccountErrors(email: String, password: String, confirmPassword: String): Boolean {
+        if (email.isEmpty()) {
+            this.viewBinding.etAccLogEmail.error = "Email is required"
+            this.viewBinding.etAccLogEmail.requestFocus()
+            return true
+        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            this.viewBinding.etAccLogEmail.error = "Please provide valid email"
+            this.viewBinding.etAccLogEmail.requestFocus()
+            return true
+        }
+
+        if (password.isEmpty()) {
+            this.viewBinding.etAccLogPassword.error = "Password is required"
+            this.viewBinding.etAccLogPassword.requestFocus()
+            return true
+        } else if (password.length < 6) {
+            this.viewBinding.etAccLogPassword.error = "Min password length should be 6 characters"
+            this.viewBinding.etAccLogPassword.requestFocus()
+            return true
+        }
+
+        return false
     }
 }
