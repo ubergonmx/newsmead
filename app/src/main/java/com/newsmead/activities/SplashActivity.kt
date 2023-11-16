@@ -23,9 +23,7 @@ class SplashActivity : AppCompatActivity() {
         // Thread.sleep(1000)
         auth = Firebase.auth
         if (auth.currentUser != null) {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            navigateToMainActivity()
         }
         installSplashScreen()
 
@@ -41,9 +39,7 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             if (hasCompletedSignup) {
                 // User has completed signup, navigate to the main part of your app
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+                navigateToMainActivity()
             } else {
                 // User has not completed signup, navigate to the signup process
                 val intent = Intent(this, AccountActivity::class.java)
@@ -52,5 +48,15 @@ class SplashActivity : AppCompatActivity() {
                 finish()
             }
         }, 2000)
+    }
+
+    private fun navigateToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+
+        // Add user email to intent
+        intent.putExtra("user_email", auth.currentUser?.email)
+
+        startActivity(intent)
+        finish()
     }
 }
