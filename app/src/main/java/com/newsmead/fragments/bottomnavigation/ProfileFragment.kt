@@ -1,10 +1,13 @@
 package com.newsmead.fragments.bottomnavigation
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.auth.FirebaseAuth
+import com.newsmead.activities.AccountActivity
 
 // ViewBinding
 import com.newsmead.databinding.FragmentProfileBinding
@@ -25,6 +28,7 @@ class ProfileFragment : Fragment() {
     private var param2: String? = null
 
     private lateinit var viewBinding: FragmentProfileBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +39,19 @@ class ProfileFragment : Fragment() {
 
         // Initialize viewBinding for ProfileFragment
         this.viewBinding = FragmentProfileBinding.inflate(layoutInflater)
+
+        // Connect to Firebase Auth
+        this.auth = FirebaseAuth.getInstance()
+
+        // Buttons
+        this.viewBinding.btnLogout.setOnClickListener {
+            this.auth.signOut()
+
+            // Go to AccountActivity and reset the back stack
+            val intent = Intent(requireActivity(), AccountActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateView(
