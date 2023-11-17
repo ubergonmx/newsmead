@@ -156,6 +156,16 @@ class SignUpFragment: Fragment() {
             )
         )
         .addOnSuccessListener {
+            // Add "Read Later" list to Firestore
+            val userListsRef = firestore.collection("users").document(uid).collection("lists")
+            val newListId = userListsRef.document().id
+
+            userListsRef.document(newListId).set(
+                hashMapOf(
+                    "name" to "Read Later"
+                )
+            )
+
             // Handle Success
             Toast.makeText(context, "User created", Toast.LENGTH_SHORT).show()
         }
