@@ -17,8 +17,11 @@ class Article {
         private set
     var url: String
         private set
+    var newsId:String? = "N0000"
+        private set
 
-    constructor(source: String, sourceImage: Int, title: String, imageId: Int, date: String, readTime: String, url: String) {
+    constructor(source: String, sourceImage: Int,
+                title: String, imageId: Int, date: String, readTime: String, url: String, newsId:String) {
         this.source = source
         this.sourceImage = sourceImage
         this.title = title
@@ -26,6 +29,7 @@ class Article {
         this.date = date
         this.readTime = readTime
         this.url = url
+        this.newsId = newsId
     }
 
     // Creates an article with limited information. Only source, title, date, and readTime are
