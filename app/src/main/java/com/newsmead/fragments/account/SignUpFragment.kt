@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.newsmead.R
 
 import com.newsmead.databinding.FragmentSignUpBinding
@@ -17,6 +18,7 @@ import com.newsmead.databinding.FragmentSignUpBinding
 class SignUpFragment: Fragment() {
     private lateinit var viewBinding: FragmentSignUpBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.viewBinding = FragmentSignUpBinding.inflate(inflater, container, false)
@@ -54,7 +56,8 @@ class SignUpFragment: Fragment() {
                         user!!.sendEmailVerification()
                             .addOnCompleteListener { taskEmail ->
                                 if (taskEmail.isSuccessful) {
-                                    // Goes to Onboarding Fragment
+                                    // Add user to Firestore and then go to Onboarding Fragment once added
+                                    addUserToFireStore(email)
                                     finishSignUp()
                                 }
                             }
@@ -134,6 +137,32 @@ class SignUpFragment: Fragment() {
         }
 
         return false
+    }
+
+    private fun addUserToFireStore(email: String) {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+
+        if (uid == null) {
+            Toast.makeText(context, "Error creating user", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val userRef = firestore.collection("users").document(uid)
+
+        // Create new user document
+        userRef.set(
+            hashMapOf(
+                "email" to email
+            )
+        )
+        .addOnSuccessListener {
+            // Handle Success
+            Toast.makeText(context, "User created", Toast.LENGTH_SHORT).show()
+        }
+        .addOnFailureListener {
+            // Handle Failure
+            Toast.makeText(context, "Error creating user", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun clearTextFields() {
