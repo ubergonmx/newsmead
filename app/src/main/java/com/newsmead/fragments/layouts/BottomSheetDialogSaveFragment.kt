@@ -45,8 +45,14 @@ class BottomSheetDialogSaveFragment: BottomSheetDialogFragment() {
 
                     // Add list id to listsId
                     listsId.add(document.id)
+                }
 
-//                    Log.d("List Added", "${document.id} => ${document.data["name"]}")
+                // Place the read later list at the top
+                val readLaterIndex = data.indexOf("Read Later")
+                if (readLaterIndex != -1) {
+                    val readLater = data[readLaterIndex]
+                    data.removeAt(readLaterIndex)
+                    data.add(0, readLater)
                 }
 
                 // Mount recyclerView here
@@ -66,7 +72,7 @@ class BottomSheetDialogSaveFragment: BottomSheetDialogFragment() {
                 layoutManager.orientation = LinearLayoutManager.VERTICAL
                 binding.rvDialogList.layoutManager = layoutManager
             }
-        
+
         binding.btnNewList.setOnClickListener {
             showNewListDialog()
         }
