@@ -3,16 +3,16 @@ package com.newsmead.models
 class SavedList {
     var title: String
         private set
-    var numArticles: Int
+    var articles: ArrayList<Article> = ArrayList()
         private set
 
-    constructor(title: String, numArticles: Int) {
+    constructor(title: String, articles: ArrayList<Article>) {
         this.title = title
-        this.numArticles = numArticles
+        this.articles = articles
     }
 
     constructor(title: String) {
         this.title = title
-        this.numArticles = 0
+        this.articles = ArrayList()
     }
 }
