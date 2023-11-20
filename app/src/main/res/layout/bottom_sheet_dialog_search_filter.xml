@@ -8,16 +8,13 @@
     android:nestedScrollingEnabled="false"
     android:orientation="vertical"
     android:paddingTop="16dp"
-    android:paddingBottom="16dp">
+    android:paddingBottom="16dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-    <ImageView
-        android:id="@+id/ivDialogDrag"
+    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        android:id="@+id/bottomSheetDragHandleView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:cropToPadding="false"
-        app:tint="?secondaryIconColor"
-        tools:srcCompat="@drawable/drag_handle_nofill_weight400" />
+        android:layout_height="wrap_content"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clSortChips"
@@ -140,6 +137,7 @@
 
         <Button
             android:id="@+id/btnSearchFiltersApply"
+            style="@style/Widget.App.ButtonStyle.Gray"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -147,6 +145,7 @@
             android:backgroundTint="?primaryButtonBgColor"
             android:text="@string/search_filter_apply_btn"
             android:textColor="?primaryButtonTextColor"
+            app:cornerRadius="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnDateFilter" />
