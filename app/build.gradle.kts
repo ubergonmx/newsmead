@@ -7,6 +7,9 @@ plugins {
 
     // Add the Crashlytics Gradle plugin
     id("com.google.firebase.crashlytics")
+
+    // Safe args
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
