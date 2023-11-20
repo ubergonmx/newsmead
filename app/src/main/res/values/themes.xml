@@ -44,4 +44,25 @@
         <item name="windowSplashScreenAnimatedIcon">@drawable/sample_newsmead_logo</item>
         <item name="postSplashScreenTheme">@style/Theme.NewsMead</item>
     </style>
+
+    <!-- Button Style -->
+    <style name="ButtonOverlay">
+        <item name="fontFamily">@font/arial_regular</item>
+        <item name="textAllCaps">false</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="elevation">0dp</item>
+        <item name="android:translationZ">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="ButtonOverlayGray" parent="ButtonOverlay">
+        <item name="colorPrimary">?primaryButtonBgColor</item>
+        <item name="colorOnPrimary">?primaryButtonTextColor</item>
+        <item name="rippleColor">?primaryButtonRippleColor</item>
+    </style>
+
+    <!-- Material Override-->
+    <style name="Widget.App.ButtonStyle.Gray" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="materialThemeOverlay">@style/ButtonOverlayGray</item>
+    </style>
 </resources>

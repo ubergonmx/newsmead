@@ -204,22 +204,23 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAccStart"
+        style="@style/Widget.App.ButtonStyle.Gray"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_margin"
         android:layout_marginEnd="@dimen/common_margin"
         android:layout_marginBottom="@dimen/common_margin_half"
-        android:backgroundTint="?primaryButtonBgColor"
         android:fontFamily="@font/arial_regular"
         android:text="@string/sign_up_get_started_btn"
         android:textColor="?primaryButtonTextColor"
         android:textSize="@dimen/normal_text_size"
         android:textStyle="bold"
+        app:cornerRadius="@dimen/common_margin_one_and_half"
+        app:elevation="0dp"
         app:layout_constraintBottom_toTopOf="@+id/btnAccLog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
