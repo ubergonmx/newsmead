@@ -80,17 +80,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/etAccName"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilAccName"
+            style="@style/Widget.Material3.TextInputLayout.FilledBox"
             android:layout_width="0dp"
-            android:layout_height="@dimen/edit_text_height"
-            android:ems="10"
-            android:fontFamily="@font/arial_regular"
-            android:inputType="text"
-            android:textColor="?primaryTextColor"
+            android:layout_height="wrap_content"
+            app:boxBackgroundColor="@null"
+            app:errorEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccName" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAccName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAccName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tvAccEmail"
@@ -102,19 +111,28 @@
             android:textColor="?primaryTextColor"
             android:textSize="@dimen/normal_text_size"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etAccName" />
+            app:layout_constraintTop_toBottomOf="@+id/tilAccName" />
 
-        <EditText
-            android:id="@+id/etAccEmail"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilAccEmail"
+            style="@style/Widget.Material3.TextInputLayout.FilledBox"
             android:layout_width="0dp"
-            android:layout_height="@dimen/edit_text_height"
-            android:ems="10"
-            android:fontFamily="@font/arial_regular"
-            android:inputType="textEmailAddress"
-            android:textColor="?primaryTextColor"
+            android:layout_height="wrap_content"
+            app:boxBackgroundColor="@null"
+            app:errorEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAccEmail">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAccEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tvAccPassword"
@@ -126,30 +144,30 @@
             android:textColor="?primaryTextColor"
             android:textSize="@dimen/normal_text_size"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etAccEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/tilAccEmail" />
 
-        <EditText
-            android:id="@+id/etAccPassword"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilAccPassword"
+            style="@style/Widget.Material3.TextInputLayout.FilledBox"
             android:layout_width="0dp"
-            android:layout_height="@dimen/edit_text_height"
-            android:ems="10"
-            android:fontFamily="@font/arial_regular"
-            android:inputType="textPassword"
-            android:textColor="?primaryTextColor"
+            android:layout_height="wrap_content"
+            app:boxBackgroundColor="@null"
+            app:errorEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAccPassword"
+            app:passwordToggleEnabled="true">
 
-        <CheckBox
-            android:id="@+id/cbViewPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:button="@drawable/ic_visibility"
-            android:tint="?secondaryIconColor"
-            app:layout_constraintBottom_toBottomOf="@+id/etAccPassword"
-            app:layout_constraintEnd_toEndOf="@+id/etAccPassword"
-            app:layout_constraintTop_toTopOf="@+id/etAccPassword" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAccPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
             android:id="@+id/tvAccConfirmPassword"
@@ -161,30 +179,31 @@
             android:textColor="?primaryTextColor"
             android:textSize="@dimen/normal_text_size"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etAccPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/tilAccPassword" />
 
-        <EditText
-            android:id="@+id/etAccConfirmPassword"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilAccConfirmPassword"
+            style="@style/Widget.Material3.TextInputLayout.FilledBox"
             android:layout_width="0dp"
-            android:layout_height="@dimen/edit_text_height"
-            android:ems="10"
-            android:fontFamily="@font/arial_regular"
-            android:inputType="textPassword"
-            android:textColor="?primaryTextColor"
+            android:layout_height="wrap_content"
+            app:boxBackgroundColor="@null"
+            app:errorEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccConfirmPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAccConfirmPassword"
+            app:passwordToggleEnabled="true">
 
-        <CheckBox
-            android:id="@+id/cbViewConfirmPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:button="@drawable/ic_visibility"
-            android:tint="?secondaryIconColor"
-            app:layout_constraintBottom_toBottomOf="@+id/etAccConfirmPassword"
-            app:layout_constraintEnd_toEndOf="@+id/etAccConfirmPassword"
-            app:layout_constraintTop_toTopOf="@+id/etAccConfirmPassword" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAccConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -211,7 +230,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_margin"
         android:layout_marginEnd="@dimen/common_margin"
-        android:layout_marginBottom="@dimen/common_margin_triple"
+        android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
         android:fontFamily="@font/arial_regular"
         android:text="@string/sign_up_log_back_in_btn"

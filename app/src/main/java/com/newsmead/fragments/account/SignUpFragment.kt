@@ -24,6 +24,19 @@ class SignUpFragment: Fragment() {
         this.viewBinding = FragmentSignUpBinding.inflate(inflater, container, false)
         this.auth = FirebaseAuth.getInstance()
 
+        // Textfields to erase error messages
+        this.viewBinding.etAccEmail.setOnFocusChangeListener { _, _ ->
+            this.viewBinding.etAccEmail.error = null
+        }
+
+        this.viewBinding.etAccPassword.setOnFocusChangeListener { _, _ ->
+            this.viewBinding.tilAccPassword.error = null
+        }
+
+        this.viewBinding.etAccConfirmPassword.setOnFocusChangeListener { _, _ ->
+            this.viewBinding.tilAccConfirmPassword.error = null
+        }
+
         // Buttons
         this.viewBinding.btnAccLog.setOnClickListener {
             // Goes to Log In Fragment
@@ -73,18 +86,6 @@ class SignUpFragment: Fragment() {
                 }
         }
 
-        this.viewBinding.cbViewPassword.setOnClickListener {
-            val cursorPosition = this.viewBinding.etAccPassword.selectionStart
-            this.viewBinding.etAccPassword.transformationMethod = if (this.viewBinding.cbViewPassword.isChecked) null else android.text.method.PasswordTransformationMethod()
-            this.viewBinding.etAccPassword.setSelection(cursorPosition)
-        }
-
-        this.viewBinding.cbViewConfirmPassword.setOnClickListener {
-            val cursorPosition = this.viewBinding.etAccConfirmPassword.selectionStart
-            this.viewBinding.etAccConfirmPassword.transformationMethod = if (this.viewBinding.cbViewConfirmPassword.isChecked) null else android.text.method.PasswordTransformationMethod()
-            this.viewBinding.etAccConfirmPassword.setSelection(cursorPosition)
-        }
-
         return this.viewBinding.root
     }
 
@@ -108,31 +109,26 @@ class SignUpFragment: Fragment() {
     private fun checkAccountErrors(email: String, password: String, confirmPassword: String): Boolean {
         if (email.isEmpty()) {
             this.viewBinding.etAccEmail.error = "Email is required"
-            this.viewBinding.etAccEmail.requestFocus()
             return true
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             this.viewBinding.etAccEmail.error = "Please provide valid email"
-            this.viewBinding.etAccEmail.requestFocus()
             return true
         }
 
         if (password.isEmpty()) {
-            this.viewBinding.etAccPassword.error = "Password is required"
-            this.viewBinding.etAccPassword.requestFocus()
+            this.viewBinding.tilAccPassword.error = "Password is required"
             return true
         } else if (password.length < 6) {
-            this.viewBinding.etAccPassword.error = "Min password length should be 6 characters"
-            this.viewBinding.etAccPassword.requestFocus()
+            this.viewBinding.tilAccPassword.error = "Min password length should be 6 characters"
             return true
         }
 
         if (confirmPassword.isEmpty()) {
-            this.viewBinding.etAccConfirmPassword.error = "Confirm Password is required"
-            this.viewBinding.etAccConfirmPassword.requestFocus()
+            // MUI Error
+            this.viewBinding.tilAccConfirmPassword.error = "Confirm Password is required"
             return true
         } else if (password != confirmPassword) {
-            this.viewBinding.etAccConfirmPassword.error = "Password and Confirm Password does not match"
-            this.viewBinding.etAccConfirmPassword.requestFocus()
+            this.viewBinding.tilAccConfirmPassword.error = "Password and Confirm Password does not match"
             return true
         }
 
