@@ -50,6 +50,16 @@ class LogInFragment : Fragment() {
         // Initialize Firebase Auth
         this.auth = FirebaseAuth.getInstance()
 
+        // Listener for text fields to clear error
+        this.viewBinding.etAccLogEmail.setOnFocusChangeListener { _, _ ->
+            this.viewBinding.tilAccLogEmail.error = null
+        }
+
+        this.viewBinding.etAccLogPassword.setOnFocusChangeListener { _, _ ->
+            this.viewBinding.tilAccLogPassword.error = null
+        }
+
+
         // Buttons
         this.viewBinding.btnAccCreate.setOnClickListener {
             val signUpFragment = SignUpFragment()
@@ -64,7 +74,7 @@ class LogInFragment : Fragment() {
             val email = this.viewBinding.etAccLogEmail.text.toString()
             val password = this.viewBinding.etAccLogPassword.text.toString()
 
-            if (checkAccountErrors(email, password, "")) {
+            if (checkAccountErrors(email, password)) {
                 return@setOnClickListener
             }
 
@@ -80,12 +90,6 @@ class LogInFragment : Fragment() {
                     }
                 }
 
-        }
-
-        this.viewBinding.cbViewPassword.setOnClickListener {
-            val cursorPosition = viewBinding.etAccLogPassword.selectionStart
-            this.viewBinding.etAccLogPassword.transformationMethod = if (this.viewBinding.cbViewPassword.isChecked) null else android.text.method.PasswordTransformationMethod()
-            this.viewBinding.etAccLogPassword.setSelection(cursorPosition)
         }
 
         // Inflate the layout for this fragment
@@ -126,26 +130,21 @@ class LogInFragment : Fragment() {
      * Provides all error checking for email, password, and confirm password
      * @param email The email entered by the user
      * @param password The password entered by the user
-     * @param confirmPassword The confirm password entered by the user
      */
-    private fun checkAccountErrors(email: String, password: String, confirmPassword: String): Boolean {
+    private fun checkAccountErrors(email: String, password: String): Boolean {
         if (email.isEmpty()) {
-            this.viewBinding.etAccLogEmail.error = "Email is required"
-            this.viewBinding.etAccLogEmail.requestFocus()
+            this.viewBinding.tilAccLogEmail.error = "Email is required"
             return true
         } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            this.viewBinding.etAccLogEmail.error = "Please provide valid email"
-            this.viewBinding.etAccLogEmail.requestFocus()
+            this.viewBinding.tilAccLogEmail.error = "Please provide valid email"
             return true
         }
 
         if (password.isEmpty()) {
-            this.viewBinding.etAccLogPassword.error = "Password is required"
-            this.viewBinding.etAccLogPassword.requestFocus()
+            this.viewBinding.tilAccLogPassword.error = "Password is required"
             return true
         } else if (password.length < 6) {
-            this.viewBinding.etAccLogPassword.error = "Min password length should be 6 characters"
-            this.viewBinding.etAccLogPassword.requestFocus()
+            this.viewBinding.tilAccLogPassword.error = "Min password length should be 6 characters"
             return true
         }
 
