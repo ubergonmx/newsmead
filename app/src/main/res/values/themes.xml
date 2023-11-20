@@ -61,8 +61,18 @@
         <item name="rippleColor">?primaryButtonRippleColor</item>
     </style>
 
+    <style name="ButtonOverlayWhite" parent="ButtonOverlay">
+        <item name="colorPrimary">?secondaryButtonBgColor</item>
+        <item name="colorOnPrimary">?secondaryButtonTextColor</item>
+        <item name="rippleColor">?secondaryButtonBgColor</item>
+    </style>
+
     <!-- Material Override-->
     <style name="Widget.App.ButtonStyle.Gray" parent="Widget.MaterialComponents.Button.UnelevatedButton">
         <item name="materialThemeOverlay">@style/ButtonOverlayGray</item>
+    </style>
+
+    <style name="Widget.App.ButtonStyle.White" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="materialThemeOverlay">@style/ButtonOverlayWhite</item>
     </style>
 </resources>
