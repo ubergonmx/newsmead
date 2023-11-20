@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.data.DataHelper
 import com.newsmead.R
@@ -28,6 +29,8 @@ class ArticleSearchFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    val args: ArticleSearchFragmentArgs by navArgs()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -43,6 +46,12 @@ class ArticleSearchFragment : Fragment() {
         val binding = FragmentArticleSearchBinding.inflate(
             inflater, container, false
         )
+
+        // Receive search query from SearchFragment
+        val searchQuery = args.searchString
+
+        // Change text to search query
+        binding.tvSearchingForPrompt.text = searchQuery
 
         // RecyclerView of Articles
         val searchArticlesData = DataHelper.loadSearchArticlesData()

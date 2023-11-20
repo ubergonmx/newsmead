@@ -88,9 +88,17 @@ class SearchFragment : Fragment() {
         // svSearchBar setOnQueryTextListener
         binding.svSearchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                // Launch search fragment when search button is clicked
+                // Launch search fragment when search button is clicked and pass query using
+                // safe args with argument name "searchString"
+                val action = query?.let {
+                    SearchFragmentDirections.actionSearchFragmentToArticleSearchFragment(
+                        it
+                    )
+                }
+
                 Navigation.findNavController(binding.root)
-                    .navigate(R.id.action_searchFragment_to_articleSearchFragment)
+                    .navigate(action!!)
+
                 return false
             }
 
