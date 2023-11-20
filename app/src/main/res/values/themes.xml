@@ -67,6 +67,12 @@
         <item name="rippleColor">?secondaryButtonBgColor</item>
     </style>
 
+    <!-- Text Field Style -->
+    <style name="EditTextOverlay">
+        <item name="fontFamily">@font/arial_regular</item>
+        <item name="boxBackgroundColor">?primaryBackgroundColor</item>
+    </style>
+
     <!-- Material Override-->
     <style name="Widget.App.ButtonStyle.Gray" parent="Widget.MaterialComponents.Button.UnelevatedButton">
         <item name="materialThemeOverlay">@style/ButtonOverlayGray</item>
@@ -74,5 +80,10 @@
 
     <style name="Widget.App.ButtonStyle.White" parent="Widget.MaterialComponents.Button.UnelevatedButton">
         <item name="materialThemeOverlay">@style/ButtonOverlayWhite</item>
+    </style>
+
+    <style name="Widget.App.TextInputLayout.FilledBox" parent="Widget.Material3.TextInputLayout.FilledBox">
+        <item name="fontFamily">@font/arial_regular</item>
+        <item name="boxBackgroundColor">?primaryBackgroundColor</item>
     </style>
 </resources>
