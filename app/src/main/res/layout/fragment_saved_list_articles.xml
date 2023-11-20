@@ -1,118 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?primaryBackgroundColor"
+    android:fitsSystemWindows="false"
     tools:context=".fragments.saved.SavedListArticlesFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clSavedTopBar"
-        android:layout_width="0dp"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="?attr/primaryBackgroundColor">
 
-        <ImageButton
-            android:id="@+id/btnSavedBack"
-            android:layout_width="wrap_content"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+
+            android:id="@+id/ctlSavedListToolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:background="@null"
-            android:src="@drawable/arrow_back_ios_nofill_weight400"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="?secondaryIconColor" />
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-        <ImageButton
-            android:id="@+id/btnSavedDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:background="@null"
-            android:src="@drawable/do_not_disturb_on_nofill_weight400"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="?secondaryIconColor" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clSavedListToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clSavedListDetails"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clSavedTopBar">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clSavedTopBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/ivSavedListIcon"
-            android:layout_width="21dp"
-            android:layout_height="18dp"
-            android:layout_marginStart="8dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/folder_nofill_weight400"
-            app:layout_constraintBottom_toBottomOf="@+id/tvSavedListName"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvSavedListName"
-            app:tint="?secondaryIconColor" />
+                    <ImageButton
+                        android:id="@+id/btnSavedBack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:background="@null"
+                        android:src="@drawable/arrow_back_ios_nofill_weight400"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="?secondaryIconColor" />
 
-        <TextView
-            android:id="@+id/tvSavedListName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/sample_saved_list_title"
-            android:textColor="?primaryTextColor"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/ivSavedListIcon"
-            app:layout_constraintTop_toTopOf="parent" />
+                    <ImageButton
+                        android:id="@+id/btnSavedDelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:background="@null"
+                        android:src="@drawable/do_not_disturb_on_nofill_weight400"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="?secondaryIconColor" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tvSavedListNumArticles"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/sample_saved_list_number"
-            android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/ivSavedListIcon"
-            app:layout_constraintTop_toBottomOf="@+id/tvSavedListName" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clSavedListDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/clSavedTopBar">
 
-        <Button
-            android:id="@+id/btnSavedListSort"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/arial_regular"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:paddingLeft="8dp"
-            android:paddingTop="4dp"
-            android:paddingRight="8dp"
-            android:paddingBottom="4dp"
-            android:text="@string/saved_sort_btn"
-            android:textSize="12sp"
-            app:icon="@drawable/sort_nofill_weight400"
-            app:iconGravity="textStart"
-            app:iconPadding="4dp"
-            app:iconSize="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvSavedListName" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/ivSavedListIcon"
+                        android:layout_width="21dp"
+                        android:layout_height="18dp"
+                        android:layout_marginStart="8dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/folder_nofill_weight400"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvSavedListName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvSavedListName"
+                        app:tint="?secondaryIconColor" />
+
+                    <TextView
+                        android:id="@+id/tvSavedListName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/sample_saved_list_title"
+                        android:textColor="?primaryTextColor"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/ivSavedListIcon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvSavedListNumArticles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/sample_saved_list_number"
+                        android:textSize="10sp"
+                        app:layout_constraintStart_toStartOf="@+id/ivSavedListIcon"
+                        app:layout_constraintTop_toBottomOf="@+id/tvSavedListName" />
+
+                    <Button
+                        android:id="@+id/btnSavedListSort"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/arial_regular"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="4dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="4dp"
+                        android:text="@string/saved_sort_btn"
+                        android:textSize="12sp"
+                        app:icon="@drawable/sort_nofill_weight400"
+                        app:iconGravity="textStart"
+                        app:iconPadding="4dp"
+                        app:iconSize="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvSavedListName" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSavedArticles"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clSavedListDetails" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@id/ctlSavedListToolbar" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
