@@ -34,6 +34,8 @@ class BottomSheetDialogSearchFilter: BottomSheetDialogFragment() {
             binding.cgDialogSource.addView(chipBinding)
         }
 
+        // Set default checked to most relevant
+        binding.radioGroup.check(0)
 
 
         return binding.root
