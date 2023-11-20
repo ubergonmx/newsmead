@@ -69,3 +69,5 @@ local.properties
 # /test.output
 # /kotlin-native/dist
 # kotlin-ide/
+.idea/misc.xml
+.idea/.name
