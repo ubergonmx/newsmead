@@ -15,6 +15,9 @@
             app:destination="@id/historyFragment"
             app:enterAnim="@anim/nav_default_pop_enter_anim"
             app:exitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_homeFragment_to_articleActivityStart"
+            app:destination="@id/articleActivityStart" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -55,20 +58,36 @@
     <fragment
         android:id="@+id/savedListArticlesFragment"
         android:name="com.newsmead.fragments.saved.SavedListArticlesFragment"
-        android:label="SavedListArticlesFragment" />
+        android:label="SavedListArticlesFragment" >
+        <action
+            android:id="@+id/action_savedListArticlesFragment_to_articleActivityStart"
+            app:destination="@id/articleActivityStart" />
+    </fragment>
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.newsmead.fragments.pages.HistoryFragment"
-        android:label="HistoryFragment" />
+        android:label="HistoryFragment" >
+        <action
+            android:id="@+id/action_historyFragment_to_articleActivityStart"
+            app:destination="@id/articleActivityStart" />
+    </fragment>
     <fragment
         android:id="@+id/articleSourceFragment"
         android:name="com.newsmead.fragments.article.ArticleSourceFragment"
-        android:label="ArticleSourceFragment" />
+        android:label="ArticleSourceFragment" >
+        <action
+            android:id="@+id/action_articleSourceFragment_to_articleActivityStart"
+            app:destination="@id/articleActivityStart" />
+    </fragment>
     <fragment
         android:id="@+id/articleCategoryFragment"
         android:name="com.newsmead.fragments.article.ArticleCategoryFragment"
         android:label="fragment_article_category"
-        tools:layout="@layout/fragment_article_category" />
+        tools:layout="@layout/fragment_article_category" >
+        <action
+            android:id="@+id/action_articleCategoryFragment_to_articleActivityStart"
+            app:destination="@id/articleActivityStart" />
+    </fragment>
     <fragment
         android:id="@+id/articleSearchFragment"
         android:name="com.newsmead.fragments.article.ArticleSearchFragment"
@@ -78,5 +97,17 @@
             android:name="searchString"
             app:argType="string"
             android:defaultValue="Lorem Ipsum" />
+        <action
+            android:id="@+id/action_articleSearchFragment_to_articleActivityStart"
+            app:destination="@id/articleActivityStart" />
     </fragment>
+    <activity
+        android:id="@+id/articleActivityStart"
+        android:name="com.newsmead.activities.ArticleActivity"
+        android:label="activity_article"
+        tools:layout="@layout/activity_article" >
+        <argument
+            android:name="articleId"
+            app:argType="string" />
+    </activity>
 </navigation>

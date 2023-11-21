@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_article_graph"
+    app:startDestination="@id/articleFragment">
+
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.newsmead.fragments.article.ArticleFragment"
+        android:label="fragment_article"
+        tools:layout="@layout/fragment_article" >
+        <argument
+            android:name="articleId"
+            app:argType="string"
+            android:defaultValue="N0000" />
+        <argument
+            android:name="articleTitle"
+            app:argType="string"
+            android:defaultValue="Article Headline" />
+        <argument
+            android:name="articleSource"
+            app:argType="string"
+            android:defaultValue="Article Source" />
+        <argument
+            android:name="articleImage"
+            app:argType="string"
+            android:defaultValue="https://live.staticflickr.com/7221/7251835204_89c12bd6ef_b.jpg"/>
+        <argument
+            android:name="articleBody"
+            app:argType="string"
+            android:defaultValue="Lorem Ipsum Dolor Sit Amet" />
+        <argument
+            android:name="articleReadTime"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+</navigation>
