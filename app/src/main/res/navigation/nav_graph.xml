@@ -26,7 +26,7 @@
         tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_searchFragment_to_articleSourceFragment"
-            app:destination="@id/articleSourceFragment"
+            app:destination="@id/articleSearchSourceFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
@@ -72,7 +72,7 @@
             app:destination="@id/articleActivityStart" />
     </fragment>
     <fragment
-        android:id="@+id/articleSourceFragment"
+        android:id="@+id/articleSearchSourceFragment"
         android:name="com.newsmead.fragments.article.ArticleSourceFragment"
         android:label="ArticleSourceFragment" >
         <action
