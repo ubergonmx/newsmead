@@ -37,7 +37,7 @@ class FeedArticleAdapter(private val articleList: ArrayList<Article>) : Recycler
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, ArticleActivity::class.java)
-            intent.putExtra("articleId", "1")
+            intent.putExtra("articleId", "TEST")
             holder.itemView.context.startActivity(intent)
         }
     }
