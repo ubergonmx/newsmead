@@ -9,6 +9,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.newsmead.activities.ArticleActivity
 import com.newsmead.data.DataHelper.loadRecommendedArticlesData
 import com.newsmead.R
@@ -27,9 +28,39 @@ class ArticleFragment : Fragment() {
     ): View? {
         binding = FragmentArticleBinding.inflate(inflater, container, false)
 
-        // Provides Sample Article
-        loadMockArticleData(inflater, container)
+        // Receive safeargs
+        val args: ArticleFragmentArgs by navArgs()
 
+        if (args.articleId != "TEST") {
+            // Set article title
+            binding.tvArticleHeadline.text = args.articleTitle
+
+            // Set article source
+            binding.tvSource.text = args.articleSource
+
+            // Set article image from link
+            // parses articleImage link into image
+            // Glide.with(this).load(args.articleImage).into(binding.ivSourceImage)
+            binding.ivSourceImage.setImageResource(R.drawable.sample_source_image)
+
+
+            // Set article body
+            binding.tvArticleText.text = args.articleBody
+
+            // Set article read time
+            val readTime = args.articleReadTime.toString() + " min read"
+            binding.tvArticleMinRead.text = readTime
+
+            // Set article date (There's no date yet!)
+            // binding.tvArticleDate.text = args.articleDate
+        } else {
+            // Supply header values if able
+            if (args.articleTitle != "Article Title") binding.tvArticleHeadline.text = args.articleTitle
+            if (args.articleSource != "Article Source") binding.tvSource.text = args.articleSource
+
+            // Provides Sample Article
+            loadMockArticleData(inflater, container)
+        }
 
         // Bottom sheet dialog for saving articles
         binding.btnSaveList.setOnClickListener {
