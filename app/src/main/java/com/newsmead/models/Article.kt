@@ -17,7 +17,7 @@ class Article {
         private set
     var url: String
         private set
-    var newsId:String? = "N0000"
+    var newsId:String = "N0000"
         private set
 
     constructor(source: String, sourceImage: Int,
