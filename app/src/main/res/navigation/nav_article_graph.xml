@@ -34,5 +34,8 @@
             android:name="articleReadTime"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_articleFragment_self"
+            app:destination="@id/articleFragment" />
     </fragment>
 </navigation>
