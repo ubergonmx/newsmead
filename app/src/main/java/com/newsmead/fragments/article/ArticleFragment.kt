@@ -2,6 +2,7 @@ package com.newsmead.fragments.article
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.newsmead.activities.ArticleActivity
 import com.newsmead.data.DataHelper.loadRecommendedArticlesData
@@ -26,12 +28,23 @@ class ArticleFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d("ArticleFragment", "onCreateView: ArticleFragment started")
+
         binding = FragmentArticleBinding.inflate(inflater, container, false)
 
         // Receive safeargs
         val args: ArticleFragmentArgs by navArgs()
 
-        if (args.articleId != "TEST") {
+        // Safeargs bundle
+        Log.d("ArticleFragment", "onCreateView: articleId: ${args.articleId}")
+        Log.d("ArticleFragment", "onCreateView: articleTitle: ${args.articleTitle}")
+        Log.d("ArticleFragment", "onCreateView: articleSource: ${args.articleSource}")
+        Log.d("ArticleFragment", "onCreateView: articleImage: ${args.articleImage}")
+        Log.d("ArticleFragment", "onCreateView: articleBody: ${args.articleBody}")
+        Log.d("ArticleFragment", "onCreateView: articleReadTime: ${args.articleReadTime}")
+
+        // Check if start with "N"
+        if (args.articleId.startsWith("N")) {
             // Set article title
             binding.tvArticleHeadline.text = args.articleTitle
 
@@ -145,11 +158,22 @@ class ArticleFragment : Fragment() {
             itemFeedArticleSimplified.tvReadTime.text = article.readTime
             itemFeedArticleSimplified.ivSourceImage.setImageResource(article.imageId)
 
-            // Add onClick to open article
+            // Add onClick to open article using safeargs
             itemFeedArticleSimplified.root.setOnClickListener {
-                val intent = Intent(requireContext(), ArticleActivity::class.java)
-                intent.putExtra("articleId", "TEST")
-                requireContext().startActivity(intent)
+                // Parse read time to int and remove " min read"
+                val parsedReadTime = article.readTime.substring(0, article.readTime.length - 9)
+
+                val action = ArticleFragmentDirections.actionArticleFragmentSelf(
+                    article.newsId,
+                    article.title,
+                    article.source,
+                    article.imageId.toString(),
+                    "Article Content",
+                    parsedReadTime.toInt()
+                )
+
+                Navigation.findNavController(binding.root)
+                    .navigate(action)
             }
 
             binding.llArticleRecommended.addView(itemFeedArticleSimplified.root)
