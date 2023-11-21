@@ -2,6 +2,7 @@ package com.newsmead.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.navArgs
@@ -18,9 +19,13 @@ class ArticleActivity : AppCompatActivity() {
         val binding = ActivityArticleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Log.d("ArticleActivity", "onCreate: ArticleActivity started")
+
 
         // Receive articleId from MainActivity
         val articleId = intent.getStringExtra("articleId")
+
+        Log.d("ArticleActivity", "onCreate: articleId: $articleId")
 
         // Receive articleId from navigation
 //        val articleId = args.articleId
@@ -47,6 +52,12 @@ class ArticleActivity : AppCompatActivity() {
             "articleReadTime" to articleReadTime
         )
 
+        // Clear fragment backstack (this is because ArticleActivity starts with a fragment)
+        // due to nav_article_graph.xml having a startDestination.
+        navController.popBackStack()
+
+        // Navigate to article fragment using bundle
+        Log.d("ArticleActivity", "onCreate: Navigating to article fragment")
         navController.navigate(R.id.articleFragment, bundle)
     }
 }
