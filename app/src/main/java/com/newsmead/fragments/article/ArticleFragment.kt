@@ -77,7 +77,7 @@ class ArticleFragment : Fragment() {
 
         // Bottom sheet dialog for saving articles
         binding.btnSaveList.setOnClickListener {
-            val bottomSheetDialogFragment = BottomSheetDialogSaveFragment()
+            val bottomSheetDialogFragment = BottomSheetDialogSaveFragment(args.articleId)
             bottomSheetDialogFragment.show(requireActivity().supportFragmentManager, "save")
         }
 

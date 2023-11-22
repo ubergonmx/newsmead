@@ -9,18 +9,15 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FirebaseFirestore
 import com.newsmead.data.DataHelper
-import com.newsmead.data.DataHelper.loadListNamesData
 import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.BottomSheetDialogSaveListBinding
 import com.newsmead.models.SavedList
 import com.newsmead.recyclerviews.dialog.SheetDialogAdapter
 
-class BottomSheetDialogSaveFragment: BottomSheetDialogFragment(), listListener {
+class BottomSheetDialogSaveFragment(private val articleId: String): BottomSheetDialogFragment(), listListener {
 
     private lateinit var binding: BottomSheetDialogSaveListBinding
-    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     private lateinit var lists: CollectionReference
     private var checkedLists: MutableList<String> = mutableListOf()
 
@@ -78,11 +75,23 @@ class BottomSheetDialogSaveFragment: BottomSheetDialogFragment(), listListener {
         }
 
         binding.btnListDone.setOnClickListener {
+            Log.d("BottomSheetDialogSaveFragment", "Saving List...")
+            Log.d("BottomSheetDialogSaveFragment", "Checked lists: $checkedLists")
             // Save details here
+            if (checkedLists.isEmpty()) {
+                Toast.makeText(context, "No list selected", Toast.LENGTH_SHORT).show()
+            } else {
+                Log.d("BottomSheetDialogSaveFragment", "Saving article to lists...")
+                // Save article to checked lists
 
-            // Check which lists are selected
-            val selectedLists = mutableListOf<String>()
-            val adapter = binding.rvDialogList.adapter as SheetDialogAdapter
+                for (listId in checkedLists) {
+                    Log.d("BottomSheetDialogSaveFragment", "Saving article $articleId to list $listId")
+                    FirebaseHelper.addArticleToFireStoreList(
+                        requireContext(), listId, articleId)
+                }
+
+                Toast.makeText(context, "Article saved to ${checkedLists.size} lists", Toast.LENGTH_SHORT).show()
+            }
 
             dismiss()
         }
