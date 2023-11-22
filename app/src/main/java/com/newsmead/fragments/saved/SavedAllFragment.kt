@@ -5,14 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.data.DataHelper.loadArticleData
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.recyclerviews.feed.FeedArticleAdapter
 import com.newsmead.databinding.FragmentSavedAllBinding
+import com.newsmead.fragments.bottomnavigation.SavedFragmentDirections
+import com.newsmead.recyclerviews.feed.ArticleAdapter
+import com.newsmead.recyclerviews.feed.clickListener
 
-class SavedAllFragment: Fragment() {
+class SavedAllFragment: Fragment(), clickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -23,7 +27,7 @@ class SavedAllFragment: Fragment() {
         val data = loadArticleData()
 
         // use feed item recyclerview adapter
-        binding.rvSavedAll.adapter = FeedArticleAdapter(data)
+        binding.rvSavedAll.adapter = ArticleAdapter(data, this)
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvSavedAll.layoutManager = layoutManager
@@ -34,5 +38,21 @@ class SavedAllFragment: Fragment() {
 
 
         return binding.root
+    }
+
+    override fun onItemClicked(
+        articleId: String,
+        articleTitle: String,
+        articleSource: String,
+        articleImage: String,
+        articleReadTime: Int
+    ) {
+        // Action
+        val action = SavedFragmentDirections.actionSavedFragmentToArticleActivityStart(
+            articleId
+        )
+
+        // Navigate
+        Navigation.findNavController(requireView()).navigate(action)
     }
 }

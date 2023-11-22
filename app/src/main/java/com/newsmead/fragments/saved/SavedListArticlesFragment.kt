@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.data.DataHelper.loadArticleData
 import com.newsmead.recyclerviews.feed.FeedArticleAdapter
 import com.newsmead.databinding.FragmentSavedListArticlesBinding
-class SavedListArticlesFragment: Fragment() {
+import com.newsmead.recyclerviews.feed.ArticleAdapter
+import com.newsmead.recyclerviews.feed.clickListener
+
+class SavedListArticlesFragment: Fragment(), clickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -18,7 +22,7 @@ class SavedListArticlesFragment: Fragment() {
         val binding = FragmentSavedListArticlesBinding.inflate(inflater, container, false)
 
         val data = loadArticleData()
-        val adapter = FeedArticleAdapter(data)
+        val adapter = ArticleAdapter(data, this)
         binding.rvSavedArticles.adapter = adapter
 
         val layoutManager = LinearLayoutManager(context)
@@ -32,5 +36,21 @@ class SavedListArticlesFragment: Fragment() {
             navController.popBackStack()
         }
         return binding.root
+    }
+
+    override fun onItemClicked(
+        articleId: String,
+        articleTitle: String,
+        articleSource: String,
+        articleImage: String,
+        articleReadTime: Int
+    ) {
+        // Action
+        val action = SavedListArticlesFragmentDirections.actionSavedListArticlesFragmentToArticleActivityStart(
+            articleId
+        )
+
+        // Navigate
+        Navigation.findNavController(requireView()).navigate(action)
     }
 }
