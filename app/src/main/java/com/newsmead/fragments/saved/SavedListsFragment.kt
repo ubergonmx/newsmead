@@ -35,7 +35,7 @@ class SavedListsFragment: Fragment() {
                 .addOnSuccessListener { documents ->
                     var readLater: SavedList? = null
                     for (document in documents) {
-                        val list = SavedList(document.data["name"].toString())
+                        val list = SavedList(document.data["id"].toString(), document.data["name"].toString())
                         if (list.title == "Read Later") {
                             readLater = list
                         }
@@ -63,6 +63,11 @@ class SavedListsFragment: Fragment() {
 
                     binding.rvSavedLists.layoutManager = layoutManager
                 }
+        }
+
+        // Button for Create New List
+        binding.btnCreateList.setOnClickListener {
+
         }
 
         // Add spacing between items
