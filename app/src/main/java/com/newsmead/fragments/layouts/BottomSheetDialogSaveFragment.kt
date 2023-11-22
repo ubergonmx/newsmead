@@ -91,7 +91,16 @@ class BottomSheetDialogSaveFragment: BottomSheetDialogFragment() {
     private fun showNewListDialog() {
         val newListDialog = NewListDialog(requireContext()) { newListName ->
             // Add new list to database
-            FirebaseHelper.addListToFireStore(requireContext(), newListName)
+            val result = FirebaseHelper.addListToFireStore(requireContext(), newListName)
+
+            if (result != "") {
+                // Add new list to recyclerView
+                val adapter = binding.rvDialogList.adapter as SheetDialogAdapter
+                adapter.addNewList(newListName)
+
+                // Add new list id to listsId
+                listsId.add(result)
+            }
         }
         newListDialog.show()
     }
