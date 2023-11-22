@@ -15,16 +15,5 @@ class ArticleViewHolder(private val viewBinding: ItemFeedArticleBinding): Recycl
         this.viewBinding.ivArticleImage.setImageResource(article.imageId)
         this.viewBinding.tvArticleDate.text = article.date
         this.viewBinding.tvReadTime.text = article.readTime
-
-        this.viewBinding.root.setOnClickListener {v-> Navigation.findNavController(v)
-            .navigate(ArticleSourceFragmentDirections.actionArticleSourceFragmentToArticleFragment(
-                articleId = article.newsId,
-                articleTitle = article.title,
-                articleSource = article.source,
-                articleImage = article.imageId.toString(),
-                articleReadTime = article.readTime.toInt()
-            ))
-
-        }
     }
 }
