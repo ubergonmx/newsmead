@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_savedFragment_to_savedListArticlesFragment"
             app:destination="@id/savedListArticlesFragment" />
+        <action
+            android:id="@+id/action_savedFragment_to_articleActivityStart"
+            app:destination="@id/articleActivityStart" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
