@@ -1,17 +1,16 @@
 package com.newsmead.fragments.layouts
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.newsmead.data.DataHelper.loadListNamesData
+import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.BottomSheetDialogSaveListBinding
 import com.newsmead.recyclerviews.dialog.SheetDialogAdapter
 
@@ -32,8 +31,7 @@ class BottomSheetDialogSaveFragment: BottomSheetDialogFragment() {
         // Supply data of lists from Firestore
 //        val data = DataHelper.loadListNamesData()
 
-        this.lists = firestore.collection("users").document(
-            FirebaseAuth.getInstance().currentUser?.uid.toString()).collection("lists")
+        this.lists = FirebaseHelper.getListsCollection(requireContext()) ?: return binding.root
 
         val data = ArrayList<String>()
 
@@ -93,39 +91,8 @@ class BottomSheetDialogSaveFragment: BottomSheetDialogFragment() {
     private fun showNewListDialog() {
         val newListDialog = NewListDialog(requireContext()) { newListName ->
             // Add new list to database
-            addListToFireStore(newListName)
+            FirebaseHelper.addListToFireStore(requireContext(), newListName)
         }
         newListDialog.show()
-    }
-
-    /**
-     * Adds a new list to Firestore
-     * @param newListName Name of the new list
-     */
-    private fun addListToFireStore(newListName: String) {
-        val uid = FirebaseAuth.getInstance().currentUser?.uid
-
-        if (uid == null) {
-            Toast.makeText(context, "Error creating list", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        val userListsRef = firestore.collection("users").document(uid).collection("lists")
-        val newListId = userListsRef.document().id
-
-        // Create new list document
-        userListsRef.document(newListId).set(
-            hashMapOf(
-                "name" to newListName
-            )
-        )
-        .addOnSuccessListener {
-            // Handle Success
-            Toast.makeText(context, "List created", Toast.LENGTH_SHORT).show()
-        }
-        .addOnFailureListener {
-            // Handle Failure
-            Toast.makeText(context, "Error creating list", Toast.LENGTH_SHORT).show()
-        }
     }
 }
