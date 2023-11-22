@@ -1,6 +1,7 @@
 package com.newsmead.fragments.layouts
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,17 +10,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.newsmead.data.DataHelper
 import com.newsmead.data.DataHelper.loadListNamesData
 import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.BottomSheetDialogSaveListBinding
+import com.newsmead.models.SavedList
 import com.newsmead.recyclerviews.dialog.SheetDialogAdapter
 
-class BottomSheetDialogSaveFragment: BottomSheetDialogFragment() {
+class BottomSheetDialogSaveFragment: BottomSheetDialogFragment(), listListener {
 
     private lateinit var binding: BottomSheetDialogSaveListBinding
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     private lateinit var lists: CollectionReference
-    private var listsId: MutableList<String> = mutableListOf()
+    private var checkedLists: MutableList<String> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,28 +36,27 @@ class BottomSheetDialogSaveFragment: BottomSheetDialogFragment() {
 
         this.lists = FirebaseHelper.getListsCollection(requireContext()) ?: return binding.root
 
-        val data = ArrayList<String>()
+        val data = ArrayList<SavedList>()
 
         // Add list names to data
         lists.get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
-                    data.add(document.data["name"].toString())
+                    val listId = document.id
+                    val listName = document.data["name"].toString()
 
-                    // Add list id to listsId
-                    listsId.add(document.id)
+                    data.add(SavedList(listId, listName))
                 }
 
                 // Place the read later list at the top
-                val readLaterIndex = data.indexOf("Read Later")
-                if (readLaterIndex != -1) {
-                    val readLater = data[readLaterIndex]
-                    data.removeAt(readLaterIndex)
-                    data.add(0, readLater)
+                val readLaterList = data.find { it.title == "Read Later" }
+                if (readLaterList != null) {
+                    data.remove(readLaterList)
+                    data.add(0, readLaterList)
                 }
 
                 // Mount recyclerView here
-                binding.rvDialogList.adapter = SheetDialogAdapter(data)
+                binding.rvDialogList.adapter = SheetDialogAdapter(data, this)
                 val layoutManager = LinearLayoutManager(context)
                 layoutManager.orientation = LinearLayoutManager.VERTICAL
                 binding.rvDialogList.layoutManager = layoutManager
@@ -64,8 +66,8 @@ class BottomSheetDialogSaveFragment: BottomSheetDialogFragment() {
 
                 // Else mount data from DataHelper
                 // Mount recyclerView here
-                data += loadListNamesData()
-                binding.rvDialogList.adapter = SheetDialogAdapter(data)
+                data += DataHelper.loadListData()
+                binding.rvDialogList.adapter = SheetDialogAdapter(data, this)
                 val layoutManager = LinearLayoutManager(context)
                 layoutManager.orientation = LinearLayoutManager.VERTICAL
                 binding.rvDialogList.layoutManager = layoutManager
@@ -96,12 +98,25 @@ class BottomSheetDialogSaveFragment: BottomSheetDialogFragment() {
             if (result != "") {
                 // Add new list to recyclerView
                 val adapter = binding.rvDialogList.adapter as SheetDialogAdapter
-                adapter.addNewList(newListName)
-
-                // Add new list id to listsId
-                listsId.add(result)
+                val newList = SavedList(result, newListName)
+                adapter.addNewList(newList)
             }
         }
         newListDialog.show()
+    }
+
+    /**
+     * Called when a list is checked or unchecked
+     * @param listId Id of the list that was checked or unchecked
+     */
+    override fun onListChecked(listId: String) {
+        // Add or remove listId from checkedLists
+        if (checkedLists.contains(listId)) {
+            checkedLists.remove(listId)
+        } else {
+            checkedLists.add(listId)
+        }
+
+        Log.d("BottomSheetDialogSaveFragment", "Checked lists: $checkedLists")
     }
 }
