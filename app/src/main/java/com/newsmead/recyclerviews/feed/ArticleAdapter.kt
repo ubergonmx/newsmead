@@ -39,4 +39,10 @@ class ArticleAdapter(
         }
     }
 
+    fun updateData(articles: List<Article>) {
+        articleList.clear()
+        articleList.addAll(articles)
+        notifyDataSetChanged()
+    }
+
 }
