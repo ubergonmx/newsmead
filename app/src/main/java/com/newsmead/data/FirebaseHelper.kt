@@ -42,11 +42,12 @@ class FirebaseHelper {
         /**
          * Adds a new list to Firestore
          * @param newListName Name of the new list
+         * @return Id of the new list; "" if error
          */
-        fun addListToFireStore(context: Context, newListName: String): Boolean {
+        fun addListToFireStore(context: Context, newListName: String): String {
             if (uid == "null") {
                 Toast.makeText(context, "Please login to create a list", Toast.LENGTH_SHORT).show()
-                return false
+                return ""
             }
 
             val userListsRef = getFirestoreInstance()
@@ -56,7 +57,7 @@ class FirebaseHelper {
 
             val newListId = userListsRef.document().id
 
-            var listExists = false
+            var listExists = ""
 
             // Create new list document
             userListsRef.document(newListId).set(
@@ -67,12 +68,12 @@ class FirebaseHelper {
                 .addOnSuccessListener {
                     // Handle Success
                     Toast.makeText(context, "List created", Toast.LENGTH_SHORT).show()
-                    listExists = true
+                    listExists = newListId
                 }
                 .addOnFailureListener {
                     // Handle Failure
                     Toast.makeText(context, "Error creating list", Toast.LENGTH_SHORT).show()
-                    listExists = false
+                    listExists = ""
                 }
 
             return listExists
