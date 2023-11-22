@@ -2,6 +2,7 @@ package com.newsmead.data
 
 import android.widget.Toast
 import android.content.Context
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -77,6 +78,39 @@ class FirebaseHelper {
                 }
 
             return listExists
+        }
+
+        /**
+         * Adds an article to a list in Firestore
+         * @param listId Id of the list to add the article to
+         * @param articleId Id of the article to add to the list
+         */
+        fun addArticleToFireStoreList(requireContext: Context, listId: String, articleId: String) {
+            if (uid == "null") {
+                Toast.makeText(requireContext, "Please login to add to a list", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            val userListsRef = getFirestoreInstance()
+                .collection("users")
+                .document(uid)
+                .collection("lists")
+
+            // Add article to list
+            Log.d("FirebaseHelper", "Adding article $articleId to list $listId")
+            userListsRef.document(listId).collection("articles").document(articleId).set(
+                hashMapOf(
+                    "articleId" to articleId
+                )
+            )
+                .addOnSuccessListener {
+                    // Handle Success
+                    Toast.makeText(requireContext, "Article added to list", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    // Handle Failure
+                    Toast.makeText(requireContext, "Error adding article to list", Toast.LENGTH_SHORT).show()
+                }
         }
     }
 }
