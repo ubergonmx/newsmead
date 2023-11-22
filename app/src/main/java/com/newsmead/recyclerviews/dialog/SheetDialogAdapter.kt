@@ -13,9 +13,7 @@ class SheetDialogAdapter(private val listTitles: ArrayList<String>) : RecyclerVi
             false
         )
 
-        val sheetDialogViewHolder = SheetDialogViewHolder(itemViewBinding)
-
-        return sheetDialogViewHolder
+        return SheetDialogViewHolder(itemViewBinding)
     }
 
     override fun getItemCount(): Int {
@@ -24,6 +22,11 @@ class SheetDialogAdapter(private val listTitles: ArrayList<String>) : RecyclerVi
 
     override fun onBindViewHolder(holder: SheetDialogViewHolder, position: Int) {
         holder.bindData(listTitles[position])
+    }
+
+    fun addNewList(newListName: String) {
+        listTitles.add(newListName)
+        notifyDataSetChanged()
     }
 
 }
