@@ -79,7 +79,7 @@ class SearchFragment : Fragment() {
 
             // Launch source fragment when chip is clicked
             chip.setOnClickListener(View.OnClickListener {
-                Navigation.findNavController(it).navigate(R.id.action_searchFragment_to_articleSourceFragment)
+                Navigation.findNavController(it).navigate(R.id.action_searchFragment_to_articleSearchSourceFragment)
             })
 
             binding.cgSources.addView(chip)
