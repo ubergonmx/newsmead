@@ -4,8 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.newsmead.databinding.ItemDialogListItemBinding
+import com.newsmead.fragments.layouts.listListener
+import com.newsmead.models.SavedList
 
-class SheetDialogAdapter(private val listTitles: ArrayList<String>) : RecyclerView.Adapter<SheetDialogViewHolder>() {
+class SheetDialogAdapter(
+    private val listTitles: ArrayList<SavedList>,
+    private val listener: listListener
+) : RecyclerView.Adapter<SheetDialogViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SheetDialogViewHolder {
         val itemViewBinding: ItemDialogListItemBinding = ItemDialogListItemBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -13,7 +18,7 @@ class SheetDialogAdapter(private val listTitles: ArrayList<String>) : RecyclerVi
             false
         )
 
-        return SheetDialogViewHolder(itemViewBinding)
+        return SheetDialogViewHolder(itemViewBinding, listener)
     }
 
     override fun getItemCount(): Int {
@@ -24,8 +29,8 @@ class SheetDialogAdapter(private val listTitles: ArrayList<String>) : RecyclerVi
         holder.bindData(listTitles[position])
     }
 
-    fun addNewList(newListName: String) {
-        listTitles.add(newListName)
+    fun addNewList(newList: SavedList) {
+        listTitles.add(newList)
         notifyDataSetChanged()
     }
 
