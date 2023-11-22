@@ -86,18 +86,14 @@ class ArticleFragment : Fragment() {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
-        // Show more button to show more articles
+        // Show more button to show more articles from source
         binding.btnArticleRecommendations.setOnClickListener {
-            val articleSourceFragment = ArticleSourceFragment()
-            val articleFragment = ArticleFragment()
-            val args = Bundle()
-            args.putString("sourceId", "INQUIRER.NET")
-            articleFragment.arguments = args
+            // Navigate to ArticleSourceFragment
+            val action = ArticleFragmentDirections.actionArticleFragmentToArticleSourceFragment(
+                args.articleSource
+            )
 
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.flMainArticleContainer, articleSourceFragment)
-                .addToBackStack(null)
-                .commit()
+            Navigation.findNavController(binding.root).navigate(action)
         }
 
         // Share button to share article

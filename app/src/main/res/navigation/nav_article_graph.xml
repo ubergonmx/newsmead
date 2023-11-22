@@ -37,5 +37,21 @@
         <action
             android:id="@+id/action_articleFragment_self"
             app:destination="@id/articleFragment" />
+        <action
+            android:id="@+id/action_articleFragment_to_articleSourceFragment"
+            app:destination="@id/articleSourceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleSourceFragment"
+        android:name="com.newsmead.fragments.article.ArticleSourceFragment"
+        android:label="fragment_article_source"
+        tools:layout="@layout/fragment_article_source">
+        <argument
+            android:name="author"
+            android:defaultValue="Author"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_articleSourceFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
     </fragment>
 </navigation>
