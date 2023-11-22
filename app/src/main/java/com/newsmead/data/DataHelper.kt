@@ -352,15 +352,15 @@ object DataHelper {
 
     fun loadListData(): ArrayList<SavedList> {
         val data = ArrayList<SavedList>()
-        data.add(SavedList("Read Later", loadArticleDataLatest()))
-        data.add(SavedList("Politics"))
-        data.add(SavedList("Sports"))
-        data.add(SavedList("manila updates"))
-        data.add(SavedList("Business"))
-        data.add(SavedList("Health Advice"))
-        data.add(SavedList("Opinion"))
-        data.add(SavedList("important news"))
-        data.add(SavedList("NBA"))
+        data.add(SavedList("A", "Read Later", loadArticleDataLatest()))
+        data.add(SavedList("B", "Politics"))
+        data.add(SavedList("C", "Sports"))
+        data.add(SavedList("D", "manila updates"))
+        data.add(SavedList("E", "Business"))
+        data.add(SavedList("F", "Health Advice"))
+        data.add(SavedList("G", "Opinion"))
+        data.add(SavedList("H", "important news"))
+        data.add(SavedList("I", "NBA"))
         return data
     }
 
