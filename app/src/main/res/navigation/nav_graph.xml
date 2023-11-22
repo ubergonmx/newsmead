@@ -25,7 +25,7 @@
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
-            android:id="@+id/action_searchFragment_to_articleSourceFragment"
+            android:id="@+id/action_searchFragment_to_articleSearchSourceFragment"
             app:destination="@id/articleSearchSourceFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
@@ -73,10 +73,10 @@
     </fragment>
     <fragment
         android:id="@+id/articleSearchSourceFragment"
-        android:name="com.newsmead.fragments.article.ArticleSourceFragment"
-        android:label="ArticleSourceFragment" >
+        android:name="com.newsmead.fragments.article.ArticleSearchSourceFragment"
+        android:label="ArticleSearchSourceFragment" >
         <action
-            android:id="@+id/action_articleSourceFragment_to_articleActivityStart"
+            android:id="@+id/action_articleSearchSourceFragment_to_articleActivityStart"
             app:destination="@id/articleActivityStart" />
     </fragment>
     <fragment
