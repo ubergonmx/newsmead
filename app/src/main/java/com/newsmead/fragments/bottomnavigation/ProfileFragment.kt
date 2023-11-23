@@ -58,24 +58,11 @@ class ProfileFragment : Fragment() {
         }
 
         this.viewBinding.btnSave.setOnClickListener {
+//            val name = this.viewBinding.etName.text.toString()
             val password = this.viewBinding.etPassword.text.toString()
             val confirmPassword = this.viewBinding.etConfirmPassword.text.toString()
 
-            if (checkPasswordError(password, confirmPassword)) {
-                return@setOnClickListener
-            } else {
-                // Firebase updates password of user
-                this.auth.currentUser?.updatePassword(password)?.addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        // Password updated successfully
-                        resetTextFields()
-                    } else {
-                        // Password update failed
-                        this.viewBinding.etPassword.error = task.exception?.message
-                        this.viewBinding.etPassword.requestFocus()
-                    }
-                }
-            }
+            updateProfile("User", password, confirmPassword)
         }
     }
 
@@ -105,6 +92,29 @@ class ProfileFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    private fun updateProfile(name: String, password: String, confirmPassword: String): Boolean {
+        if (checkPasswordError(password, confirmPassword)) {
+            return false
+        } else {
+            // Firebase updates password of user
+            this.auth.currentUser?.updatePassword(password)?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Password updated successfully
+                    resetTextFields()
+                    return@addOnCompleteListener true
+                } else {
+                    // Password update failed
+                    this.viewBinding.etPassword.error = task.exception?.message
+                    this.viewBinding.etPassword.requestFocus()
+
+                    return@addOnCompleteListener false
+                }
+            }
+        }
+        
+        return true
     }
 
     /**
