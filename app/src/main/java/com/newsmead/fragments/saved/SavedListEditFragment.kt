@@ -27,6 +27,8 @@ class SavedListEditFragment: Fragment(), clickListener {
     private val articleIds = ArrayList<String>()
     val data: ArrayList<Article> = ArrayList()
 
+    private val checkedIds: ArrayList<String> = ArrayList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -53,44 +55,19 @@ class SavedListEditFragment: Fragment(), clickListener {
             navController.popBackStack()
         }
 
-        // Retrieve data from Firebase Async using coroutines
-        lifecycleScope.launch {
-            try {
-                Log.d("SavedListEditArticles", "Retrieving data from Firebase for ${args.listId}")
-                val ids = FirebaseHelper.getArticleIdsFromList(requireContext(), "readLater")
-                articleIds.addAll(ids)
-
-                // Uncomment this function if prefer to use Firebase as a database
-                // val ids = FirebaseHelper.getArticlesFromList(requireContext(), "readLater")
-
-                // Now that you have the articleIds, you can fetch the corresponding articles
-                data.addAll(getArticlesFromIds(articleIds))
-
-                // Notify the adapter that the dataset has changed
-                Log.d("SavedListEditArticles", "Updating adapter with ${data.size} articles")
-                adapter.notifyDataSetChanged()
-            } catch (e: Exception) {
-                // Handle exceptions
-                e.printStackTrace()
-            }
+        // Populate data with articles
+        val articles: ArrayList<Article> = args.listArticlesParcel?.toCollection(ArrayList()) ?: ArrayList()
+        for (article in articles) {
+            data.add(article)
+            articleIds.add(article.newsId)
         }
+
+        // Save button
 
 
         return binding.root
     }
 
-    private suspend fun getArticlesFromIds(ids: List<String>): List<Article> = suspendCoroutine { continuation ->
-        // Implement the logic to fetch articles from the given ids
-
-        val articles = ArrayList<Article>()
-
-        // Some logic to fetch articles from the given ids
-        // For now using dummy data
-        articles.addAll(DataHelper.loadArticleData())
-
-        // Once you have the articles, resume the coroutine
-        continuation.resume(articles)
-    }
 
     override fun onItemClicked(
         articleId: String,
@@ -99,12 +76,6 @@ class SavedListEditFragment: Fragment(), clickListener {
         articleImage: String,
         articleReadTime: Int
     ) {
-        // Action
-        val action = SavedListEditFragmentDirections.actionSavedListEditFragmentToSavedListArticlesFragment(
-            articleId
-        )
-
-        // Navigate
-        Navigation.findNavController(requireView()).navigate(action)
+        // Checkbox
     }
 }
