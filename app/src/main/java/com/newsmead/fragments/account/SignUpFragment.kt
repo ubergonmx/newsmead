@@ -51,6 +51,7 @@ class SignUpFragment: Fragment() {
             // Temporarily disable button
             this.viewBinding.btnAccStart.isEnabled = false
 
+            val name = this.viewBinding.etAccName.text.toString()
             val email = this.viewBinding.etAccEmail.text.toString()
             val password = this.viewBinding.etAccPassword.text.toString()
             val confirmPassword = this.viewBinding.etAccConfirmPassword.text.toString()
@@ -71,7 +72,7 @@ class SignUpFragment: Fragment() {
                             .addOnCompleteListener { taskEmail ->
                                 if (taskEmail.isSuccessful) {
                                     // Add user to Firestore and then go to Onboarding Fragment once added
-                                    FirebaseHelper.addUserToFirestore(requireActivity(), email)
+                                    FirebaseHelper.addUserToFirestore(requireActivity(), email, name)
                                     finishSignUp()
                                 }
                             }
