@@ -1,6 +1,5 @@
 package com.newsmead.recyclerviews.saved
 
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.newsmead.R
 import com.newsmead.databinding.ItemSavedListBinding
@@ -19,4 +18,7 @@ class SavedListsViewHolder(private val viewBinding: ItemSavedListBinding): Recyc
             this.viewBinding.ivListIcon.setImageResource(R.drawable.star_filled_weight400)
         }
     }
+
+    // Gets the cardview to add an onClickListener
+    fun getCardView() = this.viewBinding.cvListCard
 }
