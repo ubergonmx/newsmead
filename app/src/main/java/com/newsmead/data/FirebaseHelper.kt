@@ -6,6 +6,12 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.newsmead.models.Article
+import kotlinx.coroutines.tasks.await
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
+
 
 class FirebaseHelper {
     companion object {
@@ -38,6 +44,32 @@ class FirebaseHelper {
 
             return getFirestoreInstance().collection("users")
                 .document(uid).collection("lists")
+        }
+
+        suspend fun getArticleIdsFromList(context: Context, listId: String): List<String> = suspendCoroutine { continuation ->
+            if (uid == "null") {
+                Toast.makeText(context, "Please login to view/create a list", Toast.LENGTH_SHORT).show()
+                continuation.resume(emptyList())
+            }
+
+            val articleIds = mutableListOf<String>()
+
+            val firestore = getFirestoreInstance()
+            val userListsRef = firestore.collection("users").document(uid).collection("lists")
+            val listRef = userListsRef.document(listId).collection("articles")
+
+            listRef.get()
+                .addOnSuccessListener { documents ->
+                    // Get article ids from list
+                    articleIds.addAll(documents.mapNotNull { document ->
+                        document.data["articleId"].toString()
+                    })
+                    continuation.resume(articleIds)
+                }
+                .addOnFailureListener { exception ->
+                    // Handle failure
+                    continuation.resumeWithException(exception)
+                }
         }
 
         /**
