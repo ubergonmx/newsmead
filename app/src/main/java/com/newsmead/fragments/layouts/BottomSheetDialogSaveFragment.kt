@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.CollectionReference
@@ -14,11 +15,15 @@ import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.BottomSheetDialogSaveListBinding
 import com.newsmead.models.SavedList
 import com.newsmead.recyclerviews.dialog.SheetDialogAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class BottomSheetDialogSaveFragment(private val articleId: String): BottomSheetDialogFragment(), listListener {
 
     private lateinit var binding: BottomSheetDialogSaveListBinding
-    private lateinit var lists: CollectionReference
+    private lateinit var lists: ArrayList<SavedList>
     private var checkedLists: MutableList<String> = mutableListOf()
 
     override fun onCreateView(
@@ -28,47 +33,26 @@ class BottomSheetDialogSaveFragment(private val articleId: String): BottomSheetD
     ): View? {
         this.binding = BottomSheetDialogSaveListBinding.inflate(inflater, container, false)
 
-        // Supply data of lists from Firestore
-//        val data = DataHelper.loadListNamesData()
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                lists = FirebaseHelper.getListsCollection(requireContext()) ?: return@launch
 
-        this.lists = FirebaseHelper.getListsCollection(requireContext()) ?: return binding.root
+                // Read later is always first, no need to sort
 
-        val data = ArrayList<SavedList>()
-
-        // Add list names to data
-        lists.get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    val listId = document.id
-                    val listName = document.data["name"].toString()
-
-                    data.add(SavedList(listId, listName))
+                // Update UI on the main thread
+                withContext(Dispatchers.Main) {
+                    binding.rvDialogList.adapter = SheetDialogAdapter(lists, this@BottomSheetDialogSaveFragment)
+                    val layoutManager = LinearLayoutManager(context)
+                    layoutManager.orientation = LinearLayoutManager.VERTICAL
+                    binding.rvDialogList.layoutManager = layoutManager
                 }
-
-                // Place the read later list at the top
-                val readLaterList = data.find { it.title == "Read Later" }
-                if (readLaterList != null) {
-                    data.remove(readLaterList)
-                    data.add(0, readLaterList)
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, "Error getting lists", Toast.LENGTH_SHORT).show()
                 }
-
-                // Mount recyclerView here
-                binding.rvDialogList.adapter = SheetDialogAdapter(data, this)
-                val layoutManager = LinearLayoutManager(context)
-                layoutManager.orientation = LinearLayoutManager.VERTICAL
-                binding.rvDialogList.layoutManager = layoutManager
+                e.printStackTrace()
             }
-            .addOnFailureListener { exception ->
-                Toast.makeText(context, "Error getting lists", Toast.LENGTH_SHORT).show()
-
-                // Else mount data from DataHelper
-                // Mount recyclerView here
-                data += DataHelper.loadListData()
-                binding.rvDialogList.adapter = SheetDialogAdapter(data, this)
-                val layoutManager = LinearLayoutManager(context)
-                layoutManager.orientation = LinearLayoutManager.VERTICAL
-                binding.rvDialogList.layoutManager = layoutManager
-            }
+        }
 
         binding.btnNewList.setOnClickListener {
             showNewListDialog()
@@ -87,7 +71,8 @@ class BottomSheetDialogSaveFragment(private val articleId: String): BottomSheetD
                 for (listId in checkedLists) {
                     Log.d("BottomSheetDialogSaveFragment", "Saving article $articleId to list $listId")
                     FirebaseHelper.addArticleToFireStoreList(
-                        requireContext(), listId, articleId)
+                        requireContext(), listId, articleId
+                    )
                 }
 
                 Toast.makeText(context, "Article saved to ${checkedLists.size} lists", Toast.LENGTH_SHORT).show()
