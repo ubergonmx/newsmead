@@ -102,6 +102,44 @@ class FirebaseHelper {
                 }
         }
 
+        suspend fun getArticlesFromList(context: Context, listId: String): List<Article> = suspendCoroutine { continuation ->
+            if (uid == "null") {
+                Toast.makeText(context, "Please login to view/create a list", Toast.LENGTH_SHORT).show()
+                continuation.resume(emptyList())
+            }
+
+            val articles = mutableListOf<Article>()
+
+            val firestore = getFirestoreInstance()
+            val userListsRef = firestore.collection("users").document(uid).collection("lists")
+            val listRef = userListsRef.document(listId).collection("articles")
+
+            listRef.get()
+                .addOnSuccessListener { documents ->
+                    // Parse documents into articles
+                    articles.addAll(documents.mapNotNull { document ->
+                        val imageId: Int = document.data["image"].toString().toInt()
+                        val sourceImageId: Int = document.data["sourceImage"].toString().toInt()
+                        Article(
+                            source = document.data["source"].toString(),
+                            sourceImage = sourceImageId,
+                            newsId = document.data["newsId"].toString(),
+                            title = document.data["title"].toString(),
+                            imageId = imageId,
+                            readTime = document.data["readTime"].toString(),
+                            date = document.data["date"].toString(),
+                            url = document.data["url"].toString()
+                        )
+                    })
+
+                    continuation.resume(articles)
+                }
+                .addOnFailureListener { exception ->
+                    // Handle failure
+                    continuation.resumeWithException(exception)
+                }
+        }
+
         /**
          * Adds a new user to Firestore with a "Read Later" list
          * @param email Email of the new user
@@ -247,7 +285,7 @@ class FirebaseHelper {
             Log.d("FirebaseHelper", "Adding article ${article.newsId} to list $listId")
             userListsRef.document(listId).collection("articles").document(article.newsId).set(
                 hashMapOf(
-                    "articleId" to article.newsId,
+                    "newsId" to article.newsId,
                     "title" to article.title,
                     "image" to article.imageId,
                     "source" to article.source,
