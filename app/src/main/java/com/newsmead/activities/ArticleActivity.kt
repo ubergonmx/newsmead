@@ -26,17 +26,19 @@ class ArticleActivity : AppCompatActivity() {
         Log.d("ArticleActivity", "onCreate: articleId: ${article.newsId}")
 
         // Update fragment with articleId
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.flMainArticleContainer) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.flMainArticleContainer) as NavHostFragment
         val navController = navHostFragment.navController
-
-        // Creates a "safeargs" bundle
-        val bundle = bundleOf(
-            "article" to article
-        )
 
         // Clear fragment backstack (this is because ArticleActivity starts with a fragment)
         // due to nav_article_graph.xml having a startDestination.
         navController.popBackStack()
+
+        // Create bundle to pass article parcelable to article fragment
+        val bundle = Bundle()
+        bundle.putParcelable("article", article)
+
+        Log.d("ArticleActivity", "onCreate: Bundle Contents: $bundle")
 
         // Navigate to article fragment using bundle
         Log.d("ArticleActivity", "onCreate: Navigating to article fragment")

@@ -32,9 +32,17 @@ class ArticleFragment : Fragment() {
 
         binding = FragmentArticleBinding.inflate(inflater, container, false)
 
-        // Receive safeargs
-        val args: ArticleFragmentArgs by navArgs()
-        val article = args.articleItem
+        // Receive parcelable from ArticleActivity
+        val article = arguments?.getParcelable<Article>("article") ?: Article(
+            "Article Source",
+            -1,
+            "Article Title",
+            0,
+            "Article Date",
+            "Article Content",
+            "url",
+            "0"
+        )
 
         // Safeargs bundle
         Log.d("ArticleFragment", "onCreateView: articleId: ${article.newsId}")
@@ -93,7 +101,7 @@ class ArticleFragment : Fragment() {
 
         // Bottom sheet dialog for saving articles
         binding.btnSaveList.setOnClickListener {
-            val bottomSheetDialogFragment = BottomSheetDialogSaveFragment(args.articleItem)
+            val bottomSheetDialogFragment = BottomSheetDialogSaveFragment(article)
             bottomSheetDialogFragment.show(requireActivity().supportFragmentManager, "save")
         }
 
@@ -106,7 +114,7 @@ class ArticleFragment : Fragment() {
         binding.btnArticleRecommendations.setOnClickListener {
             // Navigate to ArticleSourceFragment
             val action = ArticleFragmentDirections.actionArticleFragmentToArticleSourceFragment(
-                args.articleItem.source
+                article.source
             )
 
             Navigation.findNavController(binding.root).navigate(action)
