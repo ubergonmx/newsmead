@@ -13,6 +13,7 @@ import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentArticleCategoryBinding
+import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.ArticleAdapter
 import com.newsmead.recyclerviews.feed.clickListener
 
@@ -99,16 +100,10 @@ class ArticleCategoryFragment : Fragment(), clickListener {
             }
     }
 
-    override fun onItemClicked(
-        articleId: String,
-        articleTitle: String,
-        articleSource: String,
-        articleImage: String,
-        articleReadTime: Int
-    ) {
+    override fun onItemClicked(article: Article) {
         // Action
         val action = ArticleCategoryFragmentDirections.actionArticleCategoryFragmentToArticleActivityStart(
-            articleId
+            article
         )
 
         // Navigate

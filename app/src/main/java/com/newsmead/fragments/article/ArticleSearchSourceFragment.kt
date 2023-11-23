@@ -13,6 +13,7 @@ import com.newsmead.data.DataHelper
 import com.newsmead.R
 import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentArticleSearchSourceBinding
+import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.ArticleAdapter
 import com.newsmead.recyclerviews.feed.clickListener
 
@@ -62,16 +63,10 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
         return binding.root
     }
 
-    override fun onItemClicked(
-        articleId: String,
-        articleTitle: String,
-        articleSource: String,
-        articleImage: String,
-        articleReadTime: Int
-    ) {
+    override fun onItemClicked(article: Article) {
         // Action
         val action = ArticleSearchSourceFragmentDirections.actionArticleSearchSourceFragmentToArticleActivityStart(
-            articleId,
+            article
         )
 
         // Navigate

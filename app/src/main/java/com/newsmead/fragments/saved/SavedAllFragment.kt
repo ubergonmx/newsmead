@@ -12,6 +12,7 @@ import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.FragmentSavedAllBinding
 import com.newsmead.fragments.bottomnavigation.SavedFragmentDirections
+import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.ArticleAdapter
 import com.newsmead.recyclerviews.feed.clickListener
 
@@ -39,16 +40,10 @@ class SavedAllFragment: Fragment(), clickListener {
         return binding.root
     }
 
-    override fun onItemClicked(
-        articleId: String,
-        articleTitle: String,
-        articleSource: String,
-        articleImage: String,
-        articleReadTime: Int
-    ) {
+    override fun onItemClicked(article: Article) {
         // Action
         val action = SavedFragmentDirections.actionSavedFragmentToArticleActivityStart(
-            articleId
+            article
         )
 
         // Navigate

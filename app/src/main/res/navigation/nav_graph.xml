@@ -135,8 +135,8 @@
         android:label="activity_article"
         tools:layout="@layout/activity_article" >
         <argument
-            android:name="articleId"
-            app:argType="string" />
+            android:name="articleItem"
+            app:argType="com.newsmead.models.Article" />
     </activity>
     <fragment
         android:id="@+id/savedListEditFragment"

@@ -11,6 +11,7 @@ import com.newsmead.data.DataHelper
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.FragmentHistoryBinding
+import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.ArticleSimplifiedAdapter
 import com.newsmead.recyclerviews.feed.clickListener
 
@@ -53,15 +54,11 @@ class HistoryFragment: Fragment(), clickListener {
     }
 
     override fun onItemClicked(
-        articleId: String,
-        articleTitle: String,
-        articleSource: String,
-        articleImage: String,
-        articleReadTime: Int
+        article: Article
     ) {
         // Action
         val action = HistoryFragmentDirections.actionHistoryFragmentToArticleActivityStart(
-            articleId
+            article
         )
 
         Navigation.findNavController(requireView()).navigate(action)

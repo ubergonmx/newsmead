@@ -9,18 +9,16 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.firebase.firestore.CollectionReference
-import com.newsmead.data.DataHelper
 import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.BottomSheetDialogSaveListBinding
+import com.newsmead.models.Article
 import com.newsmead.models.SavedList
 import com.newsmead.recyclerviews.dialog.SheetDialogAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class BottomSheetDialogSaveFragment(private val articleId: String): BottomSheetDialogFragment(), listListener {
+class BottomSheetDialogSaveFragment(private val article: Article): BottomSheetDialogFragment(), listListener {
 
     private lateinit var binding: BottomSheetDialogSaveListBinding
     private lateinit var lists: ArrayList<SavedList>
@@ -69,9 +67,10 @@ class BottomSheetDialogSaveFragment(private val articleId: String): BottomSheetD
                 // Save article to checked lists
 
                 for (listId in checkedLists) {
-                    Log.d("BottomSheetDialogSaveFragment", "Saving article $articleId to list $listId")
+                    Log.d("BottomSheetDialogSaveFragment", "Saving article ${article.newsId} to list $listId")
+                    val article: Article = article
                     FirebaseHelper.addArticleToFireStoreList(
-                        requireContext(), listId, articleId
+                        requireContext(), listId, article
                     )
                 }
 

@@ -65,22 +65,10 @@ class ArticleSourceFragment: Fragment(), clickListener {
 
         return binding.root
     }
-    override fun onItemClicked(
-        articleId: String,
-        articleTitle: String,
-        articleSource: String,
-        articleImage: String,
-        articleReadTime: Int
-    ) {
-        Log.d("ArticleSourceFragment", "onItemClicked: Navigating to ArticleFragment")
+    override fun onItemClicked(article: Article) {
         // Action
         val action = ArticleSourceFragmentDirections.actionArticleSourceFragmentToArticleFragment(
-            articleId,
-            articleTitle,
-            articleSource,
-            articleImage,
-            "Article Content",
-            articleReadTime
+            article
         )
 
         Navigation.findNavController(requireActivity(), R.id.flMainArticleContainer)

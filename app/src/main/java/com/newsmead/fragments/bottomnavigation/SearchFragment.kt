@@ -16,6 +16,7 @@ import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentSearchBinding
+import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.ArticleSimplifiedAdapter
 import com.newsmead.recyclerviews.feed.clickListener
 
@@ -155,16 +156,10 @@ class SearchFragment : Fragment(), clickListener {
             }
     }
 
-    override fun onItemClicked(
-        articleId: String,
-        articleTitle: String,
-        articleSource: String,
-        articleImage: String,
-        articleReadTime: Int
-    ) {
+    override fun onItemClicked(article: Article) {
         // Action
         val action = SearchFragmentDirections.actionSearchFragmentToArticleActivityStart(
-            articleId = articleId
+            article
         )
 
         // Navigation

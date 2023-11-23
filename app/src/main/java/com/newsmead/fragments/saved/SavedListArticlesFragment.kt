@@ -168,22 +168,18 @@ class SavedListArticlesFragment: Fragment(), clickListener {
 
         // Some logic to fetch articles from the given ids
         // For now using dummy data
-        articles.addAll(DataHelper.loadArticleData())
+        DataHelper.loadArticleData {
+            articles.addAll(it)
+        }
 
         // Once you have the articles, resume the coroutine
         continuation.resume(articles)
     }
 
-    override fun onItemClicked(
-        articleId: String,
-        articleTitle: String,
-        articleSource: String,
-        articleImage: String,
-        articleReadTime: Int
-    ) {
+    override fun onItemClicked(article: Article) {
         // Action
         val action = SavedListArticlesFragmentDirections.actionSavedListArticlesFragmentToArticleActivityStart(
-            articleId
+            article
         )
 
         // Navigate

@@ -28,13 +28,10 @@ class ArticleAdapter(
         holder.bindData(articleList[position])
 
         holder.getCardView().setOnClickListener {
-            val parsedReadTime = articleList[position].readTime.split(" ")[0].toInt()
+            val article = articleList[position]
+
             clickListener.onItemClicked(
-                articleId = articleList[position].newsId,
-                articleTitle = articleList[position].title,
-                articleSource = articleList[position].source,
-                articleImage = articleList[position].imageId.toString(),
-                articleReadTime = parsedReadTime
+                article
             )
         }
     }

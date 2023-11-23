@@ -34,57 +34,58 @@ class ArticleFragment : Fragment() {
 
         // Receive safeargs
         val args: ArticleFragmentArgs by navArgs()
+        val article = args.articleItem
 
         // Safeargs bundle
-        Log.d("ArticleFragment", "onCreateView: articleId: ${args.articleId}")
-        Log.d("ArticleFragment", "onCreateView: articleTitle: ${args.articleTitle}")
-        Log.d("ArticleFragment", "onCreateView: articleSource: ${args.articleSource}")
-        Log.d("ArticleFragment", "onCreateView: articleImage: ${args.articleImage}")
-        Log.d("ArticleFragment", "onCreateView: articleBody: ${args.articleBody}")
-        Log.d("ArticleFragment", "onCreateView: articleReadTime: ${args.articleReadTime}")
+        Log.d("ArticleFragment", "onCreateView: articleId: ${article.newsId}")
+        Log.d("ArticleFragment", "onCreateView: articleTitle: ${article.title}")
+        Log.d("ArticleFragment", "onCreateView: articleSource: ${article.source}")
+        Log.d("ArticleFragment", "onCreateView: articleImage: ${article.imageId}")
+        Log.d("ArticleFragment", "onCreateView: articleBody: None ATM")
+        Log.d("ArticleFragment", "onCreateView: articleReadTime: ${article.readTime}")
 
         // Check if start with "N"
-        if (args.articleId.startsWith("N")) {
+        if (article.newsId.startsWith("N")) {
             // Set article title
-            binding.tvArticleHeadline.text = args.articleTitle
+            binding.tvArticleHeadline.text = article.title
 
             // Set article source
-            binding.tvSource.text = args.articleSource
+            binding.tvSource.text = article.source
 
             // Set article image from link
             // parses articleImage link into image
-            // Glide.with(this).load(args.articleImage).into(binding.ivSourceImage)
+            // Glide.with(this).load(article.articleImage).into(binding.ivSourceImage)
             binding.ivSourceImage.setImageResource(R.drawable.sample_source_image)
 
 
             // Set article body
-            binding.tvArticleText.text = args.articleBody
+//            binding.tvArticleText.text = article.articleBody
 
             // Set article read time
-            val readTime = args.articleReadTime.toString() + " min read"
+            val readTime = article.readTime + " min read"
             binding.tvArticleMinRead.text = readTime
 
             // Set article date (There's no date yet!)
-            // binding.tvArticleDate.text = args.articleDate
+            // binding.tvArticleDate.text = article.articleDate
         } else {
             // Supply header values if able
-            if (args.articleTitle != "Article Title") binding.tvArticleHeadline.text = args.articleTitle
-            if (args.articleSource != "Article Source") binding.tvSource.text = args.articleSource
+            if (article.title != "Article Title") binding.tvArticleHeadline.text = article.title
+            if (article.source != "Article Source") binding.tvSource.text = article.source
 
             // Supply everything else if able
-            if (args.articleImage != "Article Image") {
+            if (article.imageId != -1) {
                 // parses articleImage link into image
-                // Glide.with(this).load(args.articleImage).into(binding.ivSourceImage)
+                // Glide.with(this).load(article.articleImage).into(binding.ivSourceImage)
                 binding.ivSourceImage.setImageResource(R.drawable.sample_source_image)
             }
 
-            if (args.articleBody != "Article Content") binding.tvArticleText.text = args.articleBody
-            if (args.articleReadTime != 0) {
-                val readTime = args.articleReadTime.toString() + " min read"
+//            if (article.articleBody != "Article Content") binding.tvArticleText.text = article.articleBody
+            if (article.readTime != "0") {
+                val readTime = article.readTime + " min read"
                 binding.tvArticleMinRead.text = readTime
             }
 
-            // if (args.articleDate != "Article Date") binding.tvArticleDate.text = args.articleDate
+            // if (article.articleDate != "Article Date") binding.tvArticleDate.text = article.articleDate
 
             // Provides Sample Article
             loadMockArticleData(inflater, container)
@@ -92,7 +93,7 @@ class ArticleFragment : Fragment() {
 
         // Bottom sheet dialog for saving articles
         binding.btnSaveList.setOnClickListener {
-            val bottomSheetDialogFragment = BottomSheetDialogSaveFragment(args.articleId)
+            val bottomSheetDialogFragment = BottomSheetDialogSaveFragment(args.articleItem)
             bottomSheetDialogFragment.show(requireActivity().supportFragmentManager, "save")
         }
 
@@ -105,7 +106,7 @@ class ArticleFragment : Fragment() {
         binding.btnArticleRecommendations.setOnClickListener {
             // Navigate to ArticleSourceFragment
             val action = ArticleFragmentDirections.actionArticleFragmentToArticleSourceFragment(
-                args.articleSource
+                args.articleItem.source
             )
 
             Navigation.findNavController(binding.root).navigate(action)
@@ -175,12 +176,7 @@ class ArticleFragment : Fragment() {
                 val parsedReadTime = article.readTime.substring(0, article.readTime.length - 9)
 
                 val action = ArticleFragmentDirections.actionArticleFragmentSelf(
-                    article.newsId,
-                    article.title,
-                    article.source,
-                    article.imageId.toString(),
-                    "Article Content",
-                    parsedReadTime.toInt()
+                    article
                 )
 
                 Navigation.findNavController(binding.root)

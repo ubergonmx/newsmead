@@ -11,7 +11,7 @@ import com.newsmead.R
 import com.newsmead.databinding.ActivityArticleBinding
 
 class ArticleActivity : AppCompatActivity() {
-    val args: ArticleActivityArgs by navArgs()
+    private val args: ArticleActivityArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,35 +21,17 @@ class ArticleActivity : AppCompatActivity() {
 
         Log.d("ArticleActivity", "onCreate: ArticleActivity started")
 
+        val article = args.articleItem
 
-        // Receive articleId from MainActivity
-//        val articleId = intent.getStringExtra("articleId")
-
-        // Receive articleId from navigation
-        val articleId = args.articleId
-
-        Log.d("ArticleActivity", "onCreate: articleId: $articleId")
+        Log.d("ArticleActivity", "onCreate: articleId: ${article.newsId}")
 
         // Update fragment with articleId
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.flMainArticleContainer) as NavHostFragment
         val navController = navHostFragment.navController
 
-        // Retrieve article data
-        val articleTitle = "TEST"
-        val articleSource = "Article Source"
-        val articleDate = "Article Date" // No article date on article?
-        val articleReadTime = 0
-        val articleImage = "https://live.staticflickr.com/7221/7251835204_89c12bd6ef_b.jpg"
-        val articleBody = "Article Content"
-
         // Creates a "safeargs" bundle
         val bundle = bundleOf(
-            "articleId" to articleId,
-            "articleTitle" to articleTitle,
-            "articleSource" to articleSource,
-            "articleImage" to articleImage,
-            "articleBody" to articleBody,
-            "articleReadTime" to articleReadTime
+            "article" to article
         )
 
         // Clear fragment backstack (this is because ArticleActivity starts with a fragment)

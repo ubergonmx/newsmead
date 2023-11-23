@@ -112,16 +112,10 @@ class HomeFragment : Fragment(), clickListener {
             }
     }
 
-    override fun onItemClicked(
-        articleId: String,
-        articleTitle: String,
-        articleSource: String,
-        articleImage: String,
-        articleReadTime: Int
-    ) {
+    override fun onItemClicked(article: Article) {
         // Action
         val action = HomeFragmentDirections.actionHomeFragmentToArticleActivityStart(
-            articleId
+            article
         )
 
         // Navigate
