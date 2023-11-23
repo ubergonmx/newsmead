@@ -22,6 +22,7 @@ class BottomSheetDialogSaveFragment(private val article: Article): BottomSheetDi
 
     private lateinit var binding: BottomSheetDialogSaveListBinding
     private lateinit var lists: ArrayList<SavedList>
+    private lateinit var savedLists: ArrayList<String>
     private var checkedLists: MutableList<String> = mutableListOf()
 
     override fun onCreateView(
@@ -37,12 +38,21 @@ class BottomSheetDialogSaveFragment(private val article: Article): BottomSheetDi
 
                 // Read later is always first, no need to sort
 
+                // Check if article is already saved to a list
+                val checkedLists = FirebaseHelper.checkIfArticleSavedInLists(requireContext(), article.newsId)
+
+                Log.d("BottomSheetDialogSaveFragment", "Checked lists: $checkedLists")
+                savedLists = checkedLists as ArrayList<String>
+
                 // Update UI on the main thread
                 withContext(Dispatchers.Main) {
-                    binding.rvDialogList.adapter = SheetDialogAdapter(lists, this@BottomSheetDialogSaveFragment)
+                    val adapter: SheetDialogAdapter = SheetDialogAdapter(lists, this@BottomSheetDialogSaveFragment)
+                    binding.rvDialogList.adapter = adapter
                     val layoutManager = LinearLayoutManager(context)
                     layoutManager.orientation = LinearLayoutManager.VERTICAL
                     binding.rvDialogList.layoutManager = layoutManager
+
+                    adapter.checkLists(checkedLists)
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {

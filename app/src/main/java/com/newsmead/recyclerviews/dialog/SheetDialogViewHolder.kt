@@ -13,6 +13,7 @@ class SheetDialogViewHolder(
     // Performs the binding of the article data to the views in the ViewHolder
     fun bindData(list: SavedList) {
         this.viewBinding.cbListItemSave.text = list.title
+        this.viewBinding.cbListItemSave.isChecked = list.isChecked
 
         this.viewBinding.cbListItemSave.setOnClickListener {
             listener.onListChecked(list.id)
