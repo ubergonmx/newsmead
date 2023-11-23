@@ -46,7 +46,9 @@ class SavedListsFragment: Fragment(), cardListener {
                 .addOnSuccessListener { documents ->
                     var readLater: SavedList? = null
                     for (document in documents) {
-                        val list = SavedList(document.data["id"].toString(), document.data["name"].toString())
+                        // Grab collection id
+                        val listId = document.id
+                        val list = SavedList(listId, document.data["name"].toString())
                         if (list.title == "Read Later") {
                             readLater = list
                         }
@@ -107,7 +109,6 @@ class SavedListsFragment: Fragment(), cardListener {
     }
 
     override fun onCardClick(listId: String) {
-        Log.d("SavedListsFragment", "onCardClick: $listId")
         // Action
         val action = SavedFragmentDirections.actionSavedFragmentToSavedListArticlesFragment(listId)
 
