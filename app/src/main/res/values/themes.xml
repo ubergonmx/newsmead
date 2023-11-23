@@ -159,4 +159,11 @@
         <item name="fontFamily">@font/arial_regular</item>
         <item name="boxBackgroundColor">?primaryBackgroundColor</item>
     </style>
+
+    <style name="Widget.App.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/gold_60</item>
+    </style>
+
+
+
 </resources>
