@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-class SavedListArticlesEditFragment: Fragment(), clickListener {
+class SavedListEditFragment: Fragment(), clickListener {
     private val args: SavedListEditFragmentArgs by navArgs()
     private lateinit var binding: FragmentSavedListEditBinding
     private val articleIds = ArrayList<String>()
@@ -67,7 +67,7 @@ class SavedListArticlesEditFragment: Fragment(), clickListener {
                 data.addAll(getArticlesFromIds(articleIds))
 
                 // Notify the adapter that the dataset has changed
-                Log.d("SavedListArticles", "Updating adapter with ${data.size} articles")
+                Log.d("SavedListEditArticles", "Updating adapter with ${data.size} articles")
                 adapter.notifyDataSetChanged()
             } catch (e: Exception) {
                 // Handle exceptions
@@ -100,7 +100,7 @@ class SavedListArticlesEditFragment: Fragment(), clickListener {
         articleReadTime: Int
     ) {
         // Action
-        val action = SavedListArticlesFragmentDirections.actionSavedListArticlesFragmentToArticleActivityStart(
+        val action = SavedListEditFragmentDirections.actionSavedListEditFragmentToSavedListArticlesFragment(
             articleId
         )
 
