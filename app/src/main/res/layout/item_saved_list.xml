@@ -7,8 +7,11 @@
     android:background="?primaryBackgroundColor">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvListCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
         android:outlineProvider="none"
         app:cardBackgroundColor="?cardBackgroundColor"
         app:cardCornerRadius="20dp"
@@ -16,54 +19,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="start|center_vertical"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tvListTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:text="@string/sample_saved_list_title"
+                android:textColor="?primaryTextColor"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tvListTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sample_saved_list_title"
-                    android:textColor="?primaryTextColor"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="4dp" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="4dp" />
-
-                <TextView
-                    android:id="@+id/tvListNumArticles"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sample_saved_list_number"
-                    android:textColor="?secondaryTextColor" />
-            </LinearLayout>
-
-            <ImageButton
-                android:id="@+id/btnList"
+            <TextView
+                android:id="@+id/tvListNumArticles"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@null"
-                android:cropToPadding="true"
-                android:padding="8dp"
-                android:src="@drawable/folder_filled_weight400"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="?secondaryIconColor"
-                tools:src="@drawable/folder_filled_weight400" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:text="@string/sample_saved_list_number"
+                android:textColor="?secondaryTextColor" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivListIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_margin="16dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:contentDescription="@string/desc_folder_icon_for_list"
+            android:cropToPadding="true"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/folder_filled_weight400"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?secondaryIconColor"
+            tools:src="@drawable/folder_filled_weight400" />
 
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

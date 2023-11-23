@@ -4,7 +4,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.newsmead.R
 import com.newsmead.databinding.ItemSavedListBinding
-import com.newsmead.fragments.saved.SavedListsFragment
 import com.newsmead.models.SavedList
 
 class SavedListsViewHolder(private val viewBinding: ItemSavedListBinding): RecyclerView.ViewHolder(viewBinding.root) {
@@ -17,13 +16,11 @@ class SavedListsViewHolder(private val viewBinding: ItemSavedListBinding): Recyc
 
         // Special icon for Read Later list
         if (savedList.title == "Read Later") {
-            this.viewBinding.btnList.setImageResource(R.drawable.star_filled_weight400)
+            this.viewBinding.ivListIcon.setImageResource(R.drawable.star_filled_weight400)
         }
 
         // On clicking folder button, open fragment to open saved list
-        this.viewBinding.btnList.setOnClickListener {
-            val listFragment = SavedListsFragment()
-
+        this.viewBinding.cvListCard.setOnClickListener {
             // Pass data if needed
             // val bundle = Bundle()
             // bundle.putString("key", "value")
