@@ -34,7 +34,6 @@ class ArticleEditAdapter(
         checkBoxes.add(holder.getCheckBox())
 
         holder.getCardView().setOnClickListener {
-            val parsedReadTime = articleList[position].readTime.split(" ")[0].toInt()
             clickListener.onListChecked(
                 listId  = articleList[position].newsId
             )
