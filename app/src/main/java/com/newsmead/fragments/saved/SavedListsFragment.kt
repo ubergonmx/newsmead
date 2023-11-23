@@ -26,8 +26,11 @@ class SavedListsFragment: Fragment() {
         firestore = FirebaseFirestore.getInstance()
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return binding.root
+    }
 
-        // val data = loadListData()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         // Get list of lists from firestore and move read later to top
         val data = ArrayList<SavedList>()
@@ -85,9 +88,8 @@ class SavedListsFragment: Fragment() {
         }
 
         // Add spacing between items
-        val spacing = 48
-        binding.rvSavedLists.addItemDecoration(com.newsmead.custom.CustomDividerSpacer(spacing))
+//        val spacing = 48
+//        binding.rvSavedLists.addItemDecoration(com.newsmead.custom.CustomDividerSpacer(spacing))
 
-        return binding.root
     }
 }
