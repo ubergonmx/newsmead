@@ -66,12 +66,28 @@ class SavedListEditFragment: Fragment(), listListener {
     }
 
     override fun onListChecked(listId: String) {
+        Log.d("SavedListEditArticles", "ListId: $listId")
         // If checked, add to checkedIds
         // If unchecked, remove from checkedIds
         if (checkedIds.contains(listId)) {
             checkedIds.remove(listId)
         } else {
             checkedIds.add(listId)
+        }
+
+        // Disable button if no checkedIds
+        if (checkedIds.size == 0) {
+            binding.btnEditSave.isEnabled = false
+
+            // Update delete button to number of checkedIds
+            val newDeleteText = "Delete"
+            binding.btnEditSave.text = newDeleteText
+        } else {
+            binding.btnEditSave.isEnabled = true
+
+            // Update delete button to number of checkedIds
+            val newDeleteText = "Delete (${checkedIds.size}) articles"
+            binding.btnEditSave.text = newDeleteText
         }
     }
 }
