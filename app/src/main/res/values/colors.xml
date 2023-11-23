@@ -30,11 +30,5 @@
     <color name="divider_color">#FFDBDBDB</color>
 
     <!--    Variable colors      -->
-    <color name="lowEmphasisColor">@color/gold_20</color>
-    <color name="midEmphasisColor">@color/gold_60</color>
-    <color name="highEmphasisColor">@color/cobalt_100</color>
 
-    <color name="lowBackground">@color/gray_300</color>
-    <color name="midBackground">@color/white</color>
-    <color name="highBackground">@color/black</color>
 </resources>

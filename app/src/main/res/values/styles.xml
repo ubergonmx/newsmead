@@ -90,6 +90,13 @@
         <item name="android:lineSpacingMultiplier">1.14</item>
     </style>
 
+    <style name="ts_subtext_medium">
+        <item name="android:fontFamily">@font/arial_regular</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:lineSpacingExtra">1sp</item>
+        <item name="android:lineSpacingMultiplier">1.0</item>
+    </style>
+
     <!-- Button Styles -->
     <!--Buttons - Small-->
 

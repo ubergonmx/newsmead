@@ -64,29 +64,27 @@
             android:id="@+id/tvArticleDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/arial_regular"
             android:text="@string/sample_date"
-            android:textColor="?secondaryTextColor"
-            android:textSize="16sp" />
+            android:textColor="?lowTextEmphasis"
+            style="@style/ts_subtext_medium" />
 
         <TextView
             android:id="@+id/tvBullet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/common_margin_half"
             android:text="@string/symbol_bullet"
-            android:textColor="?secondaryTextColor"
-            android:textSize="16sp" />
+            android:textColor="?lowTextEmphasis"
+            style="@style/ts_subtext_medium" />
 
         <TextView
             android:id="@+id/tvReadTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/arial_regular"
+            android:layout_marginStart="@dimen/common_margin_half"
             android:text="@string/sample_read_time"
-            android:textColor="?secondaryTextColor"
-            android:textSize="16sp" />
+            android:textColor="?lowTextEmphasis"
+            style="@style/ts_subtext_medium" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
