@@ -41,6 +41,51 @@ class FirebaseHelper {
         }
 
         /**
+         * Adds a new user to Firestore with a "Read Later" list
+         * @param email Email of the new user
+         * @return Id of the new user; "" if error
+         */
+        fun addUserToFirestore(context: Context, email: String): String {
+            var uid = FirebaseAuth.getInstance().currentUser?.uid
+            val firestore = getFirestoreInstance()
+
+            if (uid == null) {
+                Toast.makeText(context, "Error creating user", Toast.LENGTH_SHORT).show()
+                return ""
+            }
+
+            val userRef = firestore.collection("users").document(uid)
+
+            // Create new user document
+            userRef.set(
+                hashMapOf(
+                    "email" to email
+                )
+            )
+                .addOnSuccessListener {
+                    // Add "Read Later" list to Firestore
+                    val userListsRef = firestore.collection("users").document(uid!!).collection("lists")
+                    val newListId = userListsRef.document().id
+
+                    userListsRef.document(newListId).set(
+                        hashMapOf(
+                            "name" to "Read Later"
+                        )
+                    )
+
+                    // Handle Success
+                    Toast.makeText(context, "User created", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    // Handle Failure
+                    Toast.makeText(context, "Error creating user", Toast.LENGTH_SHORT).show()
+                    uid = ""
+                }
+
+            return uid as String
+        }
+
+        /**
          * Adds a new list to Firestore
          * @param newListName Name of the new list
          * @return Id of the new list; "" if error
