@@ -75,6 +75,9 @@
         <argument android:name="listName"
             app:argType="string"
             android:defaultValue="List Name" />
+        <action
+            android:id="@+id/action_savedListArticlesFragment_to_savedListEditFragment"
+            app:destination="@id/savedListEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
@@ -131,4 +134,19 @@
             android:name="articleId"
             app:argType="string" />
     </activity>
+    <fragment
+        android:id="@+id/savedListEditFragment"
+        android:name="com.newsmead.fragments.saved.SavedListEditFragment"
+        android:label="fragment_saved_list_edit"
+        tools:layout="@layout/fragment_saved_list_edit" >
+        <argument
+            android:name="listId"
+            app:argType="string" />
+        <argument
+            android:name="listName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_savedListEditFragment_to_savedListArticlesFragment"
+            app:destination="@id/savedListArticlesFragment" />
+    </fragment>
 </navigation>
