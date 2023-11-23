@@ -72,6 +72,9 @@
             android:name="listId"
             app:argType="string"
             android:defaultValue="readLater" />
+        <argument android:name="listName"
+            app:argType="string"
+            android:defaultValue="List Name" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
