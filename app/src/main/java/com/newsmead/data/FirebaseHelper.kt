@@ -8,6 +8,9 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.newsmead.models.Article
 import com.newsmead.models.SavedList
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.tasks.await
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -139,6 +142,44 @@ class FirebaseHelper {
                     continuation.resumeWithException(exception)
                 }
         }
+
+        suspend fun checkIfArticleSavedInLists(context: Context, articleId: String): List<String> = coroutineScope {
+            if (uid == "null") {
+                Toast.makeText(context, "Please login to view/create a list", Toast.LENGTH_SHORT).show()
+                return@coroutineScope emptyList()
+            }
+
+            val firestore = getFirestoreInstance()
+            val userListsRef = firestore.collection("users").document(uid).collection("lists")
+
+            try {
+                // Use async to perform the nested query concurrently
+                val lists = userListsRef.get().await().documents
+                    .mapNotNull { listDocument ->
+                        async {
+                            val listId = listDocument.id
+                            val listRef = userListsRef.document(listId).collection("articles")
+
+                            val articleExists = listRef
+                                .whereEqualTo("newsId", articleId)
+                                .get()
+                                .await()
+                                .documents
+                                .isNotEmpty()
+
+                            if (articleExists) listId else null
+                        }
+                    }
+                    .awaitAll()
+                    .filterNotNull()
+
+                return@coroutineScope lists
+            } catch (exception: Exception) {
+                // Handle failure
+                throw exception
+            }
+        }
+
 
         /**
          * Adds a new user to Firestore with a "Read Later" list
