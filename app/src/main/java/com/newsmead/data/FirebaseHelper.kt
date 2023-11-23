@@ -65,7 +65,7 @@ class FirebaseHelper {
                 .addOnSuccessListener {
                     // Add "Read Later" list to Firestore
                     val userListsRef = firestore.collection("users").document(uid!!).collection("lists")
-                    val newListId = userListsRef.document().id
+                    val newListId = "readLater" // This is the id of the "Read Later" list
 
                     userListsRef.document(newListId).set(
                         hashMapOf(
