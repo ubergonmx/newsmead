@@ -39,6 +39,9 @@
             app:destination="@id/articleSearchFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_searchFragment_to_articleActivityStart"
+            app:destination="@id/articleActivityStart" />
     </fragment>
     <fragment
         android:id="@+id/savedFragment"
