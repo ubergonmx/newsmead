@@ -21,15 +21,13 @@
 
             <TextView
                 android:id="@+id/tvSearch"
+                style="@style/ts_display_large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/arial_regular"
                 android:text="@string/search_title"
                 android:textColor="?primaryTextColor"
-                android:textSize="@dimen/header_text_size"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,6 +41,7 @@
                 android:background="@drawable/searchbar_background"
                 android:iconifiedByDefault="false"
                 android:queryBackground="@android:color/transparent"
+                android:queryHint="Search"
                 app:iconifiedByDefault="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,15 +51,14 @@
 
             <TextView
                 android:id="@+id/tvSearchCategory"
+                style="@style/ts_title_small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/arial_regular"
                 android:text="@string/commons_category"
                 android:textColor="?secondaryTextColor"
-                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/svSearchBar" />
 
@@ -69,7 +67,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -79,15 +77,14 @@
 
             <TextView
                 android:id="@+id/tvSearchSources"
+                style="@style/ts_title_small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/arial_regular"
                 android:text="@string/commons_sources"
                 android:textColor="?secondaryTextColor"
-                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cgCategory" />
 
@@ -96,7 +93,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -106,28 +103,24 @@
 
             <TextView
                 android:id="@+id/tvSearchLatestNews"
+                style="@style/ts_display_small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/arial_regular"
+                android:layout_marginTop="32dp"
                 android:text="@string/search_latest_news"
                 android:textColor="?primaryTextColor"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cgSources" />
 
             <TextView
                 android:id="@+id/tvSearchDate"
+                style="@style/ts_title_small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:fontFamily="@font/arial_regular"
                 android:text="@string/sample_date"
                 android:textColor="?secondaryTextColor"
-                android:textSize="12sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvSearchLatestNews" />
 

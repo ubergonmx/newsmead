@@ -107,6 +107,21 @@
         <item name="rippleColor">@color/gray_200</item>
     </style>
 
+    <!--    Chip style  -->
+    <style name="ChipStyle" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+
+        <item name="android:fontFamily">@font/arial_regular</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:lineSpacingExtra">1sp</item>
+        <item name="android:lineSpacingMultiplier">1.4</item>
+    </style>
+
+    <style name="ChipSelectMultiple" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+    </style>
 
 
     <!-- Text Field Style -->
