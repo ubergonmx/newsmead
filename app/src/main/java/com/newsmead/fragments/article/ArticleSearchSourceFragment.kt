@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.data.DataHelper
@@ -16,6 +17,7 @@ import com.newsmead.recyclerviews.feed.ArticleAdapter
 import com.newsmead.recyclerviews.feed.clickListener
 
 class ArticleSearchSourceFragment: Fragment(), clickListener {
+    private val args: ArticleSearchSourceFragmentArgs by navArgs()
     private lateinit var binding: FragmentArticleSearchSourceBinding
 
     override fun onCreateView(
@@ -24,6 +26,9 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentArticleSearchSourceBinding.inflate(inflater, container, false)
+
+        // Change text of tvSourceName to sourceName
+        binding.tvSearchSourceName.text = args.sourceName
 
         // RecyclerView of Articles
         val sourceArticlesData = DataHelper.loadSourceArticlesData()

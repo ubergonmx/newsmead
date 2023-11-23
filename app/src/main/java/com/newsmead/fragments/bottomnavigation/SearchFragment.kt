@@ -68,7 +68,12 @@ class SearchFragment : Fragment(), clickListener {
 
             // Launch category fragment when chip is clicked
             chip.setOnClickListener(View.OnClickListener {
-                Navigation.findNavController(it).navigate(R.id.action_searchFragment_to_articleCategoryFragment)
+                // Action
+                val action = SearchFragmentDirections.actionSearchFragmentToArticleCategoryFragment(
+                    category
+                )
+
+                Navigation.findNavController(it).navigate(action)
             })
 
             binding.cgCategory.addView(chip)
@@ -80,7 +85,12 @@ class SearchFragment : Fragment(), clickListener {
 
             // Launch source fragment when chip is clicked
             chip.setOnClickListener(View.OnClickListener {
-                Navigation.findNavController(it).navigate(R.id.action_searchFragment_to_articleSearchSourceFragment)
+                // Action
+                val action = SearchFragmentDirections.actionSearchFragmentToArticleSearchSourceFragment(
+                    source
+                )
+
+                Navigation.findNavController(it).navigate(action)
             })
 
             binding.cgSources.addView(chip)
