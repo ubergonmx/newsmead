@@ -1,8 +1,10 @@
 package com.newsmead.models
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.newsmead.R
 
-class Article {
+class Article: Parcelable {
     var source: String
         private set
     var sourceImage : Int
@@ -47,4 +49,39 @@ class Article {
         this.newsId = "T" + url.hashCode().toString()
     }
 
+    constructor(parcel: Parcel) : this(
+        parcel.readString() ?: "",
+        parcel.readInt(),
+        parcel.readString() ?: "",
+        parcel.readInt(),
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readString() ?: ""
+    )
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    override fun writeToParcel(dest: Parcel, flags: Int) {
+        dest.writeString(source)
+        dest.writeInt(sourceImage)
+        dest.writeString(title)
+        dest.writeInt(imageId)
+        dest.writeString(date)
+        dest.writeString(readTime)
+        dest.writeString(url)
+        dest.writeString(newsId)
+    }
+
+    companion object CREATOR : Parcelable.Creator<Article> {
+        override fun createFromParcel(parcel: Parcel): Article {
+            return Article(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Article?> {
+            return arrayOfNulls(size)
+        }
+    }
 }
