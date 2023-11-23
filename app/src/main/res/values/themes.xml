@@ -26,6 +26,7 @@
         <item name="dividerColor">@color/divider_color</item>
         <item name="shimmerColor">@color/gray_200</item>
         <item name="cardBackgroundColor">@color/gray_300</item>
+
     </style>
 
     <style name="Theme.NewsMead" parent="Base.Theme.NewsMead" />
@@ -65,6 +66,19 @@
         <item name="colorPrimary">?secondaryButtonBgColor</item>
         <item name="colorOnPrimary">?secondaryButtonTextColor</item>
         <item name="rippleColor">?secondaryButtonBgColor</item>
+    </style>
+
+    <!--    Button themes   -->
+
+    <style name="ButtonSmall_LowEmphasis" parent="ts_button_medium">
+        <item name="android:backgroundTint">@color/lowEmphasisColor</item>
+        <item name="android:textColor">?secondaryButtonTextColor</item>
+        <item name="rippleColor">@color/gold_100</item>
+        <!--Padding-->
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:paddingBottom">12dp</item>
     </style>
 
     <!-- Text Field Style -->

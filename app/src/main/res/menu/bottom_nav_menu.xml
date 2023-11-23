@@ -5,24 +5,24 @@
         android:id="@+id/homeFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_nav_home"
         android:title="@string/nav_home" />
     <item
         android:id="@+id/searchFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:icon="@drawable/ic_search"
+        android:icon="@drawable/ic_nav_search"
         android:title="@string/nav_search" />
     <item
         android:id="@+id/savedFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:icon="@drawable/ic_bookmarks"
+        android:icon="@drawable/ic_nav_bookmarks"
         android:title="@string/nav_saved" />
     <item
         android:id="@+id/profileFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:icon="@drawable/ic_person"
+        android:icon="@drawable/ic_nav_person"
         android:title="@string/nav_profile" />
 </menu>
