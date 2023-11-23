@@ -95,10 +95,14 @@ class SavedListArticlesFragment: Fragment(), clickListener {
         popup.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.menuOptionEdit -> {
+                    // Create parcel list of articles
+                    val articleList = data
+
                     // Action
                     val action = SavedListArticlesFragmentDirections.actionSavedListArticlesFragmentToSavedListEditFragment(
                         args.listId,
-                        args.listName
+                        args.listName,
+                        articleList.toTypedArray()
                     )
 
                     // Navigate

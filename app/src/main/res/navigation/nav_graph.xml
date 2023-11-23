@@ -75,6 +75,10 @@
         <argument android:name="listName"
             app:argType="string"
             android:defaultValue="List Name" />
+        <argument
+            android:name="listArticlesParcel"
+            app:argType="com.newsmead.models.Article[]"
+            app:nullable="true" />
         <action
             android:id="@+id/action_savedListArticlesFragment_to_savedListEditFragment"
             app:destination="@id/savedListEditFragment" />
@@ -145,6 +149,10 @@
         <argument
             android:name="listName"
             app:argType="string" />
+        <argument
+            android:name="listArticlesParcel"
+            app:argType="com.newsmead.models.Article[]"
+            app:nullable="true" />
         <action
             android:id="@+id/action_savedListEditFragment_to_savedListArticlesFragment"
             app:destination="@id/savedListArticlesFragment" />
