@@ -6,6 +6,13 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.newsmead.models.Article
+import com.newsmead.models.SavedList
+import kotlinx.coroutines.tasks.await
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
+
 
 class FirebaseHelper {
     companion object {
@@ -30,14 +37,69 @@ class FirebaseHelper {
             return FirebaseFirestore.getInstance()
         }
 
-        fun getListsCollection(context: Context): CollectionReference? {
+        suspend fun getListsCollection(context: Context): ArrayList<SavedList>? = suspendCoroutine { continuation ->
             if (uid == "null") {
                 Toast.makeText(context, "Please login to view/create a list", Toast.LENGTH_SHORT).show()
-                return null
+                continuation.resume(null)
             }
 
-            return getFirestoreInstance().collection("users")
-                .document(uid).collection("lists")
+            val firestore = getFirestoreInstance()
+            val userListsRef = firestore.collection("users").document(uid).collection("lists")
+
+            // Reorder to make readLater first
+            val finalList = ArrayList<SavedList>()
+            var readLater: SavedList? = null
+
+            userListsRef.get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        // Grab collection id
+                        val listId = document.id
+                        val list = SavedList(listId, document.data["name"].toString())
+                        if (list.title == "Read Later") {
+                            readLater = list
+                        } else {
+                            finalList.add(list)
+                        }
+                    }
+
+                    // Move the read later list at the top
+                    if (readLater != null) {
+                        finalList.add(0, readLater!!)
+                    }
+
+                    continuation.resume(finalList)
+                }
+                .addOnFailureListener { exception ->
+                    // Handle failure
+                    continuation.resumeWithException(exception)
+                }
+        }
+
+        suspend fun getArticleIdsFromList(context: Context, listId: String): List<String> = suspendCoroutine { continuation ->
+            if (uid == "null") {
+                Toast.makeText(context, "Please login to view/create a list", Toast.LENGTH_SHORT).show()
+                continuation.resume(emptyList())
+            }
+
+            val articleIds = mutableListOf<String>()
+
+            val firestore = getFirestoreInstance()
+            val userListsRef = firestore.collection("users").document(uid).collection("lists")
+            val listRef = userListsRef.document(listId).collection("articles")
+
+            listRef.get()
+                .addOnSuccessListener { documents ->
+                    // Get article ids from list
+                    articleIds.addAll(documents.mapNotNull { document ->
+                        document.data["articleId"].toString()
+                    })
+                    continuation.resume(articleIds)
+                }
+                .addOnFailureListener { exception ->
+                    // Handle failure
+                    continuation.resumeWithException(exception)
+                }
         }
 
         /**

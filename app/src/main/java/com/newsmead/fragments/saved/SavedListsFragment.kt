@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +18,10 @@ import com.newsmead.fragments.layouts.NewListDialog
 import com.newsmead.models.SavedList
 import com.newsmead.recyclerviews.dialog.SheetDialogAdapter
 import com.newsmead.recyclerviews.saved.SavedListsAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class SavedListsFragment: Fragment(), cardListener {
     private lateinit var binding: FragmentSavedYourListsBinding
@@ -26,55 +31,41 @@ class SavedListsFragment: Fragment(), cardListener {
     private lateinit var adapter: SavedListsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentSavedYourListsBinding.inflate(layoutInflater)
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentSavedYourListsBinding.inflate(inflater, container, false)
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
         // Initialize recyclerView immediately
-        data = ArrayList<SavedList>()
-        adapter = SavedListsAdapter(ArrayList<SavedList>(), this)
+        data = ArrayList()
+        adapter = SavedListsAdapter(ArrayList(), this)
         binding.rvSavedLists.adapter = adapter
 
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvSavedLists.layoutManager = layoutManager
 
-        // Get list of lists from firestore and move read later to top
-        if (auth.currentUser != null) {
-            val userId = auth.currentUser?.uid.toString()
-            firestore.collection("users").document(userId).collection("lists").get()
-                .addOnSuccessListener { documents ->
-                    var readLater: SavedList? = null
-                    for (document in documents) {
-                        val list = SavedList(document.data["id"].toString(), document.data["name"].toString())
-                        if (list.title == "Read Later") {
-                            readLater = list
-                        }
-                        data.add(list)
+        // Retrieve lists from Firestore using coroutines
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val listsCollection = FirebaseHelper.getListsCollection(requireContext())
+                if (listsCollection != null) {
+                    // ListsCollection is not null, fetch the data
+                    // Read later is always first, no need to sort
+                    data = listsCollection
+
+                    withContext(Dispatchers.Main) {
+                        adapter.updateData(data)
                     }
-
-                    // Move the read later list at the top
-                    if (readLater != null) {
-                        data.remove(readLater)
-                        data.add(0, readLater)
-                    }
-
-                    Log.d("SavedListsFragment", "Retrieved data (${data.size}). Updating adapter")
-                    adapter.updateData(data)
                 }
-                .addOnFailureListener { exception ->
-                    data += loadListData()
-
-                    adapter.updateData(data)
-                }
-        } else {
-            data += loadListData()
-
-            adapter.updateData(data)
+            } catch (e: Exception) {
+                // Handle exceptions
+                e.printStackTrace()
+            }
         }
-
-    }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         return binding.root
     }
@@ -107,7 +98,6 @@ class SavedListsFragment: Fragment(), cardListener {
     }
 
     override fun onCardClick(listId: String) {
-        Log.d("SavedListsFragment", "onCardClick: $listId")
         // Action
         val action = SavedFragmentDirections.actionSavedFragmentToSavedListArticlesFragment(listId)
 
