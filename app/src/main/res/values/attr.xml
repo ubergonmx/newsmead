@@ -28,6 +28,17 @@
     <attr name="shimmerColor" format="color" />
     <attr name="cardBackgroundColor" format="color" />
 
+    <attr name="lowEmphasisColor" format="color" />
+    <attr name="midEmphasisColor" format="color" />
+    <attr name="highEmphasisColor" format="color" />
+
+    <attr name="lowBackground" format="color" />
+    <attr name="midBackground" format="color" />
+    <attr name="highBackground" format="color" />
+
+    <attr name="lowTextEmphasis" format="color" />
+
+
 <!--    <attr name="chipTextColor" format="color" />-->
 <!--    <attr name="chipBackgroundColor" format="color" />-->
 <!--    <attr name="chipIconColor" format="color" />-->
