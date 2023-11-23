@@ -89,6 +89,8 @@
     <string name="saved_your_lists">Your Lists</string>
     <string name="saved_all">All</string>
 
+    <string name="saved_notes_btn">Open Notes</string>
+
     <!-- fragment_saved_your_lists -->
     <string name="saved_create">Create new list</string>
 
