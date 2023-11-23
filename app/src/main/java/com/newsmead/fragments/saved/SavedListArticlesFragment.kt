@@ -66,7 +66,7 @@ class SavedListArticlesFragment: Fragment(), clickListener {
         lifecycleScope.launch {
             try {
                 Log.d("SavedListArticles", "Retrieving data from Firebase for ${args.listId}")
-                val ids = FirebaseHelper.getArticleIdsFromList(requireContext(), "readLater")
+                val ids = FirebaseHelper.getArticleIdsFromList(requireContext(), args.listId)
                 articleIds.addAll(ids)
 
                 // Uncomment this function if prefer to use Firebase as a database
