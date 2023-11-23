@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?primaryBackgroundColor"
-    android:padding="16dp">
+    android:paddingLeft="8dp"
+    android:paddingTop="16dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="16dp">
 
     <LinearLayout
         android:id="@+id/llSource"
@@ -38,8 +41,8 @@
 
     <ImageView
         android:id="@+id/ivArticleImage"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
+        android:layout_width="98dp"
+        android:layout_height="95dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llSource"
@@ -50,14 +53,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="8dp"
         android:ellipsize="end"
-        android:fontFamily="@font/arial_regular"
-        android:maxLines="3"
+        android:fontFamily="@font/arialbd"
+        android:maxLines="5"
         android:text="@string/sample_title"
         android:textColor="?primaryTextColor"
         android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/ivArticleImage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llSource" />
