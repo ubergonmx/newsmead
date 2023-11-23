@@ -113,10 +113,12 @@ class ProfileFragment : Fragment() {
      * @param confirmPassword The confirm password entered by the user
      */
     private fun checkPasswordError(password: String, confirmPassword: String): Boolean {
-        if (password.isEmpty()) {
-            this.viewBinding.etPassword.error = "Password is required"
-            this.viewBinding.etPassword.requestFocus()
-            return true
+        if (password.isEmpty() && confirmPassword.isEmpty()) {
+            return false
+        } else if (password.isEmpty()) {
+                this.viewBinding.etPassword.error = "Password is required"
+                this.viewBinding.etPassword.requestFocus()
+                return true
         } else if (password.length < 6) {
             this.viewBinding.etPassword.error = "Min password length should be 6 characters"
             this.viewBinding.etPassword.requestFocus()
