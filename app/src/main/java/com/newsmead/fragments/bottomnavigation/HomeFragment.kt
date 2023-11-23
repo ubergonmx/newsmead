@@ -77,18 +77,10 @@ class HomeFragment : Fragment(), clickListener {
             articleAdapter.updateData(articles)
         }
 
-        this.feedHeaderAdapter = FeedHeaderAdapter()
-        val concatAdapter = ConcatAdapter(feedHeaderAdapter, articleAdapter)
-
-        this.viewBinding.rvFeed.adapter = concatAdapter
+        this.viewBinding.rvFeed.adapter = articleAdapter
         val linearLayoutManager = LinearLayoutManager(context)
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         this.viewBinding.rvFeed.layoutManager = linearLayoutManager
-
-        // Add divider between items
-        val customDividerItemDecoration = CustomDividerItemDecoration(context,
-            R.drawable.line_divider, FeedHeaderViewHolder::class.java)
-        this.viewBinding.rvFeed.addItemDecoration(customDividerItemDecoration)
     }
 
     companion object {
