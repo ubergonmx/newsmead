@@ -92,6 +92,23 @@
         <item name="android:paddingBottom">12dp</item>
     </style>
 
+    <style name="ButtonMedium_Solid" parent="ts_button_large">
+        <item name="android:backgroundTint">?highEmphasisColor</item>
+        <item name="android:textColor">?primaryButtonTextColor</item>
+        <item name="rippleColor">@color/cobalt_50</item>
+        <!--Padding-->
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+    </style>
+
+    <style name="ButtonMedium_Text" parent="ButtonMedium_Solid">
+        <item name="android:backgroundTint">?midBackground</item>
+        <item name="android:textColor">?highEmphasisColor</item>
+        <item name="rippleColor">@color/gray_200</item>
+    </style>
+
+
+
     <!-- Text Field Style -->
     <style name="EditTextOverlay">
         <item name="fontFamily">@font/arial_regular</item>
@@ -99,6 +116,10 @@
     </style>
 
     <!-- Material Override-->
+    <style name="Widget.App.ButtonStyle.Cobalt" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="materialThemeOverlay">@style/ButtonMedium_Solid</item>
+    </style>
+
     <style name="Widget.App.ButtonStyle.Gray" parent="Widget.MaterialComponents.Button.UnelevatedButton">
         <item name="materialThemeOverlay">@style/ButtonOverlayGray</item>
     </style>

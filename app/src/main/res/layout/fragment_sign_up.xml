@@ -22,11 +22,9 @@
             android:id="@+id/tvWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/arial_regular"
             android:text="@string/commons_welcome_to"
             android:textColor="?primaryTextColor"
-            android:textSize="@dimen/welcome_text_size"
-            android:textStyle="bold"
+            style="@style/ts_display_large"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,11 +32,10 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/garamond_regular"
+            android:fontFamily="@font/garamond_bold"
             android:text="@string/app_name"
-            android:textColor="?primaryTextColor"
+            android:textColor="@color/gold_300"
             android:textSize="@dimen/app_title_text_size"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
 
@@ -50,11 +47,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_margin"
         android:layout_marginTop="@dimen/common_margin_double"
-        android:fontFamily="@font/arial_regular"
+        style="@style/ts_display_small"
         android:text="@string/sign_up_title"
         android:textColor="?primaryTextColor"
-        android:textSize="@dimen/title_text_size"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clTitle" />
 
@@ -73,10 +68,9 @@
             android:id="@+id/tvAccName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/arial_regular"
             android:text="@string/sign_up_name"
             android:textColor="?primaryTextColor"
-            android:textSize="@dimen/normal_text_size"
+            style="@style/ts_title_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,7 +82,8 @@
             app:errorEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccName">
+            app:layout_constraintTop_toBottomOf="@+id/tvAccName"
+            app:boxStrokeColor="@color/cobalt_50"   >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etAccName"
@@ -105,10 +100,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/arial_regular"
             android:text="@string/commons_email_address"
             android:textColor="?primaryTextColor"
-            android:textSize="@dimen/normal_text_size"
+            style="@style/ts_title_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilAccName" />
 
@@ -120,7 +114,8 @@
             app:errorEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccEmail">
+            app:layout_constraintTop_toBottomOf="@+id/tvAccEmail"
+            app:boxStrokeColor="@color/cobalt_50">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etAccEmail"
@@ -137,10 +132,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/arial_regular"
             android:text="@string/commons_password"
             android:textColor="?primaryTextColor"
-            android:textSize="@dimen/normal_text_size"
+            style="@style/ts_title_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilAccEmail" />
 
@@ -153,7 +147,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvAccPassword"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            app:boxStrokeColor="@color/cobalt_50">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etAccPassword"
@@ -170,10 +165,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/arial_regular"
             android:text="@string/sign_up_confirm_password"
             android:textColor="?primaryTextColor"
-            android:textSize="@dimen/normal_text_size"
+            style="@style/ts_title_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilAccPassword" />
 
@@ -186,7 +180,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvAccConfirmPassword"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            app:boxStrokeColor="@color/cobalt_50">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etAccConfirmPassword"
@@ -203,17 +198,14 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAccStart"
-        style="@style/Widget.App.ButtonStyle.Gray"
+        style="@style/ButtonMedium_Solid"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_margin"
         android:layout_marginEnd="@dimen/common_margin"
         android:layout_marginBottom="@dimen/common_margin_half"
-        android:fontFamily="@font/arial_regular"
         android:text="@string/sign_up_get_started_btn"
-        android:textColor="?primaryButtonTextColor"
-        android:textSize="@dimen/normal_text_size"
-        android:textStyle="bold"
+        android:textAllCaps="false"
         app:cornerRadius="@dimen/common_margin_one_and_half"
         app:elevation="0dp"
         app:layout_constraintBottom_toTopOf="@+id/btnAccLog"
@@ -222,18 +214,13 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAccLog"
-        style="@style/Widget.App.ButtonStyle.White"
+        style="@style/ButtonMedium_Text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_margin"
         android:layout_marginEnd="@dimen/common_margin"
-        android:layout_marginBottom="48dp"
-        android:background="@android:color/transparent"
-        android:fontFamily="@font/arial_regular"
+        android:layout_marginBottom="32dp"
         android:text="@string/sign_up_log_back_in_btn"
-        android:textColor="?primaryTextColor"
-        android:textSize="@dimen/normal_text_size"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
