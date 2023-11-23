@@ -262,4 +262,7 @@
     <string name="new_list_name">Name of List</string>
     <string name="new_list_create">Create List</string>
     <string name="desc_folder_icon_for_list">Folder Icon for List</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_missing_article">Error! Missing Article. Please go back and try again.</string>
 </resources>

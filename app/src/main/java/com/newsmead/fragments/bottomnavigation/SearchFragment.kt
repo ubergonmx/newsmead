@@ -16,7 +16,8 @@ import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentSearchBinding
-import com.newsmead.recyclerviews.feed.FeedArticleSimplifiedAdapter
+import com.newsmead.recyclerviews.feed.ArticleSimplifiedAdapter
+import com.newsmead.recyclerviews.feed.clickListener
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,7 +29,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [SearchFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), clickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -110,7 +111,7 @@ class SearchFragment : Fragment() {
 
         // RecyclerView of Recent Articles
         val dataRecentNews = loadArticleDataLatest()
-        binding.rvSearchLatestNews.adapter = FeedArticleSimplifiedAdapter(dataRecentNews)
+        binding.rvSearchLatestNews.adapter = ArticleSimplifiedAdapter(dataRecentNews, this)
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvSearchLatestNews.layoutManager = layoutManager
@@ -142,5 +143,21 @@ class SearchFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onItemClicked(
+        articleId: String,
+        articleTitle: String,
+        articleSource: String,
+        articleImage: String,
+        articleReadTime: Int
+    ) {
+        // Action
+        val action = SearchFragmentDirections.actionSearchFragmentToArticleActivityStart(
+            articleId = articleId
+        )
+
+        // Navigation
+        Navigation.findNavController(requireView()).navigate(action)
     }
 }

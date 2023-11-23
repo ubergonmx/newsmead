@@ -5,13 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.data.DataHelper
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentArticleCategoryBinding
-import com.newsmead.recyclerviews.feed.FeedArticleAdapter
+import com.newsmead.recyclerviews.feed.ArticleAdapter
+import com.newsmead.recyclerviews.feed.clickListener
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,7 +25,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ArticleCategoryFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ArticleCategoryFragment : Fragment() {
+class ArticleCategoryFragment : Fragment(), clickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -46,7 +48,7 @@ class ArticleCategoryFragment : Fragment() {
 
         //RecyclerView of Articles
         val categoryArticlesData = DataHelper.loadCategoryArticlesData()
-        binding.rvCategoryArticles.adapter = FeedArticleAdapter(categoryArticlesData)
+        binding.rvCategoryArticles.adapter = ArticleAdapter(categoryArticlesData, this)
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvCategoryArticles.layoutManager = layoutManager
@@ -90,5 +92,21 @@ class ArticleCategoryFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onItemClicked(
+        articleId: String,
+        articleTitle: String,
+        articleSource: String,
+        articleImage: String,
+        articleReadTime: Int
+    ) {
+        // Action
+        val action = ArticleCategoryFragmentDirections.actionArticleCategoryFragmentToArticleActivityStart(
+            articleId
+        )
+
+        // Navigate
+        Navigation.findNavController(requireView()).navigate(action)
     }
 }

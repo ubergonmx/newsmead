@@ -71,6 +71,21 @@ class ArticleFragment : Fragment() {
             if (args.articleTitle != "Article Title") binding.tvArticleHeadline.text = args.articleTitle
             if (args.articleSource != "Article Source") binding.tvSource.text = args.articleSource
 
+            // Supply everything else if able
+            if (args.articleImage != "Article Image") {
+                // parses articleImage link into image
+                // Glide.with(this).load(args.articleImage).into(binding.ivSourceImage)
+                binding.ivSourceImage.setImageResource(R.drawable.sample_source_image)
+            }
+
+            if (args.articleBody != "Article Content") binding.tvArticleText.text = args.articleBody
+            if (args.articleReadTime != 0) {
+                val readTime = args.articleReadTime.toString() + " min read"
+                binding.tvArticleMinRead.text = readTime
+            }
+
+            // if (args.articleDate != "Article Date") binding.tvArticleDate.text = args.articleDate
+
             // Provides Sample Article
             loadMockArticleData(inflater, container)
         }
