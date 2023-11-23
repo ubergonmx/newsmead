@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.data.DataHelper.loadArticleData
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
-import com.newsmead.recyclerviews.feed.FeedArticleAdapter
 import com.newsmead.databinding.FragmentSavedAllBinding
 import com.newsmead.fragments.bottomnavigation.SavedFragmentDirections
 import com.newsmead.recyclerviews.feed.ArticleAdapter
