@@ -88,6 +88,10 @@
         <action
             android:id="@+id/action_articleSearchSourceFragment_to_articleActivityStart"
             app:destination="@id/articleActivityStart" />
+        <argument
+            android:name="sourceName"
+            app:argType="string"
+            android:defaultValue="NewsSource" />
     </fragment>
     <fragment
         android:id="@+id/articleCategoryFragment"
@@ -97,6 +101,10 @@
         <action
             android:id="@+id/action_articleCategoryFragment_to_articleActivityStart"
             app:destination="@id/articleActivityStart" />
+        <argument
+            android:name="categoryName"
+            app:argType="string"
+            android:defaultValue="News" />
     </fragment>
     <fragment
         android:id="@+id/articleSearchFragment"
