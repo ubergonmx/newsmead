@@ -194,11 +194,11 @@ class FirebaseHelper {
         }
 
         /**
-         * Adds an article to a list in Firestore
+         * Adds an article id to a list in Firestore
          * @param listId Id of the list to add the article to
          * @param articleId Id of the article to add to the list
          */
-        fun addArticleToFireStoreList(requireContext: Context, listId: String, articleId: String) {
+        fun addArticleIdToFireStoreList(requireContext: Context, listId: String, articleId: String) {
             if (uid == "null") {
                 Toast.makeText(requireContext, "Please login to add to a list", Toast.LENGTH_SHORT).show()
                 return
@@ -214,6 +214,47 @@ class FirebaseHelper {
             userListsRef.document(listId).collection("articles").document(articleId).set(
                 hashMapOf(
                     "articleId" to articleId
+                )
+            )
+                .addOnSuccessListener {
+                    // Handle Success
+                    Toast.makeText(requireContext, "Article added to list", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    // Handle Failure
+                    Toast.makeText(requireContext, "Error adding article to list", Toast.LENGTH_SHORT).show()
+                }
+        }
+
+
+        /**
+         * Adds an article to a list in Firestore
+         * @param listId Id of the list to add the article to
+         * @param articleId Id of the article to add to the list
+         */
+        fun addArticleToFireStoreList(requireContext: Context, listId: String, article: Article) {
+            if (uid == "null") {
+                Toast.makeText(requireContext, "Please login to add to a list", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            val userListsRef = getFirestoreInstance()
+                .collection("users")
+                .document(uid)
+                .collection("lists")
+
+            // Add article to list
+            Log.d("FirebaseHelper", "Adding article ${article.newsId} to list $listId")
+            userListsRef.document(listId).collection("articles").document(article.newsId).set(
+                hashMapOf(
+                    "articleId" to article.newsId,
+                    "title" to article.title,
+                    "image" to article.imageId,
+                    "source" to article.source,
+                    "sourceImage" to article.sourceImage,
+                    "readTime" to article.readTime,
+                    "date" to article.date,
+                    "url" to article.url
                 )
             )
                 .addOnSuccessListener {
