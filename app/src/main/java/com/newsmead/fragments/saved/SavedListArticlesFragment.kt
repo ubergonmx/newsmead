@@ -84,6 +84,33 @@ class SavedListArticlesFragment: Fragment(), clickListener {
         return binding.root
     }
 
+    // When returning from SavedListEditFragment, update the list name and/or articles
+    override fun onResume() {
+        super.onResume()
+
+        // Update name of list
+        binding.tvSavedListName.text = args.listName
+
+        // Retrieve data from Firebase Async using coroutines
+        lifecycleScope.launch {
+            try {
+                Log.d("SavedListArticles", "Retrieving data from Firebase for ${args.listId}")
+                val articles = FirebaseHelper.getArticlesFromList(requireContext(), args.listId)
+
+                // Add articles to data
+                data.clear()
+                data.addAll(articles)
+
+                // Notify the adapter that the dataset has changed
+                Log.d("SavedListArticles", "Updating adapter with ${data.size} articles")
+                binding.rvSavedArticles.adapter?.notifyDataSetChanged()
+            } catch (e: Exception) {
+                // Handle exceptions
+                e.printStackTrace()
+            }
+        }
+    }
+
     private fun showMenu(v: View, @MenuRes menuRes: Int) {
         val popup = PopupMenu(context!!, v)
         popup.menuInflater.inflate(menuRes, popup.menu)

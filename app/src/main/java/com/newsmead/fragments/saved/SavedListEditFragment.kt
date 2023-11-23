@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.FragmentSavedListEditBinding
 import com.newsmead.fragments.layouts.listListener
 import com.newsmead.models.Article
@@ -59,6 +60,13 @@ class SavedListEditFragment: Fragment(), listListener {
         binding.btnEditSave.setOnClickListener {
             // Save the checkedIds to the list
             Log.d("SavedListEditArticles", "CheckedIds: $checkedIds")
+
+            // Delete articles from list
+            FirebaseHelper.deleteArticlesFromFirestoreList(requireActivity(), args.listId, checkedIds)
+
+            // Simply pop the current fragment off the stack
+            val navController = binding.root.findNavController()
+            navController.popBackStack()
         }
 
 
