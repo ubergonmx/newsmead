@@ -18,17 +18,5 @@ class SavedListsViewHolder(private val viewBinding: ItemSavedListBinding): Recyc
         if (savedList.title == "Read Later") {
             this.viewBinding.ivListIcon.setImageResource(R.drawable.star_filled_weight400)
         }
-
-        // On clicking folder button, open fragment to open saved list
-        this.viewBinding.cvListCard.setOnClickListener {
-            // Pass data if needed
-            // val bundle = Bundle()
-            // bundle.putString("key", "value")
-            // listFragment.arguments = bundle
-
-            val navController = this.viewBinding.root.findNavController()
-            navController.navigate(R.id.action_savedFragment_to_savedListArticlesFragment)
-
-        }
     }
 }
