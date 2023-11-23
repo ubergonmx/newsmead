@@ -11,7 +11,7 @@ import com.newsmead.R
 import com.newsmead.databinding.ActivityArticleBinding
 
 class ArticleActivity : AppCompatActivity() {
-//    val args: ArticleActivityArgs by navArgs()
+    val args: ArticleActivityArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,12 +23,12 @@ class ArticleActivity : AppCompatActivity() {
 
 
         // Receive articleId from MainActivity
-        val articleId = intent.getStringExtra("articleId")
-
-        Log.d("ArticleActivity", "onCreate: articleId: $articleId")
+//        val articleId = intent.getStringExtra("articleId")
 
         // Receive articleId from navigation
-//        val articleId = args.articleId
+        val articleId = args.articleId
+
+        Log.d("ArticleActivity", "onCreate: articleId: $articleId")
 
         // Update fragment with articleId
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.flMainArticleContainer) as NavHostFragment
