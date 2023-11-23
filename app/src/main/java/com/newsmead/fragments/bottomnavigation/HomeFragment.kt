@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.newsmead.R
+import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.data.DataHelper
 import com.newsmead.databinding.FragmentHomeBinding
 import com.newsmead.models.Article
@@ -74,6 +76,19 @@ class HomeFragment : Fragment(), clickListener {
         val linearLayoutManager = LinearLayoutManager(context)
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         this.viewBinding.rvFeed.layoutManager = linearLayoutManager
+
+        // Divider
+        val customDivider = CustomDividerItemDecoration(context, R.drawable.line_divider)
+        this.viewBinding.rvFeed.addItemDecoration(customDivider)
+
+        // History Button
+        this.viewBinding.btnHistory.setOnClickListener {
+            // Action
+            val action = HomeFragmentDirections.actionHomeFragmentToHistoryFragment()
+
+            // Navigate
+            Navigation.findNavController(requireView()).navigate(action)
+        }
     }
 
     companion object {
