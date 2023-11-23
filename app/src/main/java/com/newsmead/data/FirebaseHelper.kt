@@ -305,6 +305,54 @@ class FirebaseHelper {
                 }
         }
 
+        fun deleteArticleFromFirestoreList(requireContext: Context, listId: String, articleId: String) {
+            if (uid == "null") {
+                Toast.makeText(requireContext, "Please login to delete from a list", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            val userListsRef = getFirestoreInstance()
+                .collection("users")
+                .document(uid)
+                .collection("lists")
+
+            // Delete article from list
+            Log.d("FirebaseHelper", "Deleting article $articleId from list $listId")
+            userListsRef.document(listId).collection("articles").document(articleId).delete()
+                .addOnSuccessListener {
+                    // Handle Success
+                    Toast.makeText(requireContext, "Article deleted from list", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    // Handle Failure
+                    Toast.makeText(requireContext, "Error deleting article from list", Toast.LENGTH_SHORT).show()
+                }
+        }
+
+        fun deleteArticlesFromFirestoreList(requireContext: Context, listId: String, articleIds: List<String>) {
+            if (uid == "null") {
+                Toast.makeText(requireContext, "Please login to delete from a list", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            val userListsRef = getFirestoreInstance()
+                .collection("users")
+                .document(uid)
+                .collection("lists")
+
+            // Delete article from list
+            Log.d("FirebaseHelper", "Deleting articles $articleIds from list $listId")
+            for (articleId in articleIds) {
+                userListsRef.document(listId).collection("articles").document(articleId).delete()
+                    .addOnSuccessListener {
+                    }
+                    .addOnFailureListener {
+                        // Handle Failure
+                        Toast.makeText(requireContext, "Error deleting article from list", Toast.LENGTH_SHORT).show()
+                    }
+            }
+        }
+
         fun renameList(requireContext: Context, listId: String, newName: String) {
             if (uid == "null") {
                 Toast.makeText(requireContext, "Please login to rename a list", Toast.LENGTH_SHORT).show()
