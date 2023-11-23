@@ -225,5 +225,33 @@ class FirebaseHelper {
                     Toast.makeText(requireContext, "Error adding article to list", Toast.LENGTH_SHORT).show()
                 }
         }
+
+        fun renameList(requireContext: Context, listId: String, newName: String) {
+            if (uid == "null") {
+                Toast.makeText(requireContext, "Please login to rename a list", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            val userListsRef = getFirestoreInstance()
+                .collection("users")
+                .document(uid)
+                .collection("lists")
+
+            // Rename list
+            Log.d("FirebaseHelper", "Renaming list $listId to $newName")
+            userListsRef.document(listId).update(
+                hashMapOf(
+                    "name" to newName
+                ) as Map<String, Any>
+            )
+                .addOnSuccessListener {
+                    // Handle Success
+                    Toast.makeText(requireContext, "List renamed", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    // Handle Failure
+                    Toast.makeText(requireContext, "Error renaming list", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 }
