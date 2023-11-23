@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="32dp"
     android:background="?primaryBackgroundColor"
-    android:paddingTop="8dp">
+    android:paddingTop="32dp">
 
     <TextView
         android:id="@+id/tvHome"
@@ -12,23 +13,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
+        android:layout_marginTop="40dp"
         android:text="@string/home_title"
         android:textColor="?primaryTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/btnHistory"
         style="@style/ButtonSmall_LowEmphasis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:drawableStart="@drawable/ic_baseline_history_24"
         android:text="@string/home_history_btn"
         app:icon="@drawable/ic_baseline_history_24"
         app:iconPadding="6dp"
         app:iconSize="24dp"
         app:iconTint="?secondaryButtonIconColor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

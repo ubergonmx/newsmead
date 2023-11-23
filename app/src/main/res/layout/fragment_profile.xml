@@ -10,32 +10,30 @@
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UseSwitchCompatOrMaterialXml">
 
         <TextView
             android:id="@+id/tvProfile"
+            style="@style/ts_display_large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/arial_regular"
+            android:layout_marginTop="32dp"
             android:text="@string/profile_title"
             android:textColor="?primaryTextColor"
-            android:textSize="@dimen/header_text_size"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvProfileSubtitle"
+            style="@style/ts_title_large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/arial_regular"
             android:text="@string/profile_subtitle"
             android:textColor="?primaryTextColor"
-            android:textSize="@dimen/title_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvProfile" />
 
@@ -63,8 +61,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text"
                 android:enabled="false"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvProfileEmail" />
@@ -111,20 +109,17 @@
 
         <Button
             android:id="@+id/btnSave"
+            style="@style/ButtonSmall_HighEmphasis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:backgroundTint="?primaryButtonBgColor"
-            android:fontFamily="@font/arial_regular"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
             android:text="@string/profile_save"
-            android:textColor="?primaryButtonTextColor"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
         <Button
             android:id="@+id/btnLogout"
+            style="@style/ts_button_medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -132,16 +127,37 @@
             android:layout_marginEnd="16dp"
             android:backgroundTint="?secondaryButtonBgColor"
             android:fontFamily="@font/arial_regular"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
             android:text="@string/profile_logout"
             android:textAlignment="textStart"
             android:textColor="?secondaryButtonTextColor"
-            app:cornerRadius="0dp"
+            app:cornerRadius="12dp"
             app:icon="@drawable/logout_nofill_weight400"
             app:iconGravity="end"
             app:iconTint="?secondaryButtonIconColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnSave" />
+
+        <Switch
+            android:id="@+id/swDarkmode"
+            style="@style/ts_button_medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:foregroundTint="?secondaryButtonBgColor"
+            android:paddingStart="20dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="14dp"
+            android:splitTrack="false"
+            android:text="@string/profile_darkmode"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

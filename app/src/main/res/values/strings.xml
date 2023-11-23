@@ -107,6 +107,8 @@
     <string name="profile_save">Save Changes</string>
     <string name="profile_logout">Logout</string>
 
+    <string name="profile_darkmode">Dark Mode</string>
+
     <!-- ~~~~~~~~~~~~~~~~~~~~ Article ~~~~~~~~~~~~~~~~~~~~ -->
 
     <!-- activity_article -->

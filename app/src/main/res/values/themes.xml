@@ -93,6 +93,17 @@
         <item name="android:paddingBottom">12dp</item>
     </style>
 
+    <style name="ButtonSmall_HighEmphasis" parent="ts_button_large">
+        <item name="android:backgroundTint">?highEmphasisColor</item>
+        <item name="android:textColor">?primaryButtonTextColor</item>
+        <item name="rippleColor">@color/gold_100</item>
+        <!--Padding-->
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
     <style name="ButtonMedium_Solid" parent="ts_button_large">
         <item name="android:backgroundTint">?highEmphasisColor</item>
         <item name="android:textColor">?primaryButtonTextColor</item>
@@ -148,4 +159,11 @@
         <item name="fontFamily">@font/arial_regular</item>
         <item name="boxBackgroundColor">?primaryBackgroundColor</item>
     </style>
+
+    <style name="Widget.App.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/gold_60</item>
+    </style>
+
+
+
 </resources>
