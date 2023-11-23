@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="16dp"
-    android:background="?primaryBackgroundColor">
+    android:background="?primaryBackgroundColor"
+    android:paddingTop="8dp">
 
     <TextView
         android:id="@+id/tvHome"
+        style="@style/ts_display_large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
-        style="@style/ts_display_large"
         android:text="@string/home_title"
         android:textColor="?primaryTextColor"
         app:layout_constraintStart_toStartOf="parent"
