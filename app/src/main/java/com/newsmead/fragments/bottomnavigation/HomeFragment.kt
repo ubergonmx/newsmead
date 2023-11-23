@@ -6,18 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.newsmead.data.DataHelper
-import com.newsmead.R
-import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.FragmentHomeBinding
 import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.ArticleAdapter
-import com.newsmead.recyclerviews.feed.FeedArticleAdapter
-import com.newsmead.recyclerviews.feed.FeedHeaderAdapter
-import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder
 import com.newsmead.recyclerviews.feed.clickListener
 
 // TODO: Rename parameter arguments, choose names that match
@@ -37,7 +31,6 @@ class HomeFragment : Fragment(), clickListener {
 
     private lateinit var articleAdapter: ArticleAdapter
     private lateinit var shimmerFrameLayout : ShimmerFrameLayout
-    private lateinit var feedHeaderAdapter: FeedHeaderAdapter
     private lateinit var viewBinding: FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
