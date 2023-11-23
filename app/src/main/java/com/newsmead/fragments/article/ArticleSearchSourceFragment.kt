@@ -5,15 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.data.DataHelper
 import com.newsmead.R
 import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentArticleSearchSourceBinding
-import com.newsmead.recyclerviews.feed.FeedArticleAdapter
+import com.newsmead.recyclerviews.feed.ArticleAdapter
+import com.newsmead.recyclerviews.feed.clickListener
 
-class ArticleSearchSourceFragment: Fragment() {
+class ArticleSearchSourceFragment: Fragment(), clickListener {
     private lateinit var binding: FragmentArticleSearchSourceBinding
 
     override fun onCreateView(
@@ -25,7 +27,7 @@ class ArticleSearchSourceFragment: Fragment() {
 
         // RecyclerView of Articles
         val sourceArticlesData = DataHelper.loadSourceArticlesData()
-        binding.rvSearchSourceArticles.adapter = FeedArticleAdapter(sourceArticlesData)
+        binding.rvSearchSourceArticles.adapter = ArticleAdapter(sourceArticlesData, this)
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvSearchSourceArticles.layoutManager = layoutManager
@@ -53,5 +55,21 @@ class ArticleSearchSourceFragment: Fragment() {
 
 
         return binding.root
+    }
+
+    override fun onItemClicked(
+        articleId: String,
+        articleTitle: String,
+        articleSource: String,
+        articleImage: String,
+        articleReadTime: Int
+    ) {
+        // Action
+        val action = ArticleSearchSourceFragmentDirections.actionArticleSearchSourceFragmentToArticleActivityStart(
+            articleId,
+        )
+
+        // Navigate
+        Navigation.findNavController(requireView()).navigate(action)
     }
 }

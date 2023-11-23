@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.data.DataHelper
@@ -12,7 +13,8 @@ import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.FragmentArticleSearchBinding
 import com.newsmead.fragments.layouts.BottomSheetDialogSearchFilter
-import com.newsmead.recyclerviews.feed.FeedArticleAdapter
+import com.newsmead.recyclerviews.feed.ArticleAdapter
+import com.newsmead.recyclerviews.feed.clickListener
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ private const val SEARCH_ARG_PARAM2 = "param2"
  * Use the [ArticleSearchFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ArticleSearchFragment : Fragment() {
+class ArticleSearchFragment : Fragment(), clickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -55,7 +57,7 @@ class ArticleSearchFragment : Fragment() {
 
         // RecyclerView of Articles
         val searchArticlesData = DataHelper.loadSearchArticlesData()
-        binding.rvSearchArticles.adapter = FeedArticleAdapter(searchArticlesData)
+        binding.rvSearchArticles.adapter = ArticleAdapter(searchArticlesData, this)
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvSearchArticles.layoutManager = layoutManager
@@ -97,5 +99,21 @@ class ArticleSearchFragment : Fragment() {
                     putString(SEARCH_ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onItemClicked(
+        articleId: String,
+        articleTitle: String,
+        articleSource: String,
+        articleImage: String,
+        articleReadTime: Int
+    ) {
+        // Action
+        val action = ArticleSearchFragmentDirections.actionArticleSearchFragmentToArticleActivityStart(
+            articleId
+        )
+
+        // Navigate
+        Navigation.findNavController(requireView()).navigate(action)
     }
 }
