@@ -3,100 +3,117 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?primaryBackgroundColor"
-    android:paddingLeft="8dp"
-    android:paddingTop="16dp"
-    android:paddingRight="8dp"
-    android:paddingBottom="16dp">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/llSource"
-        android:layout_width="0dp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvArticleCard"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
+        android:clickable="true"
+        app:strokeWidth="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivSourceImage"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:scaleType="fitCenter"
-            app:shapeAppearanceOverlay="@style/Theme.NewsMead.Circular"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/tvSource"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/arial_regular"
-            android:text="@string/sample_source"
-            android:textColor="?primaryTextColor"
-            android:textSize="16sp" />
-    </LinearLayout>
+            android:background="?primaryBackgroundColor"
+            android:paddingLeft="8dp"
+            android:paddingTop="16dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="16dp">
 
-    <ImageView
-        android:id="@+id/ivArticleImage"
-        android:layout_width="98dp"
-        android:layout_height="95dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llSource"
-        tools:srcCompat="@tools:sample/avatars" />
+            <LinearLayout
+                android:id="@+id/llSource"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tvArticleTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:ellipsize="end"
-        android:maxLines="5"
-        android:text="@string/sample_title"
-        android:textColor="?primaryTextColor"
-        style="@style/ts_display_small"
-        app:layout_constraintEnd_toStartOf="@+id/ivArticleImage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llSource" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivSourceImage"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:scaleType="fitCenter"
+                    app:shapeAppearanceOverlay="@style/Theme.NewsMead.Circular"
+                    tools:srcCompat="@tools:sample/avatars" />
 
-    <LinearLayout
-        android:id="@+id/llArticleFooter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvArticleTitle">
+                <TextView
+                    android:id="@+id/tvSource"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/arial_regular"
+                    android:text="@string/sample_source"
+                    android:textColor="?primaryTextColor"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvArticleDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sample_date"
-            android:textColor="?lowTextEmphasis"
-            style="@style/ts_subtext_medium" />
+            <ImageView
+                android:id="@+id/ivArticleImage"
+                android:layout_width="98dp"
+                android:layout_height="95dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llSource"
+                tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/tvBullet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/common_margin_half"
-            android:text="@string/symbol_bullet"
-            android:textColor="?lowTextEmphasis"
-            style="@style/ts_subtext_medium" />
+            <TextView
+                android:id="@+id/tvArticleTitle"
+                style="@style/ts_display_small"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:text="@string/sample_title"
+                android:textColor="?primaryTextColor"
+                app:layout_constraintEnd_toStartOf="@+id/ivArticleImage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llSource" />
 
-        <TextView
-            android:id="@+id/tvReadTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/common_margin_half"
-            android:text="@string/sample_read_time"
-            android:textColor="?lowTextEmphasis"
-            style="@style/ts_subtext_medium" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llArticleFooter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvArticleTitle">
 
+                <TextView
+                    android:id="@+id/tvArticleDate"
+                    style="@style/ts_subtext_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sample_date"
+                    android:textColor="?lowTextEmphasis" />
+
+                <TextView
+                    android:id="@+id/tvBullet"
+                    style="@style/ts_subtext_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/common_margin_half"
+                    android:text="@string/symbol_bullet"
+                    android:textColor="?lowTextEmphasis" />
+
+                <TextView
+                    android:id="@+id/tvReadTime"
+                    style="@style/ts_subtext_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/common_margin_half"
+                    android:text="@string/sample_read_time"
+                    android:textColor="?lowTextEmphasis" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

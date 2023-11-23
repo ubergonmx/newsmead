@@ -16,4 +16,6 @@ class ArticleViewHolder(private val viewBinding: ItemFeedArticleBinding): Recycl
         this.viewBinding.tvArticleDate.text = article.date
         this.viewBinding.tvReadTime.text = article.readTime
     }
+
+    fun getCardView() = viewBinding.cvArticleCard
 }
