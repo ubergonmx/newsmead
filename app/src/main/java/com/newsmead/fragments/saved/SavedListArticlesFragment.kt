@@ -66,14 +66,10 @@ class SavedListArticlesFragment: Fragment(), clickListener {
         lifecycleScope.launch {
             try {
                 Log.d("SavedListArticles", "Retrieving data from Firebase for ${args.listId}")
-                val ids = FirebaseHelper.getArticleIdsFromList(requireContext(), args.listId)
-                articleIds.addAll(ids)
+                val articles = FirebaseHelper.getArticlesFromList(requireContext(), args.listId)
 
-                // Uncomment this function if prefer to use Firebase as a database
-                // val ids = FirebaseHelper.getArticlesFromList(requireContext(), "readLater")
-
-                // Now that you have the articleIds, you can fetch the corresponding articles
-                data.addAll(getArticlesFromIds(articleIds))
+                // Add articles to data
+                data.addAll(articles)
 
                 // Notify the adapter that the dataset has changed
                 Log.d("SavedListArticles", "Updating adapter with ${data.size} articles")
@@ -166,11 +162,7 @@ class SavedListArticlesFragment: Fragment(), clickListener {
 
         val articles = ArrayList<Article>()
 
-        // Some logic to fetch articles from the given ids
-        // For now using dummy data
-        DataHelper.loadArticleData {
-            articles.addAll(it)
-        }
+        //
 
         // Once you have the articles, resume the coroutine
         continuation.resume(articles)
