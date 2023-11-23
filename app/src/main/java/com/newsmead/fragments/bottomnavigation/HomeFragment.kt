@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -13,9 +14,11 @@ import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.databinding.FragmentHomeBinding
 import com.newsmead.models.Article
+import com.newsmead.recyclerviews.feed.ArticleAdapter
 import com.newsmead.recyclerviews.feed.FeedArticleAdapter
 import com.newsmead.recyclerviews.feed.FeedHeaderAdapter
 import com.newsmead.recyclerviews.feed.FeedHeaderViewHolder
+import com.newsmead.recyclerviews.feed.clickListener
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,12 +30,12 @@ private const val ARG_PARAM2 = "param2"
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), clickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var feedArticleAdapter: FeedArticleAdapter
+    private lateinit var articleAdapter: ArticleAdapter
     private lateinit var shimmerFrameLayout : ShimmerFrameLayout
     private lateinit var feedHeaderAdapter: FeedHeaderAdapter
     private lateinit var viewBinding: FragmentHomeBinding
@@ -63,7 +66,7 @@ class HomeFragment : Fragment() {
 
         // Set up Feed RecyclerView
         //data = DataHelper.loadArticleData()
-        this.feedArticleAdapter = FeedArticleAdapter(data)
+        this.articleAdapter = ArticleAdapter(data, this)
         // Load data and update the adapter when available
         DataHelper.loadArticleData { articles ->
             // Stop the shimmer
@@ -71,11 +74,11 @@ class HomeFragment : Fragment() {
             this.shimmerFrameLayout.visibility = View.GONE
 
             // Update the adapter with the retrieved articles
-            feedArticleAdapter.updateData(articles)
+            articleAdapter.updateData(articles)
         }
 
         this.feedHeaderAdapter = FeedHeaderAdapter()
-        val concatAdapter = ConcatAdapter(feedHeaderAdapter, feedArticleAdapter)
+        val concatAdapter = ConcatAdapter(feedHeaderAdapter, articleAdapter)
 
         this.viewBinding.rvFeed.adapter = concatAdapter
         val linearLayoutManager = LinearLayoutManager(context)
@@ -107,5 +110,21 @@ class HomeFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onItemClicked(
+        articleId: String,
+        articleTitle: String,
+        articleSource: String,
+        articleImage: String,
+        articleReadTime: Int
+    ) {
+        // Action
+        val action = HomeFragmentDirections.actionHomeFragmentToArticleActivityStart(
+            articleId
+        )
+
+        // Navigate
+        Navigation.findNavController(requireView()).navigate(action)
     }
 }
