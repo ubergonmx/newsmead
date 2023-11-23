@@ -170,7 +170,7 @@ class ArticleFragment : Fragment() {
             itemFeedArticleSimplified.ivSourceImage.setImageResource(article.imageId)
 
             // Add onClick to open article using safeargs
-            itemFeedArticleSimplified.root.setOnClickListener {
+            itemFeedArticleSimplified.cvArticleSimplifiedCard.setOnClickListener {
                 // Parse read time to int and remove " min read"
                 val parsedReadTime = article.readTime.substring(0, article.readTime.length - 9)
 

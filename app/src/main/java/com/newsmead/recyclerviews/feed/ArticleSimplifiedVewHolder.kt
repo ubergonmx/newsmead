@@ -14,4 +14,6 @@ class ArticleSimplifiedViewHolder(private val viewBinding: ItemFeedArticleSimpli
         this.viewBinding.tvArticleDate.text = article.date
         this.viewBinding.tvReadTime.text = article.readTime
     }
+
+    fun getCardView() = viewBinding.cvArticleSimplifiedCard
 }

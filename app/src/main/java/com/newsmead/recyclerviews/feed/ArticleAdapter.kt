@@ -27,7 +27,7 @@ class ArticleAdapter(
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         holder.bindData(articleList[position])
 
-        holder.itemView.setOnClickListener {
+        holder.getCardView().setOnClickListener {
             val parsedReadTime = articleList[position].readTime.split(" ")[0].toInt()
             clickListener.onItemClicked(
                 articleId = articleList[position].newsId,

@@ -47,15 +47,16 @@
                         app:tint="?secondaryIconColor" />
 
                     <ImageButton
-                        android:id="@+id/btnSavedDelete"
+                        android:id="@+id/btnEdit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:background="@null"
-                        android:src="@drawable/do_not_disturb_on_nofill_weight400"
+                        android:src="@drawable/ic_dots"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:tint="?secondaryIconColor" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
