@@ -27,6 +27,7 @@
     <attr name="dividerColor" format="color" />
     <attr name="shimmerColor" format="color" />
     <attr name="cardBackgroundColor" format="color" />
+    <attr name="cardBackgroundColorPrimary" format="color" />
 
     <attr name="lowEmphasisColor" format="color" />
     <attr name="midEmphasisColor" format="color" />

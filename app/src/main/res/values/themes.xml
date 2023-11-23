@@ -26,6 +26,7 @@
         <item name="dividerColor">@color/divider_color</item>
         <item name="shimmerColor">@color/gray_200</item>
         <item name="cardBackgroundColor">@color/gray_300</item>
+        <item name="cardBackgroundColorPrimary">@color/gold_20</item>
 
         <!--component colors-->
         <item name="lowEmphasisColor">@color/gold_20</item>

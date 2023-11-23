@@ -12,19 +12,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvSaved"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_header"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/arial_regular"
-            android:text="@string/saved_title"
-            android:textColor="?primaryTextColor"
-            android:textSize="@dimen/header_text_size"
-            android:textStyle="bold"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvSaved"
+                style="@style/ts_display_large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/saved_title"
+                android:textColor="?primaryTextColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnHistory"
+                style="@style/ButtonSmall_LowEmphasis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableStart="@drawable/ic_notes"
+                android:text="@string/saved_notes_btn"
+                app:icon="@drawable/ic_notes"
+                app:iconPadding="6dp"
+                app:iconSize="24dp"
+                app:iconTint="?secondaryButtonIconColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tlListTabs"
@@ -35,7 +58,11 @@
             android:background="@drawable/m3_tabs_custom_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSaved">
+            app:layout_constraintTop_toBottomOf="@+id/cl_header"
+            app:tabIndicatorColor="@color/cobalt_100"
+            app:tabIndicatorFullWidth="true"
+            app:tabSelectedTextColor="@color/cobalt_100"
+            app:tabTextColor="@color/gray_100">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"

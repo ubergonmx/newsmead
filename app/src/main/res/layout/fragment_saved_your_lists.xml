@@ -9,17 +9,15 @@
 
     <Button
         android:id="@+id/btnCreateList"
+        style="@style/ButtonMedium_Solid"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="?secondaryButtonBgColor"
-        android:fontFamily="@font/arial_regular"
         android:minHeight="48dip"
         android:text="@string/saved_create"
-        android:textColor="?secondaryButtonTextColor"
         app:icon="@drawable/add_nofill_weight400"
         app:iconGravity="textStart"
-        app:iconTint="?secondaryButtonIconColor"
+        app:iconTint="?primaryButtonTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
