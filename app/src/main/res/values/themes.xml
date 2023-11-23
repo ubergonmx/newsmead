@@ -95,7 +95,7 @@
     <style name="ButtonMedium_Solid" parent="ts_button_large">
         <item name="android:backgroundTint">?highEmphasisColor</item>
         <item name="android:textColor">?primaryButtonTextColor</item>
-        <item name="rippleColor">@color/cobalt_50</item>
+        <item name="rippleColor">@color/gold_100</item>
         <!--Padding-->
         <item name="android:paddingTop">14dp</item>
         <item name="android:paddingBottom">14dp</item>

@@ -22,11 +22,9 @@
             android:id="@+id/tvWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/arial_regular"
             android:text="@string/commons_welcome_to"
             android:textColor="?primaryTextColor"
-            android:textSize="@dimen/welcome_text_size"
-            android:textStyle="bold"
+            style="@style/ts_display_large"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,11 +32,10 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/garamond_regular"
+            android:fontFamily="@font/garamond_bold"
             android:text="@string/app_name"
-            android:textColor="?primaryTextColor"
+            android:textColor="@color/gold_300"
             android:textSize="@dimen/app_title_text_size"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
 
@@ -50,11 +47,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_margin"
         android:layout_marginTop="@dimen/common_margin_double"
-        android:fontFamily="@font/arial_regular"
         android:text="@string/log_in_title"
+        style="@style/ts_display_small"
         android:textColor="?primaryTextColor"
-        android:textSize="@dimen/title_text_size"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clTitle" />
 
@@ -73,10 +68,9 @@
             android:id="@+id/tvAccLogEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/arial_regular"
             android:text="@string/commons_email_address"
             android:textColor="?primaryTextColor"
-            android:textSize="@dimen/normal_text_size"
+            style="@style/ts_title_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,7 +81,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccLogEmail">
+            app:layout_constraintTop_toBottomOf="@+id/tvAccLogEmail"
+            app:boxStrokeColor="@color/cobalt_50"   >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etAccLogEmail"
@@ -108,10 +103,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/arial_regular"
             android:text="@string/commons_password"
             android:textColor="?primaryTextColor"
-            android:textSize="@dimen/normal_text_size"
+            style="@style/ts_title_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilAccLogEmail" />
 
@@ -123,7 +117,8 @@
             app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccLogPassword">
+            app:layout_constraintTop_toBottomOf="@+id/tvAccLogPassword"
+            app:boxStrokeColor="@color/cobalt_50"   >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etAccLogPassword"
@@ -144,9 +139,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/arial_regular"
             android:text="@string/log_in_remember_me"
-            android:textSize="@dimen/small_text_size"
+            style="@style/ts_subtext_regular"
+            android:textColor="?lowTextEmphasis"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilAccLogPassword" />
 
@@ -154,17 +149,13 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAccLogIn"
-        style="@style/Widget.App.ButtonStyle.Gray"
+        style="@style/ButtonMedium_Solid"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_margin"
         android:layout_marginEnd="@dimen/common_margin"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/arial_regular"
         android:text="@string/log_in_btn"
-        android:textColor="?primaryButtonTextColor"
-        android:textSize="@dimen/normal_text_size"
-        android:textStyle="bold"
         app:cornerRadius="24dp"
         app:layout_constraintBottom_toTopOf="@+id/btnAccCreate"
         app:layout_constraintEnd_toEndOf="parent"
@@ -172,18 +163,13 @@
 
     <Button
         android:id="@+id/btnAccCreate"
-        style="@style/Widget.App.ButtonStyle.White"
+        style="@style/ButtonMedium_Text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/common_margin"
         android:layout_marginEnd="@dimen/common_margin"
         android:layout_marginBottom="@dimen/common_margin_triple"
-        android:background="@android:color/transparent"
-        android:fontFamily="@font/arial_regular"
         android:text="@string/log_in_create_account_btn"
-        android:textColor="?primaryTextColor"
-        android:textSize="@dimen/normal_text_size"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
