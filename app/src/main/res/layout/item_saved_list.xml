@@ -14,11 +14,12 @@
         android:clickable="true"
         android:focusable="true"
         android:outlineProvider="none"
-        app:cardBackgroundColor="?cardBackgroundColor"
+        app:cardBackgroundColor="?cardBackgroundColorPrimary"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/gold_200">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -32,12 +33,11 @@
 
             <TextView
                 android:id="@+id/tvListTitle"
+                style="@style/ts_display_small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sample_saved_list_title"
-                android:textColor="?primaryTextColor"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textColor="?primaryTextColor" />
 
             <Space
                 android:layout_width="match_parent"
@@ -45,6 +45,7 @@
 
             <TextView
                 android:id="@+id/tvListNumArticles"
+                style="@style/ts_button_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sample_saved_list_number"
