@@ -95,6 +95,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun updateProfile(name: String, password: String, confirmPassword: String): Boolean {
+        var result = false
         if (checkPasswordError(password, confirmPassword)) {
             return false
         } else {
@@ -103,18 +104,17 @@ class ProfileFragment : Fragment() {
                 if (task.isSuccessful) {
                     // Password updated successfully
                     resetTextFields()
-                    return@addOnCompleteListener true
+                    result = true
                 } else {
                     // Password update failed
                     this.viewBinding.etPassword.error = task.exception?.message
                     this.viewBinding.etPassword.requestFocus()
-
-                    return@addOnCompleteListener false
+                    result = false
                 }
             }
         }
-        
-        return true
+
+        return result
     }
 
     /**
