@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--    Primary colors      -->
     <color name="black">#FF1A1A1A</color>
     <color name="white">#FFFFFFFF</color>
     <color name="sepia">#FFF5EED9</color>
     <color name="sepia_btn">#FFEBDEB5</color>
+
+    <!--    Secondary colors      -->
+    <color name="gold_100">#FFFCEB4F</color>
+    <color name="gold_60">#FFFDF395</color>
+    <color name="gold_20">#FFFEFBDC</color>
+    <color name="gold_200">#FFE6D000</color>
+    <color name="gold_300">#FFAF9503</color>
+
+    <!--    Accent colors      -->
+    <color name="cobalt_100">#FF494BB0</color>
+    <color name="cobalt_50">#FF9293D0</color>
+
+    <!--    Neutral colors      -->
     <color name="gray_100">#FF666666</color>
     <color name="gray_200">#FFB3B3B3</color>
     <color name="gray_250">#FFC1C1C1</color>
