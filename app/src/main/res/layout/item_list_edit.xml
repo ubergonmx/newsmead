@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvArticleEditCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        app:strokeWidth="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?primaryBackgroundColor"
+            android:paddingLeft="8dp"
+            android:paddingTop="16dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="16dp">
+
+            <CheckBox
+                android:id="@+id/cbArticleEdit"
+                style="@android:style/Widget.CompoundButton.CheckBox"
+                android:layout_width="64dp"
+                android:layout_height="0dp"
+                android:clickable="false"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/llEditSource"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cbArticleEdit"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivSourceEditImage"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:scaleType="fitCenter"
+                    app:shapeAppearanceOverlay="@style/Theme.NewsMead.Circular"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/tvEditSource"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/arial_regular"
+                    android:text="@string/sample_source"
+                    android:textColor="?primaryTextColor"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivArticleEditImage"
+                android:layout_width="98dp"
+                android:layout_height="95dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llEditSource"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/tvArticleEditTitle"
+                style="@style/ts_display_small"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:text="@string/sample_title"
+                android:textColor="?primaryTextColor"
+                app:layout_constraintEnd_toStartOf="@+id/ivArticleEditImage"
+                app:layout_constraintStart_toEndOf="@+id/cbArticleEdit"
+                app:layout_constraintTop_toBottomOf="@+id/llEditSource" />
+
+            <LinearLayout
+                android:id="@+id/llArticleEditFooter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@+id/cbArticleEdit"
+                app:layout_constraintTop_toBottomOf="@+id/tvArticleEditTitle">
+
+                <TextView
+                    android:id="@+id/tvArticleEditDate"
+                    style="@style/ts_subtext_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sample_date"
+                    android:textColor="?lowTextEmphasis" />
+
+                <TextView
+                    android:id="@+id/tvEditBullet"
+                    style="@style/ts_subtext_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/common_margin_half"
+                    android:text="@string/symbol_bullet"
+                    android:textColor="?lowTextEmphasis" />
+
+                <TextView
+                    android:id="@+id/tvEditReadTime"
+                    style="@style/ts_subtext_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/common_margin_half"
+                    android:text="@string/sample_read_time"
+                    android:textColor="?lowTextEmphasis" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
