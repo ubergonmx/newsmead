@@ -5,6 +5,7 @@ class SavedList {
         private set
     var title: String
         private set
+    var isChecked: Boolean = false
     var articles: ArrayList<Article> = ArrayList()
         private set
 
