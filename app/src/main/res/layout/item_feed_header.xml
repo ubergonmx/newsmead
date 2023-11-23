@@ -11,33 +11,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/arial_regular"
+        style="@style/ts_display_large"
         android:text="@string/home_title"
         android:textColor="?primaryTextColor"
-        android:textSize="@dimen/header_text_size"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnHistory"
+        style="@style/ButtonSmall_LowEmphasis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="?secondaryButtonBgColor"
         android:drawableStart="@drawable/ic_baseline_history_24"
-        android:fontFamily="@font/arial_regular"
-        android:paddingStart="6dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="8dp"
         android:text="@string/home_history_btn"
-        android:textColor="?secondaryButtonTextColor"
-        android:textSize="16sp"
         app:icon="@drawable/ic_baseline_history_24"
-        app:iconPadding="8dp"
+        app:iconPadding="6dp"
+        app:iconSize="24dp"
         app:iconTint="?secondaryButtonIconColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:rippleColor="?primaryButtonRippleColor" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
