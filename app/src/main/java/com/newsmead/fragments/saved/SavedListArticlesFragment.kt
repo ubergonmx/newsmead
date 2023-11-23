@@ -35,10 +35,13 @@ class SavedListArticlesFragment: Fragment(), clickListener {
         super.onCreate(savedInstanceState)
 
         // Print args
-        Log.d("SavedListArticles", "ListId: ${args.listId}")
+        Log.d("SavedListArticles", "ListId: ${args.listId} ListName: ${args.listName}")
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentSavedListArticlesBinding.inflate(inflater, container, false)
+
+        // Update name of list
+        binding.tvSavedListName.text = args.listName
 
         val adapter = ArticleAdapter(data, this)
         binding.rvSavedArticles.adapter = adapter

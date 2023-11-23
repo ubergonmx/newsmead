@@ -38,7 +38,10 @@ class SavedListsAdapter(
 
         // Add on click listener to card inside constraint layout
         holder.getCardView().setOnClickListener {
-            cardListener.onCardClick(listSavedList[position].id)
+            cardListener.onCardClick(
+                listSavedList[position].id,
+                listSavedList[position].title,
+            )
         }
     }
 

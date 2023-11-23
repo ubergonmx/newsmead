@@ -97,9 +97,9 @@ class SavedListsFragment: Fragment(), cardListener {
 
     }
 
-    override fun onCardClick(listId: String) {
+    override fun onCardClick(listId: String, listName: String) {
         // Action
-        val action = SavedFragmentDirections.actionSavedFragmentToSavedListArticlesFragment(listId)
+        val action = SavedFragmentDirections.actionSavedFragmentToSavedListArticlesFragment(listId, listName)
 
         Navigation.findNavController(requireView()).navigate(action)
     }
