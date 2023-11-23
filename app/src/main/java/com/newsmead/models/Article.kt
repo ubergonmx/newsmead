@@ -42,6 +42,9 @@ class Article {
         this.date = date
         this.readTime = readTime
         this.url = url
+
+        // Provide test newsId by hashing the url
+        this.newsId = "T" + url.hashCode().toString()
     }
 
 }
