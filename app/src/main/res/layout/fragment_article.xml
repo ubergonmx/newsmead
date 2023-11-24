@@ -30,19 +30,13 @@
 
         <Button
             android:id="@+id/btnSaveList"
+            style="@style/ButtonSmall_LowEmphasis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:backgroundTint="?secondaryButtonBgColor"
             android:fontFamily="@font/arial_regular"
             android:minHeight="0dp"
-            android:paddingStart="6dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="8dp"
             android:text="@string/article_save_to_list_btn"
-            android:textColor="?secondaryButtonTextColor"
-            android:textSize="16sp"
             app:icon="@drawable/ic_bookmark"
             app:iconPadding="4dp"
             app:iconSize="20dp"
@@ -124,62 +118,60 @@
 
                     <TextView
                         android:id="@+id/tvArticleHeadline"
+                        style="@style/ts_display_medium"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
-                        android:fontFamily="@font/arial_regular"
                         android:text="@string/sample_article_headline"
                         android:textColor="?primaryTextColor"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/llSource" />
 
                     <TextView
                         android:id="@+id/tvArticleBy"
+                        style="@style/ts_subtext_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
-                        android:fontFamily="@font/arial_regular"
                         android:text="@string/article_by"
-                        android:textSize="12sp"
+                        android:textColor="?lowTextEmphasis"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvArticleHeadline" />
 
                     <TextView
                         android:id="@+id/tvArticleAuthor"
+                        style="@style/ts_subtext_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/arial_regular"
-                        android:text="@string/sample_source"
-                        android:textSize="12sp"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/sample_author"
+                        android:textColor="?lowTextEmphasis"
                         app:layout_constraintStart_toEndOf="@+id/tvArticleBy"
                         app:layout_constraintTop_toTopOf="@+id/tvArticleBy" />
 
                     <TextView
                         android:id="@+id/tvByDot"
+                        style="@style/ts_subtext_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:fontFamily="@font/arial_regular"
                         android:text="@string/symbol_bullet"
-                        android:textSize="12sp"
+                        android:textColor="@color/gray_200"
                         app:layout_constraintStart_toEndOf="@+id/tvArticleAuthor"
                         app:layout_constraintTop_toTopOf="@+id/tvArticleAuthor" />
 
                     <TextView
                         android:id="@+id/tvArticleMinRead"
+                        style="@style/ts_subtext_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:fontFamily="@font/arial_regular"
                         android:text="@string/sample_read_time"
-                        android:textSize="12sp"
+                        android:textColor="?lowTextEmphasis"
                         app:layout_constraintStart_toEndOf="@+id/tvByDot"
                         app:layout_constraintTop_toTopOf="@+id/tvByDot" />
 
@@ -198,12 +190,12 @@
 
                 <TextView
                     android:id="@+id/tvArticleText"
+                    style="@style/ts_body_large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/text_margin"
-                    android:fontFamily="@font/arial_regular"
-                    android:text="@string/large_text"
-                    android:textSize="16sp" />
+                    android:textColor="?primaryTextColor"
+                    android:text="@string/large_text" />
 
                 <View
                     android:id="@+id/divider"
