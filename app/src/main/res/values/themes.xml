@@ -98,7 +98,7 @@
         <item name="android:textColor">?primaryButtonTextColor</item>
         <item name="rippleColor">@color/gold_100</item>
         <!--Padding-->
-        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingStart">14dp</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingEnd">14dp</item>
         <item name="android:paddingBottom">12dp</item>
@@ -129,12 +129,6 @@
         <item name="android:lineSpacingExtra">1sp</item>
         <item name="android:lineSpacingMultiplier">1.4</item>
     </style>
-
-    <style name="ChipSelectMultiple" parent="@style/Widget.MaterialComponents.Chip.Choice">
-        <item name="chipBackgroundColor">@color/chip_background_color</item>
-        <item name="android:textColor">@color/chip_text_color</item>
-    </style>
-
 
     <!-- Text Field Style -->
     <style name="EditTextOverlay">

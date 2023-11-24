@@ -8,7 +8,7 @@
         android:id="@+id/cbListItemSave"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:fontFamily="@font/arial_regular"
         android:text="@string/sample_checkbox"
         android:textSize="20sp"
