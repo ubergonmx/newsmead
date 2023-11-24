@@ -11,6 +11,7 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.data.DataHelper
+import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.FragmentHomeBinding
 import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.ArticleAdapter
@@ -68,8 +69,13 @@ class HomeFragment : Fragment(), clickListener {
             this.shimmerFrameLayout.stopShimmer()
             this.shimmerFrameLayout.visibility = View.GONE
 
-            // Update the adapter with the retrieved articles
-            articleAdapter.updateData(articles)
+            if (FirebaseHelper.isNetworkAvailable(requireContext())) {
+                // Update the adapter with the retrieved articles
+                articleAdapter.updateData(articles)
+            } else {
+                this.shimmerFrameLayout.visibility = View.VISIBLE
+            }
+
         }
 
         this.viewBinding.rvFeed.adapter = articleAdapter
