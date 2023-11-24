@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.R
+import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.data.DataHelper
 import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.FragmentSavedListArticlesBinding
@@ -54,6 +55,10 @@ class SavedListArticlesFragment: Fragment(), clickListener {
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvSavedArticles.layoutManager = layoutManager
+
+        // Add divider
+        val customDivider = CustomDividerItemDecoration(context, R.drawable.line_divider)
+        binding.rvSavedArticles.addItemDecoration(customDivider)
 
         // Back button
         binding.btnSavedBack.setOnClickListener {
