@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -97,7 +98,7 @@ class ArticleFragment : Fragment(), clickListener {
             binding.ivSourceImage.setImageResource(R.drawable.sample_source_image)
 
             // Set article read time
-            val readTime = article.readTime + " min read"
+            val readTime = article.readTime //+ " min read"
             binding.tvArticleMinRead.text = readTime
 
             // Set article date (There's no date yet!)
@@ -241,14 +242,30 @@ class ArticleFragment : Fragment(), clickListener {
     }
 
     private fun addBottomAppBarListeners() {
+        val size = 2
+        val minSizeLimit = 14
+        val maxSizeLimit = 60
+
         // Increase font size when btnArticleTextLarger is clicked
         binding.btnArticleTextLarger.setOnClickListener {
-            binding.tvArticleText.textSize = convertPixelsToSp(binding.tvArticleText.textSize + 1)
+            val newSize = convertPixelsToSp(binding.tvArticleText.textSize + size)
+            if (newSize <= maxSizeLimit) {
+                binding.tvArticleText.textSize = newSize
+            }
+            else{
+                Toast.makeText(context, "Reached maximum text size", Toast.LENGTH_SHORT).show()
+            }
         }
 
         // Decrease font size when btnArticleTextSmaller is clicked
         binding.btnArticleTextSmaller.setOnClickListener {
-            binding.tvArticleText.textSize = convertPixelsToSp(binding.tvArticleText.textSize) -3
+            val newSize = convertPixelsToSp(binding.tvArticleText.textSize) - size
+            if (newSize > minSizeLimit) {
+                binding.tvArticleText.textSize = newSize
+            }
+            else{
+                Toast.makeText(context, "Reached minimum text size", Toast.LENGTH_SHORT).show()
+            }
         }
 
         // Set to light mode when btnArticleClrLight is clicked
@@ -277,6 +294,23 @@ class ArticleFragment : Fragment(), clickListener {
             binding.btnArticleTextLarger.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia_btn))
             binding.btnArticleTextSmaller.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia_btn))
             binding.btnSaveList.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia_btn))
+
+            // update all text views
+            binding.tvArticleText.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
+            binding.tvArticleHeadline.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
+            binding.tvArticleMinRead.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
+            binding.tvArticleRecommended.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
+            binding.tvSource.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
+            binding.tvArticleAuthor.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
+            binding.tvByDot.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
+
+            binding.btnArticleTextLarger.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
+            binding.btnArticleTextSmaller.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
+            binding.btnSaveList.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
+            binding.btnArticleClrLight.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
+            binding.btnArticleClrDark.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
+            binding.btnArticleClrSepia.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
+
         }
     }
 
