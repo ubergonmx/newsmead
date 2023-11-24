@@ -493,7 +493,6 @@ class FirebaseHelper {
                 .collection("lists")
 
             // Delete article from list
-            Log.d("FirebaseHelper", "Deleting article $articleId from list $listId")
             userListsRef.document(listId).collection("articles").document(articleId).delete()
                 .addOnSuccessListener {
                     // Handle Success
