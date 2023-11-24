@@ -7,7 +7,7 @@ import androidx.room.Query
 
 @Dao
 interface NewsArticleDao {
-    @Insert(onConflict =  OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNewsArticle(article: NewsArticle)
 
     @Query("SELECT * FROM news_articles")
@@ -16,6 +16,6 @@ interface NewsArticleDao {
     @Query("SELECT * FROM news_articles WHERE newsId = :newsId")
     suspend fun getNewsArticle(newsId: String): NewsArticle
 
-    @Query("DELETE * FROM news_articles WHERE newsId = :newsId")
+    @Query("DELETE FROM news_articles WHERE newsId = :newsId")
     suspend fun deleteNewsArticle(newsId: String)
 }
