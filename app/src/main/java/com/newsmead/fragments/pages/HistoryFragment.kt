@@ -65,6 +65,20 @@ class HistoryFragment: Fragment(), clickListener {
         return binding.root
     }
 
+    // Reload data when fragment is resumed
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+            val historyData = FirebaseHelper.getHistory(requireContext())
+
+            if (historyData.isNotEmpty()) {
+                data.clear()
+                data.addAll(historyData)
+                adapter.notifyDataSetChanged()
+            }
+        }
+    }
+
     override fun onItemClicked(
         article: Article
     ) {
