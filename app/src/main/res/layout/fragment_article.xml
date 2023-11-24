@@ -251,9 +251,8 @@
                 android:layout_gravity="start">
 
                 <!-- Light Button -->
-
                 <Button
-                    android:id="@+id/btnArticleLight"
+                    android:id="@+id/btnArticleClrLight"
                     style="@style/ButtonSquare_MidEmphasis.BGMode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -268,8 +267,9 @@
                     app:iconTint="@color/transparent"
                     app:iconTintMode="add" />
 
+                <!-- Dark Button -->
                 <Button
-                    android:id="@+id/btnArticleDark"
+                    android:id="@+id/btnArticleClrDark"
                     style="@style/ButtonSquare_MidEmphasis.BGMode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -284,8 +284,9 @@
                     app:iconTint="@color/transparent"
                     app:iconTintMode="add" />
 
+                <!-- Sepia Button -->
                 <Button
-                    android:id="@+id/btnArticleSepia"
+                    android:id="@+id/btnArticleClrSepia"
                     style="@style/ButtonSquare_MidEmphasis.BGMode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -300,79 +301,6 @@
                     app:iconTint="@color/transparent"
                     app:iconTintMode="add" />
 
-                <LinearLayout
-                    android:id="@+id/llArticleClrLight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="4dp">
-
-                    <ImageButton
-                        android:id="@+id/btnArticleClrLight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:contentDescription="Light Button"
-                        android:src="@drawable/circle_filled_weight400light" />
-
-                    <TextView
-                        android:id="@+id/tvArticleClrLight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/article_theme_light"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <!-- Dark Button -->
-                <LinearLayout
-                    android:id="@+id/llArticleClrDark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="4dp">
-
-                    <ImageButton
-                        android:id="@+id/btnArticleClrDark"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:contentDescription="Dark Button"
-                        android:src="@drawable/circle_filled_weight400dark" />
-
-                    <TextView
-                        android:id="@+id/tvArticleClrDark"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/article_theme_dark"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <!-- Sepia Button -->
-                <LinearLayout
-                    android:id="@+id/llArticleClrSepia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="4dp">
-
-                    <ImageButton
-                        android:id="@+id/btnArticleClrSepia"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:contentDescription="Sepia Button"
-                        android:src="@drawable/circle_filled_weight400sepia" />
-
-                    <TextView
-                        android:id="@+id/tvArticleClrSepia"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/article_theme_sepia"
-                        android:textSize="12sp" />
-                </LinearLayout>
             </LinearLayout>
 
 
