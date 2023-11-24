@@ -338,7 +338,6 @@ class FirebaseHelper {
             )
                 .addOnSuccessListener {
                     // Handle Success
-                    Toast.makeText(requireContext, "Article added to list", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
                     // Handle Failure
