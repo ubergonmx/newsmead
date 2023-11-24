@@ -1,6 +1,7 @@
 package com.newsmead.fragments.article
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -286,50 +287,83 @@ class ArticleFragment : Fragment(), clickListener {
             }
         }
 
-        // Set to light mode when btnArticleClrLight is clicked
         binding.btnArticleClrLight.setOnClickListener{
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            val activity = requireActivity()
+            val window = activity.window
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = ContextCompat.getColor(activity,R.color.light)
+            window.navigationBarColor = ContextCompat.getColor(activity,R.color.light)
+
+            changeColorOfBackgrounds(ContextCompat.getColor(requireContext(), R.color.light))
+            changeColorOfTexts(ContextCompat.getColor(requireContext(), R.color.light_text))
         }
 
-        // Set to dark mode when btnArticleClrDark is clicked
         binding.btnArticleClrDark.setOnClickListener{
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            val activity = requireActivity()
+            val window = activity.window
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = ContextCompat.getColor(activity,R.color.dark)
+            window.navigationBarColor = ContextCompat.getColor(activity,R.color.dark)
+
+            changeColorOfBackgrounds(ContextCompat.getColor(requireContext(), R.color.dark))
+            changeColorOfTexts(ContextCompat.getColor(requireContext(), R.color.dark_text))
         }
 
         // Set to background color to F5EED9 when btnArticleClrSepia is clicked
         binding.btnArticleClrSepia.setOnClickListener{
-//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             val activity = requireActivity()
             val window = activity.window
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.statusBarColor = ContextCompat.getColor(activity,R.color.sepia);
-            window.navigationBarColor = ContextCompat.getColor(activity,R.color.sepia);
-            binding.root.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia))
-            binding.nsvArticleText.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia))
-            binding.bottomAppBar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia))
-            binding.clArticleTopBar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia))
-            binding.btnArticleTextLarger.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia_btn))
-            binding.btnArticleTextSmaller.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia_btn))
-            binding.btnSaveList.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia_btn))
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = ContextCompat.getColor(activity,R.color.sepia)
+            window.navigationBarColor = ContextCompat.getColor(activity,R.color.sepia)
 
-            // update all text views
-            binding.tvArticleText.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
-            binding.tvArticleHeadline.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
-            binding.tvArticleMinRead.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
-            binding.tvArticleRecommended.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
-            binding.tvSource.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
-            binding.tvArticleAuthor.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
-            binding.tvByDot.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
-
-            binding.btnArticleTextLarger.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
-            binding.btnArticleTextSmaller.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
-            binding.btnSaveList.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
-            binding.btnArticleClrLight.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
-            binding.btnArticleClrDark.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
-            binding.btnArticleClrSepia.setTextColor(ContextCompat.getColor(requireContext(), R.color.sepia_text))
-
+            changeColorOfBackgrounds(ContextCompat.getColor(requireContext(), R.color.sepia))
+            changeColorOfTexts(ContextCompat.getColor(requireContext(), R.color.sepia_text))
         }
+    }
+
+    private fun changeColorOfBackgrounds(color: Int){
+        binding.root.setBackgroundColor(color)
+        binding.nsvArticleText.setBackgroundColor(color)
+        binding.bottomAppBar.setBackgroundColor(color)
+        binding.clArticleTopBar.setBackgroundColor(color)
+        binding.btnArticleTextLarger.setBackgroundColor(color)
+        binding.btnArticleTextSmaller.setBackgroundColor(color)
+        binding.btnSaveList.setBackgroundColor(color)
+    }
+
+    private fun changeColorOfTexts(color: Int){
+        binding.tvArticleText.setTextColor(color)
+        binding.tvArticleHeadline.setTextColor(color)
+        binding.tvArticleMinRead.setTextColor(color)
+        binding.tvArticleRecommended.setTextColor(color)
+        binding.tvSource.setTextColor(color)
+        binding.tvArticleAuthor.setTextColor(color)
+        binding.tvByDot.setTextColor(color)
+
+        binding.btnArticleTextLarger.setTextColor(color)
+        binding.btnArticleTextSmaller.setTextColor(color)
+        binding.btnSaveList.setTextColor(color)
+        binding.btnArticleClrLight.setTextColor(color)
+        binding.btnArticleClrDark.setTextColor(color)
+        binding.btnArticleClrSepia.setTextColor(color)
+
+        // Change icon colors
+        binding.btnArticleBack.setColorFilter(color)
+        binding.btnArticleShare.setColorFilter(color)
+
+        binding.btnSaveList.iconTint = ColorStateList.valueOf(color)
+
+        binding.btnArticleTextLarger.setCompoundDrawableTintList(
+            ColorStateList.valueOf(color)
+        )
+
+        binding.btnArticleTextSmaller.setCompoundDrawableTintList(
+            ColorStateList.valueOf(color)
+        )
     }
 
     override fun onItemClicked(article: Article) {
