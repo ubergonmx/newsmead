@@ -50,6 +50,10 @@ class ArticleSourceFragment: Fragment(), clickListener {
 
         // Fill chips
         val chipData = DataHelper.loadCategoryData()
+
+        // Add all to start
+        chipData.add(0, "All")
+        
         binding.cgCategory.removeAllViews()
         for (category in chipData) {
             val chip = ChipSearchBinding.inflate(inflater, container, false).root
