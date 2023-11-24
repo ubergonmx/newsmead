@@ -2,6 +2,7 @@ package com.newsmead.recyclerviews.saved
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.color.MaterialColors
 import com.newsmead.R
 import com.newsmead.databinding.ItemSavedListBinding
 import com.newsmead.models.SavedList
@@ -14,17 +15,13 @@ class SavedListsViewHolder(private val viewBinding: ItemSavedListBinding): Recyc
         this.viewBinding.tvListTitle.text = savedList.title
         val articleNumber = savedList.numArticles.toString() + " articles"
         this.viewBinding.tvListNumArticles.text = articleNumber
-
         // Special icon for Read Later list
         if (savedList.id == "readLater") {
-            // Apply Style ListCardStyle.ReadLater
-            this.viewBinding.cvListCard.setCardBackgroundColor(
-                // Set to theme's ?cardBackgroundColorPrimary
-                this.viewBinding.cvListCard.context.getColor(R.color.gold_20)
-            )
+            val cardColor = MaterialColors.getColor(this.viewBinding.cvListCard, R.attr.listReadLaterBackground)
+            this.viewBinding.cvListCard.setCardBackgroundColor(cardColor)
 
-            this.viewBinding.cvListCard.strokeColor =
-                this.viewBinding.cvListCard.context.getColor(R.color.gold_200)
+            val strokeColor = MaterialColors.getColor(this.viewBinding.cvListCard, R.attr.listReadLaterStroke)
+            this.viewBinding.cvListCard.strokeColor = strokeColor
 
             // Change icon color
             this.viewBinding.ivListIcon.setColorFilter(
@@ -34,14 +31,11 @@ class SavedListsViewHolder(private val viewBinding: ItemSavedListBinding): Recyc
             this.viewBinding.ivListIcon.setImageResource(R.drawable.star_filled_weight400)
 
         } else if (savedList.id == "offlineArticles"){
-            // Apply Style ListCardStyle.OfflineArticles
-            this.viewBinding.cvListCard.setCardBackgroundColor(
-                // Set to theme's ?lowBackground
-                this.viewBinding.cvListCard.context.getColor(R.color.gray_300)
-            )
+            val cardColor = MaterialColors.getColor(this.viewBinding.cvListCard, R.attr.listOfflineBackground)
+            this.viewBinding.cvListCard.setCardBackgroundColor(cardColor)
 
-            this.viewBinding.cvListCard.strokeColor =
-                this.viewBinding.cvListCard.context.getColor(R.color.gray_200)
+            val strokeColor = MaterialColors.getColor(this.viewBinding.cvListCard, R.attr.listOfflineStroke)
+            this.viewBinding.cvListCard.strokeColor = strokeColor
 
             // Change icon color
             this.viewBinding.ivListIcon.setColorFilter(
