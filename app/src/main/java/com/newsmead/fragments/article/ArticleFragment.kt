@@ -45,15 +45,17 @@ class ArticleFragment : Fragment() {
         )
 
         // Safeargs bundle
-        Log.d("ArticleFragment", "onCreateView: articleId: ${article.newsId}")
-        Log.d("ArticleFragment", "onCreateView: articleTitle: ${article.title}")
-        Log.d("ArticleFragment", "onCreateView: articleSource: ${article.source}")
-        Log.d("ArticleFragment", "onCreateView: articleImage: ${article.imageId}")
-        Log.d("ArticleFragment", "onCreateView: articleBody: None ATM")
-        Log.d("ArticleFragment", "onCreateView: articleReadTime: ${article.readTime}")
+        Log.d("ArticleFragment", "onCreateView: newsId: ${article.newsId}")
+        Log.d("ArticleFragment", "onCreateView: title: ${article.title}")
+        Log.d("ArticleFragment", "onCreateView: date: ${article.date}")
+        Log.d("ArticleFragment", "onCreateView: source: ${article.source}")
+        Log.d("ArticleFragment", "onCreateView: sourceImage: ${article.sourceImage}")
+        Log.d("ArticleFragment", "onCreateView: imageId: ${article.imageId}")
+        Log.d("ArticleFragment", "onCreateView: readTime: ${article.readTime}")
+        Log.d("ArticleFragment", "onCreateView: url: ${article.url}")
 
-        // Check if start with "N"
-        if (article.newsId.startsWith("N")) {
+        // Check if start with "N" or "T"
+        if (article.newsId.startsWith("N") || article.newsId.startsWith("T")) {
             // Set article title
             binding.tvArticleHeadline.text = article.title
 
