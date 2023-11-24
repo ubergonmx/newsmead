@@ -299,7 +299,7 @@ class FirebaseHelper {
 
 
         /**
-         * Adds a new user to Firestore with a "Read Later" list
+         * Adds a new user to Firestore with a "Read Later" and "Offline  Articles" list
          * @param email Email of the new user
          * @return Id of the new user; "" if error
          */
@@ -334,6 +334,15 @@ class FirebaseHelper {
                     userListsRef.document(newListId).set(
                         hashMapOf(
                             "name" to "Read Later"
+                        )
+                    )
+
+                    // Add "Offline Articles" list to Firestore
+                    val newListId2 = "offlineArticles" // This is the id of the "Offline Articles" list
+
+                    userListsRef.document(newListId2).set(
+                        hashMapOf(
+                            "name" to "Offline Articles"
                         )
                     )
 
