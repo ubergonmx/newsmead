@@ -217,6 +217,49 @@ class FirebaseHelper {
                 }
         }
 
+        suspend fun getHistory(context: Context): List<Article> = coroutineScope {
+            if (uid == "null") {
+                Toast.makeText(context, "Please login to view history", Toast.LENGTH_SHORT).show()
+                return@coroutineScope emptyList()
+            }
+
+            val articles = mutableListOf<Article>()
+
+            val firestore = getFirestoreInstance()
+            val userHistoryRef = firestore.collection("users").document(uid).collection("history")
+
+            try {
+                // Use async to perform the nested query concurrently
+                // Store to deferredList based on viewed date
+                val deferredList = userHistoryRef.orderBy(
+                    "viewed", com.google.firebase.firestore.Query.Direction.DESCENDING
+                ).get().await().documents.map { articleDocument ->
+                    async {
+                        val imageId: Int = articleDocument.data?.get("image").toString().toInt()
+                        val sourceImageId: Int = articleDocument.data?.get("sourceImage").toString().toInt()
+                        Article(
+                            source = articleDocument.data?.get("source").toString(),
+                            sourceImage = sourceImageId,
+                            newsId = articleDocument.data?.get("newsId").toString(),
+                            title = articleDocument.data?.get("title").toString(),
+                            imageId = imageId,
+                            readTime = articleDocument.data?.get("readTime").toString(),
+                            date = articleDocument.data?.get("date").toString(),
+                            url = articleDocument.data?.get("url").toString()
+                        )
+                    }
+                }
+
+                // Add all articles to list
+                articles.addAll(deferredList.awaitAll())
+
+                return@coroutineScope articles
+            } catch (exception: Exception) {
+                // Handle failure
+                throw exception
+            }
+        }
+
         suspend fun checkIfArticleSavedInLists(context: Context, articleId: String): List<String> = coroutineScope {
             if (uid == "null") {
                 Toast.makeText(context, "Please login to view/create a list", Toast.LENGTH_SHORT).show()
