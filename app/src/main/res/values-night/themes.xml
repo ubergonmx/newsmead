@@ -27,20 +27,97 @@
         <item name="dividerColor">@color/gray_100</item>
         <item name="shimmerColor">@color/gray_100</item>
         <item name="cardBackgroundColor">@color/black_100</item>
+        <item name="cardBackgroundColorPrimary">@color/gold_20</item>
 
         <!--component colors-->
-        <item name="lowEmphasisColor">@color/gold_20</item>
-        <item name="midEmphasisColor">@color/gold_60</item>
+        <item name="lowEmphasisColor">@color/black_100</item>
+        <item name="midEmphasisColor">@color/true_black</item>
         <item name="highEmphasisColor">@color/cobalt_100</item>
 
         <item name="lowBackground">@color/gray_300</item>
         <item name="midBackground">@color/white</item>
-        <item name="highBackground">@color/black</item>
+        <item name="highBackground">@color/black_100</item>
 
         <item name="lowTextEmphasis">@color/gray_100</item>
 
         <item name="iconColorDefault">@color/gray_150</item>
         <item name="iconColorStar">@color/cobalt_100</item>
 
+        <item name="buttonRippleGold">@color/gold_100</item>
+        <item name="buttonRippleCobalt">@color/cobalt_100</item>
+        <item name="buttonRippleGray">@color/gray_200</item>
+
+        <item name="navBarColor">@color/gold_10</item>
+        <item name="navBarIconColor">@color/black_100</item>
+        <item name="navBarTextColor">@color/black_100</item>
+        <item name="navBarIndicatorColor">@color/gold_60</item>
+
+        <item name="listReadLaterBackground">@color/gold_20</item>
+        <item name="listOfflineBackground">@color/gray_300</item>
+        <item name="listReadLaterStroke">@color/gold_200</item>
+        <item name="listOfflineStroke">@color/gray_200</item>
+        <item name="listDefaultStroke">@color/gray_250</item>
+
     </style>
+
+    <!--    Button themes   -->
+
+    <style name="ButtonSmall_LowEmphasis" parent="ts_button_medium">
+        <item name="android:backgroundTint">?lowEmphasisColor</item>
+        <item name="android:textColor">?secondaryButtonTextColor</item>
+        <item name="rippleColor">?buttonRippleGold</item>
+        <!--Padding-->
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <style name="ButtonSmall_HighEmphasis" parent="ts_button_large">
+        <item name="android:backgroundTint">?highEmphasisColor</item>
+        <item name="android:textColor">?primaryButtonTextColor</item>
+        <item name="rippleColor">?buttonRippleGold</item>
+        <!--Padding-->
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <style name="ButtonSquare_MidEmphasis" parent="ts_subtext_regular">
+        <item name="android:backgroundTint">?midEmphasisColor</item>
+        <item name="android:textColor">?secondaryButtonTextColor</item>
+        <item name="rippleColor">?buttonRippleGold</item>
+        <!--Padding-->
+        <item name="android:padding">8dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+    </style>
+
+    <style name="ButtonSquare_MidEmphasis.Smaller" parent="ButtonSquare_MidEmphasis">
+        <item name="android:backgroundTint">?lowEmphasisColor</item>
+    </style>
+
+    <style name="ButtonSquare_MidEmphasis.BGMode" parent="ButtonSquare_MidEmphasis">
+        <item name="android:backgroundTint">?transparentColor</item>
+        <item name="android:minWidth">55dip</item>
+        <item name="android:textColor">?secondaryTextColor</item>
+    </style>
+
+    <style name="ButtonMedium_Solid" parent="ts_button_large">
+        <item name="android:backgroundTint">?highEmphasisColor</item>
+        <item name="android:textColor">?primaryButtonTextColor</item>
+        <item name="rippleColor">?buttonRippleGold</item>
+        <!--Padding-->
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+    </style>
+
+    <style name="ButtonMedium_Text" parent="ButtonMedium_Solid">
+        <item name="android:backgroundTint">?midBackground</item>
+        <item name="android:textColor">?highEmphasisColor</item>
+        <item name="rippleColor">?buttonRippleGray</item>
+    </style>
+
+
 </resources>
