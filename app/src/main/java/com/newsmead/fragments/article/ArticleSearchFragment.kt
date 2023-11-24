@@ -29,7 +29,7 @@ class ArticleSearchFragment : Fragment(), clickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentArticleSearchBinding.inflate(
+        binding = FragmentArticleSearchBinding.inflate(
             inflater, container, false
         )
 
