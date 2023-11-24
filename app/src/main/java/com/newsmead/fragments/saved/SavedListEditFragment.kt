@@ -6,14 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.newsmead.data.DatabaseHelper
 import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.FragmentSavedListEditBinding
 import com.newsmead.fragments.layouts.listListener
 import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.ArticleEditAdapter
+import kotlinx.coroutines.launch
 
 class SavedListEditFragment: Fragment(), listListener {
     private val args: SavedListEditFragmentArgs by navArgs()
@@ -63,6 +66,15 @@ class SavedListEditFragment: Fragment(), listListener {
 
             // Delete articles from list
             FirebaseHelper.deleteArticlesFromFirestoreList(requireActivity(), args.listId, checkedIds)
+
+            lifecycleScope.launch {
+                // Remove from offline if list is offline
+                if (args.listId == "offlineArticles") {
+                    for (articleId in checkedIds) {
+                        DatabaseHelper.getNewsArticleDao().deleteNewsArticle(articleId)
+                    }
+                }
+            }
 
             // Simply pop the current fragment off the stack
             val navController = binding.root.findNavController()
