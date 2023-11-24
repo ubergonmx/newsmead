@@ -10,17 +10,20 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.newsmead.activities.ArticleActivity
 import com.newsmead.data.DataHelper.loadRecommendedArticlesData
 import com.newsmead.R
+import com.newsmead.data.DatabaseHelper
 import com.newsmead.data.FirebaseHelper
 
 import com.newsmead.databinding.FragmentArticleBinding
 import com.newsmead.databinding.ItemFeedArticleSimplifiedBinding
 import com.newsmead.fragments.layouts.BottomSheetDialogSaveFragment
 import com.newsmead.models.Article
+import kotlinx.coroutines.launch
 
 class ArticleFragment : Fragment() {
     private lateinit var binding: FragmentArticleBinding
@@ -143,6 +146,21 @@ class ArticleFragment : Fragment() {
         }
 
         addBottomAppBarListeners()
+
+        // Loading article content from url
+        lifecycleScope.launch {
+            // Check if offline article
+            val articleId = article.newsId
+            val offlineArticle = DatabaseHelper.getNewsArticleDao().getNewsArticle(articleId)
+
+            if (offlineArticle.articleBody.isNotEmpty()) {
+                // Offline article
+                binding.tvArticleText.text = offlineArticle.articleBody
+            } else {
+                // Online article
+                // Insert API here
+            }
+        }
 
         return binding.root
     }
