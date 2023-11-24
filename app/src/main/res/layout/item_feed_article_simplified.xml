@@ -20,8 +20,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="?primaryBackgroundColor">
+            android:background="?primaryBackgroundColor"
+            android:paddingLeft="8dp"
+            android:paddingTop="16dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="16dp">
 
             <LinearLayout
                 android:id="@+id/llSource"
@@ -47,8 +50,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+
                     android:text="@string/sample_source"
-                    android:textColor="?primaryTextColor"/>
+                    android:textColor="?primaryTextColor" />
             </LinearLayout>
 
             <TextView

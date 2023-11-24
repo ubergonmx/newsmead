@@ -21,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?primaryBackgroundColor"
-            android:paddingLeft="8dp"
             android:paddingTop="16dp"
             android:paddingRight="8dp"
             android:paddingBottom="16dp">
@@ -29,7 +28,7 @@
             <CheckBox
                 android:id="@+id/cbArticleEdit"
                 style="@android:style/Widget.CompoundButton.CheckBox"
-                android:layout_width="64dp"
+                android:layout_width="48dp"
                 android:layout_height="0dp"
                 android:clickable="false"
                 android:scaleX="1.5"

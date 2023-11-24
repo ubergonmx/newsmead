@@ -42,7 +42,7 @@
         <Button
             android:id="@+id/btnNewList"
             style="@style/ButtonSmall_LowEmphasis"
-            android:backgroundTint="@color/gold_60"
+            android:backgroundTint="?midEmphasisColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
