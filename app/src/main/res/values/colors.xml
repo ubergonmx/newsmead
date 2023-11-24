@@ -20,6 +20,7 @@
 
     <!--    Neutral colors      -->
     <color name="gray_100">#FF666666</color>
+    <color name="gray_150">#FF8E8E8E</color>
     <color name="gray_200">#FFB3B3B3</color>
     <color name="gray_250">#FFC1C1C1</color>
     <color name="gray_300">#FFF2F2F2</color>

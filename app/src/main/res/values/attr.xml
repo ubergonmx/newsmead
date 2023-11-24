@@ -39,6 +39,10 @@
 
     <attr name="lowTextEmphasis" format="color" />
 
+    <!--    list icon colors -->
+    <attr name="iconColorDefault" format="color" />
+    <attr name="iconColorStar" format="color" />
+
 
 <!--    <attr name="chipTextColor" format="color" />-->
 <!--    <attr name="chipBackgroundColor" format="color" />-->

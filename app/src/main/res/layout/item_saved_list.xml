@@ -9,17 +9,15 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvListCard"
+        style="@style/ListCardStyle.Default"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
         android:outlineProvider="none"
-        app:cardBackgroundColor="?cardBackgroundColorPrimary"
-        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/gold_200">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -68,7 +66,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="?secondaryIconColor"
+            app:tint="?iconColorDefault"
             tools:src="@drawable/folder_filled_weight400" />
 
     </com.google.android.material.card.MaterialCardView>
