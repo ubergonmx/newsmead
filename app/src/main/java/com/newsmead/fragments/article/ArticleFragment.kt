@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.activities.ArticleActivity
 import com.newsmead.data.DataHelper.loadRecommendedArticlesData
 import com.newsmead.R
+import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.data.DataHelper
 import com.newsmead.data.DatabaseHelper
 import com.newsmead.data.FirebaseHelper
@@ -52,6 +53,10 @@ class ArticleFragment : Fragment(), clickListener {
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvArticleRecommended.layoutManager = layoutManager
+
+        // Add divider
+        val customDivider = CustomDividerItemDecoration(context, R.drawable.line_divider)
+        binding.rvArticleRecommended.addItemDecoration(customDivider)
 
         // Receive parcelable from ArticleActivity
         val article = arguments?.getParcelable<Article>("article") ?: Article(
