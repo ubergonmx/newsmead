@@ -32,6 +32,7 @@
     <color name="divider_color">#FFDBDBDB</color>
 
     <!--    Variable colors      -->
+    <color name="transparent">#00000000</color>
 
     <!-- CheckBox button tint colors -->
     <color name="checkbox_checked_color">@color/cobalt_100</color>

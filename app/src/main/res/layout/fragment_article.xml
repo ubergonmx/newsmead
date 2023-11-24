@@ -251,6 +251,55 @@
                 android:layout_gravity="start">
 
                 <!-- Light Button -->
+
+                <Button
+                    android:id="@+id/btnArticleLight"
+                    style="@style/ButtonSquare_MidEmphasis.BGMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:minHeight="0dp"
+                    android:text="@string/article_theme_light"
+                    app:cornerRadius="16dp"
+                    app:icon="@drawable/circle_light"
+                    app:iconGravity="top"
+                    app:iconPadding="0dp"
+                    app:iconSize="24dp"
+                    app:iconTint="@color/transparent"
+                    app:iconTintMode="add" />
+
+                <Button
+                    android:id="@+id/btnArticleDark"
+                    style="@style/ButtonSquare_MidEmphasis.BGMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:minHeight="0dp"
+                    android:text="@string/article_theme_dark"
+                    app:cornerRadius="16dp"
+                    app:icon="@drawable/circle_black"
+                    app:iconGravity="top"
+                    app:iconPadding="0dp"
+                    app:iconSize="24dp"
+                    app:iconTint="@color/transparent"
+                    app:iconTintMode="add" />
+
+                <Button
+                    android:id="@+id/btnArticleSepia"
+                    style="@style/ButtonSquare_MidEmphasis.BGMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:minHeight="0dp"
+                    android:text="@string/article_theme_sepia"
+                    app:cornerRadius="16dp"
+                    app:icon="@drawable/circle_sepia"
+                    app:iconGravity="top"
+                    app:iconPadding="0dp"
+                    app:iconSize="24dp"
+                    app:iconTint="@color/transparent"
+                    app:iconTintMode="add" />
+
                 <LinearLayout
                     android:id="@+id/llArticleClrLight"
                     android:layout_width="wrap_content"
@@ -335,43 +384,31 @@
 
                 <Button
                     android:id="@+id/btnArticleTextSmaller"
+                    style="@style/ButtonSquare_MidEmphasis.Smaller"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:backgroundTint="?secondaryButtonBgColor"
-                    android:fontFamily="@font/arial_regular"
                     android:minHeight="0dp"
-                    android:padding="6dp"
-                    android:paddingLeft="6dp"
-                    android:paddingRight="6dp"
                     android:text="@string/article_text_smaller_btn"
-                    android:textColor="?primaryTextColor"
-                    android:textSize="12sp"
                     app:cornerRadius="16dp"
-                    app:icon="@drawable/remove_nofill_weight400"
+                    app:icon="@drawable/ic_small_text"
                     app:iconGravity="top"
-                    app:iconPadding="4dp"
-                    app:iconSize="24dp"
+                    app:iconPadding="-4dp"
+                    app:iconSize="32dp"
                     app:iconTint="?secondaryButtonIconColor" />
 
                 <Button
                     android:id="@+id/btnArticleTextLarger"
+                    style="@style/ButtonSquare_MidEmphasis"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="?secondaryButtonBgColor"
-                    android:fontFamily="@font/arial_regular"
                     android:minHeight="0dp"
-                    android:padding="6dp"
-                    android:paddingLeft="6dp"
-                    android:paddingRight="6dp"
                     android:text="@string/article_text_larger_btn"
-                    android:textColor="?secondaryButtonTextColor"
-                    android:textSize="12sp"
                     app:cornerRadius="16dp"
-                    app:icon="@drawable/add_nofill_weight400"
+                    app:icon="@drawable/ic_large_text"
                     app:iconGravity="top"
-                    app:iconPadding="4dp"
-                    app:iconSize="24dp"
+                    app:iconPadding="-4dp"
+                    app:iconSize="32dp"
                     app:iconTint="?secondaryButtonIconColor" />
             </LinearLayout>
 

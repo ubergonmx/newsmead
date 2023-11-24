@@ -6,6 +6,7 @@
     <attr name="accentTextColor" format="color" />
     <attr name="linkTextColor" format="color" />
     <attr name="highlightedTextColor" format="color" />
+    <attr name="transparentColor" format="color" />
 
     <attr name="primaryBackgroundColor" format="color" />
     <attr name="secondaryBackgroundColor" format="color" />
