@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.data.DataHelper
@@ -19,9 +20,12 @@ import com.newsmead.databinding.FragmentSearchBinding
 import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.ArticleSimplifiedAdapter
 import com.newsmead.recyclerviews.feed.clickListener
+import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment(), clickListener {
     private lateinit var binding: FragmentSearchBinding
+    private lateinit var adapter: ArticleSimplifiedAdapter
+    private lateinit var data: ArrayList<Article>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -102,8 +106,11 @@ class SearchFragment : Fragment(), clickListener {
 
 
         // RecyclerView of Recent Articles
-        val dataRecentNews = loadArticleDataLatest()
-        binding.rvSearchLatestNews.adapter = ArticleSimplifiedAdapter(dataRecentNews, this)
+        data = loadArticleDataLatest()
+
+        adapter = ArticleSimplifiedAdapter(data, this)
+        binding.rvSearchLatestNews.adapter = adapter
+
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvSearchLatestNews.layoutManager = layoutManager
@@ -113,6 +120,15 @@ class SearchFragment : Fragment(), clickListener {
             R.drawable.line_divider
         )
         binding.rvSearchLatestNews.addItemDecoration(customDividerItemDecoration)
+
+        // Add API here
+        lifecycleScope.launch {
+            DataHelper.loadArticleData {
+                data.clear()
+                data.addAll(it)
+                adapter.notifyDataSetChanged()
+            }
+        }
 
         return binding.root
     }
