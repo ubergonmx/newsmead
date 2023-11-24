@@ -493,5 +493,57 @@ class FirebaseHelper {
                     Toast.makeText(requireContext, "Error renaming list", Toast.LENGTH_SHORT).show()
                 }
         }
+
+        /**
+         * Called when viewing an article. Adds the article to the user's history
+         * Note: History stores 50 articles max
+         * @param article Article to add to history
+         */
+        fun addArticleToHistory(requireContext: Context, article: Article) {
+            if (uid == "null") {
+                Toast.makeText(requireContext, "Please login to add to history", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            // Get current date and time to store in history
+            val currentDateTime = System.currentTimeMillis()
+
+            val userHistoryRef = getFirestoreInstance()
+                .collection("users")
+                .document(uid)
+                .collection("history")
+
+            // Add article to history
+            Log.d("FirebaseHelper", "Adding article ${article.newsId} to history")
+            userHistoryRef.document(article.newsId).set(
+                hashMapOf(
+                    "newsId" to article.newsId,
+                    "title" to article.title,
+                    "image" to article.imageId,
+                    "source" to article.source,
+                    "sourceImage" to article.sourceImage,
+                    "readTime" to article.readTime,
+                    "date" to article.date,
+                    "url" to article.url,
+                    "viewed" to currentDateTime
+                )
+            )
+                .addOnSuccessListener {
+                    // Handle Success
+                    // If history has more than 50 articles, delete the oldest one
+                    userHistoryRef.orderBy("viewed").limit(50).get()
+                        .addOnSuccessListener { documents ->
+                            if (documents.size() > 50) {
+                                // Delete oldest article
+                                val oldestArticle = documents.documents[0]
+                                userHistoryRef.document(oldestArticle.id).delete()
+                            }
+                        }
+                }
+                .addOnFailureListener {
+                    // Handle Failure
+                    Toast.makeText(requireContext, "Error adding article to history", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 }
