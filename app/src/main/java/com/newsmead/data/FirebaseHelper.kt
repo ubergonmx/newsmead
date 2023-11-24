@@ -54,6 +54,7 @@ class FirebaseHelper {
                 // Reorder to make readLater first
                 val finalList = ArrayList<SavedList>()
                 var readLater: SavedList? = null
+                var offlineArticles: SavedList? = null
 
                 val documents = userListsRef.get().await()
 
@@ -69,9 +70,13 @@ class FirebaseHelper {
 
                         // Create SavedList object
                         val list = SavedList(listId, title, numArticles)
-                        if (list.title == "Read Later") {
+                        if (list.id == "readLater") {
                             readLater = list
 
+                            // Skip
+                            return@async null
+                        } else if (list.id == "offlineArticles") {
+                            offlineArticles = list
                             // Skip
                             return@async null
                         }
@@ -87,6 +92,11 @@ class FirebaseHelper {
                 // Move the read later list at the top
                 if (readLater != null) {
                     finalList.add(0, readLater!!)
+                }
+
+                // Move the offline articles list at the top
+                if (offlineArticles != null) {
+                    finalList.add(1, offlineArticles!!)
                 }
 
                 finalList
@@ -299,7 +309,7 @@ class FirebaseHelper {
 
 
         /**
-         * Adds a new user to Firestore with a "Read Later" list
+         * Adds a new user to Firestore with a "Read Later" and "Offline  Articles" list
          * @param email Email of the new user
          * @return Id of the new user; "" if error
          */
@@ -334,6 +344,15 @@ class FirebaseHelper {
                     userListsRef.document(newListId).set(
                         hashMapOf(
                             "name" to "Read Later"
+                        )
+                    )
+
+                    // Add "Offline Articles" list to Firestore
+                    val newListId2 = "offlineArticles" // This is the id of the "Offline Articles" list
+
+                    userListsRef.document(newListId2).set(
+                        hashMapOf(
+                            "name" to "Offline Articles"
                         )
                     )
 

@@ -14,7 +14,7 @@ class SavedListsViewHolder(private val viewBinding: ItemSavedListBinding): Recyc
         this.viewBinding.tvListNumArticles.text = articleNumber
 
         // Special icon for Read Later list
-        if (savedList.title == "Read Later") {
+        if (savedList.id == "readLater" || savedList.id == "offlineArticles") {
             this.viewBinding.ivListIcon.setImageResource(R.drawable.star_filled_weight400)
         }
     }

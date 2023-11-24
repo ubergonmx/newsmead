@@ -125,70 +125,93 @@ class SavedListArticlesFragment: Fragment(), clickListener {
         popup.menuInflater.inflate(menuRes, popup.menu)
 
         popup.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.menuOptionEdit -> {
-                    // Create parcel list of articles
-                    val articleList = data
+            if (args.listId == "readLater" || args.listId == "offlineArticles") {
+                when(it.itemId) {
+                    R.id.menuOptionEdit -> {
+                        // Create parcel list of articles
+                        val articleList = data
 
-                    // Action
-                    val action = SavedListArticlesFragmentDirections.actionSavedListArticlesFragmentToSavedListEditFragment(
-                        args.listId,
-                        args.listName,
-                        articleList.toTypedArray()
-                    )
+                        // Action
+                        val action =
+                            SavedListArticlesFragmentDirections.actionSavedListArticlesFragmentToSavedListEditFragment(
+                                args.listId,
+                                args.listName,
+                                articleList.toTypedArray()
+                            )
 
-                    // Navigate
-                    Navigation.findNavController(requireView()).navigate(action)
+                        // Navigate
+                        Navigation.findNavController(requireView()).navigate(action)
+                    }
                 }
-                R.id.menuOptionRename -> {
-                    // Android Builder Dialog
-                    val builder = android.app.AlertDialog.Builder(requireContext())
-                    builder.setTitle("Rename List")
+            } else {
+                when (it.itemId) {
+                    R.id.menuOptionEdit -> {
+                        // Create parcel list of articles
+                        val articleList = data
 
-                    // Set up the input
-                    val input = android.widget.EditText(requireContext())
-                    builder.setView(input)
+                        // Action
+                        val action =
+                            SavedListArticlesFragmentDirections.actionSavedListArticlesFragmentToSavedListEditFragment(
+                                args.listId,
+                                args.listName,
+                                articleList.toTypedArray()
+                            )
 
-                    // Set up the buttons
-                    builder.setPositiveButton("OK") { _, _ ->
-                        // Update the list name
-                        val newName = input.text.toString()
-                        binding.tvSavedListName.text = newName
-
-                        // Firebase rename list
-                        FirebaseHelper.renameList(requireContext(), args.listId, newName)
+                        // Navigate
+                        Navigation.findNavController(requireView()).navigate(action)
                     }
 
-                    builder.setNegativeButton("Cancel") { _, _ ->
-                        // Do nothing
+                    R.id.menuOptionRename -> {
+                        // Android Builder Dialog
+                        val builder = android.app.AlertDialog.Builder(requireContext())
+                        builder.setTitle("Rename List")
+
+                        // Set up the input
+                        val input = android.widget.EditText(requireContext())
+                        builder.setView(input)
+
+                        // Set up the buttons
+                        builder.setPositiveButton("OK") { _, _ ->
+                            // Update the list name
+                            val newName = input.text.toString()
+                            binding.tvSavedListName.text = newName
+
+                            // Firebase rename list
+                            FirebaseHelper.renameList(requireContext(), args.listId, newName)
+                        }
+
+                        builder.setNegativeButton("Cancel") { _, _ ->
+                            // Do nothing
+                        }
+
+                        // Show the dialog
+                        builder.show()
                     }
 
-                    // Show the dialog
-                    builder.show()
-                }
-                R.id.menuOptionDelete -> {
-                    // Android Builder Dialog
-                    val builder = android.app.AlertDialog.Builder(requireContext())
-                    builder.setTitle("Delete List")
-                    builder.setMessage("Are you sure you want to delete this list?")
+                    R.id.menuOptionDelete -> {
+                        // Android Builder Dialog
+                        val builder = android.app.AlertDialog.Builder(requireContext())
+                        builder.setTitle("Delete List")
+                        builder.setMessage("Are you sure you want to delete this list?")
 
-                    // Set up the buttons
-                    builder.setPositiveButton("OK") { _, _ ->
-                        // Firebase delete list
-                        FirebaseHelper.deleteList(requireContext(), args.listId)
+                        // Set up the buttons
+                        builder.setPositiveButton("OK") { _, _ ->
+                            // Firebase delete list
+                            FirebaseHelper.deleteList(requireContext(), args.listId)
 
-                        // Provide snackabr with undo
+                            // Provide snackabr with undo
 
-                        // Simply pop the current fragment off the stack
-                        val navController = binding.root.findNavController()
-                        navController.popBackStack()
+                            // Simply pop the current fragment off the stack
+                            val navController = binding.root.findNavController()
+                            navController.popBackStack()
+                        }
+                        builder.setNegativeButton("Cancel") { _, _ ->
+                            // Do nothing
+                        }
+
+                        // Show the dialog
+                        builder.show()
                     }
-                    builder.setNegativeButton("Cancel") { _, _ ->
-                        // Do nothing
-                    }
-
-                    // Show the dialog
-                    builder.show()
                 }
             }
             true
