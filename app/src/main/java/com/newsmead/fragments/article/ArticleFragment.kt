@@ -15,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.newsmead.activities.ArticleActivity
 import com.newsmead.data.DataHelper.loadRecommendedArticlesData
 import com.newsmead.R
+import com.newsmead.data.FirebaseHelper
 
 import com.newsmead.databinding.FragmentArticleBinding
 import com.newsmead.databinding.ItemFeedArticleSimplifiedBinding
@@ -56,6 +57,9 @@ class ArticleFragment : Fragment() {
 
         // Check if start with "N" or "T"
         if (article.newsId.startsWith("N") || article.newsId.startsWith("T")) {
+            // Add to history
+            FirebaseHelper.addArticleToHistory(requireContext(), article)
+
             // Set article title
             binding.tvArticleHeadline.text = article.title
 
@@ -78,6 +82,7 @@ class ArticleFragment : Fragment() {
             // Set article date (There's no date yet!)
             // binding.tvArticleDate.text = article.articleDate
         } else {
+            Log.d("ArticleFragment", "onCreateView: Not adding to history (is a test article)")
             // Supply header values if able
             if (article.title != "Article Title") binding.tvArticleHeadline.text = article.title
             if (article.source != "Article Source") binding.tvSource.text = article.source
