@@ -87,7 +87,7 @@ class BottomSheetDialogSaveFragment(private val article: Article): BottomSheetDi
                         )
 
                         // Add to local database IF listId is offlineArticle
-                        if (listId == "offlineArticle") {
+                        if (listId == "offlineArticles") {
                             val offlineId = article.newsId
                             val offlineArticleContent = "Offline Article Content Goes Here"
                             val offlineArticle = NewsArticle(
@@ -95,6 +95,7 @@ class BottomSheetDialogSaveFragment(private val article: Article): BottomSheetDi
                                 offlineArticleContent
                             )
 
+                            Log.d("BottomSheetDialogSaveFragment", "Saving offline article ${article.newsId} to offlineArticles")
                             DatabaseHelper.getNewsArticleDao().insertNewsArticle(offlineArticle)
                         }
                     }
@@ -110,6 +111,7 @@ class BottomSheetDialogSaveFragment(private val article: Article): BottomSheetDi
 
                         // Add to local database IF listId is offlineArticle
                         if (list.id == "offlineArticle") {
+                            Log.d("BottomSheetDialogSaveFragment", "Removing article ${article.newsId} from offlineArticle")
                             val offlineId = article.newsId
 
                             DatabaseHelper.getNewsArticleDao().deleteNewsArticle(offlineId)
