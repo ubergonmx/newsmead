@@ -26,6 +26,7 @@ import com.newsmead.databinding.FragmentArticleBinding
 import com.newsmead.databinding.ItemFeedArticleSimplifiedBinding
 import com.newsmead.fragments.layouts.BottomSheetDialogSaveFragment
 import com.newsmead.models.Article
+import com.newsmead.models.SavedList
 import com.newsmead.recyclerviews.feed.ArticleSimplifiedAdapter
 import com.newsmead.recyclerviews.feed.clickListener
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +36,7 @@ class ArticleFragment : Fragment(), clickListener {
     private lateinit var binding: FragmentArticleBinding
     private lateinit var adapter: ArticleSimplifiedAdapter
     private lateinit var data: ArrayList<Article>
+    private lateinit var savedLists: ArrayList<SavedList>
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -203,8 +205,23 @@ class ArticleFragment : Fragment(), clickListener {
                     binding.tvArticleRecommended.visibility = View.GONE
                 }
 
+            }
 
+            // Load Saved Lists
+            savedLists = ArrayList()
 
+            val checkedLists = FirebaseHelper.checkIfArticleSavedInLists(requireContext(), article.newsId)
+            for (listId in checkedLists) {
+                val savedList = SavedList(listId, "List Name")
+                savedLists.add(savedList)
+            }
+
+            Log.d("ArticleFragment", "onCreateView: savedLists: $savedLists")
+
+            if (savedLists.isNotEmpty()) {
+                Log.d("ArticleFragment", "onCreateView: savedLists is not empty")
+                // Change save button icon to filled
+                binding.btnSaveList.icon = ContextCompat.getDrawable(requireContext(), R.drawable.bookmark_filled_weight400)
             }
         }
 
