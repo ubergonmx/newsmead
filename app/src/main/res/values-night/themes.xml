@@ -38,7 +38,7 @@
         <item name="midBackground">@color/white</item>
         <item name="highBackground">@color/black_100</item>
 
-        <item name="lowTextEmphasis">@color/gray_100</item>
+        <item name="lowTextEmphasis">@color/gray_250</item>
 
         <item name="iconColorDefault">@color/gray_150</item>
         <item name="iconColorStar">@color/gold_200</item>
