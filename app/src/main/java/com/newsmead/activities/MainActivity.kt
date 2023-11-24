@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.newsmead.R
+import com.newsmead.data.DataHelper
 
 import com.newsmead.databinding.ActivityMainBinding
 

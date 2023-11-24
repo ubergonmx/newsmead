@@ -9,9 +9,11 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.newsmead.data.DatabaseHelper
 import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.BottomSheetDialogSaveListBinding
 import com.newsmead.models.Article
+import com.newsmead.models.NewsArticle
 import com.newsmead.models.SavedList
 import com.newsmead.recyclerviews.dialog.SheetDialogAdapter
 import kotlinx.coroutines.Dispatchers
@@ -68,36 +70,59 @@ class BottomSheetDialogSaveFragment(private val article: Article): BottomSheetDi
         binding.btnListDone.setOnClickListener {
             Log.d("BottomSheetDialogSaveFragment", "Saving List...")
             Log.d("BottomSheetDialogSaveFragment", "Checked lists: $checkedLists")
-            // Save details here
-            if (checkedLists.isEmpty()) {
-                Toast.makeText(context, "No list selected", Toast.LENGTH_SHORT).show()
-            } else {
-                Log.d("BottomSheetDialogSaveFragment", "Saving article to lists...")
-                // Save article to checked lists
 
-                for (listId in checkedLists) {
-                    Log.d("BottomSheetDialogSaveFragment", "Saving article ${article.newsId} to list $listId")
-                    val article: Article = article
-                    FirebaseHelper.addArticleToFireStoreList(
-                        requireContext(), listId, article
-                    )
+            lifecycleScope.launch {
+                // Save details here
+                if (checkedLists.isEmpty()) {
+                    Toast.makeText(context, "No list selected", Toast.LENGTH_SHORT).show()
+                } else {
+                    Log.d("BottomSheetDialogSaveFragment", "Saving article to lists...")
+
+                    // Save article to checked lists
+                    for (listId in checkedLists) {
+                        Log.d("BottomSheetDialogSaveFragment", "Saving article ${article.newsId} to list $listId")
+                        val article: Article = article
+                        FirebaseHelper.addArticleToFireStoreList(
+                            requireContext(), listId, article
+                        )
+
+                        // Add to local database IF listId is offlineArticle
+                        if (listId == "offlineArticle") {
+                            val offlineId = article.newsId
+                            val offlineArticleContent = "Offline Article Content Goes Here"
+                            val offlineArticle = NewsArticle(
+                                offlineId,
+                                offlineArticleContent
+                            )
+
+                            DatabaseHelper.getNewsArticleDao().insertNewsArticle(offlineArticle)
+                        }
+                    }
+
+                    // Remove article from unchecked lists
+                    Log.d("BottomSheetDialogSaveFragment", "Removing article from unchecked lists... $checkedLists")
+                    val uncheckedLists = lists.filter { !checkedLists.contains(it.id) }
+                    Log.d("BottomSheetDialogSaveFragment", "Unchecked lists: $uncheckedLists")
+                    for (list in uncheckedLists) {
+                        FirebaseHelper.deleteArticleFromFirestoreList(
+                            requireContext(), list.id, article.newsId
+                        )
+
+                        // Add to local database IF listId is offlineArticle
+                        if (list.id == "offlineArticle") {
+                            val offlineId = article.newsId
+
+                            DatabaseHelper.getNewsArticleDao().deleteNewsArticle(offlineId)
+                        }
+                    }
+
+                    Toast.makeText(context, "Article saved to ${checkedLists.size} lists", Toast.LENGTH_SHORT).show()
                 }
 
-                // Remove article from unchecked lists
-                Log.d("BottomSheetDialogSaveFragment", "Removing article from unchecked lists... $checkedLists")
-                val uncheckedLists = lists.filter { !checkedLists.contains(it.id) }
-                Log.d("BottomSheetDialogSaveFragment", "Unchecked lists: $uncheckedLists")
-                for (list in uncheckedLists) {
-                    FirebaseHelper.deleteArticleFromFirestoreList(
-                        requireContext(), list.id, article.newsId
-                    )
-                }
-
-                Toast.makeText(context, "Article saved to ${checkedLists.size} lists", Toast.LENGTH_SHORT).show()
+                dismiss()
             }
-
-            dismiss()
         }
+
 
         return binding.root
     }
