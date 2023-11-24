@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.chip.Chip
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.data.DataHelper
 import com.newsmead.R
@@ -16,10 +18,13 @@ import com.newsmead.databinding.FragmentArticleSearchSourceBinding
 import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.ArticleAdapter
 import com.newsmead.recyclerviews.feed.clickListener
+import kotlinx.coroutines.launch
 
 class ArticleSearchSourceFragment: Fragment(), clickListener {
     private val args: ArticleSearchSourceFragmentArgs by navArgs()
     private lateinit var binding: FragmentArticleSearchSourceBinding
+    private lateinit var adapter: ArticleAdapter
+    private lateinit var data: ArrayList<Article>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,8 +37,11 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
         binding.tvSearchSourceName.text = args.sourceName
 
         // RecyclerView of Articles
-        val sourceArticlesData = DataHelper.loadSourceArticlesData()
-        binding.rvSearchSourceArticles.adapter = ArticleAdapter(sourceArticlesData, this)
+        data = DataHelper.loadSourceArticlesData()
+
+        adapter = ArticleAdapter(data, this)
+        binding.rvSearchSourceArticles.adapter = adapter
+
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvSearchSourceArticles.layoutManager = layoutManager
@@ -46,12 +54,21 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
         binding.ivSearchSourceLogo.setImageResource(R.drawable.sample_source_image)
 
         // Fill chips
-        val chipData = DataHelper.loadCategoryData()
+        val chipData: ArrayList<String> = DataHelper.loadCategoryData()
+
+        // Add all to start
+        chipData.add(0, "All")
+
         binding.cgSearchSourceCategory.removeAllViews()
         for (category in chipData) {
             val chip = ChipSearchBinding.inflate(inflater, container, false).root
             chip.text = category
             binding.cgSearchSourceCategory.addView(chip)
+
+            // Set onClickListener for each chip
+            chip.setOnClickListener {
+                updateToCategory(category)
+            }
         }
 
         // Back button to go back to previous fragment
@@ -59,8 +76,35 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
+        // Add API here
+        lifecycleScope.launch {
+            DataHelper.loadArticleData {
+                data.clear()
+                data.addAll(it)
+                adapter.notifyDataSetChanged()
+            }
+        }
 
         return binding.root
+    }
+
+    fun updateToCategory(category: String) {
+        // Uncheck all chips except for the one that was clicked
+        for (i in 0 until binding.cgSearchSourceCategory.childCount) {
+            val chip = binding.cgSearchSourceCategory.getChildAt(i) as Chip
+            if (chip.text != category) {
+                chip.isChecked = false
+            }
+        }
+
+        // Add API here
+//        lifecycleScope.launch {
+//            DataHelper.loadArticleData {
+//                data.clear()
+//                data.addAll(it)
+//                adapter.notifyDataSetChanged()
+//            }
+//        }
     }
 
     override fun onItemClicked(article: Article) {

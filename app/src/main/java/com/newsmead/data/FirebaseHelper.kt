@@ -217,6 +217,49 @@ class FirebaseHelper {
                 }
         }
 
+        suspend fun getHistory(context: Context): List<Article> = coroutineScope {
+            if (uid == "null") {
+                Toast.makeText(context, "Please login to view history", Toast.LENGTH_SHORT).show()
+                return@coroutineScope emptyList()
+            }
+
+            val articles = mutableListOf<Article>()
+
+            val firestore = getFirestoreInstance()
+            val userHistoryRef = firestore.collection("users").document(uid).collection("history")
+
+            try {
+                // Use async to perform the nested query concurrently
+                // Store to deferredList based on viewed date
+                val deferredList = userHistoryRef.orderBy(
+                    "viewed", com.google.firebase.firestore.Query.Direction.DESCENDING
+                ).get().await().documents.map { articleDocument ->
+                    async {
+                        val imageId: Int = articleDocument.data?.get("image").toString().toInt()
+                        val sourceImageId: Int = articleDocument.data?.get("sourceImage").toString().toInt()
+                        Article(
+                            source = articleDocument.data?.get("source").toString(),
+                            sourceImage = sourceImageId,
+                            newsId = articleDocument.data?.get("newsId").toString(),
+                            title = articleDocument.data?.get("title").toString(),
+                            imageId = imageId,
+                            readTime = articleDocument.data?.get("readTime").toString(),
+                            date = articleDocument.data?.get("date").toString(),
+                            url = articleDocument.data?.get("url").toString()
+                        )
+                    }
+                }
+
+                // Add all articles to list
+                articles.addAll(deferredList.awaitAll())
+
+                return@coroutineScope articles
+            } catch (exception: Exception) {
+                // Handle failure
+                throw exception
+            }
+        }
+
         suspend fun checkIfArticleSavedInLists(context: Context, articleId: String): List<String> = coroutineScope {
             if (uid == "null") {
                 Toast.makeText(context, "Please login to view/create a list", Toast.LENGTH_SHORT).show()
@@ -491,6 +534,61 @@ class FirebaseHelper {
                 .addOnFailureListener {
                     // Handle Failure
                     Toast.makeText(requireContext, "Error renaming list", Toast.LENGTH_SHORT).show()
+                }
+        }
+
+        /**
+         * Called when viewing an article. Adds the article to the user's history
+         * Note: History stores 50 articles max
+         * @param article Article to add to history
+         */
+        fun addArticleToHistory(requireContext: Context, article: Article) {
+            if (uid == "null") {
+                Toast.makeText(requireContext, "Please login to add to history", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            // Get current date and time to store in history
+            val currentDateTime = System.currentTimeMillis()
+
+            val userHistoryRef = getFirestoreInstance()
+                .collection("users")
+                .document(uid)
+                .collection("history")
+
+            // If article already exists in history, delete it
+            userHistoryRef.document(article.newsId).delete()
+
+            // Add article to history
+            Log.d("FirebaseHelper", "Adding article ${article.newsId} to history")
+            userHistoryRef.document(article.newsId).set(
+                hashMapOf(
+                    "newsId" to article.newsId,
+                    "title" to article.title,
+                    "image" to article.imageId,
+                    "source" to article.source,
+                    "sourceImage" to article.sourceImage,
+                    "readTime" to article.readTime,
+                    "date" to article.date,
+                    "url" to article.url,
+                    "viewed" to currentDateTime
+                )
+            )
+                .addOnSuccessListener {
+                    // Handle Success
+                    // If history has more than 50 articles, delete the oldest one
+                    userHistoryRef.orderBy("viewed").limit(50).get()
+                        .addOnSuccessListener { documents ->
+                            if (documents.size() > 50) {
+                                // Delete oldest article
+                                val oldestArticle = documents.documents[0]
+                                userHistoryRef.document(oldestArticle.id).delete()
+                            }
+                        }
+                }
+                .addOnFailureListener {
+                    // Handle Failure
+                    Toast.makeText(requireContext, "Error adding article to history", Toast.LENGTH_SHORT).show()
                 }
         }
     }

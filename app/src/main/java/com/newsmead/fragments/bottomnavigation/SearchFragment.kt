@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.data.DataHelper
@@ -19,36 +20,19 @@ import com.newsmead.databinding.FragmentSearchBinding
 import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.ArticleSimplifiedAdapter
 import com.newsmead.recyclerviews.feed.clickListener
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SearchFragment : Fragment(), clickListener {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentSearchBinding
+    private lateinit var adapter: ArticleSimplifiedAdapter
+    private lateinit var data: ArrayList<Article>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding = FragmentSearchBinding.inflate(
+        binding = FragmentSearchBinding.inflate(
             inflater, container, false
         )
 
@@ -68,14 +52,14 @@ class SearchFragment : Fragment(), clickListener {
             chip.text = category
 
             // Launch category fragment when chip is clicked
-            chip.setOnClickListener(View.OnClickListener {
+            chip.setOnClickListener {
                 // Action
                 val action = SearchFragmentDirections.actionSearchFragmentToArticleCategoryFragment(
                     category
                 )
 
                 Navigation.findNavController(it).navigate(action)
-            })
+            }
 
             binding.cgCategory.addView(chip)
         }
@@ -85,14 +69,15 @@ class SearchFragment : Fragment(), clickListener {
             chip.text = source
 
             // Launch source fragment when chip is clicked
-            chip.setOnClickListener(View.OnClickListener {
+            chip.setOnClickListener {
                 // Action
-                val action = SearchFragmentDirections.actionSearchFragmentToArticleSearchSourceFragment(
-                    source
-                )
+                val action =
+                    SearchFragmentDirections.actionSearchFragmentToArticleSearchSourceFragment(
+                        source
+                    )
 
                 Navigation.findNavController(it).navigate(action)
-            })
+            }
 
             binding.cgSources.addView(chip)
         }
@@ -121,8 +106,11 @@ class SearchFragment : Fragment(), clickListener {
 
 
         // RecyclerView of Recent Articles
-        val dataRecentNews = loadArticleDataLatest()
-        binding.rvSearchLatestNews.adapter = ArticleSimplifiedAdapter(dataRecentNews, this)
+        data = loadArticleDataLatest()
+
+        adapter = ArticleSimplifiedAdapter(data, this)
+        binding.rvSearchLatestNews.adapter = adapter
+
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvSearchLatestNews.layoutManager = layoutManager
@@ -133,27 +121,16 @@ class SearchFragment : Fragment(), clickListener {
         )
         binding.rvSearchLatestNews.addItemDecoration(customDividerItemDecoration)
 
-        return binding.root
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SearchFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        // Add API here
+        lifecycleScope.launch {
+            DataHelper.loadArticleData {
+                data.clear()
+                data.addAll(it)
+                adapter.notifyDataSetChanged()
             }
+        }
+
+        return binding.root
     }
 
     override fun onItemClicked(article: Article) {

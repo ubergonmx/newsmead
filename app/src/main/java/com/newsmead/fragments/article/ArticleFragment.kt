@@ -15,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.newsmead.activities.ArticleActivity
 import com.newsmead.data.DataHelper.loadRecommendedArticlesData
 import com.newsmead.R
+import com.newsmead.data.FirebaseHelper
 
 import com.newsmead.databinding.FragmentArticleBinding
 import com.newsmead.databinding.ItemFeedArticleSimplifiedBinding
@@ -45,15 +46,20 @@ class ArticleFragment : Fragment() {
         )
 
         // Safeargs bundle
-        Log.d("ArticleFragment", "onCreateView: articleId: ${article.newsId}")
-        Log.d("ArticleFragment", "onCreateView: articleTitle: ${article.title}")
-        Log.d("ArticleFragment", "onCreateView: articleSource: ${article.source}")
-        Log.d("ArticleFragment", "onCreateView: articleImage: ${article.imageId}")
-        Log.d("ArticleFragment", "onCreateView: articleBody: None ATM")
-        Log.d("ArticleFragment", "onCreateView: articleReadTime: ${article.readTime}")
+        Log.d("ArticleFragment", "onCreateView: newsId: ${article.newsId}")
+        Log.d("ArticleFragment", "onCreateView: title: ${article.title}")
+        Log.d("ArticleFragment", "onCreateView: date: ${article.date}")
+        Log.d("ArticleFragment", "onCreateView: source: ${article.source}")
+        Log.d("ArticleFragment", "onCreateView: sourceImage: ${article.sourceImage}")
+        Log.d("ArticleFragment", "onCreateView: imageId: ${article.imageId}")
+        Log.d("ArticleFragment", "onCreateView: readTime: ${article.readTime}")
+        Log.d("ArticleFragment", "onCreateView: url: ${article.url}")
 
-        // Check if start with "N"
-        if (article.newsId.startsWith("N")) {
+        // Check if start with "N" or "T"
+        if (article.newsId.startsWith("N") || article.newsId.startsWith("T")) {
+            // Add to history
+            FirebaseHelper.addArticleToHistory(requireContext(), article)
+
             // Set article title
             binding.tvArticleHeadline.text = article.title
 
@@ -76,6 +82,7 @@ class ArticleFragment : Fragment() {
             // Set article date (There's no date yet!)
             // binding.tvArticleDate.text = article.articleDate
         } else {
+            Log.d("ArticleFragment", "onCreateView: Not adding to history (is a test article)")
             // Supply header values if able
             if (article.title != "Article Title") binding.tvArticleHeadline.text = article.title
             if (article.source != "Article Source") binding.tvSource.text = article.source
