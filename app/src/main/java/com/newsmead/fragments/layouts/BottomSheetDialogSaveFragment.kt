@@ -22,8 +22,7 @@ class BottomSheetDialogSaveFragment(private val article: Article): BottomSheetDi
 
     private lateinit var binding: BottomSheetDialogSaveListBinding
     private lateinit var lists: ArrayList<SavedList>
-    private lateinit var savedLists: ArrayList<String>
-    private var checkedLists: MutableList<String> = mutableListOf()
+    private var checkedLists: ArrayList<String> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,10 +38,10 @@ class BottomSheetDialogSaveFragment(private val article: Article): BottomSheetDi
                 // Read later is always first, no need to sort
 
                 // Check if article is already saved to a list
-                val checkedLists = FirebaseHelper.checkIfArticleSavedInLists(requireContext(), article.newsId)
+                val fbCheckedLists = FirebaseHelper.checkIfArticleSavedInLists(requireContext(), article.newsId)
 
-                Log.d("BottomSheetDialogSaveFragment", "Checked lists: $checkedLists")
-                savedLists = checkedLists as ArrayList<String>
+                Log.d("BottomSheetDialogSaveFragment", "Checked lists: $fbCheckedLists")
+                checkedLists.addAll(fbCheckedLists as ArrayList<String>)
 
                 // Update UI on the main thread
                 withContext(Dispatchers.Main) {
@@ -84,6 +83,16 @@ class BottomSheetDialogSaveFragment(private val article: Article): BottomSheetDi
                     )
                 }
 
+                // Remove article from unchecked lists
+                Log.d("BottomSheetDialogSaveFragment", "Removing article from unchecked lists... $checkedLists")
+                val uncheckedLists = lists.filter { !checkedLists.contains(it.id) }
+                Log.d("BottomSheetDialogSaveFragment", "Unchecked lists: $uncheckedLists")
+                for (list in uncheckedLists) {
+                    FirebaseHelper.deleteArticleFromFirestoreList(
+                        requireContext(), list.id, article.newsId
+                    )
+                }
+
                 Toast.makeText(context, "Article saved to ${checkedLists.size} lists", Toast.LENGTH_SHORT).show()
             }
 
@@ -120,6 +129,6 @@ class BottomSheetDialogSaveFragment(private val article: Article): BottomSheetDi
             checkedLists.add(listId)
         }
 
-        Log.d("BottomSheetDialogSaveFragment", "Checked lists: $checkedLists")
+        Log.d("BottomSheetDialogSaveFragment", "Checked lists now: $checkedLists")
     }
 }

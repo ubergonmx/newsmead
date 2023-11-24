@@ -362,7 +362,6 @@ class FirebaseHelper {
             userListsRef.document(listId).collection("articles").document(articleId).delete()
                 .addOnSuccessListener {
                     // Handle Success
-                    Toast.makeText(requireContext, "Article deleted from list", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
                     // Handle Failure
