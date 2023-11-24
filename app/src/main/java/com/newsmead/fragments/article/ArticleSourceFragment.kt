@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.chip.Chip
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.data.DataHelper
 import com.newsmead.R
@@ -56,7 +57,7 @@ class ArticleSourceFragment: Fragment(), clickListener {
         binding.ivSourceLogo.setImageResource(R.drawable.sample_source_image)
 
         // Fill chips
-        val chipData = DataHelper.loadCategoryData()
+        val chipData: ArrayList<String> = DataHelper.loadCategoryData()
 
         // Add all to start
         chipData.add(0, "All")
@@ -66,6 +67,11 @@ class ArticleSourceFragment: Fragment(), clickListener {
             val chip = ChipSearchBinding.inflate(inflater, container, false).root
             chip.text = category
             binding.cgCategory.addView(chip)
+
+            // Set onClickListener for each chip
+            chip.setOnClickListener {
+                updateToCategory(category)
+            }
         }
 
         // Back button to go back to previous fragment
@@ -83,6 +89,25 @@ class ArticleSourceFragment: Fragment(), clickListener {
         }
 
         return binding.root
+    }
+
+    fun updateToCategory(category: String) {
+        // Uncheck all chips except for the one that was clicked
+        for (i in 0 until binding.cgCategory.childCount) {
+            val chip = binding.cgCategory.getChildAt(i) as Chip
+            if (chip.text != category) {
+                chip.isChecked = false
+            }
+        }
+
+        // Add API here
+//      lifecycleScope.launch {
+//            DataHelper.loadArticleData {
+//                data.clear()
+//                data.addAll(it)
+//                adapter.notifyDataSetChanged()
+//            }
+//        }
     }
     override fun onItemClicked(article: Article) {
         // Action
