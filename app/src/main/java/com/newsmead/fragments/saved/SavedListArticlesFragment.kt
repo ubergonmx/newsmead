@@ -217,6 +217,11 @@ class SavedListArticlesFragment: Fragment(), clickListener {
             true
         }
 
+        // Remove menu options based on listId
+        if (args.listId == "readLater" || args.listId == "offlineArticles") {
+            popup.menu.removeItem(R.id.menuOptionRename)
+            popup.menu.removeItem(R.id.menuOptionDelete)
+        }
         popup.show()
     }
 
