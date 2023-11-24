@@ -78,6 +78,12 @@ dependencies {
     // Import Facebook Shimmer dependencies
     implementation("com.facebook.shimmer:shimmer:0.5.0")
 
+    // Import Room dependencies
+    implementation("androidx.room:room-runtime:2.6.0")
+    annotationProcessor("androidx.room:room-compiler:2.6.0")
+
+
+
     // Import Glide dependencies
     // implementation("com.github.bumptech.glide:glide:4.12.0")
 
