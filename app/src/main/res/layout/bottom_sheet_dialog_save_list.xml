@@ -41,15 +41,14 @@
 
         <Button
             android:id="@+id/btnNewList"
+            style="@style/ButtonSmall_LowEmphasis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:backgroundTint="?secondaryButtonBgColor"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
             android:minHeight="0dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
             android:text="@string/save_list_new"
-            android:textColor="?secondaryButtonTextColor"
             app:icon="@drawable/add_nofill_weight400"
             app:iconPadding="4dp"
             app:iconTint="?secondaryButtonIconColor"

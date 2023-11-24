@@ -23,6 +23,9 @@ class SavedListsViewHolder(private val viewBinding: ItemSavedListBinding): Recyc
                 this.viewBinding.cvListCard.context.getColor(R.color.gold_20)
             )
 
+            this.viewBinding.cvListCard.strokeColor =
+                this.viewBinding.cvListCard.context.getColor(R.color.gold_200)
+
             // Change icon color
             this.viewBinding.ivListIcon.setColorFilter(
                 this.viewBinding.ivListIcon.context.getColor(R.color.cobalt_100)
@@ -36,6 +39,9 @@ class SavedListsViewHolder(private val viewBinding: ItemSavedListBinding): Recyc
                 // Set to theme's ?lowBackground
                 this.viewBinding.cvListCard.context.getColor(R.color.gray_300)
             )
+
+            this.viewBinding.cvListCard.strokeColor =
+                this.viewBinding.cvListCard.context.getColor(R.color.gray_200)
 
             // Change icon color
             this.viewBinding.ivListIcon.setColorFilter(

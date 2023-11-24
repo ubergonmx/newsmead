@@ -70,8 +70,8 @@
 
                     <ImageView
                         android:id="@+id/ivSavedListIcon"
-                        android:layout_width="21dp"
-                        android:layout_height="18dp"
+                        android:layout_width="32dp"
+                        android:layout_height="24dp"
                         android:layout_marginStart="8dp"
                         android:adjustViewBounds="true"
                         android:src="@drawable/folder_nofill_weight400"
@@ -82,46 +82,26 @@
 
                     <TextView
                         android:id="@+id/tvSavedListName"
+                        style="@style/ts_display_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="@string/sample_saved_list_title"
                         android:textColor="?primaryTextColor"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/ivSavedListIcon"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tvSavedListNumArticles"
+                        style="@style/ts_subtext_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:layout_marginTop="4dp"
                         android:text="@string/sample_saved_list_number"
-                        android:textSize="10sp"
                         app:layout_constraintStart_toStartOf="@+id/ivSavedListIcon"
                         app:layout_constraintTop_toBottomOf="@+id/tvSavedListName" />
 
-                    <Button
-                        android:id="@+id/btnSavedListSort"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:fontFamily="@font/arial_regular"
-                        android:minWidth="0dp"
-                        android:minHeight="0dp"
-                        android:paddingLeft="8dp"
-                        android:paddingTop="4dp"
-                        android:paddingRight="8dp"
-                        android:paddingBottom="4dp"
-                        android:text="@string/saved_sort_btn"
-                        android:textSize="12sp"
-                        app:icon="@drawable/sort_nofill_weight400"
-                        app:iconGravity="textStart"
-                        app:iconPadding="4dp"
-                        app:iconSize="16dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tvSavedListName" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
