@@ -23,6 +23,7 @@ import com.newsmead.databinding.FragmentArticleBinding
 import com.newsmead.databinding.ItemFeedArticleSimplifiedBinding
 import com.newsmead.fragments.layouts.BottomSheetDialogSaveFragment
 import com.newsmead.models.Article
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ArticleFragment : Fragment() {
@@ -148,12 +149,18 @@ class ArticleFragment : Fragment() {
         addBottomAppBarListeners()
 
         // Loading article content from url
-        lifecycleScope.launch {
+        lifecycleScope.launch(Dispatchers.IO) {
             // Check if offline article
             val articleId = article.newsId
             val offlineArticle = DatabaseHelper.getNewsArticleDao().getNewsArticle(articleId)
 
-            if (offlineArticle.articleBody.isNotEmpty()) {
+            Log.d("ArticleFragment", "onCreateView: offlineArticle: $offlineArticle")
+
+            // Test load all offline articles
+            val offlineArticles = DatabaseHelper.getNewsArticleDao().getAllNewsArticles()
+            Log.d("ArticleFragment", "onCreateView: offlineArticles: $offlineArticles")
+
+            if (offlineArticle != null && offlineArticle.articleBody.isNotEmpty()) {
                 // Offline article
                 binding.tvArticleText.text = offlineArticle.articleBody
             } else {
