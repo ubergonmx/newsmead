@@ -175,9 +175,13 @@ class SavedListArticlesFragment: Fragment(), clickListener {
                     // Set up the buttons
                     builder.setPositiveButton("OK") { _, _ ->
                         // Firebase delete list
-                        // FirebaseHelper.deleteList(requireContext(), args.listId)
+                        FirebaseHelper.deleteList(requireContext(), args.listId)
 
                         // Provide snackabr with undo
+
+                        // Simply pop the current fragment off the stack
+                        val navController = binding.root.findNavController()
+                        navController.popBackStack()
                     }
                     builder.setNegativeButton("Cancel") { _, _ ->
                         // Do nothing
@@ -191,17 +195,6 @@ class SavedListArticlesFragment: Fragment(), clickListener {
         }
 
         popup.show()
-    }
-
-    private suspend fun getArticlesFromIds(ids: List<String>): List<Article> = suspendCoroutine { continuation ->
-        // Implement the logic to fetch articles from the given ids
-
-        val articles = ArrayList<Article>()
-
-        //
-
-        // Once you have the articles, resume the coroutine
-        continuation.resume(articles)
     }
 
     override fun onItemClicked(article: Article) {

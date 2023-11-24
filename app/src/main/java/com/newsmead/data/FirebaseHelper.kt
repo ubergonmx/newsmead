@@ -509,6 +509,29 @@ class FirebaseHelper {
             }
         }
 
+        fun deleteList(requireContext: Context, listId: String) {
+            if (uid == "null") {
+                Toast.makeText(requireContext, "Please login to delete a list", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            val userListsRef = getFirestoreInstance()
+                .collection("users")
+                .document(uid)
+                .collection("lists")
+
+            // Delete list
+            Log.d("FirebaseHelper", "Deleting list $listId")
+            userListsRef.document(listId).delete()
+                .addOnSuccessListener {
+                    // Handle Success
+                }
+                .addOnFailureListener {
+                    // Handle Failure
+                    Toast.makeText(requireContext, "Error deleting list", Toast.LENGTH_SHORT).show()
+                }
+        }
+
         fun renameList(requireContext: Context, listId: String, newName: String) {
             if (uid == "null") {
                 Toast.makeText(requireContext, "Please login to rename a list", Toast.LENGTH_SHORT).show()
