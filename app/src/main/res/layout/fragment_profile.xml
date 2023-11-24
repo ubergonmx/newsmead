@@ -1,164 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/svProfile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?primaryBackgroundColor"
-    tools:context=".fragments.bottomnavigation.ProfileFragment">
+    android:fillViewport="true">
 
-    <!-- TODO: Update blank fragment layout -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="UseSwitchCompatOrMaterialXml">
+        android:background="?primaryBackgroundColor"
+        tools:context=".fragments.bottomnavigation.ProfileFragment">
 
-        <TextView
-            android:id="@+id/tvProfile"
-            style="@style/ts_display_large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:text="@string/profile_title"
-            android:textColor="?primaryTextColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvProfileSubtitle"
-            style="@style/ts_title_large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/profile_subtitle"
-            android:textColor="?primaryTextColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvProfile" />
-
+        <!-- TODO: Update blank fragment layout -->
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvProfileSubtitle">
+            android:paddingBottom="40dp"
+            tools:ignore="UseSwitchCompatOrMaterialXml">
 
             <TextView
-                android:id="@+id/tvProfileEmail"
+                android:id="@+id/tvProfile"
+                style="@style/ts_display_large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/profile_email"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/profile_title"
+                android:textColor="?primaryTextColor"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/etEmail"
+            <TextView
+                android:id="@+id/tvProfileSubtitle"
+                style="@style/ts_title_large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/profile_subtitle"
+                android:textColor="?primaryTextColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfile" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:enabled="false"
-                android:inputType="text"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvProfileEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/tvProfileSubtitle">
 
-            <TextView
-                android:id="@+id/tvProfilePassword"
+                <TextView
+                    android:id="@+id/tvProfileEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_email"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileEmail" />
+
+                <TextView
+                    android:id="@+id/tvProfilePassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/profile_password"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfilePassword" />
+
+                <TextView
+                    android:id="@+id/tvProfileConfirmPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/profile_confirm_password"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+                <EditText
+                    android:id="@+id/etConfirmPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfileConfirmPassword" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/btnSave"
+                style="@style/ButtonSmall_HighEmphasis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/profile_password"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+                android:text="@string/profile_save"
+                app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-            <EditText
-                android:id="@+id/etPassword"
+            <Button
+                android:id="@+id/btnLogout"
+                style="@style/ts_button_medium"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPassword"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="?secondaryButtonBgColor"
+                android:fontFamily="@font/arial_regular"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:text="@string/profile_logout"
+                android:textAlignment="textStart"
+                android:textColor="?secondaryButtonTextColor"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/logout_nofill_weight400"
+                app:iconGravity="end"
+                app:iconTint="?secondaryButtonIconColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvProfilePassword" />
+                app:layout_constraintTop_toBottomOf="@+id/btnSave" />
 
-            <TextView
-                android:id="@+id/tvProfileConfirmPassword"
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/profile_confirm_password"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPassword" />
-
-            <EditText
-                android:id="@+id/etConfirmPassword"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPassword"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="?secondaryButtonBgColor"
+                app:cardCornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvProfileConfirmPassword" />
+                app:layout_constraintTop_toBottomOf="@+id/btnLogout">
+
+                <Switch
+                    android:id="@+id/swDarkmode"
+                    style="@style/ts_button_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="?secondaryButtonBgColor"
+                    android:foregroundTint="?secondaryButtonBgColor"
+                    android:paddingStart="20dp"
+                    android:paddingTop="14dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="14dp"
+                    android:splitTrack="false"
+                    android:text="@string/profile_darkmode"
+                    android:thumbTint="@color/gray_100"
+                    android:trackTint="@color/black_100" />
+            </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
-            android:id="@+id/btnSave"
-            style="@style/ButtonSmall_HighEmphasis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/profile_save"
-            app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
-        <Button
-            android:id="@+id/btnLogout"
-            style="@style/ts_button_medium"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="?secondaryButtonBgColor"
-            android:fontFamily="@font/arial_regular"
-            android:paddingTop="14dp"
-            android:paddingBottom="14dp"
-            android:text="@string/profile_logout"
-            android:textAlignment="textStart"
-            android:textColor="?secondaryButtonTextColor"
-            app:cornerRadius="12dp"
-            app:icon="@drawable/logout_nofill_weight400"
-            app:iconGravity="end"
-            app:iconTint="?secondaryButtonIconColor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnSave" />
-
-        <Switch
-            android:id="@+id/swDarkmode"
-            style="@style/ts_button_medium"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:foregroundTint="?secondaryButtonBgColor"
-            android:paddingStart="20dp"
-            android:paddingTop="14dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="14dp"
-            android:splitTrack="false"
-            android:text="@string/profile_darkmode"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnLogout" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</FrameLayout>
+    </FrameLayout>
+</ScrollView>
