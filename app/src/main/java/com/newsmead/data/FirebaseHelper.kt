@@ -70,13 +70,18 @@ class FirebaseHelper {
                         val list = SavedList(listId, title, numArticles)
                         if (list.title == "Read Later") {
                             readLater = list
+
+                            // Skip
+                            return@async null
                         }
 
                         list
                     }
                 }
 
-                finalList.addAll(deferredList.awaitAll())
+                // Clean deferredList by removing nulls
+
+                finalList.addAll(deferredList.awaitAll().filterNotNull())
 
                 // Move the read later list at the top
                 if (readLater != null) {
