@@ -45,6 +45,9 @@ class SavedAllFragment: Fragment(), clickListener {
             // Update Articles Tab
             val allArticles: ArrayList<Article> = FirebaseHelper.getAllArticlesFromLists(requireContext())
 
+            // Reverse order (To get latest saved articles first)
+            allArticles.reverse()
+
             withContext(Dispatchers.Main) {
                 // Update Articles Tab
                 data.addAll(allArticles)
