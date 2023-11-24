@@ -54,6 +54,7 @@ class FirebaseHelper {
                 // Reorder to make readLater first
                 val finalList = ArrayList<SavedList>()
                 var readLater: SavedList? = null
+                var offlineArticles: SavedList? = null
 
                 val documents = userListsRef.get().await()
 
@@ -69,9 +70,13 @@ class FirebaseHelper {
 
                         // Create SavedList object
                         val list = SavedList(listId, title, numArticles)
-                        if (list.title == "Read Later") {
+                        if (list.id == "readLater") {
                             readLater = list
 
+                            // Skip
+                            return@async null
+                        } else if (list.id == "offlineArticles") {
+                            offlineArticles = list
                             // Skip
                             return@async null
                         }
@@ -87,6 +92,11 @@ class FirebaseHelper {
                 // Move the read later list at the top
                 if (readLater != null) {
                     finalList.add(0, readLater!!)
+                }
+
+                // Move the offline articles list at the top
+                if (offlineArticles != null) {
+                    finalList.add(1, offlineArticles!!)
                 }
 
                 finalList
