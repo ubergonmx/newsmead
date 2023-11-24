@@ -7,6 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
+import com.google.firebase.firestore.Source
 import com.google.firebase.firestore.ktx.firestoreSettings
 import com.google.firebase.firestore.ktx.persistentCacheSettings
 import com.newsmead.models.Article
@@ -40,6 +41,12 @@ class FirebaseHelper {
             }
         }
 
+        fun isNetworkAvailable(context: Context): Boolean {
+            val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as android.net.ConnectivityManager
+            val activeNetworkInfo = connectivityManager.activeNetworkInfo
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected
+        }
+
         fun getFirestoreInstance(): FirebaseFirestore {
             // Make offline persistence
             val firestore = FirebaseFirestore.getInstance()
@@ -63,12 +70,20 @@ class FirebaseHelper {
             val userListsRef = firestore.collection("users").document(uid).collection("lists")
 
             try {
+                // Check if network is available
+                val isNetworkAvailable = isNetworkAvailable(context)
+
                 // Reorder to make readLater first
                 val finalList = ArrayList<SavedList>()
                 var readLater: SavedList? = null
                 var offlineArticles: SavedList? = null
 
-                val documents = userListsRef.get().await()
+                // Use Source.CACHE if network is not available
+                val documents = if (isNetworkAvailable) {
+                    userListsRef.get().await()
+                } else {
+                    userListsRef.get(Source.CACHE).await()
+                }
 
                 val deferredList = documents.documents.map { document ->
                     async {
@@ -98,7 +113,6 @@ class FirebaseHelper {
                 }
 
                 // Clean deferredList by removing nulls
-
                 finalList.addAll(deferredList.awaitAll().filterNotNull())
 
                 // Move the read later list at the top
@@ -130,38 +144,78 @@ class FirebaseHelper {
             val userListsRef = firestore.collection("users").document(uid).collection("lists")
 
             try {
-                // Use async to perform the nested query concurrently
-                val deferredList = userListsRef.get().await().documents.map { listDocument ->
-                    async {
-                        val listId = listDocument.id
-                        val listRef = userListsRef.document(listId).collection("articles")
+                // Check if network is available
+                val isNetworkAvailable = isNetworkAvailable(context)
 
-                        val listArticles = listRef.get().await().documents.mapNotNull { articleDocument ->
-                            // Skips articles already in the list
-                            val newsId = articleDocument.data?.get("newsId").toString()
-                            val articleExists = articles.any { article ->
-                                article.newsId == newsId
+                // Use async to perform the nested query concurrently
+                val deferredList = if (isNetworkAvailable) {
+                    userListsRef.get().await().documents.map { listDocument ->
+                        async {
+                            val listId = listDocument.id
+                            val listRef = userListsRef.document(listId).collection("articles")
+
+                            val listArticles = listRef.get().await().documents.mapNotNull { articleDocument ->
+                                // Skips articles already in the list
+                                val newsId = articleDocument.data?.get("newsId").toString()
+                                val articleExists = articles.any { article ->
+                                    article.newsId == newsId
+                                }
+
+                                // If article already exists, skip it
+                                if (articleExists) return@mapNotNull null
+
+                                val imageId: Int = articleDocument.data?.get("image").toString().toInt()
+                                val sourceImageId: Int = articleDocument.data?.get("sourceImage").toString().toInt()
+                                Article(
+                                    source = articleDocument.data?.get("source").toString(),
+                                    sourceImage = sourceImageId,
+                                    newsId = newsId,
+                                    title = articleDocument.data?.get("title").toString(),
+                                    imageId = imageId,
+                                    readTime = articleDocument.data?.get("readTime").toString(),
+                                    date = articleDocument.data?.get("date").toString(),
+                                    url = articleDocument.data?.get("url").toString()
+                                )
                             }
 
-                            // If article already exists, skip it
-                            if (articleExists) return@mapNotNull null
-
-                            val imageId: Int = articleDocument.data?.get("image").toString().toInt()
-                            val sourceImageId: Int = articleDocument.data?.get("sourceImage").toString().toInt()
-                            Article(
-                                source = articleDocument.data?.get("source").toString(),
-                                sourceImage = sourceImageId,
-                                newsId = newsId,
-                                title = articleDocument.data?.get("title").toString(),
-                                imageId = imageId,
-                                readTime = articleDocument.data?.get("readTime").toString(),
-                                date = articleDocument.data?.get("date").toString(),
-                                url = articleDocument.data?.get("url").toString()
-                            )
+                            // Convert to ArrayList
+                            listArticles
                         }
+                    }
+                } else {
+                    // If network is not available, use Source.CACHE
+                    userListsRef.get(Source.CACHE).await().documents.map { listDocument ->
+                        async {
+                            val listId = listDocument.id
+                            val listRef = userListsRef.document(listId).collection("articles")
 
-                        // Convert to ArrayList
-                        listArticles
+                            val listArticles = listRef.get(Source.CACHE).await().documents.mapNotNull { articleDocument ->
+                                // Skips articles already in the list
+                                val newsId = articleDocument.data?.get("newsId").toString()
+                                val articleExists = articles.any { article ->
+                                    article.newsId == newsId
+                                }
+
+                                // If article already exists, skip it
+                                if (articleExists) return@mapNotNull null
+
+                                val imageId: Int = articleDocument.data?.get("image").toString().toInt()
+                                val sourceImageId: Int = articleDocument.data?.get("sourceImage").toString().toInt()
+                                Article(
+                                    source = articleDocument.data?.get("source").toString(),
+                                    sourceImage = sourceImageId,
+                                    newsId = newsId,
+                                    title = articleDocument.data?.get("title").toString(),
+                                    imageId = imageId,
+                                    readTime = articleDocument.data?.get("readTime").toString(),
+                                    date = articleDocument.data?.get("date").toString(),
+                                    url = articleDocument.data?.get("url").toString()
+                                )
+                            }
+
+                            // Convert to ArrayList
+                            listArticles
+                        }
                     }
                 }
 
