@@ -10,7 +10,7 @@
     <color name="dark_text">#FFFFFFFF</color>
 
     <color name="light">#FFFFFFFF</color>
-    <color name="light_btn">#gold_20</color>
+    <color name="light_btn">@color/gold_20</color>
     <color name="light_text">#FF1A1A1A</color>
 
     <color name="sepia">#FFF5EED9</color>
