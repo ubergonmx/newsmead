@@ -42,7 +42,7 @@ class SavedListsFragment: Fragment(), cardListener {
 
         // Initialize recyclerView immediately
         data = ArrayList()
-        adapter = SavedListsAdapter(ArrayList(), this)
+        adapter = SavedListsAdapter(data, this)
         binding.rvSavedLists.adapter = adapter
 
         val layoutManager = LinearLayoutManager(activity)
@@ -56,10 +56,10 @@ class SavedListsFragment: Fragment(), cardListener {
                 if (listsCollection != null) {
                     // ListsCollection is not null, fetch the data
                     // Read later is always first, no need to sort
-                    data = listsCollection
+                    data.addAll(listsCollection)
 
                     withContext(Dispatchers.Main) {
-                        adapter.updateData(data)
+                        adapter.notifyDataSetChanged()
                     }
                 }
             } catch (e: Exception) {
@@ -74,28 +74,24 @@ class SavedListsFragment: Fragment(), cardListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         // Button for Create New List
         binding.btnCreateList.setOnClickListener {
             val newListDialog = NewListDialog(requireContext()) { newListName ->
-                // Add new list to database
-                val result = FirebaseHelper.addListToFireStore(requireContext(), newListName)
+                lifecycleScope.launch {
+                    // Add new list to database
+                    val result = FirebaseHelper.addListToFireStore(requireContext(), newListName)
 
-                if (result != "") {
-                    // Add new list to recyclerView
-                    val adapter = binding.rvSavedLists.adapter as SheetDialogAdapter
-                    val newList = SavedList(result, newListName)
-                    adapter.addNewList(newList)
+                    if (result != "") {
+                        // Add new list to recyclerView
+                        Log.d("SavedListsFragment", "onViewCreated: Adding new list to recyclerView $newListName")
+                        val newList = SavedList(result, newListName)
+                        data.add(newList)
+                        adapter.notifyDataSetChanged()
+                    }
                 }
             }
             newListDialog.show()
         }
-
-        // Add spacing between items
-//        val spacing = 48
-//        binding.rvSavedLists.addItemDecoration(com.newsmead.custom.CustomDividerSpacer(spacing))
-
     }
 
     override fun onCardClick(listId: String, listName: String) {

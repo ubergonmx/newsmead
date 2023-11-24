@@ -8,6 +8,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.newsmead.models.Article
 import com.newsmead.models.SavedList
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
@@ -310,7 +311,7 @@ class FirebaseHelper {
          * @param newListName Name of the new list
          * @return Id of the new list; "" if error
          */
-        fun addListToFireStore(context: Context, newListName: String): String {
+        suspend fun addListToFireStore(context: Context, newListName: String): String {
             if (uid == "null") {
                 Toast.makeText(context, "Please login to create a list", Toast.LENGTH_SHORT).show()
                 return ""
@@ -323,7 +324,7 @@ class FirebaseHelper {
 
             val newListId = userListsRef.document().id
 
-            var listExists = ""
+            val deferred = CompletableDeferred<String>()
 
             // Create new list document
             userListsRef.document(newListId).set(
@@ -334,15 +335,15 @@ class FirebaseHelper {
                 .addOnSuccessListener {
                     // Handle Success
                     Toast.makeText(context, "List created", Toast.LENGTH_SHORT).show()
-                    listExists = newListId
+                    deferred.complete(newListId)
                 }
                 .addOnFailureListener {
                     // Handle Failure
                     Toast.makeText(context, "Error creating list", Toast.LENGTH_SHORT).show()
-                    listExists = ""
+                    deferred.complete("")
                 }
 
-            return listExists
+            return deferred.await()
         }
 
         /**
