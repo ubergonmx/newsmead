@@ -14,4 +14,6 @@ object DatabaseHelper {
             LocalDataSource::class.java, "news_database"
         ).build()
     }
+
+    fun getNewsArticleDao() = roomDatabase.newsArticleDao()
 }
