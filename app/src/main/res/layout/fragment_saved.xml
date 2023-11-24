@@ -47,10 +47,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cl_header"
-            app:tabIndicatorColor="@color/cobalt_100"
             app:tabIndicatorFullWidth="true"
-            app:tabSelectedTextColor="@color/cobalt_100"
-            app:tabTextColor="@color/gray_100">
+            app:tabIndicatorColor="?tabIndicatorColor"
+            app:tabSelectedTextColor="?tabSelectedTextColor"
+            app:tabTextColor="?tabTextColor">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"

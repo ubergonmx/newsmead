@@ -58,6 +58,11 @@
     <attr name="listReadLaterStroke" format="color" />
     <attr name="listOfflineStroke" format="color" />
     <attr name="listDefaultStroke" format="color" />
+    <attr name="listNumTextColor" format="color" />
+
+    <attr name="tabIndicatorColor" format="color" />
+    <attr name="tabSelectedTextColor" format="color" />
+    <attr name="tabTextColor" format="color" />
 
 
 <!--    <attr name="chipTextColor" format="color" />-->
