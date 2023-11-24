@@ -20,7 +20,7 @@
         <item name="primaryButtonBgColor">@color/gray_100</item>
         <item name="primaryButtonRippleColor">@color/gray_200</item>
 
-        <item name="secondaryButtonTextColor">@color/black</item>
+        <item name="secondaryButtonTextColor">@color/black_100</item>
         <item name="secondaryButtonBgColor">@color/gray_300</item>
         <item name="secondaryButtonIconColor">@color/black</item>
 
@@ -36,12 +36,27 @@
 
         <item name="lowBackground">@color/gray_300</item>
         <item name="midBackground">@color/white</item>
-        <item name="highBackground">@color/black</item>
+        <item name="highBackground">@color/black_100</item>
 
         <item name="lowTextEmphasis">@color/gray_100</item>
 
         <item name="iconColorDefault">@color/gray_150</item>
         <item name="iconColorStar">@color/cobalt_100</item>
+
+        <item name="buttonRippleGold">@color/gold_100</item>
+        <item name="buttonRippleCobalt">@color/cobalt_100</item>
+        <item name="buttonRippleGray">@color/gray_200</item>
+
+        <item name="navBarColor">@color/gold_10</item>
+        <item name="navBarIconColor">@color/black_100</item>
+        <item name="navBarTextColor">@color/black_100</item>
+        <item name="navBarIndicatorColor">@color/gold_60</item>
+
+        <item name="listReadLaterBackground">@color/gold_20</item>
+        <item name="listOfflineBackground">@color/gray_300</item>
+        <item name="listReadLaterStroke">@color/gold_200</item>
+        <item name="listOfflineStroke">@color/gray_200</item>
+        <item name="listDefaultStroke">@color/gray_250</item>
 
     </style>
 
@@ -89,7 +104,7 @@
     <style name="ButtonSmall_LowEmphasis" parent="ts_button_medium">
         <item name="android:backgroundTint">?lowEmphasisColor</item>
         <item name="android:textColor">?secondaryButtonTextColor</item>
-        <item name="rippleColor">@color/gold_100</item>
+        <item name="rippleColor">?buttonRippleGold</item>
         <!--Padding-->
         <item name="android:paddingStart">12dp</item>
         <item name="android:paddingTop">12dp</item>
@@ -100,7 +115,7 @@
     <style name="ButtonSmall_HighEmphasis" parent="ts_button_large">
         <item name="android:backgroundTint">?highEmphasisColor</item>
         <item name="android:textColor">?primaryButtonTextColor</item>
-        <item name="rippleColor">@color/gold_100</item>
+        <item name="rippleColor">?buttonRippleGold</item>
         <!--Padding-->
         <item name="android:paddingStart">14dp</item>
         <item name="android:paddingTop">12dp</item>
@@ -111,7 +126,7 @@
     <style name="ButtonSquare_MidEmphasis" parent="ts_subtext_regular">
         <item name="android:backgroundTint">?midEmphasisColor</item>
         <item name="android:textColor">?secondaryButtonTextColor</item>
-        <item name="rippleColor">@color/gold_100</item>
+        <item name="rippleColor">?buttonRippleGold</item>
         <!--Padding-->
         <item name="android:padding">8dp</item>
         <item name="android:paddingLeft">8dp</item>
@@ -131,7 +146,7 @@
     <style name="ButtonMedium_Solid" parent="ts_button_large">
         <item name="android:backgroundTint">?highEmphasisColor</item>
         <item name="android:textColor">?primaryButtonTextColor</item>
-        <item name="rippleColor">@color/gold_100</item>
+        <item name="rippleColor">?buttonRippleGold</item>
         <!--Padding-->
         <item name="android:paddingTop">14dp</item>
         <item name="android:paddingBottom">14dp</item>
@@ -140,7 +155,7 @@
     <style name="ButtonMedium_Text" parent="ButtonMedium_Solid">
         <item name="android:backgroundTint">?midBackground</item>
         <item name="android:textColor">?highEmphasisColor</item>
-        <item name="rippleColor">@color/gray_200</item>
+        <item name="rippleColor">?buttonRippleGray</item>
     </style>
 
     <!--    Chip style  -->
@@ -155,26 +170,24 @@
     </style>
 
     <!--    List card style  -->
-    <style name="ListCardStyle.ReadLater" parent="@style/Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">?cardBackgroundColorPrimary</item>
-        <item name="cardCornerRadius">20dp</item>
-        <item name="cardElevation">0dp</item>
-        <item name="strokeColor">@color/gold_200</item>
-    </style>
-
-    <style name="ListCardStyle.Offline" parent="@style/Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">?lowBackground</item>
-        <item name="cardCornerRadius">20dp</item>
-        <item name="cardElevation">0dp</item>
-        <item name="strokeColor">@color/gray_200</item>
-    </style>
-
     <style name="ListCardStyle.Default" parent="@style/Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">?primaryBackgroundColor</item>
         <item name="cardCornerRadius">20dp</item>
+        <item name="rippleColor">?buttonRippleGold</item>
         <item name="cardElevation">0dp</item>
-        <item name="strokeColor">@color/gray_250</item>
+        <item name="strokeColor">?listDefaultStroke</item>
     </style>
+
+    <style name="ListCardStyle.ReadLater" parent="ListCardStyle.Default">
+        <item name="cardBackgroundColor">?listReadLaterBackground</item>
+        <item name="strokeColor">?listReadLaterStroke</item>
+    </style>
+
+    <style name="ListCardStyle.Offline" parent="ListCardStyle.Default">
+        <item name="cardBackgroundColor">?listOfflineBackground</item>
+        <item name="strokeColor">?listOfflineStroke</item>
+    </style>
+
 
     <!-- Text Field Style -->
     <style name="EditTextOverlay">
@@ -201,7 +214,7 @@
     </style>
 
     <style name="Widget.App.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/gold_60</item>
+        <item name="android:color">?navBarIndicatorColor</item>
     </style>
 
 

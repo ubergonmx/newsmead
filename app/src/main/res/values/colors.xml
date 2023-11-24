@@ -29,6 +29,8 @@
     <color name="black_200">#FF292929</color>
     <color name="black_300">#FF333333</color>
 
+    <color name="true_black">#FF000000</color>
+
     <color name="divider_color">#FFDBDBDB</color>
 
     <!--    Variable colors      -->

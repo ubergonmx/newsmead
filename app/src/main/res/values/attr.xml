@@ -44,6 +44,21 @@
     <attr name="iconColorDefault" format="color" />
     <attr name="iconColorStar" format="color" />
 
+    <attr name="buttonRippleGold" format="color" />
+    <attr name="buttonRippleCobalt" format="color" />
+    <attr name="buttonRippleGray" format="color" />
+
+    <attr name="navBarColor" format="color" />
+    <attr name="navBarIconColor" format="color" />
+    <attr name="navBarTextColor" format="color" />
+    <attr name="navBarIndicatorColor" format="color" />
+
+    <attr name="listReadLaterBackground" format="color" />
+    <attr name="listOfflineBackground" format="color" />
+    <attr name="listReadLaterStroke" format="color" />
+    <attr name="listOfflineStroke" format="color" />
+    <attr name="listDefaultStroke" format="color" />
+
 
 <!--    <attr name="chipTextColor" format="color" />-->
 <!--    <attr name="chipBackgroundColor" format="color" />-->
