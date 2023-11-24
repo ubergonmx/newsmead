@@ -6,6 +6,9 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
+import com.google.firebase.firestore.ktx.firestoreSettings
+import com.google.firebase.firestore.ktx.persistentCacheSettings
 import com.newsmead.models.Article
 import com.newsmead.models.SavedList
 import kotlinx.coroutines.CompletableDeferred
@@ -38,7 +41,16 @@ class FirebaseHelper {
         }
 
         fun getFirestoreInstance(): FirebaseFirestore {
-            return FirebaseFirestore.getInstance()
+            // Make offline persistence
+            val firestore = FirebaseFirestore.getInstance()
+            val settings = FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
+                .build()
+
+            firestore.firestoreSettings = settings
+
+            return firestore
         }
 
         suspend fun getListsCollection(context: Context): ArrayList<SavedList>? = coroutineScope {
