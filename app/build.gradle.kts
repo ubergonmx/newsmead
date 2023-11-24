@@ -10,6 +10,9 @@ plugins {
 
     // Safe args
     id("androidx.navigation.safeargs.kotlin")
+
+    // Room
+    id("kotlin-kapt")
 }
 
 android {
@@ -80,7 +83,10 @@ dependencies {
 
     // Import Room dependencies
     implementation("androidx.room:room-runtime:2.6.0")
-    annotationProcessor("androidx.room:room-compiler:2.6.0")
+    kapt("androidx.room:room-compiler:2.6.0")
+
+    // Import Coroutines dependencies
+    implementation("androidx.room:room-ktx:2.6.0")
 
 
 
