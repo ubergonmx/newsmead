@@ -91,6 +91,7 @@ class ArticleFragment : Fragment(), clickListener {
 
             // Set article source
             binding.tvSource.text = article.source
+            binding.btnArticleRecommendations.text = "Show more from " + article.source
 
             // Set article image from link
             // parses articleImage link into image
