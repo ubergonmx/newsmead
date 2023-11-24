@@ -157,12 +157,6 @@ class FirebaseHelper {
                             val listArticles = listRef.get().await().documents.mapNotNull { articleDocument ->
                                 // Skips articles already in the list
                                 val newsId = articleDocument.data?.get("newsId").toString()
-                                val articleExists = articles.any { article ->
-                                    article.newsId == newsId
-                                }
-
-                                // If article already exists, skip it
-                                if (articleExists) return@mapNotNull null
 
                                 val imageId: Int = articleDocument.data?.get("image").toString().toInt()
                                 val sourceImageId: Int = articleDocument.data?.get("sourceImage").toString().toInt()
@@ -176,6 +170,11 @@ class FirebaseHelper {
                                     date = articleDocument.data?.get("date").toString(),
                                     url = articleDocument.data?.get("url").toString()
                                 )
+                            }
+
+                            // Remove duplicates
+                            listArticles.distinctBy { article ->
+                                article.newsId
                             }
 
                             // Convert to ArrayList
@@ -192,12 +191,6 @@ class FirebaseHelper {
                             val listArticles = listRef.get(Source.CACHE).await().documents.mapNotNull { articleDocument ->
                                 // Skips articles already in the list
                                 val newsId = articleDocument.data?.get("newsId").toString()
-                                val articleExists = articles.any { article ->
-                                    article.newsId == newsId
-                                }
-
-                                // If article already exists, skip it
-                                if (articleExists) return@mapNotNull null
 
                                 val imageId: Int = articleDocument.data?.get("image").toString().toInt()
                                 val sourceImageId: Int = articleDocument.data?.get("sourceImage").toString().toInt()
@@ -211,6 +204,11 @@ class FirebaseHelper {
                                     date = articleDocument.data?.get("date").toString(),
                                     url = articleDocument.data?.get("url").toString()
                                 )
+                            }
+
+                            // Remove duplicates
+                            listArticles.distinctBy { article ->
+                                article.newsId
                             }
 
                             // Convert to ArrayList
