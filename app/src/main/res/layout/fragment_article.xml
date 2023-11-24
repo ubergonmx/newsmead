@@ -232,12 +232,12 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <LinearLayout
-                    android:id="@+id/llArticleRecommended"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvArticleRecommended"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="vertical" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

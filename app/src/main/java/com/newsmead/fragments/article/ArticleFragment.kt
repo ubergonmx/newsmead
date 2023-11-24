@@ -13,9 +13,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.activities.ArticleActivity
 import com.newsmead.data.DataHelper.loadRecommendedArticlesData
 import com.newsmead.R
+import com.newsmead.data.DataHelper
 import com.newsmead.data.DatabaseHelper
 import com.newsmead.data.FirebaseHelper
 
@@ -23,11 +25,15 @@ import com.newsmead.databinding.FragmentArticleBinding
 import com.newsmead.databinding.ItemFeedArticleSimplifiedBinding
 import com.newsmead.fragments.layouts.BottomSheetDialogSaveFragment
 import com.newsmead.models.Article
+import com.newsmead.recyclerviews.feed.ArticleSimplifiedAdapter
+import com.newsmead.recyclerviews.feed.clickListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ArticleFragment : Fragment() {
+class ArticleFragment : Fragment(), clickListener {
     private lateinit var binding: FragmentArticleBinding
+    private lateinit var adapter: ArticleSimplifiedAdapter
+    private lateinit var data: ArrayList<Article>
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,6 +42,16 @@ class ArticleFragment : Fragment() {
         Log.d("ArticleFragment", "onCreateView: ArticleFragment started")
 
         binding = FragmentArticleBinding.inflate(inflater, container, false)
+
+        // Initialize RecyclerView
+        data = ArrayList()
+        adapter = ArticleSimplifiedAdapter(data, this)
+        binding.rvArticleRecommended.adapter = adapter
+
+        // Set layout manager
+        val layoutManager = LinearLayoutManager(context)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        binding.rvArticleRecommended.layoutManager = layoutManager
 
         // Receive parcelable from ArticleActivity
         val article = arguments?.getParcelable<Article>("article") ?: Article(
@@ -75,16 +91,13 @@ class ArticleFragment : Fragment() {
             // Glide.with(this).load(article.articleImage).into(binding.ivSourceImage)
             binding.ivSourceImage.setImageResource(R.drawable.sample_source_image)
 
-
-            // Set article body
-//            binding.tvArticleText.text = article.articleBody
-
             // Set article read time
             val readTime = article.readTime + " min read"
             binding.tvArticleMinRead.text = readTime
 
             // Set article date (There's no date yet!)
             // binding.tvArticleDate.text = article.articleDate
+
         } else {
             Log.d("ArticleFragment", "onCreateView: Not adding to history (is a test article)")
             // Supply header values if able
@@ -105,9 +118,6 @@ class ArticleFragment : Fragment() {
             }
 
             // if (article.articleDate != "Article Date") binding.tvArticleDate.text = article.articleDate
-
-            // Provides Sample Article
-            loadMockArticleData(inflater, container)
         }
 
         // Bottom sheet dialog for saving articles
@@ -149,7 +159,7 @@ class ArticleFragment : Fragment() {
         addBottomAppBarListeners()
 
         // Loading article content from url
-        lifecycleScope.launch(Dispatchers.IO) {
+        lifecycleScope.launch {
             // Check if offline article
             val articleId = article.newsId
             val offlineArticle = DatabaseHelper.getNewsArticleDao().getNewsArticle(articleId)
@@ -167,71 +177,23 @@ class ArticleFragment : Fragment() {
                 // Online article
                 // Insert API here
             }
+
+            // Load Recommended Articles
+            DataHelper.loadArticleData {
+                data.clear()
+                data.addAll(it)
+                adapter.notifyDataSetChanged()
+
+                // If no articles, hide recommendations
+                if (data.isEmpty()) {
+                    binding.divider.visibility = View.GONE
+                    binding.btnArticleRecommendations.visibility = View.GONE
+                    binding.tvArticleRecommended.visibility = View.GONE
+                }
+            }
         }
 
         return binding.root
-    }
-
-    /**
-     * Loads mock article data for presentation purposes
-     * @param inflater LayoutInflater
-     * @param container ViewGroup?
-     */
-    private fun loadMockArticleData(inflater: LayoutInflater, container: ViewGroup?) {
-        // Supply linear layout with FeedArticleSimplified items (not a recycler view)
-        loadMockRecommendedArticles(inflater, container)
-
-        // Set imageview
-        binding.ivSourceImage.setImageResource(R.drawable.sample_source_image)
-    }
-
-    /**
-     * Loads mock recommended articles data for presentation purposes
-     * @param inflater LayoutInflater
-     * @param container ViewGroup?
-     */
-    private fun loadMockRecommendedArticles(inflater: LayoutInflater, container: ViewGroup?) {
-        val recommendedData = loadRecommendedArticlesData()
-        fillRecommendedArticlesRecyclerView(recommendedData)
-    }
-
-    /**
-     * Fills the recommended articles recycler view with data
-     * @param recommendedData ArrayList<Article>
-     */
-    private fun fillRecommendedArticlesRecyclerView(recommendedData: ArrayList<Article>) {
-        for (article in recommendedData) {
-            // Inflate item_feed_article_simplified.xml
-            val itemFeedArticleSimplified =
-                ItemFeedArticleSimplifiedBinding.inflate(layoutInflater, null, false)
-            itemFeedArticleSimplified.tvArticleTitle.text = article.title
-            itemFeedArticleSimplified.tvSource.text = article.source
-            itemFeedArticleSimplified.tvArticleDate.text = article.date
-            itemFeedArticleSimplified.tvReadTime.text = article.readTime
-            itemFeedArticleSimplified.ivSourceImage.setImageResource(article.imageId)
-
-            // Add onClick to open article using safeargs
-            itemFeedArticleSimplified.cvArticleSimplifiedCard.setOnClickListener {
-                // Parse read time to int and remove " min read"
-                val parsedReadTime = article.readTime.substring(0, article.readTime.length - 9)
-
-                val action = ArticleFragmentDirections.actionArticleFragmentSelf(
-                    article
-                )
-
-                Navigation.findNavController(binding.root)
-                    .navigate(action)
-            }
-
-            binding.llArticleRecommended.addView(itemFeedArticleSimplified.root)
-
-            // Add divider between items
-            val viewDivider = View(requireContext())
-            viewDivider.layoutParams =
-                ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1)
-            viewDivider.setBackgroundResource(R.drawable.line_divider)
-            binding.llArticleRecommended.addView(viewDivider)
-        }
     }
 
     fun convertPixelsToSp(px: Float): Float {
@@ -301,5 +263,11 @@ class ArticleFragment : Fragment() {
             binding.btnArticleTextSmaller.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia_btn))
             binding.btnSaveList.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia_btn))
         }
+    }
+
+    override fun onItemClicked(article: Article) {
+        // Action
+        val action = ArticleFragmentDirections.actionArticleFragmentSelf(article)
+        Navigation.findNavController(binding.root).navigate(action)
     }
 }
