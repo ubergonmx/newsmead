@@ -40,44 +40,56 @@ class FirebaseHelper {
             return FirebaseFirestore.getInstance()
         }
 
-        suspend fun getListsCollection(context: Context): ArrayList<SavedList>? = suspendCoroutine { continuation ->
+        suspend fun getListsCollection(context: Context): ArrayList<SavedList>? = coroutineScope {
             if (uid == "null") {
                 Toast.makeText(context, "Please login to view/create a list", Toast.LENGTH_SHORT).show()
-                continuation.resume(null)
+                return@coroutineScope null
             }
 
             val firestore = getFirestoreInstance()
             val userListsRef = firestore.collection("users").document(uid).collection("lists")
 
-            // Reorder to make readLater first
-            val finalList = ArrayList<SavedList>()
-            var readLater: SavedList? = null
+            try {
+                // Reorder to make readLater first
+                val finalList = ArrayList<SavedList>()
+                var readLater: SavedList? = null
 
-            userListsRef.get()
-                .addOnSuccessListener { documents ->
-                    for (document in documents) {
+                val documents = userListsRef.get().await()
+
+                val deferredList = documents.documents.map { document ->
+                    async {
                         // Grab collection id
                         val listId = document.id
-                        val list = SavedList(listId, document.data["name"].toString())
+
+                        val title = document.data?.get("name").toString()
+
+                        // Get number of articles in list under /articles
+                        val numArticles = document.reference.collection("articles").get().await().size()
+
+                        // Create SavedList object
+                        val list = SavedList(listId, title, numArticles)
                         if (list.title == "Read Later") {
                             readLater = list
-                        } else {
-                            finalList.add(list)
                         }
-                    }
 
-                    // Move the read later list at the top
-                    if (readLater != null) {
-                        finalList.add(0, readLater!!)
+                        list
                     }
+                }
 
-                    continuation.resume(finalList)
+                finalList.addAll(deferredList.awaitAll())
+
+                // Move the read later list at the top
+                if (readLater != null) {
+                    finalList.add(0, readLater!!)
                 }
-                .addOnFailureListener { exception ->
-                    // Handle failure
-                    continuation.resumeWithException(exception)
-                }
+
+                finalList
+            } catch (exception: Exception) {
+                // Handle failure
+                null
+            }
         }
+
 
         suspend fun getArticleIdsFromList(context: Context, listId: String): List<String> = suspendCoroutine { continuation ->
             if (uid == "null") {

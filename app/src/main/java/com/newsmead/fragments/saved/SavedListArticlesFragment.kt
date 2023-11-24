@@ -74,6 +74,11 @@ class SavedListArticlesFragment: Fragment(), clickListener {
                 // Notify the adapter that the dataset has changed
                 Log.d("SavedListArticles", "Updating adapter with ${data.size} articles")
                 adapter.notifyDataSetChanged()
+
+                // Update number of articles
+                val numArticlesText = "${data.size} articles"
+                binding.tvSavedListNumArticles.text = numArticlesText
+
             } catch (e: Exception) {
                 // Handle exceptions
                 e.printStackTrace()
@@ -104,6 +109,10 @@ class SavedListArticlesFragment: Fragment(), clickListener {
                 // Notify the adapter that the dataset has changed
                 Log.d("SavedListArticles", "Updating adapter with ${data.size} articles")
                 binding.rvSavedArticles.adapter?.notifyDataSetChanged()
+
+                // Update number of articles
+                val numArticlesText = "${data.size} articles"
+                binding.tvSavedListNumArticles.text = numArticlesText
             } catch (e: Exception) {
                 // Handle exceptions
                 e.printStackTrace()
