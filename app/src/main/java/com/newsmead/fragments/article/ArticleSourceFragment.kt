@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavArgs
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,9 +18,13 @@ import com.newsmead.databinding.FragmentArticleSourceBinding
 import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.ArticleAdapter
 import com.newsmead.recyclerviews.feed.clickListener
+import kotlinx.coroutines.launch
 
 class ArticleSourceFragment: Fragment(), clickListener {
+    val args: ArticleSourceFragmentArgs by navArgs()
     private lateinit var binding: FragmentArticleSourceBinding
+    private lateinit var adapter: ArticleAdapter
+    private lateinit var data: ArrayList<Article>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,13 +33,16 @@ class ArticleSourceFragment: Fragment(), clickListener {
     ): View? {
         binding = FragmentArticleSourceBinding.inflate(inflater, container, false)
 
-        val args: ArticleSourceFragmentArgs by navArgs()
+        // Change text of tvSourceName to sourceName
+        binding.tvSourceName.text = args.author
 
         Log.d("ArticleSourceFragment", "onCreateView: Binding: ${binding.root}")
 
         // RecyclerView of Articles
-        val sourceArticlesData = DataHelper.loadSourceArticlesData()
-        binding.rvSourceArticles.adapter = ArticleAdapter(sourceArticlesData, this)
+        data = DataHelper.loadSourceArticlesData()
+
+        adapter = ArticleAdapter(data, this)
+        binding.rvSourceArticles.adapter = adapter
 
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -53,7 +60,7 @@ class ArticleSourceFragment: Fragment(), clickListener {
 
         // Add all to start
         chipData.add(0, "All")
-        
+
         binding.cgCategory.removeAllViews()
         for (category in chipData) {
             val chip = ChipSearchBinding.inflate(inflater, container, false).root
@@ -66,6 +73,14 @@ class ArticleSourceFragment: Fragment(), clickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
+        // Add API here
+        lifecycleScope.launch {
+            DataHelper.loadArticleData {
+                data.clear()
+                data.addAll(it)
+                adapter.notifyDataSetChanged()
+            }
+        }
 
         return binding.root
     }
