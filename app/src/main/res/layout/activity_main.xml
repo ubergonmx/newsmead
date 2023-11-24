@@ -23,7 +23,7 @@
         android:id="@+id/bottomNavigationView"
         android:layout_width="0dp"
         android:layout_height="84dp"
-        android:background="?attr/midBackground"
+        android:background="@color/gold_10"
         app:elevation="6dp"
         app:itemActiveIndicatorStyle="@style/Widget.App.BottomNavigationView.ActiveIndicator"
         app:itemIconTint="?primaryTextColor"
