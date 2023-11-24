@@ -90,6 +90,62 @@ class FirebaseHelper {
             }
         }
 
+        suspend fun getAllArticlesFromLists(context: Context): ArrayList<Article> = coroutineScope {
+            if (uid == "null") {
+                Toast.makeText(context, "Please login to view/create a list", Toast.LENGTH_SHORT).show()
+                return@coroutineScope ArrayList<Article>()
+            }
+
+            val articles = ArrayList<Article>()
+
+            val firestore = getFirestoreInstance()
+            val userListsRef = firestore.collection("users").document(uid).collection("lists")
+
+            try {
+                // Use async to perform the nested query concurrently
+                val deferredList = userListsRef.get().await().documents.map { listDocument ->
+                    async {
+                        val listId = listDocument.id
+                        val listRef = userListsRef.document(listId).collection("articles")
+
+                        val listArticles = listRef.get().await().documents.mapNotNull { articleDocument ->
+                            // Skips articles already in the list
+                            val newsId = articleDocument.data?.get("newsId").toString()
+                            val articleExists = articles.any { article ->
+                                article.newsId == newsId
+                            }
+
+                            // If article already exists, skip it
+                            if (articleExists) return@mapNotNull null
+
+                            val imageId: Int = articleDocument.data?.get("image").toString().toInt()
+                            val sourceImageId: Int = articleDocument.data?.get("sourceImage").toString().toInt()
+                            Article(
+                                source = articleDocument.data?.get("source").toString(),
+                                sourceImage = sourceImageId,
+                                newsId = newsId,
+                                title = articleDocument.data?.get("title").toString(),
+                                imageId = imageId,
+                                readTime = articleDocument.data?.get("readTime").toString(),
+                                date = articleDocument.data?.get("date").toString(),
+                                url = articleDocument.data?.get("url").toString()
+                            )
+                        }
+
+                        // Convert to ArrayList
+                        listArticles
+                    }
+                }
+
+                // Add all articles to list
+                articles.addAll(deferredList.awaitAll().flatten())
+
+                return@coroutineScope articles
+            } catch (exception: Exception) {
+                // Handle failure
+                throw exception
+            }
+        }
 
         suspend fun getArticleIdsFromList(context: Context, listId: String): List<String> = suspendCoroutine { continuation ->
             if (uid == "null") {

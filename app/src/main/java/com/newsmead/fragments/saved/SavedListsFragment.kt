@@ -15,6 +15,7 @@ import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.FragmentSavedYourListsBinding
 import com.newsmead.fragments.bottomnavigation.SavedFragmentDirections
 import com.newsmead.fragments.layouts.NewListDialog
+import com.newsmead.models.Article
 import com.newsmead.models.SavedList
 import com.newsmead.recyclerviews.dialog.SheetDialogAdapter
 import com.newsmead.recyclerviews.saved.SavedListsAdapter
