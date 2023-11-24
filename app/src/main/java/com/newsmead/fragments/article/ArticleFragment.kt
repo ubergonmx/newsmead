@@ -180,16 +180,26 @@ class ArticleFragment : Fragment(), clickListener {
 
             // Load Recommended Articles
             DataHelper.loadArticleData {
-                data.clear()
-                data.addAll(it)
-                adapter.notifyDataSetChanged()
+                if (FirebaseHelper.isNetworkAvailable(requireContext())) {
+                    data.clear()
+                    data.addAll(it)
+                    adapter.notifyDataSetChanged()
 
-                // If no articles, hide recommendations
-                if (data.isEmpty()) {
+                    // If no articles, hide recommendations
+                    if (data.isEmpty()) {
+                        binding.divider.visibility = View.GONE
+                        binding.btnArticleRecommendations.visibility = View.GONE
+                        binding.tvArticleRecommended.visibility = View.GONE
+                    }
+
+                } else {
                     binding.divider.visibility = View.GONE
                     binding.btnArticleRecommendations.visibility = View.GONE
                     binding.tvArticleRecommended.visibility = View.GONE
                 }
+
+
+
             }
         }
 
