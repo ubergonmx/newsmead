@@ -1,11 +1,13 @@
 package com.newsmead.fragments.bottomnavigation
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.auth.FirebaseAuth
 import com.newsmead.activities.AccountActivity
 
@@ -63,6 +65,24 @@ class ProfileFragment : Fragment() {
             val confirmPassword = this.viewBinding.etConfirmPassword.text.toString()
 
             updateProfile("User", password, confirmPassword)
+        }
+
+        // Check if dark mode is enabled on phone
+        val activityConfig = requireActivity().resources.configuration.uiMode
+        if (activityConfig and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
+            // Dark mode is enabled
+            this.viewBinding.swDarkmode.isChecked = true
+        }
+
+        // Night mode switch
+        this.viewBinding.swDarkmode.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                // Switch to dark mode through
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                // Switch to light mode
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
         }
     }
 
