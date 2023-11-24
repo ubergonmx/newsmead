@@ -556,6 +556,9 @@ class FirebaseHelper {
                 .document(uid)
                 .collection("history")
 
+            // If article already exists in history, delete it
+            userHistoryRef.document(article.newsId).delete()
+
             // Add article to history
             Log.d("FirebaseHelper", "Adding article ${article.newsId} to history")
             userHistoryRef.document(article.newsId).set(
