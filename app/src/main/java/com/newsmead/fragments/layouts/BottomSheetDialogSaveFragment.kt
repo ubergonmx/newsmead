@@ -20,7 +20,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class BottomSheetDialogSaveFragment(private val article: Article): BottomSheetDialogFragment(), listListener {
+class BottomSheetDialogSaveFragment(
+    private val article: Article,
+    private val body: String
+): BottomSheetDialogFragment(), listListener {
 
     private lateinit var binding: BottomSheetDialogSaveListBinding
     private lateinit var lists: ArrayList<SavedList>
@@ -89,7 +92,11 @@ class BottomSheetDialogSaveFragment(private val article: Article): BottomSheetDi
                         // Add to local database IF listId is offlineArticle
                         if (listId == "offlineArticles") {
                             val offlineId = article.newsId
-                            val offlineArticleContent = "Offline Article Content Goes Here"
+                            var offlineArticleContent = "Offline Article Content Goes Here (Did not save properly)"
+                            if (body != "") {
+                                offlineArticleContent = body
+                            }
+
                             val offlineArticle = NewsArticle(
                                 offlineId,
                                 offlineArticleContent

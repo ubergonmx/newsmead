@@ -136,7 +136,8 @@ class ArticleFragment : Fragment(), clickListener {
 
         // Bottom sheet dialog for saving articles
         binding.btnSaveList.setOnClickListener {
-            val bottomSheetDialogFragment = BottomSheetDialogSaveFragment(article)
+            val bodyContent = binding.tvArticleText.text.toString()
+            val bottomSheetDialogFragment = BottomSheetDialogSaveFragment(article, bodyContent)
             bottomSheetDialogFragment.show(requireActivity().supportFragmentManager, "save")
         }
 
