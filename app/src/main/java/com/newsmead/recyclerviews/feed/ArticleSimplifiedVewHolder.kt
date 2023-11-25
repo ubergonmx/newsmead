@@ -11,7 +11,7 @@ class ArticleSimplifiedViewHolder(private val viewBinding: ItemFeedArticleSimpli
         this.viewBinding.tvSource.text = article.source
         this.viewBinding.ivSourceImage.setImageResource(article.sourceImage)
         this.viewBinding.tvArticleTitle.text = article.title
-        this.viewBinding.tvArticleDate.text = article.date
+//        this.viewBinding.tvArticleDate.text = article.date
         this.viewBinding.tvReadTime.text = article.readTime
     }
 
