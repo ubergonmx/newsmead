@@ -257,8 +257,96 @@ object DataHelper {
         return data
     }
 
-    fun loadSearchArticlesData(): ArrayList<Article> {
-        return loadSourceArticlesData()
+    fun loadSearchArticlesData(searchQuery : String, callback: (List<Article>) -> Unit) {
+        // Create an empty ArrayList
+        val articles = ArrayList<Article>()
+
+        // Create an instance of the DataRepository
+        val dataRepository = DataRepository(RemoteDataSource(NewsAPIClientFactory.create()))
+
+        // Fetch top headlines using the repository
+        dataRepository.getSearchedArticles(searchQuery, "13328281630540aaa6c2750b76b5ee12", object : DataRepository.DataCallback<NewsResponse> {
+            override fun onSuccess(response: NewsResponse) {
+                // Process the data here
+                for (data in response.articles) {
+                    Log.d("DataHelper", data.toString())
+                    data.author?.let {
+                        Article(
+                            it,
+                            data.title,
+                            formatDate(data.publishedAt),
+                            (3..9).random().toString() + " min read",
+                            data.url
+                        )
+                    }?.let {
+                        articles.add(
+                            it
+                        )
+                    }
+                }
+                callback(articles)
+            }
+
+            override fun onError(error: Throwable) {
+                // Handle errors
+                Log.e("DataHelper", error.toString())
+                articles.add(
+                    Article(
+                        "CNN",
+                        "Biden's first 100 days: What he's gotten done",
+                        "Apr 29, 2021",
+                        "9 min read",
+                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
+                    )
+                )
+                articles.add(
+                    Article(
+                        "INQUIRER.NET",
+                        "BTS to perform new single 'Butter' at Billboard Music Awards",
+                        "Jan 28, 2022",
+                        "3 min read",
+                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
+                    )
+                )
+                articles.add(
+                    Article(
+                        "ABS-CBN News",
+                        "Showbiz couple Kylie Padilla, Aljur Abrenica split",
+                        "Mar 12, 2023",
+                        "4 min read",
+                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
+                    )
+                )
+                articles.add(
+                    Article(
+                        "Rappler",
+                        "Spacex launches 60 more Starlink satellites into orbit",
+                        "Dec 29, 2022",
+                        "5 min read",
+                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
+                    )
+                )
+                articles.add(
+                    Article(
+                        "Manila Bulletin",
+                        "Duterte to meet with Chinese envoy over West Philippine Sea issue",
+                        "Nov 17, 2020",
+                        "7 min read",
+                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
+                    )
+                )
+                articles.add(
+                    Article(
+                        "Philippine Star",
+                        "Comelec: 59 party-list groups to join 2022 polls",
+                        "Jul 02, 2022",
+                        "4 min read",
+                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
+                    )
+                )
+                callback(articles)
+            }
+        })
     }
 
     fun loadCategoryArticlesData(): ArrayList<Article> {

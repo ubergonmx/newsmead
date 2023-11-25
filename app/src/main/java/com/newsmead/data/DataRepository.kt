@@ -35,4 +35,26 @@ class DataRepository(private val remoteDataSource: RemoteDataSource) {
             }
         })
     }
+
+    fun getSearchedArticles(searchQuery: String, apiKey: String, callback: DataCallback<NewsResponse>) {
+        remoteDataSource.getSearchedArticles(searchQuery, apiKey).enqueue(object : Callback<NewsResponse> {
+            override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
+                if (response.isSuccessful) {
+                    Log.d("DataRepository", "API Success")
+                    val newsResponse = response.body()
+                    if (newsResponse != null) {
+                        callback.onSuccess(newsResponse)
+                    }
+                } else {
+                    Log.d("DataRepository", "API Error")
+                    callback.onError(Throwable("API Error"))
+                }
+            }
+
+            override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
+                Log.d("DataRepository", "API Failure")
+                callback.onError(t)
+            }
+        })
+    }
 }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.newsmead.data.DataHelper
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
+import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.FragmentArticleSearchBinding
 import com.newsmead.fragments.layouts.BottomSheetDialogSearchFilter
 import com.newsmead.models.Article
@@ -39,10 +40,15 @@ class ArticleSearchFragment : Fragment(), clickListener {
         // Change text to search query
         binding.tvSearchingForPrompt.text = searchQuery
 
-        // RecyclerView of Articles
-        data = DataHelper.loadSearchArticlesData()
+        data = DataHelper.loadSourceArticlesData()
 
+        // RecyclerView of Articles
         adapter = ArticleAdapter(data, this)
+        // Load data and update the adapter when available
+        DataHelper.loadSearchArticlesData (searchQuery) { articles ->
+            adapter.updateData(articles)
+        }
+
         binding.rvSearchArticles.adapter = adapter
 
         val layoutManager = LinearLayoutManager(context)

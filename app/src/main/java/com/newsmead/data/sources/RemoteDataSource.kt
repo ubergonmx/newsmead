@@ -9,5 +9,8 @@ class RemoteDataSource(private val apiClient: NewsAPIClient) {
         return apiClient.getTopHeadlines(country, apiKey)
     }
 
-    // Add more methods for other API calls
+    fun getSearchedArticles(searchQuery: String, apiKey: String): Call<NewsResponse> {
+        return apiClient.getSearchedArticles(searchQuery, apiKey)
+    }
+
 }
