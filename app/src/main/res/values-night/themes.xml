@@ -35,10 +35,11 @@
         <item name="highEmphasisColor">@color/cobalt_100</item>
 
         <item name="lowBackground">@color/gray_300</item>
-        <item name="midBackground">@color/white</item>
-        <item name="highBackground">@color/black_100</item>
+        <item name="midBackground">@color/black_200</item>
+        <item name="highBackground">@color/white</item>
 
         <item name="lowTextEmphasis">@color/gray_250</item>
+        <item name="highTextEmphasis">@color/cobalt_50</item>
 
         <item name="iconColorDefault">@color/gray_150</item>
         <item name="iconColorStar">@color/gold_200</item>
@@ -62,6 +63,8 @@
         <item name="tabIndicatorColor">@color/cobalt_50</item>
         <item name="tabSelectedTextColor">@color/cobalt_50</item>
         <item name="tabTextColor">@color/gray_250</item>
+
+        <item name="titleColor">@color/gold_100</item>
 
     </style>
 
@@ -120,7 +123,7 @@
 
     <style name="ButtonMedium_Text" parent="ButtonMedium_Solid">
         <item name="android:backgroundTint">?midBackground</item>
-        <item name="android:textColor">?highEmphasisColor</item>
+        <item name="android:textColor">?highTextEmphasis</item>
         <item name="rippleColor">?buttonRippleGray</item>
     </style>
 
