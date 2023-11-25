@@ -16,6 +16,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import com.android.volley.Request
+import com.android.volley.Response
 import com.newsmead.activities.ArticleActivity
 import com.newsmead.data.DataHelper.loadRecommendedArticlesData
 import com.newsmead.R
@@ -185,7 +189,27 @@ class ArticleFragment : Fragment(), clickListener {
                 binding.tvArticleText.text = offlineArticle.articleBody
             } else {
                 // Online article
-                // Insert API here
+                // Instantiate the RequestQueue.
+                val queue = Volley.newRequestQueue(context)
+                val url = "https://newsmead.azurewebsites.net/parse?url=${article.url}"
+
+                // Request a JsonObject response from the provided URL.
+                val jsonObjectRequest = JsonObjectRequest(
+                    Request.Method.GET, url, null,
+                    Response.Listener { response ->
+                        // Parse the JSON response.
+                        val body = response.getString("body")
+                        // Use the body string here.
+                        Log.d("ArticleFragment", "Body: $body")
+                        // Set article text
+                        binding.tvArticleText.text = body
+                    },
+                    Response.ErrorListener { error ->
+                        Log.e("ArticleFragment", "That didn't work!", error)
+                    })
+
+                // Add the request to the RequestQueue.
+                queue.add(jsonObjectRequest)
             }
 
             // Load Recommended Articles
