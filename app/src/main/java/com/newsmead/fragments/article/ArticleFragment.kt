@@ -203,7 +203,7 @@ class ArticleFragment : Fragment(), clickListener {
                 // Request a JsonObject response from the provided URL.
                 val jsonObjectRequest = JsonObjectRequest(
                     Request.Method.GET, url, null,
-                    Response.Listener { response ->
+                    { response ->
                         // Parse the JSON response.
                         val body = response.getString("body")
                         // Use the body string here.
@@ -219,7 +219,7 @@ class ArticleFragment : Fragment(), clickListener {
                             Log.e("ArticleFragment", "onCreateView: Error loading image", e)
                         }
                     },
-                    Response.ErrorListener { error ->
+                    { error ->
                         Log.e("ArticleFragment", "That didn't work!", error)
                     })
 
