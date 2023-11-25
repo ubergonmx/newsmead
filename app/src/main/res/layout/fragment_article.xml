@@ -308,7 +308,8 @@
                 android:id="@+id/llArticleBottomButtons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end">
+                android:layout_gravity="end"
+                android:weightSum="1">
 
                 <Button
                     android:id="@+id/btnArticleTextSmaller"
@@ -316,6 +317,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
+                    android:layout_weight="0.5"
                     android:minHeight="0dp"
                     android:text="@string/article_text_smaller_btn"
                     app:cornerRadius="16dp"
@@ -330,6 +332,7 @@
                     style="@style/ButtonSquare_MidEmphasis"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
                     android:minHeight="0dp"
                     android:text="@string/article_text_larger_btn"
                     app:cornerRadius="16dp"
