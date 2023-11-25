@@ -192,6 +192,8 @@ class ArticleFragment : Fragment(), clickListener {
 
                 // Show loading
                 binding.tvArticleText.text = "Loading article..."
+                binding.ivArticleFullImage.setImageResource(R.drawable.sample_article_image)
+
                 // Instantiate the RequestQueue.
                 val queue = Volley.newRequestQueue(context)
                 val url = "https://newsmead.azurewebsites.net/parse?url=${article.url}"
