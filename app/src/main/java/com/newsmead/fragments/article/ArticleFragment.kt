@@ -250,6 +250,10 @@ class ArticleFragment : Fragment(), clickListener {
                 Log.d("ArticleFragment", "onCreateView: savedLists is not empty")
                 // Change save button icon to filled
                 binding.btnSaveList.icon = ContextCompat.getDrawable(requireContext(), R.drawable.bookmark_filled_weight400)
+
+                // Change text to "Saved to list"
+                val savedText = "Saved to list"
+                binding.btnSaveList.text = savedText
             }
         }
 
