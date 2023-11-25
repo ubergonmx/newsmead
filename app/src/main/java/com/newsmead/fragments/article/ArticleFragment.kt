@@ -210,7 +210,15 @@ class ArticleFragment : Fragment(), clickListener {
                         Log.d("ArticleFragment", "Body: $body")
                         // Set article text
                         binding.tvArticleText.text = body
+                    },
+                    { error ->
+                        Log.e("ArticleFragment", "That didn't work!", error)
+                        binding.tvArticleText.text = "Error loading article"
+                    })
 
+                val jsonObjectRequestImage = JsonObjectRequest(
+                    Request.Method.GET, url, null,
+                    { response ->
                         // Set article image
                         val imageUrl = response.getString("image")
                         try{
@@ -221,10 +229,13 @@ class ArticleFragment : Fragment(), clickListener {
                     },
                     { error ->
                         Log.e("ArticleFragment", "That didn't work!", error)
+                        // Remove image
+                        binding.ivArticleFullImage.setImageResource(0)
                     })
 
                 // Add the request to the RequestQueue.
                 queue.add(jsonObjectRequest)
+                queue.add(jsonObjectRequestImage)
             }
 
             // Load Recommended Articles
