@@ -139,6 +139,7 @@
                         android:layout_marginTop="8dp"
                         android:text="@string/article_by"
                         android:textColor="?lowTextEmphasis"
+                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvArticleHeadline" />
 
@@ -150,6 +151,7 @@
                         android:layout_marginStart="4dp"
                         android:text="@string/sample_author"
                         android:textColor="?lowTextEmphasis"
+                        android:visibility="gone"
                         app:layout_constraintStart_toEndOf="@+id/tvArticleBy"
                         app:layout_constraintTop_toTopOf="@+id/tvArticleBy" />
 
@@ -161,6 +163,7 @@
                         android:layout_marginStart="8dp"
                         android:text="@string/symbol_bullet"
                         android:textColor="@color/gray_200"
+                        android:visibility="gone"
                         app:layout_constraintStart_toEndOf="@+id/tvArticleAuthor"
                         app:layout_constraintTop_toTopOf="@+id/tvArticleAuthor" />
 
@@ -169,11 +172,12 @@
                         style="@style/ts_subtext_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
                         android:text="@string/sample_read_time"
                         android:textColor="?lowTextEmphasis"
                         app:layout_constraintStart_toEndOf="@+id/tvByDot"
-                        app:layout_constraintTop_toTopOf="@+id/tvByDot" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvArticleHeadline" />
 
                     <ImageView
                         android:id="@+id/ivArticleFullImage"
@@ -183,7 +187,7 @@
                         android:adjustViewBounds="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvArticleBy"
+                        app:layout_constraintTop_toBottomOf="@+id/tvArticleMinRead"
                         tools:srcCompat="@drawable/sample_article_full_image" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -194,7 +198,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/text_margin"
-                    android:text="@string/large_text"
+                    android:text="@string/article_text_loading"
                     android:textColor="?primaryTextColor" />
 
                 <View
