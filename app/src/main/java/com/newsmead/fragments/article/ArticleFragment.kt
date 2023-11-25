@@ -213,7 +213,11 @@ class ArticleFragment : Fragment(), clickListener {
 
                         // Set article image
                         val imageUrl = response.getString("image")
-                        Glide.with(this@ArticleFragment).load(imageUrl).into(binding.ivArticleFullImage)
+                        try{
+                            Glide.with(this@ArticleFragment).load(imageUrl).into(binding.ivArticleFullImage)
+                        } catch (e: Exception) {
+                            Log.e("ArticleFragment", "onCreateView: Error loading image", e)
+                        }
                     },
                     Response.ErrorListener { error ->
                         Log.e("ArticleFragment", "That didn't work!", error)
