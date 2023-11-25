@@ -297,7 +297,9 @@ class ArticleFragment : Fragment(), clickListener {
 
             changeColorOfBackgrounds(ContextCompat.getColor(requireContext(), R.color.light))
             changeColorOfButtons(ContextCompat.getColor(requireContext(), R.color.light_btn))
+            binding.btnArticleTextLarger.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.light_btn_emphasis))
             changeColorOfTexts(ContextCompat.getColor(requireContext(), R.color.light_text))
+            changeColorOfSubTexts(ContextCompat.getColor(requireContext(), R.color.light_subtext))
         }
 
         binding.btnArticleClrDark.setOnClickListener{
@@ -310,7 +312,9 @@ class ArticleFragment : Fragment(), clickListener {
 
             changeColorOfBackgrounds(ContextCompat.getColor(requireContext(), R.color.dark))
             changeColorOfButtons(ContextCompat.getColor(requireContext(), R.color.dark_btn))
+            binding.btnArticleTextLarger.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.dark_btn_emphasis))
             changeColorOfTexts(ContextCompat.getColor(requireContext(), R.color.dark_text))
+            changeColorOfSubTexts(ContextCompat.getColor(requireContext(), R.color.dark_subtext))
         }
 
         // Set to background color to F5EED9 when btnArticleClrSepia is clicked
@@ -324,7 +328,9 @@ class ArticleFragment : Fragment(), clickListener {
 
             changeColorOfBackgrounds(ContextCompat.getColor(requireContext(), R.color.sepia))
             changeColorOfButtons(ContextCompat.getColor(requireContext(), R.color.sepia_btn))
+            binding.btnArticleTextLarger.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia_btn_emphasis))
             changeColorOfTexts(ContextCompat.getColor(requireContext(), R.color.sepia_text))
+            changeColorOfSubTexts(ContextCompat.getColor(requireContext(), R.color.sepia_subtext))
         }
     }
 
@@ -337,19 +343,22 @@ class ArticleFragment : Fragment(), clickListener {
     }
     
     private fun changeColorOfButtons(color: Int) {
-        binding.btnArticleTextLarger.setBackgroundColor(color)
         binding.btnArticleTextSmaller.setBackgroundColor(color)
         binding.btnSaveList.setBackgroundColor(color)
+    }
+
+    private fun changeColorOfSubTexts(color: Int){
+        binding.tvArticleAuthor.setTextColor(color)
+        binding.tvByDot.setTextColor(color)
+        binding.tvArticleMinRead.setTextColor(color)
+        binding.tvArticleBy.setTextColor(color)
     }
 
     private fun changeColorOfTexts(color: Int){
         binding.tvArticleText.setTextColor(color)
         binding.tvArticleHeadline.setTextColor(color)
-        binding.tvArticleMinRead.setTextColor(color)
         binding.tvArticleRecommended.setTextColor(color)
         binding.tvSource.setTextColor(color)
-        binding.tvArticleAuthor.setTextColor(color)
-        binding.tvByDot.setTextColor(color)
 
         binding.btnArticleTextLarger.setTextColor(color)
         binding.btnArticleTextSmaller.setTextColor(color)

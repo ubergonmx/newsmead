@@ -5,17 +5,23 @@
     <color name="white">#FFFFFFFF</color>
 
     <!--    color modes-->
-    <color name="dark">#FF1A1A1A</color>
-    <color name="dark_btn">#FF1A1A1A</color>
-    <color name="dark_text">#FFFFFFFF</color>
+    <color name="dark">@color/black_200</color>
+    <color name="dark_btn">@color/black_100</color>
+    <color name="dark_btn_emphasis">@color/true_black</color>
+    <color name="dark_text">@color/white</color>
+    <color name="dark_subtext">@color/gray_200</color>
 
-    <color name="light">#FFFFFFFF</color>
+    <color name="light">@color/white</color>
     <color name="light_btn">@color/gold_20</color>
-    <color name="light_text">#FF1A1A1A</color>
+    <color name="light_btn_emphasis">@color/gold_60</color>
+    <color name="light_text">@color/black_100</color>
+    <color name="light_subtext">@color/gray_100</color>
 
     <color name="sepia">#FFF5EED9</color>
     <color name="sepia_btn">#FFEBDEB5</color>
-    <color name="sepia_text">#FF1A1A1A</color>
+    <color name="sepia_btn_emphasis">#FFE3D39E</color>
+    <color name="sepia_text">@color/black_100</color>
+    <color name="sepia_subtext">@color/gray_100</color>
 
     <!--    Secondary colors      -->
     <color name="gold_100">#FFFCEB4F</color>
