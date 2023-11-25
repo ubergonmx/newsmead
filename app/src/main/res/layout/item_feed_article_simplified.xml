@@ -28,11 +28,10 @@
 
             <LinearLayout
                 android:id="@+id/llSource"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -53,6 +52,25 @@
 
                     android:text="@string/sample_source"
                     android:textColor="?primaryTextColor" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llArticleFooter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvReadTime"
+                    style="@style/ts_subtext_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/common_margin_half"
+                    android:text="@string/sample_read_time"
+                    android:textColor="?lowTextEmphasis" />
             </LinearLayout>
 
             <TextView
@@ -67,42 +85,6 @@
                 android:textColor="?primaryTextColor"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/llSource" />
-
-            <LinearLayout
-                android:id="@+id/llArticleFooter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvArticleTitle">
-
-                <TextView
-                    android:id="@+id/tvArticleDate"
-                    style="@style/ts_subtext_medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sample_date"
-                    android:textColor="?lowTextEmphasis" />
-
-                <TextView
-                    android:id="@+id/tvBullet"
-                    style="@style/ts_subtext_medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/common_margin_half"
-                    android:text="@string/symbol_bullet"
-                    android:textColor="?lowTextEmphasis" />
-
-                <TextView
-                    android:id="@+id/tvReadTime"
-                    style="@style/ts_subtext_medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/common_margin_half"
-                    android:text="@string/sample_read_time"
-                    android:textColor="?lowTextEmphasis" />
-            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
