@@ -20,6 +20,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.android.volley.Request
 import com.android.volley.Response
+import com.bumptech.glide.Glide
 import com.newsmead.activities.ArticleActivity
 import com.newsmead.data.DataHelper.loadRecommendedArticlesData
 import com.newsmead.R
@@ -190,6 +191,11 @@ class ArticleFragment : Fragment(), clickListener {
                 binding.tvArticleText.text = offlineArticle.articleBody
             } else {
                 // Online article
+
+                // Show loading
+                binding.tvArticleText.text = "Loading article..."
+                binding.ivArticleFullImage.setImageResource(R.drawable.sample_article_image)
+
                 // Instantiate the RequestQueue.
                 val queue = Volley.newRequestQueue(context)
                 val url = "https://newsmead.azurewebsites.net/parse?url=${article.url}"
@@ -204,6 +210,10 @@ class ArticleFragment : Fragment(), clickListener {
                         Log.d("ArticleFragment", "Body: $body")
                         // Set article text
                         binding.tvArticleText.text = body
+
+                        // Set article image
+                        val imageUrl = response.getString("image")
+                        Glide.with(this@ArticleFragment).load(imageUrl).into(binding.ivArticleFullImage)
                     },
                     Response.ErrorListener { error ->
                         Log.e("ArticleFragment", "That didn't work!", error)
