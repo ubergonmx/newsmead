@@ -296,6 +296,7 @@ class ArticleFragment : Fragment(), clickListener {
             window.navigationBarColor = ContextCompat.getColor(activity,R.color.light)
 
             changeColorOfBackgrounds(ContextCompat.getColor(requireContext(), R.color.light))
+            changeColorOfButtons(ContextCompat.getColor(requireContext(), R.color.light_btn))
             changeColorOfTexts(ContextCompat.getColor(requireContext(), R.color.light_text))
         }
 
@@ -308,6 +309,7 @@ class ArticleFragment : Fragment(), clickListener {
             window.navigationBarColor = ContextCompat.getColor(activity,R.color.dark)
 
             changeColorOfBackgrounds(ContextCompat.getColor(requireContext(), R.color.dark))
+            changeColorOfButtons(ContextCompat.getColor(requireContext(), R.color.dark_btn))
             changeColorOfTexts(ContextCompat.getColor(requireContext(), R.color.dark_text))
         }
 
@@ -321,6 +323,7 @@ class ArticleFragment : Fragment(), clickListener {
             window.navigationBarColor = ContextCompat.getColor(activity,R.color.sepia)
 
             changeColorOfBackgrounds(ContextCompat.getColor(requireContext(), R.color.sepia))
+            changeColorOfButtons(ContextCompat.getColor(requireContext(), R.color.sepia_btn))
             changeColorOfTexts(ContextCompat.getColor(requireContext(), R.color.sepia_text))
         }
     }
@@ -330,6 +333,10 @@ class ArticleFragment : Fragment(), clickListener {
         binding.nsvArticleText.setBackgroundColor(color)
         binding.bottomAppBar.setBackgroundColor(color)
         binding.clArticleTopBar.setBackgroundColor(color)
+
+    }
+    
+    private fun changeColorOfButtons(color: Int) {
         binding.btnArticleTextLarger.setBackgroundColor(color)
         binding.btnArticleTextSmaller.setBackgroundColor(color)
         binding.btnSaveList.setBackgroundColor(color)
