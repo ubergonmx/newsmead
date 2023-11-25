@@ -189,6 +189,9 @@ class ArticleFragment : Fragment(), clickListener {
                 binding.tvArticleText.text = offlineArticle.articleBody
             } else {
                 // Online article
+
+                // Show loading
+                binding.tvArticleText.text = "Loading article..."
                 // Instantiate the RequestQueue.
                 val queue = Volley.newRequestQueue(context)
                 val url = "https://newsmead.azurewebsites.net/parse?url=${article.url}"
