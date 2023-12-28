@@ -4,12 +4,9 @@ import android.widget.Toast
 import android.content.Context
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.Source
-import com.google.firebase.firestore.ktx.firestoreSettings
-import com.google.firebase.firestore.ktx.persistentCacheSettings
 import com.newsmead.models.Article
 import com.newsmead.models.SavedList
 import kotlinx.coroutines.CompletableDeferred
@@ -27,18 +24,10 @@ class FirebaseHelper {
         private var uid = FirebaseAuth.getInstance().currentUser?.uid ?: "null"
 
         fun getUid(): String {
-            if (uid == "null") {
+            return if (uid == "null") {
                 uid = FirebaseAuth.getInstance().currentUser?.uid ?: "null"
-                if (uid == "null") {
-                    return "null"
-                } else {
-                    return uid
-                }
-
-            } else {
-                return uid
-
-            }
+                if (uid == "null") { "null" } else { uid }
+            } else { uid }
         }
 
         fun isNetworkAvailable(context: Context): Boolean {
@@ -387,9 +376,7 @@ class FirebaseHelper {
                 return ""
             }
 
-            if (name == "") {
-                parsedName = "User"
-            }
+            if (name == "") { parsedName = "User" }
 
             val userRef = firestore.collection("users").document(uid)
 
