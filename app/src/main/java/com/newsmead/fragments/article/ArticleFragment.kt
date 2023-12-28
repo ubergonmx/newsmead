@@ -9,20 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.android.volley.Request
-import com.android.volley.Response
 import com.bumptech.glide.Glide
-import com.newsmead.activities.ArticleActivity
-import com.newsmead.data.DataHelper.loadRecommendedArticlesData
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.data.DataHelper
@@ -30,13 +25,11 @@ import com.newsmead.data.DatabaseHelper
 import com.newsmead.data.FirebaseHelper
 
 import com.newsmead.databinding.FragmentArticleBinding
-import com.newsmead.databinding.ItemFeedArticleSimplifiedBinding
 import com.newsmead.fragments.layouts.BottomSheetDialogSaveFragment
 import com.newsmead.models.Article
 import com.newsmead.models.SavedList
 import com.newsmead.recyclerviews.feed.ArticleSimplifiedAdapter
 import com.newsmead.recyclerviews.feed.clickListener
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ArticleFragment : Fragment(), clickListener {
@@ -44,11 +37,13 @@ class ArticleFragment : Fragment(), clickListener {
     private lateinit var adapter: ArticleSimplifiedAdapter
     private lateinit var data: ArrayList<Article>
     private lateinit var savedLists: ArrayList<SavedList>
+    private enum class ColorMode { LIGHT, DARK, SEPIA }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         Log.d("ArticleFragment", "onCreateView: ArticleFragment started")
 
         binding = FragmentArticleBinding.inflate(inflater, container, false)
@@ -181,10 +176,6 @@ class ArticleFragment : Fragment(), clickListener {
             val offlineArticle = DatabaseHelper.getNewsArticleDao().getNewsArticle(articleId)
 
             Log.d("ArticleFragment", "onCreateView: offlineArticle: $offlineArticle")
-
-            // Test load all offline articles
-            val offlineArticles = DatabaseHelper.getNewsArticleDao().getAllNewsArticles()
-            Log.d("ArticleFragment", "onCreateView: offlineArticles: $offlineArticles")
 
             if (offlineArticle != null && offlineArticle.articleBody.isNotEmpty()) {
                 // Offline article
@@ -343,50 +334,52 @@ class ArticleFragment : Fragment(), clickListener {
             }
         }
 
-        binding.btnArticleClrLight.setOnClickListener{
-            val activity = requireActivity()
-            val window = activity.window
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = ContextCompat.getColor(activity,R.color.light)
-            window.navigationBarColor = ContextCompat.getColor(activity,R.color.light)
+        binding.btnArticleClrLight.setOnClickListener{ updateColors(ColorMode.LIGHT) }
+        binding.btnArticleClrDark.setOnClickListener{ updateColors(ColorMode.DARK) }
+        binding.btnArticleClrSepia.setOnClickListener{ updateColors(ColorMode.SEPIA) }
+    }
 
-            changeColorOfBackgrounds(ContextCompat.getColor(requireContext(), R.color.light))
-            changeColorOfButtons(ContextCompat.getColor(requireContext(), R.color.light_btn))
-            binding.btnArticleTextLarger.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.light_btn_emphasis))
-            changeColorOfTexts(ContextCompat.getColor(requireContext(), R.color.light_text))
-            changeColorOfSubTexts(ContextCompat.getColor(requireContext(), R.color.light_subtext))
-        }
+    /**
+     * Updates the colors of the article fragment
+     * @param color The color mode to update to
+     */
+    private fun updateColors(color: ColorMode) {
+        val activity = requireActivity()
+        val window = activity.window
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 
-        binding.btnArticleClrDark.setOnClickListener{
-            val activity = requireActivity()
-            val window = activity.window
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = ContextCompat.getColor(activity,R.color.dark)
-            window.navigationBarColor = ContextCompat.getColor(activity,R.color.dark)
+        when (color) {
+            ColorMode.LIGHT -> {
+                window.statusBarColor = ContextCompat.getColor(activity,R.color.light)
+                window.navigationBarColor = ContextCompat.getColor(activity,R.color.light)
 
-            changeColorOfBackgrounds(ContextCompat.getColor(requireContext(), R.color.dark))
-            changeColorOfButtons(ContextCompat.getColor(requireContext(), R.color.dark_btn))
-            binding.btnArticleTextLarger.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.dark_btn_emphasis))
-            changeColorOfTexts(ContextCompat.getColor(requireContext(), R.color.dark_text))
-            changeColorOfSubTexts(ContextCompat.getColor(requireContext(), R.color.dark_subtext))
-        }
+                changeColorOfBackgrounds(ContextCompat.getColor(requireContext(), R.color.light))
+                changeColorOfButtons(ContextCompat.getColor(requireContext(), R.color.light_btn))
+                binding.btnArticleTextLarger.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.light_btn_emphasis))
+                changeColorOfTexts(ContextCompat.getColor(requireContext(), R.color.light_text))
+                changeColorOfSubTexts(ContextCompat.getColor(requireContext(), R.color.light_subtext))
+            }
+            ColorMode.DARK -> {
+                window.statusBarColor = ContextCompat.getColor(activity,R.color.dark)
+                window.navigationBarColor = ContextCompat.getColor(activity,R.color.dark)
 
-        // Set to background color to F5EED9 when btnArticleClrSepia is clicked
-        binding.btnArticleClrSepia.setOnClickListener{
-            val activity = requireActivity()
-            val window = activity.window
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = ContextCompat.getColor(activity,R.color.sepia)
-            window.navigationBarColor = ContextCompat.getColor(activity,R.color.sepia)
+                changeColorOfBackgrounds(ContextCompat.getColor(requireContext(), R.color.dark))
+                changeColorOfButtons(ContextCompat.getColor(requireContext(), R.color.dark_btn))
+                binding.btnArticleTextLarger.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.dark_btn_emphasis))
+                changeColorOfTexts(ContextCompat.getColor(requireContext(), R.color.dark_text))
+                changeColorOfSubTexts(ContextCompat.getColor(requireContext(), R.color.dark_subtext))
+            }
+            ColorMode.SEPIA -> {
+                window.statusBarColor = ContextCompat.getColor(activity,R.color.sepia)
+                window.navigationBarColor = ContextCompat.getColor(activity,R.color.sepia)
 
-            changeColorOfBackgrounds(ContextCompat.getColor(requireContext(), R.color.sepia))
-            changeColorOfButtons(ContextCompat.getColor(requireContext(), R.color.sepia_btn))
-            binding.btnArticleTextLarger.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia_btn_emphasis))
-            changeColorOfTexts(ContextCompat.getColor(requireContext(), R.color.sepia_text))
-            changeColorOfSubTexts(ContextCompat.getColor(requireContext(), R.color.sepia_subtext))
+                changeColorOfBackgrounds(ContextCompat.getColor(requireContext(), R.color.sepia))
+                changeColorOfButtons(ContextCompat.getColor(requireContext(), R.color.sepia_btn))
+                binding.btnArticleTextLarger.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sepia_btn_emphasis))
+                changeColorOfTexts(ContextCompat.getColor(requireContext(), R.color.sepia_text))
+                changeColorOfSubTexts(ContextCompat.getColor(requireContext(), R.color.sepia_subtext))
+            }
         }
     }
 
@@ -395,7 +388,6 @@ class ArticleFragment : Fragment(), clickListener {
         binding.nsvArticleText.setBackgroundColor(color)
         binding.bottomAppBar.setBackgroundColor(color)
         binding.clArticleTopBar.setBackgroundColor(color)
-
     }
     
     private fun changeColorOfButtons(color: Int) {
@@ -429,13 +421,8 @@ class ArticleFragment : Fragment(), clickListener {
 
         binding.btnSaveList.iconTint = ColorStateList.valueOf(color)
 
-        binding.btnArticleTextLarger.setCompoundDrawableTintList(
-            ColorStateList.valueOf(color)
-        )
-
-        binding.btnArticleTextSmaller.setCompoundDrawableTintList(
-            ColorStateList.valueOf(color)
-        )
+        binding.btnArticleTextLarger.setCompoundDrawableTintList(ColorStateList.valueOf(color))
+        binding.btnArticleTextSmaller.setCompoundDrawableTintList(ColorStateList.valueOf(color))
     }
 
     override fun onItemClicked(article: Article) {
