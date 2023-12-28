@@ -240,7 +240,10 @@ class ArticleFragment : Fragment(), clickListener {
 
             // Load Recommended Articles
             DataHelper.loadArticleData {
-                if (FirebaseHelper.isNetworkAvailable(requireContext())) {
+                // Check if the fragment is still attached to a context
+                val context = context ?: return@loadArticleData
+
+                if (FirebaseHelper.isNetworkAvailable(context)) {
                     data.clear()
                     data.addAll(it)
                     adapter.notifyDataSetChanged()
@@ -257,7 +260,6 @@ class ArticleFragment : Fragment(), clickListener {
                     binding.btnArticleRecommendations.visibility = View.GONE
                     binding.tvArticleRecommended.visibility = View.GONE
                 }
-
             }
 
             // Load Saved Lists
