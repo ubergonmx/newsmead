@@ -158,8 +158,11 @@ class ArticleFragment : Fragment(), clickListener {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TITLE, "NewsMead")
 
-                val articleText = binding.tvArticleHeadline.text.toString() + " by " + binding.tvSource.text.toString()
-                putExtra(Intent.EXTRA_TEXT, articleText)
+                val articleTitle = article.title
+                val articleURL = article.url
+                val shareText = "$articleTitle\n$articleURL"
+
+                putExtra(Intent.EXTRA_TEXT, shareText)
                 type = "text/plain"
             }
 
