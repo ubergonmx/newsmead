@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.newsmead.R
 import com.newsmead.data.FirebaseHelper
 
@@ -19,7 +18,6 @@ import com.newsmead.databinding.FragmentSignUpBinding
 class SignUpFragment: Fragment() {
     private lateinit var viewBinding: FragmentSignUpBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.viewBinding = FragmentSignUpBinding.inflate(inflater, container, false)
