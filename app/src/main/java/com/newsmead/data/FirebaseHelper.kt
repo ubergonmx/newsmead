@@ -216,6 +216,156 @@ class FirebaseHelper {
             }
         }
 
+        suspend fun getListsAndArticles(context: Context): Pair<ArrayList<SavedList>, ArrayList<Article>> = coroutineScope {
+            if (uid == "null") {
+                Toast.makeText(context, "Please login to view/create a list", Toast.LENGTH_SHORT).show()
+                return@coroutineScope Pair(ArrayList<SavedList>(), ArrayList<Article>())
+            }
+
+            val lists = ArrayList<SavedList>()
+            val articles = ArrayList<Article>()
+
+            val firestore = getFirestoreInstance()
+            val userListsRef = firestore.collection("users").document(uid).collection("lists")
+
+            try {
+                // Check if network is available
+                val isNetworkAvailable = isNetworkAvailable(context)
+
+                // Reorder to make readLater first
+                var readLater: SavedList? = null
+                var offlineArticles: SavedList? = null
+
+                // Use Source.CACHE if network is not available
+                val documents = if (isNetworkAvailable) {
+                    userListsRef.get().await()
+                } else {
+                    userListsRef.get(Source.CACHE).await()
+                }
+
+                val deferredList = documents.documents.map { document ->
+                    async {
+                        // Grab collection id
+                        val listId = document.id
+
+                        val title = document.data?.get("name").toString()
+
+                        // Get number of articles in list under /articles
+                        val numArticles = document.reference.collection("articles").get().await().size()
+
+                        // Create SavedList object
+                        val list = SavedList(listId, title, numArticles)
+                        if (list.id == "readLater") {
+                            readLater = list
+
+                            // Skip
+                            return@async null
+                        } else if (list.id == "offlineArticles") {
+                            offlineArticles = list
+                            // Skip
+                            return@async null
+                        }
+
+                        list
+                    }
+                }
+
+                // Clean deferredList by removing nulls
+                lists.addAll(deferredList.awaitAll().filterNotNull())
+
+                // Move the read later list at the top
+                if (readLater != null) {
+                    lists.add(0, readLater!!)
+                }
+
+                // Move the offline articles list at the top
+                if (offlineArticles != null) {
+                    lists.add(1, offlineArticles!!)
+                }
+
+                // Use async to perform the nested query concurrently
+                val deferredList2 = if (isNetworkAvailable) {
+                    userListsRef.get().await().documents.map { listDocument ->
+                        async {
+                            val listId = listDocument.id
+                            val listRef = userListsRef.document(listId).collection("articles")
+
+                            val listArticles = listRef.get().await().documents.mapNotNull { articleDocument ->
+                                // Skips articles already in the list
+                                val newsId = articleDocument.data?.get("newsId").toString()
+
+                                val imageId: Int = articleDocument.data?.get("image").toString().toInt()
+                                val sourceImageId: Int = articleDocument.data?.get("sourceImage").toString().toInt()
+                                Article(
+                                    source = articleDocument.data?.get("source").toString(),
+                                    sourceImage = sourceImageId,
+                                    newsId = newsId,
+                                    title = articleDocument.data?.get("title").toString(),
+                                    imageId = imageId,
+                                    readTime = articleDocument.data?.get("readTime").toString(),
+                                    date = articleDocument.data?.get("date").toString(),
+                                    url = articleDocument.data?.get("url").toString()
+                                )
+                            }
+
+                            // Remove duplicates
+                            listArticles.distinctBy { article ->
+                                article.newsId
+                            }
+
+                            // Convert to ArrayList
+                            listArticles
+                        }
+                    }
+                } else {
+                    // If network is not available, use Source.CACHE
+                    userListsRef.get(Source.CACHE).await().documents.map { listDocument ->
+                        async {
+                            val listId = listDocument.id
+                            val listRef = userListsRef.document(listId).collection("articles")
+
+                            val listArticles = listRef.get(Source.CACHE)
+                                .await().documents.mapNotNull { articleDocument ->
+                                    // Skips articles already in the list
+                                    val newsId = articleDocument.data?.get("newsId").toString()
+
+                                    val imageId: Int =
+                                        articleDocument.data?.get("image").toString().toInt()
+                                    val sourceImageId: Int =
+                                        articleDocument.data?.get("sourceImage").toString().toInt()
+                                    Article(
+                                        source = articleDocument.data?.get("source").toString(),
+                                        sourceImage = sourceImageId,
+                                        newsId = newsId,
+                                        title = articleDocument.data?.get("title").toString(),
+                                        imageId = imageId,
+                                        readTime = articleDocument.data?.get("readTime").toString(),
+                                        date = articleDocument.data?.get("date").toString(),
+                                        url = articleDocument.data?.get("url").toString()
+                                    )
+                                }
+                            // Remove duplicates
+                            listArticles.distinctBy { article ->
+                                article.newsId
+                            }
+
+                            // Convert to ArrayList
+                            listArticles
+
+                        }
+                    }
+                }
+
+                // Add all articles to list
+                articles.addAll(deferredList2.awaitAll().flatten())
+
+                return@coroutineScope Pair(lists, articles)
+            } catch (exception: Exception) {
+                // Handle failure
+                throw exception
+            }
+        }
+
         suspend fun getArticleIdsFromList(context: Context, listId: String): List<String> = suspendCoroutine { continuation ->
             if (uid == "null") {
                 Toast.makeText(context, "Please login to view/create a list", Toast.LENGTH_SHORT).show()
