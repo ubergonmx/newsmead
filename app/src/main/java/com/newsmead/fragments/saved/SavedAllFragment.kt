@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.newsmead.data.DataHelper.loadArticleData
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.data.FirebaseHelper
+import com.newsmead.data.PreloadedData
 import com.newsmead.databinding.FragmentSavedAllBinding
 import com.newsmead.fragments.bottomnavigation.SavedFragmentDirections
 import com.newsmead.models.Article
@@ -41,15 +41,24 @@ class SavedAllFragment: Fragment(), clickListener {
         val customDivider = CustomDividerItemDecoration(context, R.drawable.line_divider)
         binding.rvSavedAll.addItemDecoration(customDivider)
 
+        // Grab preloaded data
+        val preloadedData =  PreloadedData.savedArticles
+        preloadedData.reverse()
+        data.addAll(preloadedData)
+
         lifecycleScope.launch(Dispatchers.IO) {
             // Update Articles Tab
             val allArticles: ArrayList<Article> = FirebaseHelper.getAllArticlesFromLists(requireContext())
+
+            // Update preloaded data
+            PreloadedData.savedArticles = allArticles
 
             // Reverse order (To get latest saved articles first)
             allArticles.reverse()
 
             withContext(Dispatchers.Main) {
                 // Update Articles Tab
+                data.clear()
                 data.addAll(allArticles)
                 adapter.notifyDataSetChanged()
             }

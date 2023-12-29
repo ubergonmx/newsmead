@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.newsmead.data.DataHelper.loadListData
 import com.newsmead.data.FirebaseHelper
+import com.newsmead.data.PreloadedData
 import com.newsmead.databinding.FragmentSavedYourListsBinding
 import com.newsmead.fragments.bottomnavigation.SavedFragmentDirections
 import com.newsmead.fragments.layouts.NewListDialog
@@ -49,6 +50,15 @@ class SavedListsFragment: Fragment(), cardListener {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvSavedLists.layoutManager = layoutManager
 
+        // Grab preloaded data
+        val preloadedData = PreloadedData.lists
+
+        if (preloadedData.isNotEmpty()) {
+            // Preloaded data is not empty, add it to recyclerView
+            data.addAll(preloadedData)
+            adapter.notifyDataSetChanged()
+        }
+
         // Retrieve lists from Firestore using coroutines
         lifecycleScope.launch(Dispatchers.IO) {
             try {
@@ -56,7 +66,11 @@ class SavedListsFragment: Fragment(), cardListener {
                 if (listsCollection != null) {
                     // ListsCollection is not null, fetch the data
                     // Read later is always first, no need to sort
+                    data.clear()
                     data.addAll(listsCollection)
+
+                    // Update preloaded data
+                    PreloadedData.lists = listsCollection
 
                     withContext(Dispatchers.Main) {
                         adapter.notifyDataSetChanged()
