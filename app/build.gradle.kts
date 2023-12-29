@@ -83,6 +83,7 @@ dependencies {
 
     // Import Room dependencies
     implementation("androidx.room:room-runtime:2.6.0")
+    testImplementation("org.mockito:mockito-core:5.8.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     kapt("androidx.room:room-compiler:2.6.0")
 
