@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.newsmead.data.DatabaseHelper
 import com.newsmead.data.FirebaseHelper
+import com.newsmead.data.PreloadedData
 import com.newsmead.databinding.BottomSheetDialogSaveListBinding
 import com.newsmead.models.Article
 import com.newsmead.models.NewsArticle
@@ -33,15 +34,19 @@ class BottomSheetDialogSaveFragment(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         this.binding = BottomSheetDialogSaveListBinding.inflate(inflater, container, false)
+
+        lists = PreloadedData.lists
+
+        val adapter = SheetDialogAdapter(lists, this@BottomSheetDialogSaveFragment)
+        binding.rvDialogList.adapter = adapter
+        val layoutManager = LinearLayoutManager(context)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        binding.rvDialogList.layoutManager = layoutManager
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                lists = FirebaseHelper.getListsCollection(requireContext()) ?: return@launch
-
-                // Read later is always first, no need to sort
-
                 // Check if article is already saved to a list
                 val fbCheckedLists = FirebaseHelper.checkIfArticleSavedInLists(requireContext(), article.newsId)
 
@@ -50,17 +55,11 @@ class BottomSheetDialogSaveFragment(
 
                 // Update UI on the main thread
                 withContext(Dispatchers.Main) {
-                    val adapter: SheetDialogAdapter = SheetDialogAdapter(lists, this@BottomSheetDialogSaveFragment)
-                    binding.rvDialogList.adapter = adapter
-                    val layoutManager = LinearLayoutManager(context)
-                    layoutManager.orientation = LinearLayoutManager.VERTICAL
-                    binding.rvDialogList.layoutManager = layoutManager
-
                     adapter.checkLists(checkedLists)
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "Error getting lists", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error checking lists", Toast.LENGTH_SHORT).show()
                 }
                 e.printStackTrace()
             }
@@ -139,6 +138,11 @@ class BottomSheetDialogSaveFragment(
     private fun showNewListDialog() {
         val newListDialog = NewListDialog(requireContext()) { newListName ->
             lifecycleScope.launch {
+                if (newListName == "") {
+                    Toast.makeText(context, "List name cannot be empty", Toast.LENGTH_SHORT).show()
+                    return@launch
+                }
+
                 // Add new list to database
                 val result = FirebaseHelper.addListToFireStore(requireContext(), newListName)
 
@@ -146,6 +150,8 @@ class BottomSheetDialogSaveFragment(
                     // Add new list to recyclerView
                     val adapter = binding.rvDialogList.adapter as SheetDialogAdapter
                     val newList = SavedList(result, newListName)
+
+                    PreloadedData.lists.add(newList)
                     adapter.addNewList(newList)
                 }
             }
