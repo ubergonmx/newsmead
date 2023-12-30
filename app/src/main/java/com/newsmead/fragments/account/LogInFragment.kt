@@ -7,11 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
 import com.newsmead.activities.MainActivity
 import com.newsmead.R
+import com.newsmead.data.FirebaseHelper
+import com.newsmead.data.PreloadedData
 
 import com.newsmead.databinding.FragmentLogInBinding
+import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass.
@@ -83,10 +87,16 @@ class LogInFragment : Fragment() {
      * Goes to MainActivity while clearing all other activities
      */
     private fun successfulLogIn() {
-        val intent = Intent(requireActivity(), MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-        requireActivity().startActivity(intent)
-        requireActivity().finish()
+        lifecycleScope.launch {
+            // Load preloaded data
+            val pairData = FirebaseHelper.getListsAndArticles(requireActivity())
+            PreloadedData.updateSavedData(pairData)
+
+            val intent = Intent(requireActivity(), MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            requireActivity().startActivity(intent)
+            requireActivity().finish()
+        }
     }
 
     /**
