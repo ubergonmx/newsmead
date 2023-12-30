@@ -15,4 +15,9 @@ object PreloadedData {
         lists = pair.first
         savedArticles = pair.second
     }
+
+    fun clearData() {
+        lists.clear()
+        savedArticles.clear()
+    }
 }
