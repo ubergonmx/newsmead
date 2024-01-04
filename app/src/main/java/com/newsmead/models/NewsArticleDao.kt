@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface NewsArticleDao {
@@ -18,4 +19,10 @@ interface NewsArticleDao {
 
     @Query("DELETE FROM news_articles WHERE newsId = :newsId")
     suspend fun deleteNewsArticle(newsId: String)
+
+    @Query("SELECT * FROM news_articles WHERE lastUpdated >= :date")
+    suspend fun getNewsArticlesToday(date: Long): List<NewsArticle>
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateArticle(article: NewsArticle)
 }

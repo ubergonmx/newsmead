@@ -12,5 +12,6 @@ import androidx.room.PrimaryKey
 data class NewsArticle (
     @PrimaryKey
     val newsId: String,
-    val articleBody: String
+    val articleBody: String,
+    val lastUpdated: Long,
 )

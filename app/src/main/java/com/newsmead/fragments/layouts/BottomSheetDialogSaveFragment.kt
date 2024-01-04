@@ -98,7 +98,8 @@ class BottomSheetDialogSaveFragment(
 
                             val offlineArticle = NewsArticle(
                                 offlineId,
-                                offlineArticleContent
+                                offlineArticleContent,
+                                System.currentTimeMillis()
                             )
 
                             Log.d("BottomSheetDialogSaveFragment", "Saving offline article ${article.newsId} to offlineArticles")
@@ -115,7 +116,7 @@ class BottomSheetDialogSaveFragment(
                             requireContext(), list.id, article.newsId
                         )
 
-                        // Add to local database IF listId is offlineArticle
+                        // Remove from local database IF listId is offlineArticle
                         if (list.id == "offlineArticle") {
                             Log.d("BottomSheetDialogSaveFragment", "Removing article ${article.newsId} from offlineArticle")
                             val offlineId = article.newsId
