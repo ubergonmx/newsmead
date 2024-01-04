@@ -121,6 +121,8 @@ class FirebaseHelper {
             }
         }
 
+        suspend fun getOfflineArticlesList(context: Context): List<Article> = getArticlesFromList(context, "offlineArticles")
+
         suspend fun getAllArticlesFromLists(context: Context): ArrayList<Article> = coroutineScope {
             if (uid == "null") {
                 Toast.makeText(context, "Please login to view/create a list", Toast.LENGTH_SHORT).show()
