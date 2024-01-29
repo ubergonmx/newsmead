@@ -48,6 +48,18 @@ object DataHelper {
         }
     }
 
+    // Source name mapping
+    fun sourceNameMap(source: String): String {
+        return when (source) {
+            "gmanews" -> "GMA News"
+            "inquirer" -> "INQUIRER.NET"
+            "philstar" -> "Philstar"
+            "manilabulletin" -> "The Manila Bulletin"
+            "news5" -> "TV5 News"
+            else -> ""
+        }
+    }
+
     fun loadArticleData(context: Context?, callback: (List<Article>) -> Unit) {
         // Create an empty ArrayList
         val articles = ArrayList<Article>()
@@ -73,7 +85,7 @@ object DataHelper {
                     Log.d("DataHelper", article.toString())
                     articles.add(
                         Article(
-                            article.getString("source"),
+                            sourceNameMap( article.getString("source")),
                             sourceImageMap(article.getString("source")),
                             article.getString("title"),
                             null,
@@ -110,7 +122,7 @@ object DataHelper {
                 )
                 articles.add(
                     Article(
-                        "Philippine Star",
+                        "Philstar",
                         "Comelec: 59 party-list groups to join 2022 polls",
                         "Jul 02, 2022",
                         "4 min read",
@@ -206,7 +218,7 @@ object DataHelper {
         )
         data.add(
             Article(
-                "Philippine Star",
+                "Philstar",
                 "Comelec: 59 party-list groups to join 2022 polls",
                 "Jul 02, 2022",
                 "4 min read",
@@ -369,7 +381,7 @@ object DataHelper {
                 )
                 articles.add(
                     Article(
-                        "Philippine Star",
+                        "Philstar",
                         "Comelec: 59 party-list groups to join 2022 polls",
                         "Jul 02, 2022",
                         "4 min read",
@@ -467,7 +479,7 @@ object DataHelper {
         val data = ArrayList<String>()
         data.add("GMA News")
         data.add("INQUIRER.NET")
-        data.add("Philippine Star")
+        data.add("Philstar")
         data.add("The Manila Bulletin")
         data.add("TV5 News")
         return data
