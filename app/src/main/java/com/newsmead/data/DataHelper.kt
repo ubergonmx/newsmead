@@ -64,11 +64,11 @@ object DataHelper {
         // Create an empty ArrayList
         val articles = ArrayList<Article>()
 
-        // Create an instance of the DataRepository
-        //   val dataRepository = DataRepository(RemoteDataSource(NewsAPIClientFactory.create()))
+        // Create random value between 1-100
+        val random = (1..100).random()
 
         // Fetch articles using Volley
-        val url = "https://newsmead.southeastasia.cloudapp.azure.com/articles/?page=1"
+        val url = "https://newsmead.southeastasia.cloudapp.azure.com/articles/?page=$random"
         val queue = Volley.newRequestQueue(context)
 
         // Request a JsonObject response from the provided URL.
