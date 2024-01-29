@@ -19,11 +19,10 @@ abstract class LocalDataSource: RoomDatabase() {
 
         /**
          * Migration from version 1 to 2.
-         * Added article_body and last_updated column to news_article table.
+         * Added last_updated column to news_article table.
          */
         private val migration1to2 = object: Migration(1, 2) {
             override fun migrate(db: SupportSQLiteDatabase) {
-                db.execSQL("ALTER TABLE news_article ADD COLUMN article_body TEXT NOT NULL DEFAULT ")
                 db.execSQL("ALTER TABLE news_article ADD COLUMN last_updated INTEGER NOT NULL DEFAULT 0")
             }
         }
