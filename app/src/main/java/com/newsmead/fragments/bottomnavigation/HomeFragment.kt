@@ -64,7 +64,7 @@ class HomeFragment : Fragment(), clickListener {
         //data = DataHelper.loadArticleData()
         this.articleAdapter = ArticleAdapter(data, this)
         // Load data and update the adapter when available
-        DataHelper.loadArticleData { articles ->
+        DataHelper.loadArticleData(context) { articles ->
             // Stop the shimmer
             this.shimmerFrameLayout.stopShimmer()
             this.shimmerFrameLayout.visibility = View.GONE

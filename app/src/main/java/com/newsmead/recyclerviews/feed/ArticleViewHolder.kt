@@ -12,7 +12,7 @@ class ArticleViewHolder(private val viewBinding: ItemFeedArticleBinding): Recycl
         this.viewBinding.tvSource.text = article.source
         this.viewBinding.ivSourceImage.setImageResource(article.sourceImage)
         this.viewBinding.tvArticleTitle.text = article.title
-        this.viewBinding.ivArticleImage.setImageResource(article.imageId)
+        this.viewBinding.ivArticleImage.setImageResource(article.imageId ?: 0) 
         this.viewBinding.tvArticleDate.text = article.date
         this.viewBinding.tvReadTime.text = article.readTime
     }

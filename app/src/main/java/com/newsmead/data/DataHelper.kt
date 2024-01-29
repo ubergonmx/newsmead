@@ -1,7 +1,12 @@
 package com.newsmead.data
 
+import android.content.Context
 import android.icu.text.SimpleDateFormat
 import android.util.Log
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import com.newsmead.R
 import com.newsmead.data.sources.RemoteDataSource
 import com.newsmead.models.Article
 import com.newsmead.models.NewsResponse
@@ -21,79 +26,76 @@ object DataHelper {
     }
     fun formatDate(date: String): String {
         // Format date "2023-10-31T13:03:00Z" string to Mmm dd, yyyy
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US)
+        // val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US)
+
+        // Format date "2023-10-31 13:03:00" string to Mmm dd, yyyy
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US)
         val outputFormat = SimpleDateFormat("MMM dd, yyyy", Locale.US)
 
         val parsed = inputFormat.parse(date)
         return outputFormat.format(parsed)
     }
 
-    fun loadArticleData(callback: (List<Article>) -> Unit) {
+    // Source image mapping
+    fun sourceImageMap(source: String): Int {
+        return when (source) {
+            "gmanews" -> R.drawable.source_gmanews
+            "inquirer" -> R.drawable.source_inquirer
+            "philstar" -> R.drawable.source_philstar
+            "manilabulletin" -> R.drawable.source_manilabulletin
+            "news5" -> R.drawable.source_news5
+            else -> 0
+        }
+    }
+
+    fun loadArticleData(context: Context?, callback: (List<Article>) -> Unit) {
         // Create an empty ArrayList
         val articles = ArrayList<Article>()
 
         // Create an instance of the DataRepository
-        val dataRepository = DataRepository(RemoteDataSource(NewsAPIClientFactory.create()))
+        //   val dataRepository = DataRepository(RemoteDataSource(NewsAPIClientFactory.create()))
 
-        // Fetch top headlines using the repository
-        dataRepository.getTopHeadlines("ph", "13328281630540aaa6c2750b76b5ee12", object : DataRepository.DataCallback<NewsResponse> {
-            override fun onSuccess(response: NewsResponse) {
+        // Fetch articles using Volley
+        val url = "https://newsmead.southeastasia.cloudapp.azure.com/articles/?page=1"
+        val queue = Volley.newRequestQueue(context)
+
+        // Request a JsonObject response from the provided URL.
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                // Parse the JSON response.
+                val data = response.getJSONArray("articles")
+                // Use the body string here.
+                Log.d("DataHelper", "Articles: ${data.length()}")
                 // Process the data here
-                for (data in response.articles) {
-                    Log.d("DataHelper", data.toString())
-                    data.author?.let {
+                for (i in 0 until data.length()) {
+                    val article = data.getJSONObject(i)
+                    Log.d("DataHelper", article.toString())
+                    articles.add(
                         Article(
-                            it,
-                            formatTitle(data.title),
-                            formatDate(data.publishedAt),
-                            (3..9).random().toString() + " min read",
-                            data.url
+                            article.getString("source"),
+                            sourceImageMap(article.getString("source")),
+                            article.getString("title"),
+                            null,
+                            article.getString("image_url"),
+                            formatDate(article.getString("date")),
+                            article.getString("body"),
+                            article.getString("read_time"),
+                            article.getString("url"),
+                            article.getInt("article_id").toString()
                         )
-                    }?.let {
-                        articles.add(
-                            it
-                        )
-                    }
+                    )
                 }
                 callback(articles)
-            }
-
-            override fun onError(error: Throwable) {
-                // Handle errors
+            },
+            { error ->
                 Log.e("DataHelper", error.toString())
-                articles.add(
-                    Article(
-                        "CNN",
-                        "Biden's first 100 days: What he's gotten done",
-                        "Apr 29, 2021",
-                        "9 min read",
-                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
-                    )
-                )
                 articles.add(
                     Article(
                         "INQUIRER.NET",
                         "BTS to perform new single 'Butter' at Billboard Music Awards",
                         "Jan 28, 2022",
                         "3 min read",
-                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
-                    )
-                )
-                articles.add(
-                    Article(
-                        "ABS-CBN News",
-                        "Showbiz couple Kylie Padilla, Aljur Abrenica split",
-                        "Mar 12, 2023",
-                        "4 min read",
-                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
-                    )
-                )
-                articles.add(
-                    Article(
-                        "Rappler",
-                        "Spacex launches 60 more Starlink satellites into orbit",
-                        "Dec 29, 2022",
-                        "5 min read",
                         "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
                     )
                 )
@@ -116,8 +118,38 @@ object DataHelper {
                     )
                 )
                 callback(articles)
-            }
-        })
+            })
+
+        queue.add(jsonObjectRequest)
+
+        // Fetch top headlines using the repository
+//        dataRepository.getTopHeadlines("ph", "13328281630540aaa6c2750b76b5ee12", object : DataRepository.DataCallback<NewsResponse> {
+//            override fun onSuccess(response: NewsResponse) {
+//                // Process the data here
+//                for (data in response.articles) {
+//                    Log.d("DataHelper", data.toString())
+//                    data.author?.let {
+//                        Article(
+//                            it,
+//                            formatTitle(data.title),
+//                            formatDate(data.publishedAt),
+//                            (3..9).random().toString() + " min read",
+//                            data.url
+//                        )
+//                    }?.let {
+//                        articles.add(
+//                            it
+//                        )
+//                    }
+//                }
+//                callback(articles)
+//            }
+//
+//            override fun onError(error: Throwable) {
+//                // Handle errors
+//
+//            }
+//        })
     }
 
 
@@ -433,12 +465,11 @@ object DataHelper {
 
     fun loadSourcesData(): ArrayList<String> {
         val data = ArrayList<String>()
-        data.add("CNN Philippines")
+        data.add("GMA News")
         data.add("INQUIRER.NET")
-        data.add("Rappler")
+        data.add("Philippine Star")
         data.add("The Manila Bulletin")
-        data.add("ABS-CBN News")
-        data.add("GMA Network")
+        data.add("TV5 News")
         return data
     }
 

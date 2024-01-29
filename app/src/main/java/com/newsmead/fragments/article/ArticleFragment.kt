@@ -68,7 +68,9 @@ class ArticleFragment : Fragment(), clickListener {
             -1,
             "Article Title",
             0,
+            "",
             "Article Date",
+            "Article Body",
             "Article Content",
             "url",
             "0"
@@ -81,54 +83,26 @@ class ArticleFragment : Fragment(), clickListener {
         Log.d("ArticleFragment", "onCreateView: source: ${article.source}")
         Log.d("ArticleFragment", "onCreateView: sourceImage: ${article.sourceImage}")
         Log.d("ArticleFragment", "onCreateView: imageId: ${article.imageId}")
+        Log.d("ArticleFragment", "onCreateView: imageURL: ${article.imageURL}")
         Log.d("ArticleFragment", "onCreateView: readTime: ${article.readTime}")
         Log.d("ArticleFragment", "onCreateView: url: ${article.url}")
 
-        // Check if start with "N" or "T"
-        if (article.newsId.startsWith("N") || article.newsId.startsWith("T")) {
-            // Add to history
-            FirebaseHelper.addArticleToHistory(requireContext(), article)
 
-            // Set article title
-            binding.tvArticleHeadline.text = article.title
+        // Add to history
+        FirebaseHelper.addArticleToHistory(requireContext(), article)
 
-            // Set article source
-            binding.tvSource.text = article.source
-            binding.btnArticleRecommendations.text = "Show more from " + article.source
+        // Set article title
+        binding.tvArticleHeadline.text = article.title
 
-            // Set article image from link
-            // parses articleImage link into image
-            // Glide.with(this).load(article.articleImage).into(binding.ivSourceImage)
-            binding.ivSourceImage.setImageResource(R.drawable.sample_source_image)
+        // Set article source
+        binding.tvSource.text = article.source
+        binding.btnArticleRecommendations.text = "Show more from " + article.source
+        binding.ivSourceImage.setImageResource(article.sourceImage)
 
-            // Set article read time
-            val readTime = article.readTime //+ " min read"
-            binding.tvArticleMinRead.text = readTime
+        // Set article read time
+        val readTime = article.readTime //+ " min read"
+        binding.tvArticleMinRead.text = readTime
 
-            // Set article date (There's no date yet!)
-            // binding.tvArticleDate.text = article.articleDate
-
-        } else {
-            Log.d("ArticleFragment", "onCreateView: Not adding to history (is a test article)")
-            // Supply header values if able
-            if (article.title != "Article Title") binding.tvArticleHeadline.text = article.title
-            if (article.source != "Article Source") binding.tvSource.text = article.source
-
-            // Supply everything else if able
-            if (article.imageId != -1) {
-                // parses articleImage link into image
-                // Glide.with(this).load(article.articleImage).into(binding.ivSourceImage)
-                binding.ivSourceImage.setImageResource(R.drawable.sample_source_image)
-            }
-
-//            if (article.articleBody != "Article Content") binding.tvArticleText.text = article.articleBody
-            if (article.readTime != "0") {
-                val readTime = article.readTime + " min read"
-                binding.tvArticleMinRead.text = readTime
-            }
-
-            // if (article.articleDate != "Article Date") binding.tvArticleDate.text = article.articleDate
-        }
 
         // Bottom sheet dialog for saving articles
         binding.btnSaveList.setOnClickListener {
@@ -185,55 +159,18 @@ class ArticleFragment : Fragment(), clickListener {
                 binding.tvArticleText.text = offlineArticle.articleBody
             } else {
                 // Online article
+                binding.tvArticleText.text = article.body
 
-                // Show loading
-                binding.tvArticleText.text = "Loading article..."
-                binding.ivArticleFullImage.setImageResource(R.drawable.sample_article_image)
-
-                // Instantiate the RequestQueue.
-                val queue = Volley.newRequestQueue(context)
-                val url = "https://newsmead.azurewebsites.net/parse?url=${article.url}"
-
-                // Request a JsonObject response from the provided URL.
-                val jsonObjectRequest = JsonObjectRequest(
-                    Request.Method.GET, url, null,
-                    { response ->
-                        // Parse the JSON response.
-                        val body = response.getString("body")
-                        // Use the body string here.
-                        Log.d("ArticleFragment", "Body: $body")
-                        // Set article text
-                        binding.tvArticleText.text = body
-                    },
-                    { error ->
-                        Log.e("ArticleFragment", "That didn't work!", error)
-                        binding.tvArticleText.text = "Error loading article"
-                    })
-
-                val jsonObjectRequestImage = JsonObjectRequest(
-                    Request.Method.GET, url, null,
-                    { response ->
-                        // Set article image
-                        val imageUrl = response.getString("image")
-                        try{
-                            Glide.with(this@ArticleFragment).load(imageUrl).into(binding.ivArticleFullImage)
-                        } catch (e: Exception) {
-                            Log.e("ArticleFragment", "onCreateView: Error loading image", e)
-                        }
-                    },
-                    { error ->
-                        Log.e("ArticleFragment", "That didn't work!", error)
-                        // Remove image
-                        binding.ivArticleFullImage.setImageResource(0)
-                    })
-
-                // Add the request to the RequestQueue.
-                queue.add(jsonObjectRequest)
-                queue.add(jsonObjectRequestImage)
+                // Set article image from link
+                if (article.imageURL != "") {
+                    Glide.with(this@ArticleFragment).load(article.imageURL).into(binding.ivArticleFullImage)
+                } else {
+                    binding.ivSourceImage.setImageResource(R.drawable.sample_source_image)
+                }
             }
 
             // Load Recommended Articles
-            DataHelper.loadArticleData {
+            DataHelper.loadArticleData(context) {
                 // Check if the fragment is still attached to a context
                 val context = context ?: return@loadArticleData
 

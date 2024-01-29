@@ -157,8 +157,10 @@ class FirebaseHelper {
                                     newsId = newsId,
                                     title = articleDocument.data?.get("title").toString(),
                                     imageId = imageId,
+                                    imageURL = articleDocument.data?.get("imageURL").toString(),
                                     readTime = articleDocument.data?.get("readTime").toString(),
                                     date = articleDocument.data?.get("date").toString(),
+                                    body = articleDocument.data?.get("body").toString(),
                                     url = articleDocument.data?.get("url").toString()
                                 )
                             }
@@ -191,8 +193,10 @@ class FirebaseHelper {
                                     newsId = newsId,
                                     title = articleDocument.data?.get("title").toString(),
                                     imageId = imageId,
+                                    imageURL = articleDocument.data?.get("imageURL").toString(),
                                     readTime = articleDocument.data?.get("readTime").toString(),
                                     date = articleDocument.data?.get("date").toString(),
+                                    body = articleDocument.data?.get("body").toString(),
                                     url = articleDocument.data?.get("url").toString()
                                 )
                             }
@@ -304,8 +308,10 @@ class FirebaseHelper {
                                     newsId = newsId,
                                     title = articleDocument.data?.get("title").toString(),
                                     imageId = imageId,
+                                    imageURL = articleDocument.data?.get("imageURL").toString(),
                                     readTime = articleDocument.data?.get("readTime").toString(),
                                     date = articleDocument.data?.get("date").toString(),
+                                    body = articleDocument.data?.get("body").toString(),
                                     url = articleDocument.data?.get("url").toString()
                                 )
                             }
@@ -341,8 +347,10 @@ class FirebaseHelper {
                                         newsId = newsId,
                                         title = articleDocument.data?.get("title").toString(),
                                         imageId = imageId,
+                                        imageURL = articleDocument.data?.get("imageURL").toString(),
                                         readTime = articleDocument.data?.get("readTime").toString(),
                                         date = articleDocument.data?.get("date").toString(),
+                                        body = articleDocument.data?.get("body").toString(),
                                         url = articleDocument.data?.get("url").toString()
                                     )
                                 }
@@ -418,8 +426,10 @@ class FirebaseHelper {
                             newsId = document.data["newsId"].toString(),
                             title = document.data["title"].toString(),
                             imageId = imageId,
+                            imageURL = document.data["imageURL"].toString(),
                             readTime = document.data["readTime"].toString(),
                             date = document.data["date"].toString(),
+                            body = document.data["body"].toString(),
                             url = document.data["url"].toString()
                         )
                     })
@@ -458,8 +468,10 @@ class FirebaseHelper {
                             newsId = articleDocument.data?.get("newsId").toString(),
                             title = articleDocument.data?.get("title").toString(),
                             imageId = imageId,
+                            imageURL = articleDocument.data?.get("imageURL").toString(),
                             readTime = articleDocument.data?.get("readTime").toString(),
                             date = articleDocument.data?.get("date").toString(),
+                            body = articleDocument.data?.get("body").toString(),
                             url = articleDocument.data?.get("url").toString()
                         )
                     }

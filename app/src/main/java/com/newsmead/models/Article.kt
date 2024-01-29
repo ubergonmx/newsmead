@@ -11,9 +11,14 @@ class Article: Parcelable {
         private set
     var title: String
         private set
-    var imageId: Int
+    var imageId: Int?
+        private set
+    var imageURL: String?
         private set
     var date: String
+        private set
+
+    var body: String = ""
         private set
     var readTime: String
         private set
@@ -23,12 +28,14 @@ class Article: Parcelable {
         private set
 
     constructor(source: String, sourceImage: Int,
-                title: String, imageId: Int, date: String, readTime: String, url: String, newsId:String) {
+                title: String, imageId: Int?, imageURL: String?, date: String, body: String, readTime: String, url: String, newsId:String) {
         this.source = source
         this.sourceImage = sourceImage
         this.title = title
-        this.imageId = imageId
+        this.imageId = imageId ?: R.drawable.sample_article_image
+        this.imageURL = imageURL ?: ""
         this.date = date
+        this.body = body
         this.readTime = readTime
         this.url = url
         this.newsId = newsId
@@ -41,11 +48,11 @@ class Article: Parcelable {
         this.sourceImage = R.drawable.sample_source_image
         this.title = title
         this.imageId = R.drawable.sample_article_image
+        this.imageURL = ""
         this.date = date
+        this.body = ""
         this.readTime = readTime
         this.url = url
-
-        // Provide test newsId by hashing the url
         this.newsId = "T" + url.hashCode().toString()
     }
 
@@ -54,6 +61,8 @@ class Article: Parcelable {
         parcel.readInt(),
         parcel.readString() ?: "",
         parcel.readInt(),
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
@@ -68,8 +77,10 @@ class Article: Parcelable {
         dest.writeString(source)
         dest.writeInt(sourceImage)
         dest.writeString(title)
-        dest.writeInt(imageId)
+        dest.writeInt(imageId ?: R.drawable.sample_article_image)
+        dest.writeString(imageURL ?: "")
         dest.writeString(date)
+        dest.writeString(body)
         dest.writeString(readTime)
         dest.writeString(url)
         dest.writeString(newsId)

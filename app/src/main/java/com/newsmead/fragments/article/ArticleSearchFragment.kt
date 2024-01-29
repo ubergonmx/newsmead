@@ -72,7 +72,7 @@ class ArticleSearchFragment : Fragment(), clickListener {
 
         // Add API here
         lifecycleScope.launch {
-            DataHelper.loadArticleData {
+            DataHelper.loadArticleData(context) {
                 data.clear()
                 data.addAll(it)
                 adapter.notifyDataSetChanged()
