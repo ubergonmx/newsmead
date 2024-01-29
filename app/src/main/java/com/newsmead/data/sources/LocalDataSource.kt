@@ -26,18 +26,5 @@ abstract class LocalDataSource: RoomDatabase() {
                 db.execSQL("ALTER TABLE news_article ADD COLUMN last_updated INTEGER NOT NULL DEFAULT 0")
             }
         }
-
-        fun getInstance(context: Context): LocalDataSource {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    LocalDataSource::class.java,
-                    "news_database"
-                ).addMigrations(migration1to2)
-                    .build()
-                INSTANCE = instance
-                instance
-            }
-        }
     }
 }
