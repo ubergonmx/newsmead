@@ -13,7 +13,10 @@ class ArticleViewHolder(private val viewBinding: ItemFeedArticleBinding): Recycl
         this.viewBinding.tvSource.text = article.source
         this.viewBinding.ivSourceImage.setImageResource(article.sourceImage)
         this.viewBinding.tvArticleTitle.text = article.title
-        Glide.with(this.viewBinding.root).load(article.imageURL).into(this.viewBinding.ivArticleImage)
+        if (article.imageURL != null && article.imageURL != "")
+            Glide.with(this.viewBinding.root).load(article.imageURL).into(this.viewBinding.ivArticleImage)
+        else
+            this.viewBinding.ivArticleImage.setImageResource(article.imageId ?: 0)
         this.viewBinding.tvArticleDate.text = article.date
         this.viewBinding.tvReadTime.text = article.readTime
     }
