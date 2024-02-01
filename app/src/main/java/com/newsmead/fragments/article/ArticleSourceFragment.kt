@@ -34,6 +34,8 @@ class ArticleSourceFragment: Fragment(), clickListener {
     ): View? {
         binding = FragmentArticleSourceBinding.inflate(inflater, container, false)
 
+        // Change logo of ivSourceLogo with Glide
+        binding.ivSourceLogo.setImageResource(DataHelper.sourceImageMap(args.author))
         // Change text of tvSourceName to sourceName
         binding.tvSourceName.text = args.author
 
