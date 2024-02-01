@@ -39,11 +39,11 @@ object DataHelper {
     // Source image mapping
     fun sourceImageMap(source: String): Int {
         return when (source) {
-            "gmanews" -> R.drawable.source_gmanews
-            "inquirer" -> R.drawable.source_inquirer
-            "philstar" -> R.drawable.source_philstar
-            "manilabulletin" -> R.drawable.source_manilabulletin
-            "news5" -> R.drawable.source_news5
+            "gmanews", "GMA News" -> R.drawable.source_gmanews
+            "inquirer", "INQUIRER.NET" -> R.drawable.source_inquirer
+            "philstar", "Philstar" -> R.drawable.source_philstar
+            "manilabulletin", "The Manila Bulletin" -> R.drawable.source_manilabulletin
+            "news5", "TV5 News" -> R.drawable.source_news5
             else -> 0
         }
     }
@@ -60,7 +60,8 @@ object DataHelper {
         }
     }
 
-    fun loadArticleData(context: Context?, callback: (List<Article>) -> Unit) {
+
+    fun loadArticleData(context: Context?, source: String? = null, callback: (List<Article>) -> Unit) {
         // Create an empty ArrayList
         val articles = ArrayList<Article>()
 
@@ -68,7 +69,10 @@ object DataHelper {
         val random = (1..100).random()
 
         // Fetch articles using Volley
-        val url = "https://newsmead.southeastasia.cloudapp.azure.com/articles/?page=$random"
+        var url = "https://newsmead.southeastasia.cloudapp.azure.com/articles/?page=$random"
+        if (source != null) {
+            url += "&source=$source"
+        }
         val queue = Volley.newRequestQueue(context)
 
         // Request a JsonObject response from the provided URL.
