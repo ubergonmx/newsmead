@@ -40,14 +40,11 @@ class ArticleSearchFragment : Fragment(), clickListener {
         // Change text to search query
         binding.tvSearchingForPrompt.text = searchQuery
 
+        // Show dummy data
         data = DataHelper.loadSourceArticlesData()
 
         // RecyclerView of Articles
         adapter = ArticleAdapter(data, this)
-        // Load data and update the adapter when available
-        DataHelper.loadSearchArticlesData (searchQuery) { articles ->
-            adapter.updateData(articles)
-        }
 
         binding.rvSearchArticles.adapter = adapter
 
@@ -72,7 +69,7 @@ class ArticleSearchFragment : Fragment(), clickListener {
 
         // Add API here
         lifecycleScope.launch {
-            DataHelper.loadArticleData(context) {
+            DataHelper.loadArticleData(context, searchText = searchQuery) {
                 data.clear()
                 data.addAll(it)
                 adapter.notifyDataSetChanged()
