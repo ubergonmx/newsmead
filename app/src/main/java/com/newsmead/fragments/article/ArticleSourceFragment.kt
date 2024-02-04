@@ -55,9 +55,6 @@ class ArticleSourceFragment: Fragment(), clickListener {
         val customDividerItemDecoration = CustomDividerItemDecoration(context, R.drawable.line_divider)
         binding.rvSourceArticles.addItemDecoration(customDividerItemDecoration)
 
-        // Set ivSourceLogo
-        binding.ivSourceLogo.setImageResource(R.drawable.sample_source_image)
-
         // Fill chips
         val chipData: ArrayList<String> = DataHelper.loadCategoryData()
 

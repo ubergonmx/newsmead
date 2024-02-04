@@ -35,8 +35,9 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
 
         // Change text of tvSourceName to sourceName
         binding.tvSearchSourceName.text = args.sourceName
+        binding.ivSearchSourceLogo.setImageResource(DataHelper.sourceImageMap(args.sourceName))
 
-        // RecyclerView of Articles
+        // Show dummy data
         data = DataHelper.loadSourceArticlesData()
 
         adapter = ArticleAdapter(data, this)
@@ -49,9 +50,6 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
         // Add divider between items
         val customDividerItemDecoration = CustomDividerItemDecoration(context, R.drawable.line_divider)
         binding.rvSearchSourceArticles.addItemDecoration(customDividerItemDecoration)
-
-        // Set ivSourceLogo
-        binding.ivSearchSourceLogo.setImageResource(R.drawable.sample_source_image)
 
         // Fill chips
         val chipData: ArrayList<String> = DataHelper.loadCategoryData()
@@ -78,7 +76,7 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
 
         // Add API here
         lifecycleScope.launch {
-            DataHelper.loadArticleData(context) {
+            DataHelper.loadArticleData(context, source = DataHelper.reverseSourceNameMap(args.sourceName)) {
                 data.clear()
                 data.addAll(it)
                 adapter.notifyDataSetChanged()
@@ -96,15 +94,6 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
                 chip.isChecked = false
             }
         }
-
-        // Add API here
-//        lifecycleScope.launch {
-//            DataHelper.loadArticleData {
-//                data.clear()
-//                data.addAll(it)
-//                adapter.notifyDataSetChanged()
-//            }
-//        }
     }
 
     override fun onItemClicked(article: Article) {
