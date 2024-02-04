@@ -19,6 +19,7 @@ import com.newsmead.models.Article
 import com.newsmead.recyclerviews.feed.ArticleAdapter
 import com.newsmead.recyclerviews.feed.clickListener
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class ArticleCategoryFragment : Fragment(), clickListener {
     private val args: ArticleCategoryFragmentArgs by navArgs()
@@ -37,7 +38,7 @@ class ArticleCategoryFragment : Fragment(), clickListener {
         // Change text of tvCategoryName to categoryName
         binding.tvCategoryName.text = args.categoryName
 
-        //RecyclerView of Articles
+        // Show dummy data
         data = DataHelper.loadCategoryArticlesData()
 
         adapter = ArticleAdapter(data, this)
@@ -72,7 +73,7 @@ class ArticleCategoryFragment : Fragment(), clickListener {
 
         // Add API here
         lifecycleScope.launch {
-            DataHelper.loadArticleData(context) {
+            DataHelper.loadArticleData(context, category=args.categoryName.lowercase()) {
                 data.clear()
                 data.addAll(it)
                 adapter.notifyDataSetChanged()
@@ -90,15 +91,6 @@ class ArticleCategoryFragment : Fragment(), clickListener {
                 chip.isChecked = false
             }
         }
-
-        // Add API here
-//        lifecycleScope.launch {
-//            DataHelper.loadArticleData {
-//                data.clear()
-//                data.addAll(it)
-//                adapter.notifyDataSetChanged()
-//            }
-//        }
     }
 
     override fun onItemClicked(article: Article) {
