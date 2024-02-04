@@ -79,7 +79,7 @@ class ArticleCategoryFragment : Fragment(), clickListener {
                 adapter.notifyDataSetChanged()
             }
         }
-
+        
         return binding.root
     }
 
@@ -89,6 +89,17 @@ class ArticleCategoryFragment : Fragment(), clickListener {
             val chip = binding.cgCategory.getChildAt(i) as Chip
             if (chip.text != source) {
                 chip.isChecked = false
+            }
+        }
+
+        lifecycleScope.launch {
+            DataHelper.loadArticleData(
+                context,
+                category=args.categoryName.lowercase(),
+                source=DataHelper.reverseSourceNameMap(source)) {
+                data.clear()
+                data.addAll(it)
+                adapter.notifyDataSetChanged()
             }
         }
     }

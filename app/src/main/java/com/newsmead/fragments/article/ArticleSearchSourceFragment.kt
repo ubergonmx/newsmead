@@ -35,6 +35,7 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
 
         // Change text of tvSourceName to sourceName
         binding.tvSearchSourceName.text = args.sourceName
+        // Change logo of ivSearchSourceLogo
         binding.ivSearchSourceLogo.setImageResource(DataHelper.sourceImageMap(args.sourceName))
 
         // Show dummy data
@@ -92,6 +93,18 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
             val chip = binding.cgSearchSourceCategory.getChildAt(i) as Chip
             if (chip.text != category) {
                 chip.isChecked = false
+            }
+        }
+
+        lifecycleScope.launch {
+            DataHelper.loadArticleData(
+                context,
+                source = DataHelper.reverseSourceNameMap(args.sourceName),
+                category = category.lowercase()
+            ) {
+                data.clear()
+                data.addAll(it)
+                adapter.notifyDataSetChanged()
             }
         }
     }

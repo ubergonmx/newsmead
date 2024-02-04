@@ -34,7 +34,7 @@ class ArticleSourceFragment: Fragment(), clickListener {
     ): View? {
         binding = FragmentArticleSourceBinding.inflate(inflater, container, false)
 
-        // Change logo of ivSourceLogo with Glide
+        // Change logo of ivSourceLogo
         binding.ivSourceLogo.setImageResource(DataHelper.sourceImageMap(args.author))
         // Change text of tvSourceName to sourceName
         binding.tvSourceName.text = args.author
@@ -99,14 +99,16 @@ class ArticleSourceFragment: Fragment(), clickListener {
             }
         }
 
-        // Add API here
-//      lifecycleScope.launch {
-//            DataHelper.loadArticleData {
-//                data.clear()
-//                data.addAll(it)
-//                adapter.notifyDataSetChanged()
-//            }
-//        }
+        lifecycleScope.launch {
+            DataHelper.loadArticleData(
+                context,
+                source=DataHelper.reverseSourceNameMap(args.author),
+                category=category.lowercase()) {
+                data.clear()
+                data.addAll(it)
+                adapter.notifyDataSetChanged()
+            }
+        }
     }
     override fun onItemClicked(article: Article) {
         // Action
