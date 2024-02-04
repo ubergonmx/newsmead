@@ -10,19 +10,15 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.newsmead.data.DataHelper.loadListData
 import com.newsmead.data.FirebaseHelper
 import com.newsmead.data.PreloadedData
 import com.newsmead.databinding.FragmentSavedYourListsBinding
 import com.newsmead.fragments.bottomnavigation.SavedFragmentDirections
 import com.newsmead.fragments.layouts.NewListDialog
-import com.newsmead.models.Article
 import com.newsmead.models.SavedList
-import com.newsmead.recyclerviews.dialog.SheetDialogAdapter
 import com.newsmead.recyclerviews.saved.SavedListsAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 class SavedListsFragment: Fragment(), cardListener {
