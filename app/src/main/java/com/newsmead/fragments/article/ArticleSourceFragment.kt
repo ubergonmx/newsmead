@@ -80,7 +80,7 @@ class ArticleSourceFragment: Fragment(), clickListener {
 
         // Add API here
         lifecycleScope.launch {
-            DataHelper.loadArticleData(context) {
+            DataHelper.loadArticleData(context, source=DataHelper.reverseSourceNameMap(args.author)) {
                 data.clear()
                 data.addAll(it)
                 adapter.notifyDataSetChanged()
@@ -100,9 +100,10 @@ class ArticleSourceFragment: Fragment(), clickListener {
         }
 
         lifecycleScope.launch {
+            val source = if (category == "All") null else DataHelper.reverseSourceNameMap(args.author)
             DataHelper.loadArticleData(
                 context,
-                source=DataHelper.reverseSourceNameMap(args.author),
+                source=source,
                 category=category.lowercase()) {
                 data.clear()
                 data.addAll(it)
