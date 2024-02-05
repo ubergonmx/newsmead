@@ -64,6 +64,12 @@ class ArticleSearchFragment : Fragment(), clickListener {
         // Dialog to show when user clicks on filter
         binding.btnSearchFilter.setOnClickListener {
             val bottomSheetDialogSearchFilter = BottomSheetDialogSearchFilter()
+
+            bottomSheetDialogSearchFilter.onApplyFiltersListener = object : BottomSheetDialogSearchFilter.OnApplyFiltersListener {
+                override fun onApplyFilters(category: String?, source: String, sortBy: String, startDate: String, endDate: String) {
+                    updateWithFilters(category, source, sortBy, startDate, endDate)
+                }
+            }
             bottomSheetDialogSearchFilter.show(requireActivity().supportFragmentManager, "BottomSheetDialogSearchFilter")
         }
 
@@ -72,12 +78,36 @@ class ArticleSearchFragment : Fragment(), clickListener {
             DataHelper.loadArticleData(context, searchText = searchQuery) {
                 data.clear()
                 data.addAll(it)
+                binding.tvResultCount.text = "${it.size} results"
                 adapter.notifyDataSetChanged()
             }
         }
 
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    fun updateWithFilters(categoryVal: String?, sourceVal: String, sortByVal: String, startDateVal: String, endDateVal: String) {
+        val source = DataHelper.reverseSourceNameMap(sourceVal)
+        val category = if (categoryVal == "All") null else categoryVal?.lowercase()
+        val sortBy = sortByVal.lowercase()
+        val startDate = if (startDateVal == "") null else startDateVal
+        val endDate = if (endDateVal == "") null else endDateVal
+
+        lifecycleScope.launch {
+            DataHelper.loadArticleData(
+                context,
+                category=category,
+                source=source,
+                startDate=startDate,
+                endDate=endDate,
+                searchText=args.searchString) {
+                data.clear()
+                data.addAll(it)
+                binding.tvResultCount.text = "${it.size} results"
+                adapter.notifyDataSetChanged()
+            }
+        }
     }
 
     override fun onItemClicked(article: Article) {
