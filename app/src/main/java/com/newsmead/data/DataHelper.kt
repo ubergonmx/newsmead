@@ -74,6 +74,8 @@ object DataHelper {
         page: Int? = 1,
         source: String? = null,
         category: String? = null,
+        startDate: String? = null,
+        endDate: String? = null,
         searchText : String? = null,
         callback: (List<Article>) -> Unit)
     {
@@ -95,11 +97,17 @@ object DataHelper {
         if (searchText != null) {
             articleUrl += "&text=$searchText"
         }
+        if (startDate != null) {
+            articleUrl += "&startDate=$startDate"
+        }
+        if (endDate != null) {
+            articleUrl += "&endDate=$endDate"
+        }
 
         if (searchText != null || source != null || category != null) {
             url = articleUrl
         }
-
+        Log.d("DataHelper", "URL: $url")
         // Fetch articles using Volley
         val queue = Volley.newRequestQueue(context)
 
