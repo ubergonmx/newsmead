@@ -100,11 +100,11 @@ class ArticleSourceFragment: Fragment(), clickListener {
         }
 
         lifecycleScope.launch {
-            val source = if (category == "All") null else DataHelper.reverseSourceNameMap(args.author)
+            val category = if (category == "All") null else category.lowercase()
             DataHelper.loadArticleData(
                 context,
-                source=source,
-                category=category.lowercase()) {
+                source=DataHelper.reverseSourceNameMap(args.author),
+                category=category) {
                 data.clear()
                 data.addAll(it)
                 adapter.notifyDataSetChanged()
