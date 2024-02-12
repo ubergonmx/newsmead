@@ -538,7 +538,7 @@ class FirebaseHelper {
                     )
 
                     // Handle Success
-                    Toast.makeText(context, "User created", Toast.LENGTH_SHORT).show()
+                    // Toast.makeText(context, "User created", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
                     // Handle Failure
