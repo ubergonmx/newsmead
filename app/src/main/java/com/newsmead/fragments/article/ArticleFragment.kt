@@ -58,7 +58,7 @@ class ArticleFragment() : Fragment(), clickListener {
         binding.rvArticleRecommended.addItemDecoration(customDivider)
 
         // Receive parcelable from ArticleActivity
-        val article = arguments?.getParcelable<Article>("article") ?: Article(
+        var article = arguments?.getParcelable<Article>("article") ?: Article(
             "Article Source",
             "Article Source Image",
             "Article Title",
@@ -69,6 +69,12 @@ class ArticleFragment() : Fragment(), clickListener {
             "url",
             "0"
         )
+
+        // If article is null from ArticleActivity, then receive from it's own arguments
+        if (article.title == "Article Title") {
+            val args = ArticleFragmentArgs.fromBundle(requireArguments())
+            article = args.articleItem
+        }
 
         // Safeargs bundle
         Log.d("ArticleFragment", "onCreateView: newsId: ${article.newsId}")

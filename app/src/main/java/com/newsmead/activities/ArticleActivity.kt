@@ -9,9 +9,9 @@ import androidx.navigation.navArgs
 import com.newsmead.R
 
 import com.newsmead.databinding.ActivityArticleBinding
+import com.newsmead.models.Article
 
 class ArticleActivity : AppCompatActivity() {
-    private val args: ArticleActivityArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,9 +21,9 @@ class ArticleActivity : AppCompatActivity() {
 
         Log.d("ArticleActivity", "onCreate: ArticleActivity started")
 
-        val article = args.articleItem
+        val article = intent.getParcelableExtra<Article>("articleItem")
 
-        Log.d("ArticleActivity", "onCreate: articleId: ${article.newsId}")
+        Log.d("ArticleActivity", "onCreate: articleId: ${article?.newsId}")
 
         // Update fragment with articleId
         val navHostFragment =
