@@ -297,7 +297,7 @@ object DataHelper {
         data.add("INQUIRER.NET")
         data.add("Philstar")
         data.add("The Manila Bulletin")
-        data.add("TV5 News")
+        // data.add("TV5 News")
         return data
     }
 
