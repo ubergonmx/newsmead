@@ -25,7 +25,6 @@ import kotlinx.coroutines.launch
 class SearchFragment : Fragment(), clickListener {
     private lateinit var binding: FragmentSearchBinding
     private lateinit var adapter: ArticleSimplifiedAdapter
-    private lateinit var data: ArrayList<Article>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -106,9 +105,7 @@ class SearchFragment : Fragment(), clickListener {
 
 
         // RecyclerView of Recent Articles
-        data = loadArticleDataLatest()
-
-        adapter = ArticleSimplifiedAdapter(data, this)
+        adapter = ArticleSimplifiedAdapter(arrayListOf(), this)
         binding.rvSearchLatestNews.adapter = adapter
 
         val layoutManager = LinearLayoutManager(context)
@@ -124,9 +121,7 @@ class SearchFragment : Fragment(), clickListener {
         // Add API here
         lifecycleScope.launch {
             DataHelper.loadArticleData(context){
-                data.clear()
-                data.addAll(it)
-                adapter.notifyDataSetChanged()
+                adapter.updateData(it)
             }
         }
 

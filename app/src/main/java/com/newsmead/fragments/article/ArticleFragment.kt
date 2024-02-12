@@ -29,10 +29,9 @@ import com.newsmead.recyclerviews.feed.ArticleSimplifiedAdapter
 import com.newsmead.recyclerviews.feed.clickListener
 import kotlinx.coroutines.launch
 
-class ArticleFragment : Fragment(), clickListener {
+class ArticleFragment() : Fragment(), clickListener {
     private lateinit var binding: FragmentArticleBinding
     private lateinit var adapter: ArticleSimplifiedAdapter
-    private lateinit var data: ArrayList<Article>
     private lateinit var savedLists: ArrayList<SavedList>
     private enum class ColorMode { LIGHT, DARK, SEPIA }
 
@@ -46,8 +45,7 @@ class ArticleFragment : Fragment(), clickListener {
         binding = FragmentArticleBinding.inflate(inflater, container, false)
 
         // Initialize RecyclerView
-        data = ArrayList()
-        adapter = ArticleSimplifiedAdapter(data, this)
+        adapter = ArticleSimplifiedAdapter(arrayListOf(), this)
         binding.rvArticleRecommended.adapter = adapter
 
         // Set layout manager
@@ -172,12 +170,10 @@ class ArticleFragment : Fragment(), clickListener {
                 val context = context ?: return@loadArticleData
 
                 if (FirebaseHelper.isNetworkAvailable(context)) {
-                    data.clear()
-                    data.addAll(it)
-                    adapter.notifyDataSetChanged()
+                    adapter.updateData(it)
 
                     // If no articles, hide recommendations
-                    if (data.isEmpty()) {
+                    if (it.isEmpty()) {
                         binding.divider.visibility = View.GONE
                         binding.btnArticleRecommendations.visibility = View.GONE
                         binding.tvArticleRecommended.visibility = View.GONE

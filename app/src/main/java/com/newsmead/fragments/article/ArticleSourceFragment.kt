@@ -77,7 +77,6 @@ class ArticleSourceFragment: Fragment(), clickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
-        // Add API here
         lifecycleScope.launch {
             DataHelper.loadArticleData(context, source=DataHelper.reverseSourceNameMap(args.author)) {
                 adapter.updateData(it)
@@ -112,7 +111,6 @@ class ArticleSourceFragment: Fragment(), clickListener {
             article
         )
 
-        Navigation.findNavController(requireActivity(), R.id.flMainArticleContainer)
-            .navigate(action)
+        Navigation.findNavController(requireView()).navigate(action)
     }
 }
