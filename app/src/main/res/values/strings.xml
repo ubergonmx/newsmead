@@ -146,7 +146,7 @@
 
     <!-- sample search -->
     <string name="sample_search_prompt">Lorem ipsum</string>
-    <string name="sample_search_results">3 results</string>
+    <string name="sample_search_results">Loading results</string>
 
     <!-- sample article (magazine) -->
     <string name="sample_category">Technology</string>
