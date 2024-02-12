@@ -30,6 +30,32 @@ class BottomSheetDialogSearchFilter: BottomSheetDialogFragment() {
 
     var onApplyFiltersListener: OnApplyFiltersListener? = null
 
+    companion object {
+        fun newInstance(category: String?, source: String, sortBy: String, startDate: String, endDate: String): BottomSheetDialogSearchFilter {
+            val fragment = BottomSheetDialogSearchFilter()
+            val args = Bundle()
+            args.putString("category", category)
+            args.putString("source", source)
+            args.putString("sortBy", sortBy)
+            args.putString("startDate", startDate)
+            args.putString("endDate", endDate)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (arguments != null) {
+            category = arguments?.getString("category")
+            source = arguments?.getString("source") ?: ""
+            sortBy = arguments?.getString("sortBy") ?: ""
+            startDate = arguments?.getString("startDate") ?: ""
+            endDate = arguments?.getString("endDate") ?: ""
+        }
+    }
+    
+
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -46,6 +72,9 @@ class BottomSheetDialogSearchFilter: BottomSheetDialogFragment() {
         for (category in categoryData) {
             val chipBinding = ChipSearchBinding.inflate(inflater, container, false).root
             chipBinding.text = category
+            if (category == this.category) {
+                chipBinding.isChecked = true
+            }
             binding.cgDialogCategory.addView(chipBinding)
 
             chipBinding.setOnClickListener {
@@ -56,6 +85,9 @@ class BottomSheetDialogSearchFilter: BottomSheetDialogFragment() {
         for (source in sourcesData) {
             val chipBinding = ChipSearchBinding.inflate(inflater, container, false).root
             chipBinding.text = source
+            if (source == this.source) {
+                chipBinding.isChecked = true
+            }
             binding.cgDialogSource.addView(chipBinding)
 
             chipBinding.setOnClickListener {
@@ -64,14 +96,17 @@ class BottomSheetDialogSearchFilter: BottomSheetDialogFragment() {
         }
 
         // Set default checked to most relevant
-        binding.radioGroup.check(0)
+        binding.radioGroup.check(binding.rbRecent.id)
 
         // Date Picker
         val dateRangePicker = MaterialDatePicker.Builder.dateRangePicker()
             .setTitleText("Select a date range")
             .build()
 
-        // Rename button text
+        // Set the date range if it was previously selected
+        binding.btnDateFilter.text = "Date: $startDate - $endDate"
+
+        // Date Picker Listener
         dateRangePicker.addOnPositiveButtonClickListener {
             // Get the selected date range
             val dateRange = dateRangePicker.selection

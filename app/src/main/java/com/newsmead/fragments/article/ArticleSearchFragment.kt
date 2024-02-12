@@ -26,7 +26,6 @@ class ArticleSearchFragment : Fragment(), clickListener {
     private val args: ArticleSearchFragmentArgs by navArgs()
     private lateinit var binding: FragmentArticleSearchBinding
     private lateinit var adapter: ArticleAdapter
-    // refactor later
     private var categoryVal: String = ""
     private var sourceVal: String = ""
     private var sortByVal: String = ""
@@ -69,7 +68,13 @@ class ArticleSearchFragment : Fragment(), clickListener {
 
         // Dialog to show when user clicks on filter
         binding.btnSearchFilter.setOnClickListener {
-            val bottomSheetDialogSearchFilter = BottomSheetDialogSearchFilter()
+            val bottomSheetDialogSearchFilter = BottomSheetDialogSearchFilter.newInstance(
+                categoryVal,
+                sourceVal,
+                sortByVal,
+                startDateVal,
+                endDateVal
+            )
 
             bottomSheetDialogSearchFilter.onApplyFiltersListener = object : BottomSheetDialogSearchFilter.OnApplyFiltersListener {
                 override fun onApplyFilters(category: String?, source: String, sortBy: String, startDate: String, endDate: String) {
