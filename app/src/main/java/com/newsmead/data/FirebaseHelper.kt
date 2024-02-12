@@ -24,10 +24,8 @@ class FirebaseHelper {
         private var uid = FirebaseAuth.getInstance().currentUser?.uid ?: "null"
 
         fun getUid(): String {
-            return if (uid == "null") {
-                uid = FirebaseAuth.getInstance().currentUser?.uid ?: "null"
-                if (uid == "null") { "null" } else { uid }
-            } else { uid }
+            uid = FirebaseAuth.getInstance().currentUser?.uid ?: "null"
+            return uid
         }
 
         fun isNetworkAvailable(context: Context): Boolean {
