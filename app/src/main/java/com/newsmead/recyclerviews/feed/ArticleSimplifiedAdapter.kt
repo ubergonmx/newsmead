@@ -17,7 +17,6 @@ class ArticleSimplifiedAdapter(
             parent,
             false
         )
-
         return ArticleSimplifiedViewHolder(itemViewBinding)
     }
 

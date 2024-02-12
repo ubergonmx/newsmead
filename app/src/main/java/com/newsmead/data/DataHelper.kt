@@ -125,7 +125,7 @@ object DataHelper {
                     Log.d("DataHelper", article.toString())
                     articles.add(
                         Article(
-                            sourceNameMap( article.getString("source")),
+                            sourceNameMap(article.getString("source")),
                             sourceImageMap(article.getString("source")),
                             article.getString("title"),
                             null,
