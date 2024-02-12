@@ -2,6 +2,7 @@ package com.newsmead.fragments.layouts
 
 import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,8 @@ import com.newsmead.data.DataHelper
 
 import com.newsmead.databinding.BottomSheetDialogSearchFilterBinding
 import com.newsmead.databinding.ChipSearchBinding
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 
@@ -104,7 +107,24 @@ class BottomSheetDialogSearchFilter: BottomSheetDialogFragment() {
             .build()
 
         // Set the date range if it was previously selected
-        binding.btnDateFilter.text = "Date: $startDate - $endDate"
+        if (startDate.isNotEmpty() && endDate.isNotEmpty()) {
+            // Create a SimpleDateFormat object for reading the date in the given format
+            val sdfSource = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+
+            // Parse the start and end dates into Date objects
+            val start = sdfSource.parse(startDate)
+            val end = sdfSource.parse(endDate)
+
+            // Create a SimpleDateFormat object for formatting the date as you want
+            val sdfDestination = SimpleDateFormat("MMM d, yyyy", Locale.ENGLISH)
+
+            // Format the start and end dates into the new format
+            val formattedStart = sdfDestination.format(start)
+            val formattedEnd = sdfDestination.format(end)
+
+            // Set the formatted date range on the button
+            binding.btnDateFilter.text = "Date: $formattedStart — $formattedEnd"
+        }
 
         // Date Picker Listener
         dateRangePicker.addOnPositiveButtonClickListener {
@@ -117,7 +137,7 @@ class BottomSheetDialogSearchFilter: BottomSheetDialogFragment() {
                 endDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(dateRange.second))
 
                 // Use the dates here
-                binding.btnDateFilter.text = "Date: $startDate - $endDate"
+                binding.btnDateFilter.text = "Date: ${dateRangePicker.headerText}"
             }
         }
 
