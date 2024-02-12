@@ -16,7 +16,9 @@ class ArticleEditViewHolder(
         binding.tvArticleEditDate.text = article.date
         binding.tvEditReadTime.text = article.readTime
         binding.ivArticleEditImage.setImageResource(article.imageId ?: R.drawable.sample_article_image)
-        binding.ivSourceEditImage.setImageResource(article.sourceImage)
+        val context = binding.root.context
+        val resourceId = context.resources.getIdentifier(article.sourceImage, "drawable", context.packageName)
+        binding.ivSourceEditImage.setImageResource(if (resourceId != 0) resourceId else R.drawable.sample_source_image)
     }
 
     fun getCardView(): CardView {

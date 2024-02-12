@@ -21,7 +21,6 @@ import kotlinx.coroutines.launch
 class HistoryFragment: Fragment(), clickListener {
     private lateinit var binding: FragmentHistoryBinding
     private lateinit var adapter: ArticleSimplifiedAdapter
-    private lateinit var data: ArrayList<Article>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +28,6 @@ class HistoryFragment: Fragment(), clickListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
-        data = ArrayList()
 
         // Back Button
         binding.btnHistoryBack.setOnClickListener {
@@ -37,8 +35,7 @@ class HistoryFragment: Fragment(), clickListener {
         }
 
         // RecyclerView
-        // val data = DataHelper.loadArticleData()
-        adapter = ArticleSimplifiedAdapter(data, this)
+        adapter = ArticleSimplifiedAdapter(arrayListOf(), this)
         binding.rvHistory.adapter = adapter
         val layoutManager = LinearLayoutManager(requireContext())
         binding.rvHistory.layoutManager = layoutManager
@@ -56,8 +53,7 @@ class HistoryFragment: Fragment(), clickListener {
             binding.shimmerHistory.visibility = View.GONE
 
             if (historyData.isNotEmpty()) {
-                data.addAll(historyData)
-                adapter.notifyDataSetChanged()
+                adapter.updateData(historyData)
             }
         }
 
@@ -72,9 +68,7 @@ class HistoryFragment: Fragment(), clickListener {
             val historyData = FirebaseHelper.getHistory(requireContext())
 
             if (historyData.isNotEmpty()) {
-                data.clear()
-                data.addAll(historyData)
-                adapter.notifyDataSetChanged()
+                adapter.updateData(historyData)
             }
         }
     }

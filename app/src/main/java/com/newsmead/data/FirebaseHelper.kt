@@ -146,17 +146,12 @@ class FirebaseHelper {
                             val listRef = userListsRef.document(listId).collection("articles")
 
                             val listArticles = listRef.get().await().documents.mapNotNull { articleDocument ->
-                                // Skips articles already in the list
-                                val newsId = articleDocument.data?.get("newsId").toString()
-
-                                val imageId: Int = articleDocument.data?.get("image").toString().toInt()
-                                val sourceImageId: Int = articleDocument.data?.get("sourceImage").toString().toInt()
                                 Article(
                                     source = articleDocument.data?.get("source").toString(),
-                                    sourceImage = sourceImageId,
-                                    newsId = newsId,
+                                    sourceImage = articleDocument.data?.get("sourceImage").toString(),
+                                    newsId = articleDocument.data?.get("newsId").toString(),
                                     title = articleDocument.data?.get("title").toString(),
-                                    imageId = imageId,
+                                    imageId = articleDocument.data?.get("image").toString().toInt(),
                                     imageURL = articleDocument.data?.get("imageURL").toString(),
                                     readTime = articleDocument.data?.get("readTime").toString(),
                                     date = articleDocument.data?.get("date").toString(),
@@ -182,17 +177,12 @@ class FirebaseHelper {
                             val listRef = userListsRef.document(listId).collection("articles")
 
                             val listArticles = listRef.get(Source.CACHE).await().documents.mapNotNull { articleDocument ->
-                                // Skips articles already in the list
-                                val newsId = articleDocument.data?.get("newsId").toString()
-
-                                val imageId: Int = articleDocument.data?.get("image").toString().toInt()
-                                val sourceImageId: Int = articleDocument.data?.get("sourceImage").toString().toInt()
                                 Article(
                                     source = articleDocument.data?.get("source").toString(),
-                                    sourceImage = sourceImageId,
-                                    newsId = newsId,
+                                    sourceImage = articleDocument.data?.get("sourceImage").toString(),
+                                    newsId = articleDocument.data?.get("image").toString(),
                                     title = articleDocument.data?.get("title").toString(),
-                                    imageId = imageId,
+                                    imageId = articleDocument.data?.get("newsId").toString().toInt(),
                                     imageURL = articleDocument.data?.get("imageURL").toString(),
                                     readTime = articleDocument.data?.get("readTime").toString(),
                                     date = articleDocument.data?.get("date").toString(),
@@ -297,17 +287,12 @@ class FirebaseHelper {
                             val listRef = userListsRef.document(listId).collection("articles")
 
                             val listArticles = listRef.get().await().documents.mapNotNull { articleDocument ->
-                                // Skips articles already in the list
-                                val newsId = articleDocument.data?.get("newsId").toString()
-
-                                val imageId: Int = articleDocument.data?.get("image").toString().toInt()
-                                val sourceImageId: Int = articleDocument.data?.get("sourceImage").toString().toInt()
                                 Article(
                                     source = articleDocument.data?.get("source").toString(),
-                                    sourceImage = sourceImageId,
-                                    newsId = newsId,
+                                    sourceImage = articleDocument.data?.get("sourceImage").toString(),
+                                    newsId = articleDocument.data?.get("newsId").toString(),
                                     title = articleDocument.data?.get("title").toString(),
-                                    imageId = imageId,
+                                    imageId = articleDocument.data?.get("image").toString().toInt(),
                                     imageURL = articleDocument.data?.get("imageURL").toString(),
                                     readTime = articleDocument.data?.get("readTime").toString(),
                                     date = articleDocument.data?.get("date").toString(),
@@ -334,19 +319,12 @@ class FirebaseHelper {
 
                             val listArticles = listRef.get(Source.CACHE)
                                 .await().documents.mapNotNull { articleDocument ->
-                                    // Skips articles already in the list
-                                    val newsId = articleDocument.data?.get("newsId").toString()
-
-                                    val imageId: Int =
-                                        articleDocument.data?.get("image").toString().toInt()
-                                    val sourceImageId: Int =
-                                        articleDocument.data?.get("sourceImage").toString().toInt()
                                     Article(
                                         source = articleDocument.data?.get("source").toString(),
-                                        sourceImage = sourceImageId,
-                                        newsId = newsId,
+                                        sourceImage = articleDocument.data?.get("sourceImage").toString(),
+                                        newsId = articleDocument.data?.get("newsId").toString(),
                                         title = articleDocument.data?.get("title").toString(),
-                                        imageId = imageId,
+                                        imageId = articleDocument.data?.get("image").toString().toInt(),
                                         imageURL = articleDocument.data?.get("imageURL").toString(),
                                         readTime = articleDocument.data?.get("readTime").toString(),
                                         date = articleDocument.data?.get("date").toString(),
@@ -418,14 +396,12 @@ class FirebaseHelper {
                 .addOnSuccessListener { documents ->
                     // Parse documents into articles
                     articles.addAll(documents.mapNotNull { document ->
-                        val imageId: Int = document.data["image"].toString().toInt()
-                        val sourceImageId: Int = document.data["sourceImage"].toString().toInt()
                         Article(
                             source = document.data["source"].toString(),
-                            sourceImage = sourceImageId,
+                            sourceImage = document.data["sourceImage"].toString(),
                             newsId = document.data["newsId"].toString(),
                             title = document.data["title"].toString(),
-                            imageId = imageId,
+                            imageId = document.data["image"].toString().toInt(),
                             imageURL = document.data["imageURL"].toString(),
                             readTime = document.data["readTime"].toString(),
                             date = document.data["date"].toString(),
@@ -460,14 +436,12 @@ class FirebaseHelper {
                     "viewed", com.google.firebase.firestore.Query.Direction.DESCENDING
                 ).get().await().documents.map { articleDocument ->
                     async {
-                        val imageId: Int = articleDocument.data?.get("image").toString().toInt()
-                        val sourceImageId: Int = articleDocument.data?.get("sourceImage").toString().toInt()
                         Article(
                             source = articleDocument.data?.get("source").toString(),
-                            sourceImage = sourceImageId,
+                            sourceImage = articleDocument.data?.get("sourceImage").toString(),
                             newsId = articleDocument.data?.get("newsId").toString(),
                             title = articleDocument.data?.get("title").toString(),
-                            imageId = imageId,
+                            imageId = articleDocument.data?.get("image").toString().toInt(),
                             imageURL = articleDocument.data?.get("imageURL").toString(),
                             readTime = articleDocument.data?.get("readTime").toString(),
                             date = articleDocument.data?.get("date").toString(),

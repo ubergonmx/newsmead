@@ -36,7 +36,10 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
         // Change text of tvSourceName to sourceName
         binding.tvSearchSourceName.text = args.sourceName
         // Change logo of ivSearchSourceLogo
-        binding.ivSearchSourceLogo.setImageResource(DataHelper.sourceImageMap(args.sourceName))
+        val context = binding.root.context
+        val sourceImage = DataHelper.sourceImageMap(args.sourceName)
+        val resourceId = context.resources.getIdentifier(sourceImage, "drawable", context.packageName)
+        binding.ivSearchSourceLogo.setImageResource(if (resourceId != 0) resourceId else R.drawable.sample_source_image)
 
         // Show dummy data
         data = DataHelper.loadSourceArticlesData()

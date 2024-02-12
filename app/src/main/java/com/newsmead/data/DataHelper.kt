@@ -33,14 +33,14 @@ object DataHelper {
     }
 
     // Source image mapping
-    fun sourceImageMap(source: String): Int {
+    fun sourceImageMap(source: String): String {
         return when (source) {
-            "gmanews", "GMA News" -> R.drawable.source_gmanews
-            "inquirer", "INQUIRER.NET" -> R.drawable.source_inquirer
-            "philstar", "Philstar" -> R.drawable.source_philstar
-            "manilabulletin", "The Manila Bulletin" -> R.drawable.source_manilabulletin
-            "news5", "TV5 News" -> R.drawable.source_news5
-            else -> 0
+            "gmanews", "GMA News" -> "source_gmanews"
+            "inquirer", "INQUIRER.NET" -> "source_inquirer"
+            "philstar", "Philstar" -> "source_philstar"
+            "manilabulletin", "The Manila Bulletin" -> "source_manilabulletin"
+            "news5", "TV5 News" -> "source_news5"
+            else -> "sample_source_image"
         }
     }
 

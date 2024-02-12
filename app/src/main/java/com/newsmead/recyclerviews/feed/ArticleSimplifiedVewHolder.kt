@@ -1,7 +1,8 @@
 package com.newsmead.recyclerviews.feed
 
-import androidx.navigation.Navigation
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
+import com.newsmead.R
 import com.newsmead.databinding.ItemFeedArticleSimplifiedBinding
 import com.newsmead.models.Article
 
@@ -9,9 +10,10 @@ class ArticleSimplifiedViewHolder(private val viewBinding: ItemFeedArticleSimpli
     // Performs the binding of the article data to the views in the ViewHolder
     fun bindData(article: Article) {
         this.viewBinding.tvSource.text = article.source
-        this.viewBinding.ivSourceImage.setImageResource(article.sourceImage)
+        val context = viewBinding.root.context
+        val resourceId = context.resources.getIdentifier(article.sourceImage, "drawable", context.packageName)
+        this.viewBinding.ivSourceImage.setImageResource(if (resourceId != 0) resourceId else R.drawable.sample_source_image)
         this.viewBinding.tvArticleTitle.text = article.title
-//        this.viewBinding.tvArticleDate.text = article.date
         this.viewBinding.tvReadTime.text = article.readTime
     }
 

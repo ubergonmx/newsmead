@@ -35,7 +35,10 @@ class ArticleSourceFragment: Fragment(), clickListener {
         binding = FragmentArticleSourceBinding.inflate(inflater, container, false)
 
         // Change logo of ivSourceLogo
-        binding.ivSourceLogo.setImageResource(DataHelper.sourceImageMap(args.author))
+        val context = binding.root.context
+        val sourceImage = DataHelper.sourceImageMap(args.author)
+        val resourceId = context.resources.getIdentifier(sourceImage, "drawable", context.packageName)
+        binding.ivSourceLogo.setImageResource(if (resourceId != 0) resourceId else R.drawable.sample_source_image)
         // Change text of tvSourceName to sourceName
         binding.tvSourceName.text = args.author
 

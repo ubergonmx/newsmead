@@ -7,7 +7,7 @@ import com.newsmead.R
 class Article: Parcelable {
     var source: String
         private set
-    var sourceImage : Int
+    var sourceImage: String
         private set
     var title: String
         private set
@@ -27,7 +27,7 @@ class Article: Parcelable {
     var newsId:String = "N0000"
         private set
 
-    constructor(source: String, sourceImage: Int,
+    constructor(source: String, sourceImage: String,
                 title: String, imageId: Int?, imageURL: String?, date: String, body: String, readTime: String, url: String, newsId:String) {
         this.source = source
         this.sourceImage = sourceImage
@@ -45,7 +45,7 @@ class Article: Parcelable {
     // initialized. This is meant for testing purposes.
     constructor(source: String, title: String, date: String, readTime: String, url: String) {
         this.source = source
-        this.sourceImage = R.drawable.sample_source_image
+        this.sourceImage = "sample_source_image"
         this.title = title
         this.imageId = R.drawable.sample_article_image
         this.imageURL = ""
@@ -58,7 +58,7 @@ class Article: Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
-        parcel.readInt(),
+        parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readInt(),
         parcel.readString() ?: "",
@@ -75,7 +75,7 @@ class Article: Parcelable {
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
         dest.writeString(source)
-        dest.writeInt(sourceImage)
+        dest.writeString(sourceImage)
         dest.writeString(title)
         dest.writeInt(imageId ?: R.drawable.sample_article_image)
         dest.writeString(imageURL ?: "")

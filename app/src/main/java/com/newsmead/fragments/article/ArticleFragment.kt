@@ -14,9 +14,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
-import com.android.volley.Request
 import com.bumptech.glide.Glide
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
@@ -65,7 +62,7 @@ class ArticleFragment : Fragment(), clickListener {
         // Receive parcelable from ArticleActivity
         val article = arguments?.getParcelable<Article>("article") ?: Article(
             "Article Source",
-            -1,
+            "Article Source Image",
             "Article Title",
             0,
             "",
@@ -97,7 +94,9 @@ class ArticleFragment : Fragment(), clickListener {
         // Set article source
         binding.tvSource.text = article.source
         binding.btnArticleRecommendations.text = "Show more from " + article.source
-        binding.ivSourceImage.setImageResource(article.sourceImage)
+        val context = binding.root.context
+        val resourceId = context.resources.getIdentifier(article.sourceImage, "drawable", context.packageName)
+        binding.ivSourceImage.setImageResource(if (resourceId != 0) resourceId else R.drawable.sample_source_image)
 
         // Set article read time
         val readTime = article.readTime //+ " min read"
