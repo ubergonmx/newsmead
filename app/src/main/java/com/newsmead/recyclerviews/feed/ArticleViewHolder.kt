@@ -15,9 +15,9 @@ class ArticleViewHolder(private val viewBinding: ItemFeedArticleBinding): Recycl
         this.viewBinding.ivSourceImage.setImageResource(if (resourceId != 0) resourceId else R.drawable.sample_source_image)
         this.viewBinding.tvArticleTitle.text = article.title
         if (article.imageURL != null && article.imageURL != "")
-            Glide.with(this.viewBinding.root).load(article.imageURL).into(this.viewBinding.ivArticleImage)
+            Glide.with(this.viewBinding.root).load(article.imageURL).error(R.drawable.sample_article_image).into(this.viewBinding.ivArticleImage)
         else
-            this.viewBinding.ivArticleImage.setImageResource(article.imageId ?: R.drawable.sample_article_image)
+            this.viewBinding.ivArticleImage.setImageResource(R.drawable.sample_article_image)
         this.viewBinding.tvArticleDate.text = article.date
         this.viewBinding.tvReadTime.text = article.readTime
     }

@@ -64,7 +64,6 @@ class ArticleFragment : Fragment(), clickListener {
             "Article Source",
             "Article Source Image",
             "Article Title",
-            0,
             "",
             "Article Date",
             "Article Body",
@@ -79,7 +78,6 @@ class ArticleFragment : Fragment(), clickListener {
         Log.d("ArticleFragment", "onCreateView: date: ${article.date}")
         Log.d("ArticleFragment", "onCreateView: source: ${article.source}")
         Log.d("ArticleFragment", "onCreateView: sourceImage: ${article.sourceImage}")
-        Log.d("ArticleFragment", "onCreateView: imageId: ${article.imageId}")
         Log.d("ArticleFragment", "onCreateView: imageURL: ${article.imageURL}")
         Log.d("ArticleFragment", "onCreateView: readTime: ${article.readTime}")
         Log.d("ArticleFragment", "onCreateView: url: ${article.url}")
@@ -162,7 +160,7 @@ class ArticleFragment : Fragment(), clickListener {
 
                 // Set article image from link
                 if (article.imageURL != "") {
-                    Glide.with(this@ArticleFragment).load(article.imageURL).into(binding.ivArticleFullImage)
+                    Glide.with(this@ArticleFragment).load(article.imageURL).error(R.drawable.sample_article_image).into(binding.ivArticleFullImage)
                 } else {
                     binding.ivSourceImage.setImageResource(R.drawable.sample_source_image)
                 }

@@ -128,7 +128,6 @@ object DataHelper {
                             sourceNameMap(article.getString("source")),
                             sourceImageMap(article.getString("source")),
                             article.getString("title"),
-                            null,
                             article.getString("image_url"),
                             formatDate(article.getString("date")),
                             article.getString("body"),

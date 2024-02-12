@@ -3,6 +3,7 @@ package com.newsmead.recyclerviews.feed
 import android.widget.CheckBox
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.newsmead.R
 import com.newsmead.databinding.ItemListEditBinding
 import com.newsmead.models.Article
@@ -15,7 +16,10 @@ class ArticleEditViewHolder(
         binding.tvEditSource.text = article.source
         binding.tvArticleEditDate.text = article.date
         binding.tvEditReadTime.text = article.readTime
-        binding.ivArticleEditImage.setImageResource(article.imageId ?: R.drawable.sample_article_image)
+        if (article.imageURL != null && article.imageURL != "")
+            Glide.with(binding.root).load(article.imageURL).error(R.drawable.sample_article_image).into(binding.ivArticleEditImage)
+        else
+            binding.ivArticleEditImage.setImageResource(R.drawable.sample_article_image)
         val context = binding.root.context
         val resourceId = context.resources.getIdentifier(article.sourceImage, "drawable", context.packageName)
         binding.ivSourceEditImage.setImageResource(if (resourceId != 0) resourceId else R.drawable.sample_source_image)

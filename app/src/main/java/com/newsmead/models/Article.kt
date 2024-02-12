@@ -11,8 +11,6 @@ class Article: Parcelable {
         private set
     var title: String
         private set
-    var imageId: Int?
-        private set
     var imageURL: String?
         private set
     var date: String
@@ -28,11 +26,10 @@ class Article: Parcelable {
         private set
 
     constructor(source: String, sourceImage: String,
-                title: String, imageId: Int?, imageURL: String?, date: String, body: String, readTime: String, url: String, newsId:String) {
+                title: String, imageURL: String?, date: String, body: String, readTime: String, url: String, newsId:String) {
         this.source = source
         this.sourceImage = sourceImage
         this.title = title
-        this.imageId = imageId ?: R.drawable.sample_article_image
         this.imageURL = imageURL ?: ""
         this.date = date
         this.body = body
@@ -47,7 +44,6 @@ class Article: Parcelable {
         this.source = source
         this.sourceImage = "sample_source_image"
         this.title = title
-        this.imageId = R.drawable.sample_article_image
         this.imageURL = ""
         this.date = date
         this.body = ""
@@ -60,7 +56,6 @@ class Article: Parcelable {
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
-        parcel.readInt(),
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
@@ -77,7 +72,6 @@ class Article: Parcelable {
         dest.writeString(source)
         dest.writeString(sourceImage)
         dest.writeString(title)
-        dest.writeInt(imageId ?: R.drawable.sample_article_image)
         dest.writeString(imageURL ?: "")
         dest.writeString(date)
         dest.writeString(body)
