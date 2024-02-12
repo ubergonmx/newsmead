@@ -24,7 +24,6 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
     private val args: ArticleSearchSourceFragmentArgs by navArgs()
     private lateinit var binding: FragmentArticleSearchSourceBinding
     private lateinit var adapter: ArticleAdapter
-    private lateinit var data: ArrayList<Article>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,10 +40,8 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
         val resourceId = context.resources.getIdentifier(sourceImage, "drawable", context.packageName)
         binding.ivSearchSourceLogo.setImageResource(if (resourceId != 0) resourceId else R.drawable.sample_source_image)
 
-        // Show dummy data
-        data = DataHelper.loadSourceArticlesData()
 
-        adapter = ArticleAdapter(data, this)
+        adapter = ArticleAdapter(arrayListOf(), this)
         binding.rvSearchSourceArticles.adapter = adapter
 
         val layoutManager = LinearLayoutManager(context)
@@ -78,12 +75,9 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
-        // Add API here
         lifecycleScope.launch {
             DataHelper.loadArticleData(context, source = DataHelper.reverseSourceNameMap(args.sourceName)) {
-                data.clear()
-                data.addAll(it)
-                adapter.notifyDataSetChanged()
+                adapter.updateData(it)
             }
         }
 
@@ -105,9 +99,7 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
                 context,
                 source=DataHelper.reverseSourceNameMap(args.sourceName),
                 category=category) {
-                data.clear()
-                data.addAll(it)
-                adapter.notifyDataSetChanged()
+                adapter.updateData(it)
             }
         }
     }

@@ -25,7 +25,6 @@ class ArticleSourceFragment: Fragment(), clickListener {
     val args: ArticleSourceFragmentArgs by navArgs()
     private lateinit var binding: FragmentArticleSourceBinding
     private lateinit var adapter: ArticleAdapter
-    private lateinit var data: ArrayList<Article>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,10 +43,7 @@ class ArticleSourceFragment: Fragment(), clickListener {
 
         Log.d("ArticleSourceFragment", "onCreateView: Binding: ${binding.root}")
 
-        // RecyclerView of Articles
-        data = DataHelper.loadSourceArticlesData()
-
-        adapter = ArticleAdapter(data, this)
+        adapter = ArticleAdapter(arrayListOf(), this)
         binding.rvSourceArticles.adapter = adapter
 
         val layoutManager = LinearLayoutManager(context)
@@ -84,9 +80,7 @@ class ArticleSourceFragment: Fragment(), clickListener {
         // Add API here
         lifecycleScope.launch {
             DataHelper.loadArticleData(context, source=DataHelper.reverseSourceNameMap(args.author)) {
-                data.clear()
-                data.addAll(it)
-                adapter.notifyDataSetChanged()
+                adapter.updateData(it)
             }
         }
 
@@ -108,9 +102,7 @@ class ArticleSourceFragment: Fragment(), clickListener {
                 context,
                 source=DataHelper.reverseSourceNameMap(args.author),
                 category=category) {
-                data.clear()
-                data.addAll(it)
-                adapter.notifyDataSetChanged()
+                adapter.updateData(it)
             }
         }
     }

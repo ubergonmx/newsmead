@@ -25,8 +25,6 @@ class ArticleCategoryFragment : Fragment(), clickListener {
     private val args: ArticleCategoryFragmentArgs by navArgs()
     private lateinit var binding: FragmentArticleCategoryBinding
     private lateinit var adapter: ArticleAdapter
-    private lateinit var data: ArrayList<Article>
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,9 +37,8 @@ class ArticleCategoryFragment : Fragment(), clickListener {
         binding.tvCategoryName.text = args.categoryName
 
         // Show dummy data
-        data = DataHelper.loadCategoryArticlesData()
 
-        adapter = ArticleAdapter(data, this)
+        adapter = ArticleAdapter(arrayListOf(), this)
         binding.rvCategoryArticles.adapter = adapter
 
         val layoutManager = LinearLayoutManager(context)
@@ -74,9 +71,7 @@ class ArticleCategoryFragment : Fragment(), clickListener {
         // Add API here
         lifecycleScope.launch {
             DataHelper.loadArticleData(context, category=args.categoryName.lowercase()) {
-                data.clear()
-                data.addAll(it)
-                adapter.notifyDataSetChanged()
+                adapter.updateData(it)
             }
         }
         
@@ -97,9 +92,7 @@ class ArticleCategoryFragment : Fragment(), clickListener {
                 context,
                 category=args.categoryName.lowercase(),
                 source=DataHelper.reverseSourceNameMap(source)) {
-                data.clear()
-                data.addAll(it)
-                adapter.notifyDataSetChanged()
+                adapter.updateData(it)
             }
         }
     }
