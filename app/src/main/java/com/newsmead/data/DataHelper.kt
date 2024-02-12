@@ -94,7 +94,7 @@ object DataHelper {
         if (source != null) {
             articleUrl += "&source=$source"
         }
-        if (searchText != null) {
+        if (searchText != null && searchText != "") {
             articleUrl += "&text=$searchText"
         }
         if (startDate != null) {

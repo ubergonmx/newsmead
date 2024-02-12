@@ -1,6 +1,7 @@
 package com.newsmead.fragments.article
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -86,7 +87,9 @@ class ArticleSearchFragment : Fragment(), clickListener {
         // Search bar on submit or search
         binding.svSearchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                Log.d("Search", "Query: $query")
                 searchQuery = query ?: ""
+                binding.tvSearchingForPrompt.text = searchQuery
                 updateWithFilters()
                 return true
             }
@@ -110,8 +113,8 @@ class ArticleSearchFragment : Fragment(), clickListener {
     }
 
     fun updateWithFilters() {
-        val source = DataHelper.reverseSourceNameMap(sourceVal)
-        val category = if (categoryVal == "All") null else categoryVal?.lowercase()
+        val source = if (sourceVal == "") null else DataHelper.reverseSourceNameMap(sourceVal)
+        val category = if (categoryVal == "All" || categoryVal == "") null else categoryVal?.lowercase()
         val sortBy = sortByVal.lowercase()
         val startDate = if (startDateVal == "") null else startDateVal
         val endDate = if (endDateVal == "") null else endDateVal
