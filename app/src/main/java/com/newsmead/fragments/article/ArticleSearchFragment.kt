@@ -41,6 +41,9 @@ class ArticleSearchFragment : Fragment(), clickListener {
             inflater, container, false
         )
 
+        // Start shimmer
+        binding.shimmerSearch.startShimmer()
+
         // Receive search query from SearchFragment
         searchQuery = args.searchString
 
@@ -104,12 +107,16 @@ class ArticleSearchFragment : Fragment(), clickListener {
             }
         })
 
-
-        // Add API here
         lifecycleScope.launch {
             DataHelper.loadArticleData(context, searchText = searchQuery) {
-                binding.tvResultCount.text = "${it.size} results"
-                adapter.updateData(it)
+                if(FirebaseHelper.isNetworkAvailable(requireContext())) {
+                    // Stop the shimmer
+                    binding.shimmerSearch.stopShimmer()
+                    binding.shimmerSearch.visibility = View.GONE
+                    // Update the adapter with the retrieved articles
+                    binding.tvResultCount.text = "${it.size} results"
+                    adapter.updateData(it)
+                }
             }
         }
 

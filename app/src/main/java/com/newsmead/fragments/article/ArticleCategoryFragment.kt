@@ -76,7 +76,7 @@ class ArticleCategoryFragment : Fragment(), clickListener {
                 if(FirebaseHelper.isNetworkAvailable(requireContext())){
                     // Stop the shimmer
                     binding.shimmerCategory.stopShimmer()
-                    binding.shimmerCategory.visibility = View.GONE                    
+                    binding.shimmerCategory.visibility = View.GONE
                     // Update the adapter with retrieved articles
                     adapter.updateData(it)
                 }
