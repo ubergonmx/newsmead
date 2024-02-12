@@ -11,10 +11,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -37,23 +35,13 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/ivArticleImageShimmer"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
-        android:background="?shimmerColor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llSource" />
-
     <TextView
         android:id="@+id/tvArticleTitleShimmer"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="4dp"
         android:background="?shimmerColor"
         android:ellipsize="end"
         android:fontFamily="@font/arial_regular"
@@ -61,7 +49,7 @@
         android:textColor="?primaryTextColor"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/ivArticleImageShimmer"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llSource" />
 
@@ -69,12 +57,11 @@
         android:id="@+id/llArticleFooter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
         android:orientation="horizontal"
         android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvArticleTitleShimmer">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tvArticleDateShimmer"
@@ -82,7 +69,8 @@
             android:layout_height="20dp"
             android:background="?shimmerColor"
             android:fontFamily="@font/arial_regular"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tvBulletShimmer"
@@ -91,7 +79,8 @@
             android:layout_marginStart="8dp"
             android:text="@string/symbol_bullet"
             android:textColor="?shimmerColor"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tvReadTimeShimmer"
@@ -114,7 +103,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llArticleFooter">
+        app:layout_constraintTop_toBottomOf="@+id/tvArticleTitleShimmer">
 
     </LinearLayout>
 
