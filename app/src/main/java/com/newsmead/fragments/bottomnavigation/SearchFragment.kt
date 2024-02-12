@@ -15,6 +15,7 @@ import com.newsmead.data.DataHelper.loadCategoryData
 import com.newsmead.data.DataHelper.loadSourcesData
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
+import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentSearchBinding
 import com.newsmead.models.Article
@@ -34,6 +35,9 @@ class SearchFragment : Fragment(), clickListener {
         binding = FragmentSearchBinding.inflate(
             inflater, container, false
         )
+
+        // Start shimmer
+        binding.shimmerSearch.startShimmer()
 
         // Change text to date today m d, y
         binding.tvSearchDate.text = DataHelper.getDateToday()
@@ -118,10 +122,16 @@ class SearchFragment : Fragment(), clickListener {
         )
         binding.rvSearchLatestNews.addItemDecoration(customDividerItemDecoration)
 
-        // Add API here
+        // Load data and update the adapter when available
         lifecycleScope.launch {
             DataHelper.loadArticleData(context){
-                adapter.updateData(it)
+                if (FirebaseHelper.isNetworkAvailable(requireContext())) {
+                    // Stop the shimmer
+                    binding.shimmerSearch.stopShimmer()
+                    binding.shimmerSearch.visibility = View.GONE
+                    // Update the adapter with the retrieved articles
+                    adapter.updateData(it)
+                }
             }
         }
 

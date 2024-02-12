@@ -13,6 +13,7 @@ import com.google.android.material.chip.Chip
 import com.newsmead.data.DataHelper
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
+import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentArticleCategoryBinding
 import com.newsmead.models.Article
@@ -33,10 +34,11 @@ class ArticleCategoryFragment : Fragment(), clickListener {
             inflater, container, false
         )
 
+        // Start shimmer
+        binding.shimmerCategory.startShimmer()
+
         // Change text of tvCategoryName to categoryName
         binding.tvCategoryName.text = args.categoryName
-
-        // Show dummy data
 
         adapter = ArticleAdapter(arrayListOf(), this)
         binding.rvCategoryArticles.adapter = adapter
@@ -51,15 +53,15 @@ class ArticleCategoryFragment : Fragment(), clickListener {
 
         // Fill chips
         val chipData: ArrayList<String> = DataHelper.loadSourcesData()
-        binding.cgCategory.removeAllViews()
-        for (category in chipData) {
+        binding.cgSource.removeAllViews()
+        for (source in chipData) {
             val chip = ChipSearchBinding.inflate(inflater, container, false).root
-            chip.text = category
-            binding.cgCategory.addView(chip)
+            chip.text = source
+            binding.cgSource.addView(chip)
 
             // Set onClickListener for each chip
             chip.setOnClickListener {
-                updateToSource(category)
+                updateToSource(source)
             }
         }
 
@@ -71,7 +73,13 @@ class ArticleCategoryFragment : Fragment(), clickListener {
         // Add API here
         lifecycleScope.launch {
             DataHelper.loadArticleData(context, category=args.categoryName.lowercase()) {
-                adapter.updateData(it)
+                if(FirebaseHelper.isNetworkAvailable(requireContext())){
+                    // Stop the shimmer
+                    binding.shimmerCategory.stopShimmer()
+                    binding.shimmerCategory.visibility = View.GONE                    
+                    // Update the adapter with retrieved articles
+                    adapter.updateData(it)
+                }
             }
         }
         
@@ -80,8 +88,8 @@ class ArticleCategoryFragment : Fragment(), clickListener {
 
     fun updateToSource(source: String) {
         // Uncheck all chips except for the one that was clicked
-        for (i in 0 until binding.cgCategory.childCount) {
-            val chip = binding.cgCategory.getChildAt(i) as Chip
+        for (i in 0 until binding.cgSource.childCount) {
+            val chip = binding.cgSource.getChildAt(i) as Chip
             if (chip.text != source) {
                 chip.isChecked = false
             }

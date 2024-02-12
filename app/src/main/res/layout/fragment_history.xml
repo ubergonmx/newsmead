@@ -20,13 +20,13 @@
             android:layout_marginTop="80dp"
             android:orientation="vertical">
 
-            <include layout="@layout/shimmer_feed" />
+            <include layout="@layout/shimmer_feed_simplified" />
 
-            <include layout="@layout/shimmer_feed" />
+            <include layout="@layout/shimmer_feed_simplified" />
 
-            <include layout="@layout/shimmer_feed" />
+            <include layout="@layout/shimmer_feed_simplified" />
 
-            <include layout="@layout/shimmer_feed" />
+            <include layout="@layout/shimmer_feed_simplified" />
 
         </LinearLayout>
 

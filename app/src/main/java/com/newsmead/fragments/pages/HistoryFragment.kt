@@ -29,6 +29,9 @@ class HistoryFragment: Fragment(), clickListener {
     ): View? {
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
 
+        // Start shimmer
+        binding.shimmerHistory.startShimmer()
+
         // Back Button
         binding.btnHistoryBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()

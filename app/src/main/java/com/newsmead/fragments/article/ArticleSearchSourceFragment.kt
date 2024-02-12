@@ -13,6 +13,7 @@ import com.google.android.material.chip.Chip
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.data.DataHelper
 import com.newsmead.R
+import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentArticleSearchSourceBinding
 import com.newsmead.models.Article
@@ -31,6 +32,9 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentArticleSearchSourceBinding.inflate(inflater, container, false)
+
+        // Start shimmer
+        binding.shimmerSearchSource.startShimmer()
 
         // Change text of tvSourceName to sourceName
         binding.tvSearchSourceName.text = args.sourceName
@@ -77,7 +81,13 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
 
         lifecycleScope.launch {
             DataHelper.loadArticleData(context, source = DataHelper.reverseSourceNameMap(args.sourceName)) {
-                adapter.updateData(it)
+                if(FirebaseHelper.isNetworkAvailable(requireContext())) {
+                    // Stop the shimmer
+                    binding.shimmerSearchSource.stopShimmer()
+                    binding.shimmerSearchSource.visibility = View.GONE
+                    // Update the adapter with the retrieved articles
+                    adapter.updateData(it)
+                }
             }
         }
 

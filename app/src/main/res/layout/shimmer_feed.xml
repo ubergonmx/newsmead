@@ -50,7 +50,7 @@
     <TextView
         android:id="@+id/tvArticleTitleShimmer"
         android:layout_width="0dp"
-        android:layout_height="70dp"
+        android:layout_height="96dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"

@@ -14,6 +14,7 @@ import com.google.android.material.chip.Chip
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.data.DataHelper
 import com.newsmead.R
+import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.ChipSearchBinding
 import com.newsmead.databinding.FragmentArticleSourceBinding
 import com.newsmead.models.Article
@@ -32,6 +33,9 @@ class ArticleSourceFragment: Fragment(), clickListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentArticleSourceBinding.inflate(inflater, container, false)
+
+        // Start shimmer
+        binding.shimmerSource.startShimmer()
 
         // Change logo of ivSourceLogo
         val context = binding.root.context
@@ -79,7 +83,11 @@ class ArticleSourceFragment: Fragment(), clickListener {
 
         lifecycleScope.launch {
             DataHelper.loadArticleData(context, source=DataHelper.reverseSourceNameMap(args.author)) {
-                adapter.updateData(it)
+                if(FirebaseHelper.isNetworkAvailable(context)) {
+                    binding.shimmerSource.stopShimmer()
+                    binding.shimmerSource.visibility = View.GONE
+                    adapter.updateData(it)
+                }
             }
         }
 
