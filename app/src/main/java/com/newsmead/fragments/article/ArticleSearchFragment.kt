@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
@@ -24,7 +25,13 @@ class ArticleSearchFragment : Fragment(), clickListener {
     private val args: ArticleSearchFragmentArgs by navArgs()
     private lateinit var binding: FragmentArticleSearchBinding
     private lateinit var adapter: ArticleAdapter
-    private lateinit var data: ArrayList<Article>
+    // refactor later
+    private var categoryVal: String = ""
+    private var sourceVal: String = ""
+    private var sortByVal: String = ""
+    private var startDateVal: String = ""
+    private var endDateVal: String = ""
+    private var searchQuery: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,16 +42,14 @@ class ArticleSearchFragment : Fragment(), clickListener {
         )
 
         // Receive search query from SearchFragment
-        val searchQuery = args.searchString
+        searchQuery = args.searchString
 
         // Change text to search query
         binding.tvSearchingForPrompt.text = searchQuery
-
-        // Show dummy data
-        data = DataHelper.loadSourceArticlesData()
+        binding.svSearchBar.setQuery(searchQuery, false)
 
         // RecyclerView of Articles
-        adapter = ArticleAdapter(data, this)
+        adapter = ArticleAdapter(arrayListOf(), this)
 
         binding.rvSearchArticles.adapter = adapter
 
@@ -57,9 +62,9 @@ class ArticleSearchFragment : Fragment(), clickListener {
         binding.rvSearchArticles.addItemDecoration(customDividerItemDecoration)
 
         // Back button to go back to previous fragment
-//        binding.btnArticleRecommendedBack.setOnClickListener {
-//            requireActivity().onBackPressedDispatcher.onBackPressed()
-//        }
+        // binding.btnArticleRecommendedBack.setOnClickListener {
+        //     requireActivity().onBackPressedDispatcher.onBackPressed()
+        // }
 
         // Dialog to show when user clicks on filter
         binding.btnSearchFilter.setOnClickListener {
@@ -67,19 +72,36 @@ class ArticleSearchFragment : Fragment(), clickListener {
 
             bottomSheetDialogSearchFilter.onApplyFiltersListener = object : BottomSheetDialogSearchFilter.OnApplyFiltersListener {
                 override fun onApplyFilters(category: String?, source: String, sortBy: String, startDate: String, endDate: String) {
-                    updateWithFilters(category, source, sortBy, startDate, endDate)
+                    categoryVal = category ?: ""
+                    sourceVal = source
+                    sortByVal = sortBy
+                    startDateVal = startDate
+                    endDateVal = endDate
+                    updateWithFilters()
                 }
             }
             bottomSheetDialogSearchFilter.show(requireActivity().supportFragmentManager, "BottomSheetDialogSearchFilter")
         }
 
+        // Search bar on submit or search
+        binding.svSearchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchQuery = query ?: ""
+                updateWithFilters()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        })
+
+
         // Add API here
         lifecycleScope.launch {
             DataHelper.loadArticleData(context, searchText = searchQuery) {
-                data.clear()
-                data.addAll(it)
                 binding.tvResultCount.text = "${it.size} results"
-                adapter.notifyDataSetChanged()
+                adapter.updateData(it)
             }
         }
 
@@ -87,7 +109,7 @@ class ArticleSearchFragment : Fragment(), clickListener {
         return binding.root
     }
 
-    fun updateWithFilters(categoryVal: String?, sourceVal: String, sortByVal: String, startDateVal: String, endDateVal: String) {
+    fun updateWithFilters() {
         val source = DataHelper.reverseSourceNameMap(sourceVal)
         val category = if (categoryVal == "All") null else categoryVal?.lowercase()
         val sortBy = sortByVal.lowercase()
@@ -101,11 +123,9 @@ class ArticleSearchFragment : Fragment(), clickListener {
                 source=source,
                 startDate=startDate,
                 endDate=endDate,
-                searchText=args.searchString) {
-                data.clear()
-                data.addAll(it)
+                searchText=searchQuery) {
                 binding.tvResultCount.text = "${it.size} results"
-                adapter.notifyDataSetChanged()
+                adapter.updateData(it)
             }
         }
     }
