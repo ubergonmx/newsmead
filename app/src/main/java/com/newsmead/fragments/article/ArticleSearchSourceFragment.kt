@@ -44,7 +44,6 @@ class ArticleSearchSourceFragment: Fragment(), clickListener {
         val resourceId = context.resources.getIdentifier(sourceImage, "drawable", context.packageName)
         binding.ivSearchSourceLogo.setImageResource(if (resourceId != 0) resourceId else R.drawable.sample_source_image)
 
-
         adapter = ArticleAdapter(arrayListOf(), this)
         binding.rvSearchSourceArticles.adapter = adapter
 

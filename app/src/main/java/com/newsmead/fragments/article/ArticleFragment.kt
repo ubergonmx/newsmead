@@ -170,7 +170,9 @@ class ArticleFragment() : Fragment(), clickListener {
                 val context = context ?: return@loadArticleData
 
                 if (FirebaseHelper.isNetworkAvailable(context)) {
-                    adapter.updateData(it)
+                    // remove article with the same newsId
+                    val recommendedArticles = it.filter { it.newsId != article.newsId }
+                    adapter.updateData(recommendedArticles)
 
                     // If no articles, hide recommendations
                     if (it.isEmpty()) {
@@ -361,6 +363,6 @@ class ArticleFragment() : Fragment(), clickListener {
     override fun onItemClicked(article: Article) {
         // Action
         val action = ArticleFragmentDirections.actionArticleFragmentSelf(article)
-        Navigation.findNavController(binding.root).navigate(action)
+        Navigation.findNavController(requireView()).navigate(action)
     }
 }
