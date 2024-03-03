@@ -53,11 +53,11 @@ class ArticleCategoryFragment : Fragment(), clickListener {
 
         // Fill chips
         val chipData: ArrayList<String> = DataHelper.loadSourcesData()
-        binding.cgSource.removeAllViews()
+        binding.cgSources.removeAllViews()
         for (source in chipData) {
             val chip = ChipSearchBinding.inflate(inflater, container, false).root
             chip.text = source
-            binding.cgSource.addView(chip)
+            binding.cgSources.addView(chip)
 
             // Set onClickListener for each chip
             chip.setOnClickListener {
@@ -88,8 +88,8 @@ class ArticleCategoryFragment : Fragment(), clickListener {
 
     fun updateToSource(source: String) {
         // Uncheck all chips except for the one that was clicked
-        for (i in 0 until binding.cgSource.childCount) {
-            val chip = binding.cgSource.getChildAt(i) as Chip
+        for (i in 0 until binding.cgSources.childCount) {
+            val chip = binding.cgSources.getChildAt(i) as Chip
             if (chip.text != source) {
                 chip.isChecked = false
             }
