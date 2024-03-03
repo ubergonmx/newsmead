@@ -156,33 +156,6 @@ object DataHelper {
             },
             { error ->
                 Log.e("DataHelper", error.toString())
-                articles.add(
-                    Article(
-                        "INQUIRER.NET",
-                        "BTS to perform new single 'Butter' at Billboard Music Awards",
-                        "Jan 28, 2022",
-                        "3 min read",
-                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
-                    )
-                )
-                articles.add(
-                    Article(
-                        "Manila Bulletin",
-                        "Duterte to meet with Chinese envoy over West Philippine Sea issue",
-                        "Nov 17, 2020",
-                        "7 min read",
-                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
-                    )
-                )
-                articles.add(
-                    Article(
-                        "Philstar",
-                        "Comelec: 59 party-list groups to join 2022 polls",
-                        "Jul 02, 2022",
-                        "4 min read",
-                        "https://www.cnn.com/2021/04/29/politics/biden-first-100-days/index.html"
-                    )
-                )
                 callback(articles)
             })
 
