@@ -9,6 +9,7 @@ import android.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.chip.Chip
 import com.newsmead.data.DataHelper
 import com.newsmead.data.DataHelper.loadArticleDataLatest
 import com.newsmead.data.DataHelper.loadCategoryData
@@ -53,6 +54,7 @@ class SearchFragment : Fragment(), clickListener {
         for (category in categoryData) {
             val chip = ChipSearchBinding.inflate(inflater, null, false).root
             chip.text = category
+            chip.isChecked = false
 
             // Launch category fragment when chip is clicked
             chip.setOnClickListener {
@@ -70,6 +72,7 @@ class SearchFragment : Fragment(), clickListener {
         for (source in sourcesData) {
             val chip = ChipSearchBinding.inflate(inflater, null, false).root
             chip.text = source
+            chip.isChecked = false
 
             // Launch source fragment when chip is clicked
             chip.setOnClickListener {
