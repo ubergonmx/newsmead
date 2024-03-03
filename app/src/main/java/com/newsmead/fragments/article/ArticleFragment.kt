@@ -36,6 +36,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
     private lateinit var adapter: ArticleSimplifiedAdapter
     private lateinit var savedLists: ArrayList<SavedList>
     private lateinit var textToSpeech: TextToSpeech
+    private var isTranslated = false
     private enum class ColorMode { LIGHT, DARK, SEPIA }
 
     override fun onCreateView(
@@ -112,7 +113,31 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
 
         // Translate button
         binding.btnTranslateArticle.setOnClickListener {
-            
+            if (!isTranslated) {
+                // Translate article
+                DataHelper.translateArticle(article.newsId, requireContext()) { title, body->
+                    binding.tvArticleHeadline.text = title
+                    binding.tvArticleText.text = body
+                    if(body.isNotEmpty()) {
+                        if(textToSpeech.isSpeaking){
+                            textToSpeech.stop()
+                            speak(body)
+                        }
+                        else {
+                            speak(body)
+                        }
+                    }
+                    else{
+                        Toast.makeText(context, "Translation unavailable", Toast.LENGTH_SHORT).show()
+                    }
+                    isTranslated = true
+                }
+            } else {
+                // Revert to original language
+                binding.tvArticleHeadline.text = article.title
+                binding.tvArticleText.text = article.body
+                isTranslated = false
+            }
         }
 
         // Bottom sheet dialog for saving articles
