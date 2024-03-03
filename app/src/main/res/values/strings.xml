@@ -112,6 +112,7 @@
     <!-- ~~~~~~~~~~~~~~~~~~~~ Article ~~~~~~~~~~~~~~~~~~~~ -->
 
     <!-- activity_article -->
+    <string name="article_translate_btn">Translate</string>
     <string name="article_save_to_list_btn">Save to List</string>
     <string name="article_by">by</string>
     <string name="article_show_more_btn">Show more from AUTHOR</string>

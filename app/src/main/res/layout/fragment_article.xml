@@ -45,6 +45,22 @@
             app:layout_constraintEnd_toStartOf="@+id/btnArticleShare"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTranslateArticle"
+            style="@style/ButtonSmall_LowEmphasis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:minHeight="0dp"
+            android:text="@string/article_translate_btn"
+            app:icon="@drawable/ic_translate"
+            app:iconPadding="4dp"
+            app:iconSize="20dp"
+            app:iconTint="?secondaryButtonIconColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnSaveList"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageButton
             android:id="@+id/btnArticleShare"
             android:layout_width="wrap_content"

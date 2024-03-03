@@ -3,6 +3,7 @@ package com.newsmead.fragments.article
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,11 +29,13 @@ import com.newsmead.models.SavedList
 import com.newsmead.recyclerviews.feed.ArticleSimplifiedAdapter
 import com.newsmead.recyclerviews.feed.clickListener
 import kotlinx.coroutines.launch
+import java.util.Locale
 
-class ArticleFragment() : Fragment(), clickListener {
+class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener {
     private lateinit var binding: FragmentArticleBinding
     private lateinit var adapter: ArticleSimplifiedAdapter
     private lateinit var savedLists: ArrayList<SavedList>
+    private lateinit var textToSpeech: TextToSpeech
     private enum class ColorMode { LIGHT, DARK, SEPIA }
 
     override fun onCreateView(
@@ -43,6 +46,9 @@ class ArticleFragment() : Fragment(), clickListener {
         Log.d("ArticleFragment", "onCreateView: ArticleFragment started")
 
         binding = FragmentArticleBinding.inflate(inflater, container, false)
+
+        // Initialize TextToSpeech with Filipino language
+        textToSpeech = TextToSpeech(requireContext(), this)
 
         // Initialize RecyclerView
         adapter = ArticleSimplifiedAdapter(arrayListOf(), this)
@@ -104,6 +110,10 @@ class ArticleFragment() : Fragment(), clickListener {
         val readTime = article.readTime //+ " min read"
         binding.tvArticleMinRead.text = readTime
 
+        // Translate button
+        binding.btnTranslateArticle.setOnClickListener {
+            
+        }
 
         // Bottom sheet dialog for saving articles
         binding.btnSaveList.setOnClickListener {
@@ -217,6 +227,35 @@ class ArticleFragment() : Fragment(), clickListener {
         }
 
         return binding.root
+    }
+    // Implement TextToSpeech.OnInitListener
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            // Set language to Filipino (Tagalog)
+            val result = textToSpeech.setLanguage(Locale("fil", "PH"))
+
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                // Handle language initialization failure
+            } else {
+                // TTS is ready with Filipino language
+            }
+        } else {
+            // Handle TextToSpeech initialization failure
+        }
+    }
+
+    // Don't forget to release TextToSpeech when your activity is destroyed
+    override fun onDestroy() {
+        if (::textToSpeech.isInitialized) {
+            textToSpeech.stop()
+            textToSpeech.shutdown()
+        }
+        super.onDestroy()
+    }
+
+    // Function to convert text to speech
+    private fun speak(text: String) {
+        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
     }
 
     fun convertPixelsToSp(px: Float): Float {
