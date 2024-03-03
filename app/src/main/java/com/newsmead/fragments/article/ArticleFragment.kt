@@ -113,7 +113,9 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
 
         // Translate button
         binding.btnTranslateArticle.setOnClickListener {
+            binding.btnTranslateArticle.isEnabled = false
             if (!isTranslated) {
+                binding.btnTranslateArticle.text = "Translating..."
                 // Translate article
                 DataHelper.translateArticle(article.newsId, requireContext()) { title, body->
                     binding.tvArticleHeadline.text = title
@@ -126,17 +128,26 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
                         else {
                             speak(body)
                         }
+                        binding.btnTranslateArticle.text = "Revert"
+                        isTranslated = true
                     }
                     else{
                         Toast.makeText(context, "Translation unavailable", Toast.LENGTH_SHORT).show()
+                        binding.btnTranslateArticle.text = "Translate"
                     }
-                    isTranslated = true
+                    binding.btnTranslateArticle.isEnabled = true
                 }
             } else {
+                binding.btnTranslateArticle.text = "Reverting..."
+                if (textToSpeech.isSpeaking) {
+                    textToSpeech.stop()
+                }
                 // Revert to original language
                 binding.tvArticleHeadline.text = article.title
                 binding.tvArticleText.text = article.body
+                binding.btnTranslateArticle.text = "Translate"
                 isTranslated = false
+                binding.btnTranslateArticle.isEnabled = true
             }
         }
 
