@@ -74,10 +74,6 @@ dependencies {
     // Import Splash Screen dependencies
     implementation("androidx.core:core-splashscreen:1.0.0")
 
-    // Import Retrofit and Gson dependencies
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-
     // Import Facebook Shimmer dependencies
     implementation("com.facebook.shimmer:shimmer:0.5.0")
 
