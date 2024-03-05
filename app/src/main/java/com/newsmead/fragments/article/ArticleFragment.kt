@@ -464,6 +464,8 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         binding.btnArticleShare.setColorFilter(color)
 
         binding.btnSaveList.iconTint = ColorStateList.valueOf(color)
+        binding.btnTranslateArticle.iconTint = ColorStateList.valueOf(color)
+        binding.btnReadAloudArticle.iconTint = ColorStateList.valueOf(color)
 
         binding.btnArticleTextLarger.setCompoundDrawableTintList(ColorStateList.valueOf(color))
         binding.btnArticleTextSmaller.setCompoundDrawableTintList(ColorStateList.valueOf(color))
