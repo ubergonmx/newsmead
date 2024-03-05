@@ -18,4 +18,11 @@ class ArticleSimplifiedViewHolder(private val viewBinding: ItemFeedArticleSimpli
     }
 
     fun getCardView() = viewBinding.cvArticleSimplifiedCard
+
+    fun setTextColors(itemTextColor: Int) {
+        this.viewBinding.tvSource.setTextColor(itemTextColor)
+        this.viewBinding.tvArticleTitle.setTextColor(itemTextColor)
+        this.viewBinding.tvReadTime.setTextColor(itemTextColor)
+    }
+
 }

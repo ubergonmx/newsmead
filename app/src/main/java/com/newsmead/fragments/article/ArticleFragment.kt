@@ -426,12 +426,15 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         binding.nsvArticleText.setBackgroundColor(color)
         binding.bottomAppBar.setBackgroundColor(color)
         binding.clArticleTopBar.setBackgroundColor(color)
+        // Change the color of the Recommended Articles RecyclerView
+        adapter.changeBackgroundColor(color)
     }
     
     private fun changeColorOfButtons(color: Int) {
         binding.btnArticleTextSmaller.setBackgroundColor(color)
         binding.btnSaveList.setBackgroundColor(color)
         binding.btnTranslateArticle.setBackgroundColor(color)
+        binding.btnReadAloudArticle.setBackgroundColor(color)
     }
 
     private fun changeColorOfSubTexts(color: Int){
@@ -451,6 +454,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         binding.btnArticleTextSmaller.setTextColor(color)
         binding.btnSaveList.setTextColor(color)
         binding.btnTranslateArticle.setTextColor(color)
+        binding.btnReadAloudArticle.setTextColor(color)
         binding.btnArticleClrLight.setTextColor(color)
         binding.btnArticleClrDark.setTextColor(color)
         binding.btnArticleClrSepia.setTextColor(color)
@@ -463,6 +467,9 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
 
         binding.btnArticleTextLarger.setCompoundDrawableTintList(ColorStateList.valueOf(color))
         binding.btnArticleTextSmaller.setCompoundDrawableTintList(ColorStateList.valueOf(color))
+
+        // Change the color of the Recommended Articles RecyclerView
+        adapter.changeTextColor(color)
     }
 
     override fun onItemClicked(article: Article) {
