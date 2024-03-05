@@ -114,6 +114,8 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
 
         // Read Aloud button
         binding.btnReadAloudArticle.setOnClickListener {
+            binding.btnReadAloudArticle.isEnabled = false
+            binding.btnReadAloudArticle.isClickable = false
             if (textToSpeech.isSpeaking) {
                 binding.btnReadAloudArticle.text = "Read Aloud"
                 textToSpeech.stop()
@@ -126,13 +128,16 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
                     Toast.makeText(context, "No article to read", Toast.LENGTH_SHORT).show()
                 }
             }
+            binding.btnReadAloudArticle.isEnabled = true
+            binding.btnReadAloudArticle.isClickable = true
         }
 
         // Translate button
         binding.btnTranslateArticle.setOnClickListener {
             binding.btnTranslateArticle.isEnabled = false
+            binding.btnTranslateArticle.isClickable = false
+            binding.btnTranslateArticle.text = "Translating..."
             if (!isTranslated) {
-                binding.btnTranslateArticle.text = "Translating..."
                 // Translate article
                 DataHelper.translateArticle(article.newsId, requireContext()) { title, body->
                     binding.tvArticleHeadline.text = title
@@ -146,15 +151,16 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
                         binding.btnTranslateArticle.text = "Filipino"
                     }
                     binding.btnTranslateArticle.isEnabled = true
+                    binding.btnTranslateArticle.isClickable = true
                 }
             } else {
-                binding.btnTranslateArticle.text = "Translating..."
                 // Revert to original language
                 binding.tvArticleHeadline.text = article.title
                 binding.tvArticleText.text = article.body
                 binding.btnTranslateArticle.text = "Filipino"
                 isTranslated = false
                 binding.btnTranslateArticle.isEnabled = true
+                binding.btnTranslateArticle.isClickable = true
             }
         }
 
