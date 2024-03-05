@@ -37,7 +37,7 @@ class ArticleSimplifiedAdapter(
     override fun onBindViewHolder(holder: ArticleSimplifiedViewHolder, position: Int) {
         holder.bindData(articleList[position])
 
-        if (itemBackgroundColor != null) holder.getCardView().setBackgroundColor(itemBackgroundColor!!)
+        if (itemBackgroundColor != null) holder.setBackgroundColor(itemBackgroundColor!!)
         if (itemTextColor != null) holder.setTextColors(itemTextColor!!)
 
         holder.getCardView().setOnClickListener {
