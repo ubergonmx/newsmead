@@ -209,7 +209,7 @@
                         app:iconPadding="4dp"
                         app:iconSize="20dp"
                         app:iconTint="?secondaryButtonIconColor"
-                        app:layout_constraintBottom_toBottomOf="@id/ivArticleFullImage"
+                        app:layout_constraintBottom_toTopOf="@id/ivArticleFullImage"
                         app:layout_constraintStart_toEndOf="@+id/tvArticleMinRead"
                         app:layout_constraintTop_toBottomOf="@+id/tvArticleHeadline" />
 
