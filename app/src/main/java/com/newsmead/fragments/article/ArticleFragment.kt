@@ -112,6 +112,22 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         val readTime = article.readTime //+ " min read"
         binding.tvArticleMinRead.text = readTime
 
+        // Read Aloud button
+        binding.btnReadAloudArticle.setOnClickListener {
+            if (textToSpeech.isSpeaking) {
+                binding.btnReadAloudArticle.text = "Read Aloud"
+                textToSpeech.stop()
+            } else {
+                binding.btnReadAloudArticle.text = "Stop"
+                val body = binding.tvArticleText.text.toString()
+                if (body.isNotEmpty()) {
+                    speak(body)
+                } else {
+                    Toast.makeText(context, "No article to read", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
         // Translate button
         binding.btnTranslateArticle.setOnClickListener {
             binding.btnTranslateArticle.isEnabled = false
@@ -122,13 +138,6 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
                     binding.tvArticleHeadline.text = title
                     binding.tvArticleText.text = body
                     if(body.isNotEmpty()) {
-                        if(textToSpeech.isSpeaking){
-                            textToSpeech.stop()
-                            speak(body)
-                        }
-                        else {
-                            speak(body)
-                        }
                         binding.btnTranslateArticle.text = "English"
                         isTranslated = true
                     }
@@ -140,9 +149,6 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
                 }
             } else {
                 binding.btnTranslateArticle.text = "Translating..."
-                if (textToSpeech.isSpeaking) {
-                    textToSpeech.stop()
-                }
                 // Revert to original language
                 binding.tvArticleHeadline.text = article.title
                 binding.tvArticleText.text = article.body
