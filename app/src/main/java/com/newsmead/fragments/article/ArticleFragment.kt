@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -151,6 +152,27 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
             }
         }
 
+        // When the user zooms in on the ZoomImageView, disable the NestedScrollView scrolling
+        // binding.ivArticleFullImage.setOnClickListener {
+        //     // Disable scrolling on the NestedScrollView when ZoomImageView is clicked
+        //     binding.nsvArticleText.isNestedScrollingEnabled = false
+
+        //     // Create and show a dialog with the zoomed image
+        //     val dialog = Dialog(this).apply {
+        //         setContentView(R.layout.dialog_zoomed_image)
+        //         findViewById<ImageView>(R.id.ivZoomedImage).setImageDrawable(binding.ivArticleFullImage.drawable)
+        //         findViewById<Button>(R.id.btnExit).setOnClickListener {
+        //             // Enable scrolling on the NestedScrollView when exit button is clicked
+        //             binding.nsvArticleText.isNestedScrollingEnabled = true
+        //             dismiss()
+        //         }
+        //         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        //         window?.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        //         window?.setDimAmount(0.7f) // Set the dim amount (0-1)
+        //     }
+        //     dialog.show()
+        // }
+        
         // Bottom sheet dialog for saving articles
         binding.btnSaveList.setOnClickListener {
             val bodyContent = binding.tvArticleText.text.toString()
@@ -409,6 +431,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
     private fun changeColorOfButtons(color: Int) {
         binding.btnArticleTextSmaller.setBackgroundColor(color)
         binding.btnSaveList.setBackgroundColor(color)
+        binding.btnTranslateArticle.setBackgroundColor(color)
     }
 
     private fun changeColorOfSubTexts(color: Int){
@@ -427,6 +450,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         binding.btnArticleTextLarger.setTextColor(color)
         binding.btnArticleTextSmaller.setTextColor(color)
         binding.btnSaveList.setTextColor(color)
+        binding.btnTranslateArticle.setTextColor(color)
         binding.btnArticleClrLight.setTextColor(color)
         binding.btnArticleClrDark.setTextColor(color)
         binding.btnArticleClrSepia.setTextColor(color)
