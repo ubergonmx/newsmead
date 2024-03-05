@@ -129,24 +129,24 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
                         else {
                             speak(body)
                         }
-                        binding.btnTranslateArticle.text = "Revert"
+                        binding.btnTranslateArticle.text = "English"
                         isTranslated = true
                     }
                     else{
                         Toast.makeText(context, "Translation unavailable", Toast.LENGTH_SHORT).show()
-                        binding.btnTranslateArticle.text = "Translate"
+                        binding.btnTranslateArticle.text = "Filipino"
                     }
                     binding.btnTranslateArticle.isEnabled = true
                 }
             } else {
-                binding.btnTranslateArticle.text = "Reverting..."
+                binding.btnTranslateArticle.text = "Translating..."
                 if (textToSpeech.isSpeaking) {
                     textToSpeech.stop()
                 }
                 // Revert to original language
                 binding.tvArticleHeadline.text = article.title
                 binding.tvArticleText.text = article.body
-                binding.btnTranslateArticle.text = "Translate"
+                binding.btnTranslateArticle.text = "Filipino"
                 isTranslated = false
                 binding.btnTranslateArticle.isEnabled = true
             }
