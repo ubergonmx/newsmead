@@ -13,6 +13,10 @@
 .externalNativeBuild
 .cxx
 local.properties
+# Ignore build artifacts
+*.apk
+*.aab
+/debug
 
 # .DS_Store
 # /.idea/shelf
