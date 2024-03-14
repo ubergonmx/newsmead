@@ -196,9 +196,15 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         
         // Bottom sheet dialog for saving articles
         binding.btnSaveList.setOnClickListener {
+            binding.btnSaveList.isEnabled = false
+            binding.btnSaveList.isClickable = false
             val bodyContent = binding.tvArticleText.text.toString()
             val bottomSheetDialogFragment = BottomSheetDialogSaveFragment(article, bodyContent)
             bottomSheetDialogFragment.show(requireActivity().supportFragmentManager, "save")
+            bottomSheetDialogFragment.dialog?.setOnDismissListener {
+                binding.btnSaveList.isEnabled = true
+                binding.btnSaveList.isClickable = true
+            }
         }
 
         // Back button to go back to previous fragment
@@ -218,6 +224,8 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
 
         // Share button to share article
         binding.btnArticleShare.setOnClickListener {
+            binding.btnArticleShare.isEnabled = false
+            binding.btnArticleShare.isClickable = false
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TITLE, "NewsMead")
@@ -232,6 +240,12 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
 
             val shareIntent = Intent.createChooser(sendIntent, "Share this article")
             startActivity(shareIntent)
+
+            // Re-enable the button after a delay to prevent multiple rapid clicks
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.btnArticleShare.isEnabled = true
+                binding.btnArticleShare.isClickable = true
+            }, 2000) // 2000 milliseconds = 2 seconds
         }
 
         addBottomAppBarListeners()
