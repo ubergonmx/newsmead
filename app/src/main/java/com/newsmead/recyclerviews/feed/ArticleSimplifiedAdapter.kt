@@ -18,10 +18,6 @@ class ArticleSimplifiedAdapter(
     private var itemTextColor : Int? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleSimplifiedViewHolder {
-        if (itemBackgroundColor == null) {
-            itemBackgroundColor = getSystemDefaultBackgroundColor(parent.context)
-        }
-
         val itemViewBinding: ItemFeedArticleSimplifiedBinding = ItemFeedArticleSimplifiedBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -37,8 +33,8 @@ class ArticleSimplifiedAdapter(
     override fun onBindViewHolder(holder: ArticleSimplifiedViewHolder, position: Int) {
         holder.bindData(articleList[position])
 
-        if (itemBackgroundColor != null) holder.setBackgroundColor(itemBackgroundColor!!)
-        if (itemTextColor != null) holder.setTextColors(itemTextColor!!)
+         if (itemBackgroundColor != null) holder.setBackgroundColor(itemBackgroundColor!!)
+         if (itemTextColor != null) holder.setTextColors(itemTextColor!!)
 
         holder.getCardView().setOnClickListener {
             val article = articleList[position]
@@ -54,11 +50,6 @@ class ArticleSimplifiedAdapter(
         notifyDataSetChanged()
     }
 
-    private fun getSystemDefaultBackgroundColor(context: Context): Int {
-        val typedValue = TypedValue()
-        context.theme.resolveAttribute(android.R.attr.windowBackground, typedValue, true)
-        return typedValue.data
-    }
     fun changeBackgroundColor(color: Int) {
         itemBackgroundColor = color
         notifyDataSetChanged()
