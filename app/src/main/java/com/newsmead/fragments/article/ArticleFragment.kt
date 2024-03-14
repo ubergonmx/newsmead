@@ -203,6 +203,11 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
             val bodyContent = binding.tvArticleText.text.toString()
             val bottomSheetDialogFragment = BottomSheetDialogSaveFragment(article, bodyContent)
             bottomSheetDialogFragment.show(requireActivity().supportFragmentManager, "save")
+            // Re-enable the button after a 1 second to prevent multiple rapid clicks
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.btnSaveList.isEnabled = true
+                binding.btnSaveList.isClickable = true
+            }, 1000)
         }
 
         // Back button to go back to previous fragment
@@ -239,11 +244,11 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
             val shareIntent = Intent.createChooser(sendIntent, "Share this article")
             startActivity(shareIntent)
 
-            // Re-enable the button after a delay to prevent multiple rapid clicks
+            // Re-enable the button after a 2 seconds to prevent multiple rapid clicks
             Handler(Looper.getMainLooper()).postDelayed({
                 binding.btnArticleShare.isEnabled = true
                 binding.btnArticleShare.isClickable = true
-            }, 2000) // 2000 milliseconds = 2 seconds
+            }, 2000)
         }
 
         addBottomAppBarListeners()
@@ -354,11 +359,6 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
 
     fun convertPixelsToSp(px: Float): Float {
         return px / (requireContext().resources.displayMetrics.scaledDensity)
-    }
-
-    fun enableSaveListButton(){
-        binding.btnSaveList.isEnabled = true
-        binding.btnSaveList.isClickable = true
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
