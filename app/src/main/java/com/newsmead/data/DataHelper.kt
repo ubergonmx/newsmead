@@ -80,6 +80,8 @@ object DataHelper {
             },
             { error ->
                 Log.e("DataHelper", error.toString())
+                callback("", "")
+                return@JsonObjectRequest
             })
         queue.add(jsonObjectRequest)
     }
