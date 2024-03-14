@@ -1,5 +1,6 @@
 package com.newsmead.fragments.layouts
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.newsmead.data.DatabaseHelper
 import com.newsmead.data.FirebaseHelper
 import com.newsmead.data.PreloadedData
 import com.newsmead.databinding.BottomSheetDialogSaveListBinding
+import com.newsmead.fragments.article.ArticleFragment
 import com.newsmead.models.Article
 import com.newsmead.models.NewsArticle
 import com.newsmead.models.SavedList
@@ -173,5 +175,12 @@ class BottomSheetDialogSaveFragment(
         }
 
         Log.d("BottomSheetDialogSaveFragment", "Checked lists now: $checkedLists")
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        // Enable the save list button
+        Log.d("BottomSheetDialogSaveFragment", "Dialog dismissed")
+        (parentFragment as ArticleFragment).enableSaveListButton()
     }
 }

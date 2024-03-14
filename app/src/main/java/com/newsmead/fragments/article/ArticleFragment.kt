@@ -203,10 +203,6 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
             val bodyContent = binding.tvArticleText.text.toString()
             val bottomSheetDialogFragment = BottomSheetDialogSaveFragment(article, bodyContent)
             bottomSheetDialogFragment.show(requireActivity().supportFragmentManager, "save")
-            bottomSheetDialogFragment.dialog?.setOnDismissListener {
-                binding.btnSaveList.isEnabled = true
-                binding.btnSaveList.isClickable = true
-            }
         }
 
         // Back button to go back to previous fragment
@@ -358,6 +354,11 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
 
     fun convertPixelsToSp(px: Float): Float {
         return px / (requireContext().resources.displayMetrics.scaledDensity)
+    }
+
+    fun enableSaveListButton(){
+        binding.btnSaveList.isEnabled = true
+        binding.btnSaveList.isClickable = true
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
