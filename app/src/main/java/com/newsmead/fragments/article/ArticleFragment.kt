@@ -134,15 +134,24 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
 
         // Translate button
         binding.btnTranslateArticle.setOnClickListener {
+            if (textToSpeech.isSpeaking) {
+                binding.btnReadAloudArticle.isEnabled = false
+                binding.btnReadAloudArticle.isClickable = false
+                binding.btnReadAloudArticle.text = "Read Aloud"
+                textToSpeech.stop()
+                binding.btnReadAloudArticle.isEnabled = true
+                binding.btnReadAloudArticle.isClickable = true
+            }
+
             binding.btnTranslateArticle.isEnabled = false
             binding.btnTranslateArticle.isClickable = false
             binding.btnTranslateArticle.text = "Translating..."
             if (!isTranslated) {
                 // Translate article
                 DataHelper.translateArticle(article.newsId, requireContext()) { title, body->
-                    binding.tvArticleHeadline.text = title
-                    binding.tvArticleText.text = body
-                    if(body.isNotEmpty()) {
+                    if(title.isNotEmpty() && body.isNotEmpty()) {
+                        binding.tvArticleHeadline.text = title
+                        binding.tvArticleText.text = body
                         binding.btnTranslateArticle.text = "English"
                         isTranslated = true
                     }
@@ -251,7 +260,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
             }
 
             // Load Recommended Articles
-            DataHelper.loadArticleData(context) {
+            DataHelper.loadArticleData(context, pageSize = 10) { it ->
                 // Check if the fragment is still attached to a context
                 val context = context ?: return@loadArticleData
 
@@ -305,7 +314,10 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
             val result = textToSpeech.setLanguage(Locale("fil", "PH"))
 
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                // Handle language initialization failure
+                // Install missing language data
+                val installIntent = Intent()
+                installIntent.action = TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA
+                startActivity(installIntent)
             } else {
                 // TTS is ready with Filipino language
             }
