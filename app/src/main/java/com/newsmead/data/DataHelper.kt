@@ -94,6 +94,7 @@ object DataHelper {
         startDate: String? = null,
         endDate: String? = null,
         searchText : String? = null,
+        pageSize: Int? = null,
         callback: (List<Article>) -> Unit)
     {
         // Create an empty ArrayList
@@ -103,7 +104,10 @@ object DataHelper {
         var articleUrl = "$baseUrl/articles/?page=$page"
         
         val uid = FirebaseHelper.getUid()
-        var url = "$baseUrl/recommendations/$uid/$page"
+        var url = "$baseUrl/recommendations/$uid?page=$page"
+        if (pageSize != null) {
+            url += "&pageSize=$pageSize"
+        }
 
         if (category != null) {
             articleUrl += "&category=$category"
