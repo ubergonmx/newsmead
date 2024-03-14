@@ -79,7 +79,7 @@
     <!-- fragment_article_search -->
     <string name="search_label">Searching for:</string>
     <string name="search_no_results">No results found</string>
-    <string name="search_filter_btn">Filter</string>
+    <string name="search_simplify_btn">Simplify</string>
 
 
     <!-- ~~~~~~~~~~~~~~~~~~~~ Saved ~~~~~~~~~~~~~~~~~~~~ -->

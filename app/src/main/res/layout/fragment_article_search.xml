@@ -54,7 +54,7 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="16dp"
                     android:drawableStart="@drawable/ic_baseline_history_24"
-                    android:text="@string/search_filter_btn"
+                    android:text="@string/search_simplify_btn"
                     app:icon="@drawable/filter_filled_weigh400"
                     app:iconPadding="0dp"
                     app:iconTint="?secondaryButtonIconColor"
