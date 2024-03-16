@@ -150,7 +150,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
             binding.btnTranslateArticle.text = "Translating..."
             if (!isTranslated) {
                 // Translate article
-                DataHelper.translateArticle(article.newsId, requireContext()) { title, body->
+                DataHelper.translateArticle(article.newsId, binding.switchUseGoogle.isChecked, requireContext()) { title, body ->
                     if(title.isNotEmpty() && body.isNotEmpty()) {
                         binding.tvArticleHeadline.text = title
                         binding.tvArticleText.text = body
@@ -176,25 +176,19 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         }
 
         // When the user zooms in on the ZoomImageView, disable the NestedScrollView scrolling
-        // binding.ivArticleFullImage.setOnClickListener {
-        //     // Disable scrolling on the NestedScrollView when ZoomImageView is clicked
-        //     binding.nsvArticleText.isNestedScrollingEnabled = false
-
-        //     // Create and show a dialog with the zoomed image
-        //     val dialog = Dialog(this).apply {
-        //         setContentView(R.layout.dialog_zoomed_image)
-        //         findViewById<ImageView>(R.id.ivZoomedImage).setImageDrawable(binding.ivArticleFullImage.drawable)
-        //         findViewById<Button>(R.id.btnExit).setOnClickListener {
-        //             // Enable scrolling on the NestedScrollView when exit button is clicked
-        //             binding.nsvArticleText.isNestedScrollingEnabled = true
-        //             dismiss()
-        //         }
-        //         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        //         window?.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-        //         window?.setDimAmount(0.7f) // Set the dim amount (0-1)
-        //     }
-        //     dialog.show()
-        // }
+        binding.ivArticleFullImage.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_UP -> {
+                    // Enable scrolling on the NestedScrollView when the user lifts their finger
+                    binding.nsvArticleText.setScrollingEnabled(true)
+                }
+                else -> {
+                    // Disable scrolling on the NestedScrollView for any other MotionEvent
+                    binding.nsvArticleText.setScrollingEnabled(false)
+                }
+            }
+            false // Return false so the event is not consumed and continues to be propagated
+        }
         
         // Bottom sheet dialog for saving articles
         binding.btnSaveList.setOnClickListener {

@@ -68,8 +68,10 @@ object DataHelper {
         }
     }
 
-    fun translateArticle(id: String, context: Context, callback: (String, String) -> Unit) {
-        val url = "https://newsmead.southeastasia.cloudapp.azure.com/articles/translate/$id"
+    fun translateArticle(id: String, useGoogle: Boolean, context: Context, callback: (String, String) -> Unit) {
+        var url = "https://newsmead.southeastasia.cloudapp.azure.com/articles/translate/$id"
+        if (useGoogle)
+            url += "?service=google"
         val queue = Volley.newRequestQueue(context)
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
