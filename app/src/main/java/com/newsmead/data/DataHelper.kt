@@ -108,9 +108,9 @@ object DataHelper {
         val uid = FirebaseHelper.getUid()
         var url = "$baseUrl/recommendations/$uid?page=$page"
         if (pageSize != null) {
-            url += "&pageSize=$pageSize"
+            url += "&page_size=$pageSize"
+            articleUrl += "&page_size=$pageSize"
         }
-
         if (category != null) {
             articleUrl += "&category=$category"
         }
@@ -126,7 +126,6 @@ object DataHelper {
         if (endDate != null) {
             articleUrl += "&endDate=$endDate"
         }
-
         if (searchText != null || source != null || category != null) {
             url = articleUrl
         }

@@ -189,7 +189,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
             }
             false // Return false so the event is not consumed and continues to be propagated
         }
-        
+
         // Bottom sheet dialog for saving articles
         binding.btnSaveList.setOnClickListener {
             binding.btnSaveList.isEnabled = false
