@@ -535,9 +535,10 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
 
     private fun changeColorOfSubTexts(color: Int){
         binding.tvArticleAuthor.setTextColor(color)
-        binding.tvByDot.setTextColor(color)
         binding.tvArticleMinRead.setTextColor(color)
         binding.tvArticleBy.setTextColor(color)
+        binding.tvByDot.setTextColor(color)
+        binding.tvBullet.setTextColor(color)
     }
 
     private fun changeColorOfTexts(color: Int){
@@ -545,6 +546,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         binding.tvArticleHeadline.setTextColor(color)
         binding.tvArticleRecommended.setTextColor(color)
         binding.tvSource.setTextColor(color)
+        binding.tvCategory.setTextColor(color)
 
         binding.btnArticleTextLarger.setTextColor(color)
         binding.btnArticleTextSmaller.setTextColor(color)
