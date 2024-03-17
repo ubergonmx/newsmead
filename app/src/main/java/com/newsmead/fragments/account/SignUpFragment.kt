@@ -8,6 +8,7 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
@@ -24,6 +25,9 @@ class SignUpFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         this.viewBinding = FragmentSignUpBinding.inflate(inflater, container, false)
         this.auth = FirebaseAuth.getInstance()
+        activity?.window?.setSoftInputMode(
+            WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN
+        )
 
         // Textfields to erase error messages
         this.viewBinding.etAccEmail.setOnFocusChangeListener { _, _ ->

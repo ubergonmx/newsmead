@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.auth.FirebaseAuth
@@ -33,9 +34,10 @@ class LogInFragment : Fragment() {
 
         // Initialize viewBinding for LogInFragment
         this.viewBinding = FragmentLogInBinding.inflate(inflater, container, false)
-
-        // Initialize Firebase Auth
         this.auth = FirebaseAuth.getInstance()
+        activity?.window?.setSoftInputMode(
+            WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN
+        )
 
         // Listener for text fields to clear error
         this.viewBinding.etAccLogEmail.setOnFocusChangeListener { _, _ ->
