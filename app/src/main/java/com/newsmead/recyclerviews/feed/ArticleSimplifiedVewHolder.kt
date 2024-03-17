@@ -26,6 +26,9 @@ class ArticleSimplifiedViewHolder(private val viewBinding: ItemFeedArticleSimpli
     fun setTextColors(itemTextColor: Int) {
         this.viewBinding.tvSource.setTextColor(itemTextColor)
         this.viewBinding.tvArticleTitle.setTextColor(itemTextColor)
+    }
+
+    fun setSubTextColor(itemTextColor: Int) {
         this.viewBinding.tvReadTime.setTextColor(itemTextColor)
     }
 

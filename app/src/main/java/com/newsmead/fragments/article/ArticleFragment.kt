@@ -522,7 +522,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         binding.nsvArticleText.setBackgroundColor(color)
         binding.bottomAppBar.setBackgroundColor(color)
         binding.clArticleTopBar.setBackgroundColor(color)
-        // Change the color of the Recommended Articles RecyclerView
+        // Change the color of the Recommended Articles RecyclerView (background)
         adapter.changeBackgroundColor(color)
     }
     
@@ -539,6 +539,8 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         binding.tvArticleBy.setTextColor(color)
         binding.tvByDot.setTextColor(color)
         binding.tvBullet.setTextColor(color)
+        // Change the color of the Recommended Articles RecyclerView (read time)
+        adapter.changeSubTextColor(color)
     }
 
     private fun changeColorOfTexts(color: Int){
@@ -568,7 +570,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         binding.btnArticleTextLarger.setCompoundDrawableTintList(ColorStateList.valueOf(color))
         binding.btnArticleTextSmaller.setCompoundDrawableTintList(ColorStateList.valueOf(color))
 
-        // Change the color of the Recommended Articles RecyclerView
+        // Change the color of the Recommended Articles RecyclerView (source, title)
         adapter.changeTextColor(color)
     }
 

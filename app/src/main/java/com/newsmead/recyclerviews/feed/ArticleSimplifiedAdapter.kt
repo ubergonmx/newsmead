@@ -16,6 +16,7 @@ class ArticleSimplifiedAdapter(
 
     private var itemBackgroundColor : Int? = null
     private var itemTextColor : Int? = null
+    private var itemSubTextColor : Int? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleSimplifiedViewHolder {
         val itemViewBinding: ItemFeedArticleSimplifiedBinding = ItemFeedArticleSimplifiedBinding.inflate(
@@ -33,8 +34,9 @@ class ArticleSimplifiedAdapter(
     override fun onBindViewHolder(holder: ArticleSimplifiedViewHolder, position: Int) {
         holder.bindData(articleList[position])
 
-         if (itemBackgroundColor != null) holder.setBackgroundColor(itemBackgroundColor!!)
-         if (itemTextColor != null) holder.setTextColors(itemTextColor!!)
+        if (itemBackgroundColor != null) holder.setBackgroundColor(itemBackgroundColor!!)
+        if (itemTextColor != null) holder.setTextColors(itemTextColor!!)
+        if (itemSubTextColor != null) holder.setSubTextColor(itemSubTextColor!!)
 
         holder.getCardView().setOnClickListener {
             val article = articleList[position]
@@ -57,6 +59,11 @@ class ArticleSimplifiedAdapter(
 
     fun changeTextColor(color: Int) {
         itemTextColor = color
+        notifyDataSetChanged()
+    }
+
+    fun changeSubTextColor(color: Int) {
+        itemSubTextColor = color
         notifyDataSetChanged()
     }
 

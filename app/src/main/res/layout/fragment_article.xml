@@ -139,7 +139,7 @@
                             android:layout_weight="0"
                             android:fontFamily="@font/arial_regular"
                             android:text="@string/symbol_bullet"
-                            android:textColor="?primaryTextColor"
+                            android:textColor="?secondaryIconColor"
                             android:textSize="16sp" />
 
                         <TextView
@@ -312,6 +312,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/article_recommended"
+                    android:textColor="?primaryTextColor"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
