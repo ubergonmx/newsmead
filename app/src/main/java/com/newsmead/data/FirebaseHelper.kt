@@ -210,7 +210,7 @@ class FirebaseHelper {
 
         suspend fun getListsAndArticles(context: Context): Pair<ArrayList<SavedList>, ArrayList<Article>> = coroutineScope {
             if (uid == "null") {
-                Toast.makeText(context, "Please login to view/create a list", Toast.LENGTH_SHORT).show()
+                // Toast.makeText(context, "Please login to view/create a list", Toast.LENGTH_SHORT).show()
                 return@coroutineScope Pair(ArrayList<SavedList>(), ArrayList<Article>())
             }
 
