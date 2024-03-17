@@ -1,11 +1,14 @@
 package com.newsmead.fragments.article
 
+import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.speech.tts.TextToSpeech
+import android.speech.tts.UtteranceProgressListener
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -14,6 +17,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
@@ -24,7 +28,6 @@ import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.data.DataHelper
 import com.newsmead.data.DatabaseHelper
 import com.newsmead.data.FirebaseHelper
-
 import com.newsmead.databinding.FragmentArticleBinding
 import com.newsmead.fragments.layouts.BottomSheetDialogSaveFragment
 import com.newsmead.models.Article
@@ -34,6 +37,7 @@ import com.newsmead.recyclerviews.feed.clickListener
 import kotlinx.coroutines.launch
 import java.util.Locale
 
+
 class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener {
     private lateinit var binding: FragmentArticleBinding
     private lateinit var adapter: ArticleSimplifiedAdapter
@@ -42,17 +46,21 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
     private var isTranslated = false
     private enum class ColorMode { LIGHT, DARK, SEPIA }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         Log.d("ArticleFragment", "onCreateView: ArticleFragment started")
-
         binding = FragmentArticleBinding.inflate(inflater, container, false)
 
+        // Disable the Read Aloud button until the TextToSpeech engine is initialized
+        binding.btnReadAloudArticle.isEnabled = false
+        binding.btnReadAloudArticle.isClickable = false
+
         // Initialize TextToSpeech with Filipino language
-        textToSpeech = TextToSpeech(requireContext(), this)
+        textToSpeech = TextToSpeech(requireContext(), this, "com.google.android.tts")
 
         // Initialize RecyclerView
         adapter = ArticleSimplifiedAdapter(arrayListOf(), this)
@@ -118,17 +126,14 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         binding.btnReadAloudArticle.setOnClickListener {
             binding.btnReadAloudArticle.isEnabled = false
             binding.btnReadAloudArticle.isClickable = false
-            if (textToSpeech.isSpeaking) {
+            if (textToSpeech.isSpeaking && binding.btnReadAloudArticle.text == "Stop") {
                 binding.btnReadAloudArticle.text = "Read Aloud"
                 textToSpeech.stop()
             } else {
-                binding.btnReadAloudArticle.text = "Stop"
-                val body = binding.tvArticleText.text.toString()
-                if (body.isNotEmpty()) {
-                    speak(body)
-                } else {
-                    Toast.makeText(context, "No article to read", Toast.LENGTH_SHORT).show()
-                }
+                var body = binding.tvArticleText.text.toString()
+                Log.d("ArticleFragment", "tts-body: ${body.substring(0, 100)}")
+                if (body.isNotEmpty()) speak(body)
+                else Toast.makeText(context, "No article to read", Toast.LENGTH_SHORT).show()
             }
             binding.btnReadAloudArticle.isEnabled = true
             binding.btnReadAloudArticle.isClickable = true
@@ -323,17 +328,68 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         if (status == TextToSpeech.SUCCESS) {
             // Set language to Filipino (Tagalog)
             val result = textToSpeech.setLanguage(Locale("fil", "PH"))
-
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                // Install missing language data
-                val installIntent = Intent()
-                installIntent.action = TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA
-                startActivity(installIntent)
-            } else {
-                // TTS is ready with Filipino language
+                installVoiceData()
             }
+            for (voice in textToSpeech.voices) {
+                // Log the voice name
+                Log.d("ArticleFragment", "${voice.name} ${voice.quality} ${voice.isNetworkConnectionRequired} ${voice.features} ${voice.latency}")
+                if(voice.name.contains("fil-ph-x-fie-local")) {
+                    textToSpeech.setVoice(voice)
+                    break
+                }
+            }
+
+            textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
+                override fun onStart(p0: String?) {
+                    // Change the Read Aloud button to "Stop" when TTS starts speaking
+                    Handler(Looper.getMainLooper()).post {
+                        binding.btnReadAloudArticle.text = "Stop"
+                        Log.d("ArticleFragment", "TTS started")
+                    }
+                }
+
+                override fun onDone(utteranceId: String) {
+                    // Enable the Read Aloud button after the TTS is done speaking
+                    Handler(Looper.getMainLooper()).post {
+                        binding.btnReadAloudArticle.text = "Read Aloud"
+                        binding.btnReadAloudArticle.isEnabled = true
+                        binding.btnReadAloudArticle.isClickable = true
+                        Log.d("ArticleFragment", "TTS done")
+                    }
+                }
+
+                override fun onError(p0: String?){
+                }
+
+                override fun onError(utteranceId: String?, errorCode: Int) {
+                    // Show toast message when TTS encounters an error
+                    Handler(Looper.getMainLooper()).post {
+                        Toast.makeText(context, "Read Aloud failed (${errorCode})", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            })
+            binding.btnReadAloudArticle.isEnabled = true
+            binding.btnReadAloudArticle.isClickable = true
         } else {
-            // Handle TextToSpeech initialization failure
+            // Upon TextToSpeech initialization failure, disable the Read Aloud button
+            Toast.makeText(context, "Read Aloud is not available", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    /**
+     * Ask the current default engine to launch the matching INSTALL_TTS_DATA activity
+     * so the required TTS files are properly installed.
+     */
+    private fun installVoiceData() {
+        val intent = Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.setPackage("com.google.android.tts")
+        try {
+            Log.v("TTS", "Installing voice data: " + intent.toUri(0))
+            startActivity(intent)
+        } catch (ex: ActivityNotFoundException) {
+            Log.e("TTS", "Failed to install TTS data, no activity found for $intent)")
         }
     }
 
@@ -348,7 +404,15 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
 
     // Function to convert text to speech
     private fun speak(text: String) {
-        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+        if(!isTranslated){
+            textToSpeech.setLanguage(Locale.ENGLISH)
+            textToSpeech.voice = textToSpeech.voices.find { it.name.contains("en-us-x-iom-local") }
+        }
+        else{
+            textToSpeech.setLanguage(Locale("fil", "PH"))
+            textToSpeech.voice = textToSpeech.voices.find { it.name.contains("fil-ph-x-fie-local") }
+        }
+        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, TextToSpeech.ACTION_TTS_QUEUE_PROCESSING_COMPLETED)
     }
 
     fun convertPixelsToSp(px: Float): Float {
@@ -358,26 +422,23 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Add bottom app bar logic (it must stick and then only disappear
         // once it reaches recommendations
-//        binding.btnArticleRecommendations.post {
-//            val btnLocation = IntArray(2)
-//            binding.btnArticleRecommendations.getLocationOnScreen(btnLocation)
-//            val btnY = btnLocation[1]
-//
-//            val nestedScrollView = binding.nsvArticleText
-//            val bottomAppBar = binding.bottomAppBar
-//            nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
-//                Log.d("Y_COORDINATE", "btnY: $btnY scrollY: $scrollY")
-//                // Check if the scroll position is past the Y-coordinate of btnArticleRecommendations
-//                if (scrollY > btnY -1000) {
-//                    Log.d("SCROLL", "Hiding Bottom App Bar")
-//                    bottomAppBar.performHide()
-//                } else {
-//                    bottomAppBar.performShow()
-//                }
-//            })
-//        }
-
-
+        // binding.btnArticleRecommendations.post {
+        //     val btnLocation = IntArray(2)
+        //     binding.btnArticleRecommendations.getLocationOnScreen(btnLocation)
+        //     val btnY = btnLocation[1]
+        //     val nestedScrollView = binding.nsvArticleText
+        //     val bottomAppBar = binding.bottomAppBar
+        //     nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
+        //         Log.d("Y_COORDINATE", "btnY: $btnY scrollY: $scrollY")
+        //         // Check if the scroll position is past the Y-coordinate of btnArticleRecommendations
+        //         if (scrollY > btnY -1000) {
+        //             Log.d("SCROLL", "Hiding Bottom App Bar")
+        //             bottomAppBar.performHide()
+        //         } else {
+        //             bottomAppBar.performShow()
+        //         }
+        //     })
+        // }
     }
 
     private fun addBottomAppBarListeners() {
