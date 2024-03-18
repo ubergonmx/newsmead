@@ -17,7 +17,6 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
@@ -264,7 +263,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
 
             Log.d("ArticleFragment", "onCreateView: offlineArticle: $offlineArticle")
 
-            if (offlineArticle != null && offlineArticle.articleBody.isNotEmpty()) {
+            if (offlineArticle.articleBody.isNotEmpty()) {
                 // Offline article
                 binding.tvArticleText.text = offlineArticle.articleBody
             } else {
@@ -282,9 +281,9 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
             // Load Recommended Articles
             DataHelper.loadArticleData(context, pageSize = 10) { it ->
                 // Check if the fragment is still attached to a context
-                val context = context ?: return@loadArticleData
+                val ctx = context ?: return@loadArticleData
 
-                if (FirebaseHelper.isNetworkAvailable(context)) {
+                if (FirebaseHelper.isNetworkAvailable(ctx)) {
                     // remove article with the same newsId
                     val recommendedArticles = it.filter { it.newsId != article.newsId }
                     adapter.updateData(recommendedArticles)
@@ -363,6 +362,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
                     }
                 }
 
+                @Deprecated("Deprecated in API level 21")
                 override fun onError(p0: String?){
                 }
 
