@@ -111,6 +111,9 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         // Set article title
         binding.tvArticleHeadline.text = article.title
 
+        // Set article category
+        binding.tvCategory.text = article.category
+
         // Set article source
         binding.tvSource.text = article.source
         binding.btnArticleRecommendations.text = "Show more from " + article.source

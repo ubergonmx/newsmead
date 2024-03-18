@@ -147,6 +147,7 @@ class FirebaseHelper {
                                 Article(
                                     source = articleDocument.data?.get("source").toString(),
                                     sourceImage = articleDocument.data?.get("sourceImage").toString(),
+                                    category = articleDocument.data?.get("category").toString(),
                                     newsId = articleDocument.data?.get("newsId").toString(),
                                     title = articleDocument.data?.get("title").toString(),
                                     imageURL = articleDocument.data?.get("imageURL").toString(),
@@ -177,6 +178,7 @@ class FirebaseHelper {
                                 Article(
                                     source = articleDocument.data?.get("source").toString(),
                                     sourceImage = articleDocument.data?.get("sourceImage").toString(),
+                                    category = articleDocument.data?.get("category").toString(),
                                     newsId = articleDocument.data?.get("newsId").toString(),
                                     title = articleDocument.data?.get("title").toString(),
                                     imageURL = articleDocument.data?.get("imageURL").toString(),
@@ -286,6 +288,7 @@ class FirebaseHelper {
                                 Article(
                                     source = articleDocument.data?.get("source").toString(),
                                     sourceImage = articleDocument.data?.get("sourceImage").toString(),
+                                    category = articleDocument.data?.get("category").toString(),
                                     newsId = articleDocument.data?.get("newsId").toString(),
                                     title = articleDocument.data?.get("title").toString(),
                                     imageURL = articleDocument.data?.get("imageURL").toString(),
@@ -317,6 +320,7 @@ class FirebaseHelper {
                                     Article(
                                         source = articleDocument.data?.get("source").toString(),
                                         sourceImage = articleDocument.data?.get("sourceImage").toString(),
+                                        category = articleDocument.data?.get("category").toString(),
                                         newsId = articleDocument.data?.get("newsId").toString(),
                                         title = articleDocument.data?.get("title").toString(),
                                         imageURL = articleDocument.data?.get("imageURL").toString(),
@@ -393,6 +397,7 @@ class FirebaseHelper {
                         Article(
                             source = document.data["source"].toString(),
                             sourceImage = document.data["sourceImage"].toString(),
+                            category = document.data["category"].toString(),
                             newsId = document.data["newsId"].toString(),
                             title = document.data["title"].toString(),
                             imageURL = document.data["imageURL"].toString(),
@@ -432,6 +437,7 @@ class FirebaseHelper {
                         Article(
                             source = articleDocument.data?.get("source").toString(),
                             sourceImage = articleDocument.data?.get("sourceImage").toString(),
+                            category = articleDocument.data?.get("category").toString(),
                             newsId = articleDocument.data?.get("newsId").toString(),
                             title = articleDocument.data?.get("title").toString(),
                             imageURL = articleDocument.data?.get("imageURL").toString(),

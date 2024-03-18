@@ -15,24 +15,26 @@ class Article: Parcelable {
         private set
     var date: String
         private set
-
+    var category: String
+        private set
     var body: String = ""
         private set
     var readTime: String
         private set
     var url: String
         private set
-    var newsId:String = "N0000"
+    var newsId:String = "0"
         private set
 
     constructor(source: String, sourceImage: String,
-                title: String, imageURL: String?, date: String, body: String, readTime: String, url: String, newsId:String) {
+                title: String, imageURL: String?, date: String, body: String, category: String, readTime: String, url: String, newsId:String) {
         this.source = source
         this.sourceImage = sourceImage
         this.title = title
         this.imageURL = imageURL ?: ""
         this.date = date
         this.body = body
+        this.category = category
         this.readTime = readTime
         this.url = url
         this.newsId = newsId
@@ -42,17 +44,19 @@ class Article: Parcelable {
     // initialized. This is meant for testing purposes.
     constructor(source: String, title: String, date: String, readTime: String, url: String) {
         this.source = source
-        this.sourceImage = "sample_source_image"
+        this.sourceImage = ""
         this.title = title
         this.imageURL = ""
         this.date = date
         this.body = ""
+        this.category = ""
         this.readTime = readTime
         this.url = url
-        this.newsId = "T" + url.hashCode().toString()
+        this.newsId = "0"
     }
 
     constructor(parcel: Parcel) : this(
+        parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
@@ -75,6 +79,7 @@ class Article: Parcelable {
         dest.writeString(imageURL ?: "")
         dest.writeString(date)
         dest.writeString(body)
+        dest.writeString(category)
         dest.writeString(readTime)
         dest.writeString(url)
         dest.writeString(newsId)
