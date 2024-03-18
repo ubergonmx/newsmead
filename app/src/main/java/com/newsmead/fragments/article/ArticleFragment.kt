@@ -83,6 +83,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
             "",
             "Article Date",
             "Article Body",
+            "Article Category",
             "Article Content",
             "url",
             "0"
@@ -111,8 +112,8 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         // Set article title
         binding.tvArticleHeadline.text = article.title
 
-        // Set article category
-        binding.tvCategory.text = article.category
+        // Set article category in title case
+        binding.tvCategory.text = article.category.replaceFirstChar { it.uppercase() }
 
         // Set article source
         binding.tvSource.text = article.source
