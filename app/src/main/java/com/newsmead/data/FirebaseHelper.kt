@@ -624,33 +624,33 @@ class FirebaseHelper {
          * @param listId Id of the list to add the article to
          * @param articleId Id of the article to add to the list
          */
-        fun addArticleIdToFireStoreList(requireContext: Context, listId: String, articleId: String) {
-            if (uid == "null") {
-                Toast.makeText(requireContext, "Please login to add to a list", Toast.LENGTH_SHORT).show()
-                return
-            }
+        // fun addArticleIdToFireStoreList(requireContext: Context, listId: String, articleId: String) {
+        //     if (uid == "null") {
+        //         Toast.makeText(requireContext, "Please login to add to a list", Toast.LENGTH_SHORT).show()
+        //         return
+        //     }
 
-            val userListsRef = getFirestoreInstance()
-                .collection("users")
-                .document(uid)
-                .collection("lists")
+        //     val userListsRef = getFirestoreInstance()
+        //         .collection("users")
+        //         .document(uid)
+        //         .collection("lists")
 
-            // Add article to list
-            Log.d("FirebaseHelper", "Adding article $articleId to list $listId")
-            userListsRef.document(listId).collection("articles").document(articleId).set(
-                hashMapOf(
-                    "articleId" to articleId
-                )
-            )
-                .addOnSuccessListener {
-                    // Handle Success
-                    Toast.makeText(requireContext, "Article added to list", Toast.LENGTH_SHORT).show()
-                }
-                .addOnFailureListener {
-                    // Handle Failure
-                    Toast.makeText(requireContext, "Error adding article to list", Toast.LENGTH_SHORT).show()
-                }
-        }
+        //     // Add article to list
+        //     Log.d("FirebaseHelper", "Adding article $articleId to list $listId")
+        //     userListsRef.document(listId).collection("articles").document(articleId).set(
+        //         hashMapOf(
+        //             "articleId" to articleId
+        //         )
+        //     )
+        //         .addOnSuccessListener {
+        //             // Handle Success
+        //             Toast.makeText(requireContext, "Article added to list", Toast.LENGTH_SHORT).show()
+        //         }
+        //         .addOnFailureListener {
+        //             // Handle Failure
+        //             Toast.makeText(requireContext, "Error adding article to list", Toast.LENGTH_SHORT).show()
+        //         }
+        // }
 
 
         /**
