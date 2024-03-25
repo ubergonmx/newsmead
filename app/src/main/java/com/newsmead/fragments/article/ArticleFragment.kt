@@ -185,13 +185,13 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
 
         // When the user zooms in on the ZoomImageView, disable the NestedScrollView scrolling
         binding.ivArticleFullImage.setOnTouchListener { _, event ->
-            when (event.action) {
-                MotionEvent.ACTION_UP -> {
+            when {
+                event.action == MotionEvent.ACTION_UP -> {
                     // Enable scrolling on the NestedScrollView when the user lifts their finger
                     binding.nsvArticleText.setScrollingEnabled(true)
                 }
-                else -> {
-                    // Disable scrolling on the NestedScrollView for any other MotionEvent
+                event.pointerCount > 1 -> {
+                    // Disable scrolling on the NestedScrollView if there are at least two fingers touching the image
                     binding.nsvArticleText.setScrollingEnabled(false)
                 }
             }
@@ -263,7 +263,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
 
             Log.d("ArticleFragment", "onCreateView: offlineArticle: $offlineArticle")
 
-            if (offlineArticle.articleBody.isNotEmpty()) {
+            if (offlineArticle?.articleBody?.isNotEmpty() == true) {
                 // Offline article
                 binding.tvArticleText.text = offlineArticle.articleBody
             } else {
