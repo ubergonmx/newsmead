@@ -542,7 +542,6 @@ class FirebaseHelper {
                             "name" to "Offline Articles"
                         )
                     )
-
                     // Handle Success
                     // Toast.makeText(context, "User created", Toast.LENGTH_SHORT).show()
                 }
@@ -563,27 +562,19 @@ class FirebaseHelper {
         fun addPreferredCategoriesToFireStore(requireContext: Context, categories: List<String>) {
             val categoriesPrefListRef = getFirestoreInstance()
                 .collection("users")
-                .document(uid)
+                .document(getUid())
                 .collection("preferences")
                 .document("categories")
 
             // Add preferred categories to Firestore
-            Log.d("FirebaseHelper", "Adding preffered categories $categories to Firestore")
+            Log.d("FirebaseHelper", "Adding preferred categories $categories to $uid")
             categoriesPrefListRef.set(
                 hashMapOf(
-                    "categories" to "Preferred Categories",
+                    "categories" to categories
                 )
             )
                 .addOnSuccessListener {
-                    val categoriesRef = categoriesPrefListRef.collection("categories")
-                    // Add each category to Firestore
-                    for (category in categories) {
-                        categoriesRef.document(category).set(
-                            hashMapOf(
-                                "category" to category
-                            )
-                        )
-                    }
+                    // Handle Success
                 }
                 .addOnFailureListener {
                     // Handle Failure
