@@ -571,12 +571,19 @@ class FirebaseHelper {
             Log.d("FirebaseHelper", "Adding preffered categories $categories to Firestore")
             categoriesPrefListRef.set(
                 hashMapOf(
-                    "categories" to categories
+                    "categories" to "Preferred Categories",
                 )
             )
                 .addOnSuccessListener {
-                    // Handle Success
-                    // Toast.makeText(requireContext, "Preferred categories added", Toast.LENGTH_SHORT).show()
+                    val categoriesRef = categoriesPrefListRef.collection("categories")
+                    // Add each category to Firestore
+                    for (category in categories) {
+                        categoriesRef.document(category).set(
+                            hashMapOf(
+                                "category" to category
+                            )
+                        )
+                    }
                 }
                 .addOnFailureListener {
                     // Handle Failure
