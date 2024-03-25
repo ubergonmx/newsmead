@@ -502,7 +502,7 @@ class FirebaseHelper {
          * @param email Email of the new user
          * @return Id of the new user; "" if error
          */
-        fun addUserToFirestore(context: Context, email: String, name: String = "User"): String {
+        fun addUserToFireStore(context: Context, email: String, name: String = "User"): String {
             var uid = FirebaseAuth.getInstance().currentUser?.uid
             val firestore = getFirestoreInstance()
             var parsedName = name
@@ -553,7 +553,7 @@ class FirebaseHelper {
                 }
 
             return uid as String
-        }
+        }       
 
         /**
          * Adds a new list to Firestore

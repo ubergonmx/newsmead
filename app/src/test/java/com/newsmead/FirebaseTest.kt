@@ -24,7 +24,7 @@ class FirebaseTest {
                 val mockContext = Mockito.mock(Context::class.java)
 
                 // Test if user is in database
-                FirebaseHelper.addUserToFirestore(mockContext, email, "Test Account")
+                FirebaseHelper.addUserToFireStore(mockContext, email, "Test Account")
                 val firestore = FirebaseHelper.getFirestoreInstance()
                 val userRef = firestore.collection("users").document(user!!.uid)
                 userRef.get().addOnSuccessListener { document ->
