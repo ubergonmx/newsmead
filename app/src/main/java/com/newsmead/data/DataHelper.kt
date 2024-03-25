@@ -207,62 +207,6 @@ object DataHelper {
         )
         return data
     }
-
-    fun loadCategoryArticlesData(): ArrayList<Article> {
-        return loadSourceArticlesData()
-    }
-
-    fun loadSourceArticlesData(): ArrayList<Article> {
-        val data = ArrayList<Article>()
-        data.add(
-            Article(
-                "INQUIRER.NET",
-                "Extraordinary spaces",
-                "Oct 21, 2023",
-                "9 min read",
-                "https://business.inquirer.net/426355/extraordinary-spaces"
-            )
-        )
-        data.add(
-            Article(
-                "INQUIRER.NET",
-                "So uncharacteristic of a buyer",
-                "Oct 21, 2023",
-                "5 min read",
-                "https://business.inquirer.net/426359/so-uncharacteristic-of-a-buyer"
-            )
-        )
-        data.add(
-            Article(
-                "INQUIRER.NET",
-                "When provinces take charge",
-                "Oct 21, 2023",
-                "7 min read",
-                "https://opinion.inquirer.net/167207/when-provinces-take-charge"
-            )
-        )
-        data.add(
-            Article(
-                "INQUIRER.NET",
-                "Inquirer’s ‘Rebound,’ anniversary issues bag Marketing Excellence Awards",
-                "Oct 15, 2023",
-                "5 min read",
-                "https://newsinfo.inquirer.net/1845771/inquirers-rebound-anniversary-issues-bag-marketing-excellence-awards"
-            )
-        )
-        data.add(
-            Article(
-                "INQUIRER.NET",
-                "Japan's MUFG still bullish on PH growth",
-                "Oct 21, 2023",
-                "4 min read",
-                "https://business.inquirer.net/427512/japans-mufg-still-bullish-on-ph-growth"
-            )
-        )
-
-        return data
-    }
-
     fun loadCategoryData(): ArrayList<String> {
         val data = ArrayList<String>()
         data.add("News")
