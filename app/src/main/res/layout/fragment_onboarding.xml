@@ -44,6 +44,7 @@
         android:fontFamily="@font/arial_regular"
         android:text="@string/onboarding_choose"
         android:textColor="?secondaryTextColor"
+        android:textSize="@dimen/text_size_16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvInterest" />
