@@ -560,20 +560,27 @@ class FirebaseHelper {
          * Adds preferred categories to Firestore
          * @param categories List of preferred categories of the user
          */
-        fun addPreferencesToFirestore(requireContext: Context, categories: List<String>) {
-            val userRef = getFirestoreInstance()
+        fun addPreferredCategoriesToFireStore(requireContext: Context, categories: List<String>) {
+            val categoriesPrefListRef = getFirestoreInstance()
                 .collection("users")
                 .document(uid)
+                .collection("preferences")
+                .document("categories")
 
             // Add preferred categories to Firestore
-            Log.d("FirebaseHelper", "Adding preferred categories $categories to Firestore")
-            userRef.update("preferences", categories)
+            Log.d("FirebaseHelper", "Adding preffered categories $categories to Firestore")
+            categoriesPrefListRef.set(
+                hashMapOf(
+                    "categories" to categories
+                )
+            )
                 .addOnSuccessListener {
                     // Handle Success
+                    // Toast.makeText(requireContext, "Preferred categories added", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
                     // Handle Failure
-                    Toast.makeText(requireContext, "Error adding categories to preferences", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext, "Error adding preferred categories", Toast.LENGTH_SHORT).show()
                 }
         }
 
@@ -619,22 +626,20 @@ class FirebaseHelper {
             return deferred.await()
         }
 
-        /**
-         * Adds an article id to a list in Firestore
-         * @param listId Id of the list to add the article to
-         * @param articleId Id of the article to add to the list
-         */
+        // /**
+        //  * Adds an article id to a list in Firestore
+        //  * @param listId Id of the list to add the article to
+        //  * @param articleId Id of the article to add to the list
+        //  */
         // fun addArticleIdToFireStoreList(requireContext: Context, listId: String, articleId: String) {
         //     if (uid == "null") {
         //         Toast.makeText(requireContext, "Please login to add to a list", Toast.LENGTH_SHORT).show()
         //         return
         //     }
-
         //     val userListsRef = getFirestoreInstance()
         //         .collection("users")
         //         .document(uid)
         //         .collection("lists")
-
         //     // Add article to list
         //     Log.d("FirebaseHelper", "Adding article $articleId to list $listId")
         //     userListsRef.document(listId).collection("articles").document(articleId).set(

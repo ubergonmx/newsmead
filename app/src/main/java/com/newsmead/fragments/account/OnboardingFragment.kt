@@ -67,7 +67,7 @@ class OnboardingFragment : Fragment() {
         // Button for onboarding
         binding.btnFinishOnboarding.setOnClickListener {
             // Add selected categories to Firebase
-            FirebaseHelper.addPreferencesToFirestore(requireActivity(), checkedChipTexts)
+            FirebaseHelper.addPreferredCategoriesToFireStore(requireActivity(), checkedChipTexts)
 
             val intent = Intent(requireActivity(), MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
