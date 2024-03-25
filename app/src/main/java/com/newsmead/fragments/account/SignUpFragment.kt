@@ -1,7 +1,6 @@
 package com.newsmead.fragments.account
 
 import android.content.ContentValues.TAG
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -13,7 +12,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.newsmead.R
-import com.newsmead.activities.MainActivity
 import com.newsmead.data.FirebaseHelper
 
 import com.newsmead.databinding.FragmentSignUpBinding
@@ -76,7 +74,7 @@ class SignUpFragment: Fragment() {
                             .addOnCompleteListener { taskEmail ->
                                 if (taskEmail.isSuccessful) {
                                     // Add user to Firestore and then go to Onboarding Fragment once added
-                                    FirebaseHelper.addUserToFirestore(requireActivity(), email, name)
+                                    FirebaseHelper.addUserToFireStore(requireActivity(), email, name)
                                     finishSignUp()
                                 }
                             }
@@ -100,16 +98,16 @@ class SignUpFragment: Fragment() {
      */
     private fun finishSignUp() {
         // Goes to Onboarding Fragment
-        // val onboardingFragment = OnboardingFragment()
-        // requireActivity().supportFragmentManager.beginTransaction()
-        //    .replace(R.id.flAccountContainer, onboardingFragment)
-        //    .commit()
+        val onboardingFragment = OnboardingFragment()
+        requireActivity().supportFragmentManager.beginTransaction()
+           .replace(R.id.flAccountContainer, onboardingFragment)
+           .commit()
 
         // Goes to MainActivity while clearing all other activities
-        val intent = Intent(requireActivity(), MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-        requireActivity().startActivity(intent)
-        requireActivity().finish()
+        // val intent = Intent(requireActivity(), MainActivity::class.java)
+        // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        // requireActivity().startActivity(intent)
+        // requireActivity().finish()
     }
 
     /**

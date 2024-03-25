@@ -8,14 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.newsmead.data.DataHelper.loadCategoryLongerData
 import com.newsmead.activities.MainActivity
+import com.newsmead.data.FirebaseHelper
 import com.newsmead.databinding.ChipOnboardingBinding
 
 import com.newsmead.databinding.FragmentOnboardingBinding
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -23,20 +19,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class OnboardingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
     private lateinit var binding: FragmentOnboardingBinding
-    private lateinit var checkedChips: List<Int>
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var checkedChipTexts: List<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +31,7 @@ class OnboardingFragment : Fragment() {
         val chipData = loadCategoryLongerData()
         val chipGroup = binding.cgCategoryTopics
 
-        checkedChips = listOf()
+        checkedChipTexts = mutableListOf<String>()
 
         for (category in chipData) {
             val chip = ChipOnboardingBinding.inflate(inflater, chipGroup, false).root
@@ -59,12 +43,12 @@ class OnboardingFragment : Fragment() {
             // Add listener to enable button when 3 categories are selected
             chip.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
-                    checkedChips += buttonView.id
+                    (checkedChipTexts as MutableList<String>).add(buttonView.text.toString().lowercase())
                 } else {
-                    checkedChips -= buttonView.id
+                    (checkedChipTexts as MutableList<String>).remove(buttonView.text.toString().lowercase())
                 }
 
-                if (checkedChips.size >= 3) {
+                if (checkedChipTexts.size >= 3) {
                     binding.btnFinishOnboarding.isEnabled = true
                     binding.btnFinishOnboarding.alpha = 1.0f
                 } else {
@@ -82,6 +66,9 @@ class OnboardingFragment : Fragment() {
 
         // Button for onboarding
         binding.btnFinishOnboarding.setOnClickListener {
+            // Add selected categories to Firebase
+            FirebaseHelper.addPreferencesToFirestore(requireActivity(), checkedChipTexts)
+
             val intent = Intent(requireActivity(), MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
             requireActivity().startActivity(intent)
@@ -89,25 +76,5 @@ class OnboardingFragment : Fragment() {
         }
 
         return binding.root
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment OnboardingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            OnboardingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

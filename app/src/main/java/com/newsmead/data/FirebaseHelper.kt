@@ -555,6 +555,30 @@ class FirebaseHelper {
             return uid as String
         }       
 
+        
+        /**
+         * Adds preferred categories to Firestore
+         * @param categories List of preferred categories of the user
+         */
+        fun addPreferencesToFirestore(requireContext: Context, categories: List<String>) {
+            val userRef = getFirestoreInstance()
+                .collection("users")
+                .document(uid)
+
+            // Add preferred categories to Firestore
+            Log.d("FirebaseHelper", "Adding preferred categories $categories to Firestore")
+            userRef.update("preferences", categories)
+                .addOnSuccessListener {
+                    // Handle Success
+                }
+                .addOnFailureListener {
+                    // Handle Failure
+                    Toast.makeText(requireContext, "Error adding categories to preferences", Toast.LENGTH_SHORT).show()
+                }
+        }
+
+
+
         /**
          * Adds a new list to Firestore
          * @param newListName Name of the new list
