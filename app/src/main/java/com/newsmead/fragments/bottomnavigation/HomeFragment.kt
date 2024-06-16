@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.facebook.shimmer.ShimmerFrameLayout
 import com.newsmead.R
 import com.newsmead.custom.CustomDividerItemDecoration
 import com.newsmead.data.DataHelper
@@ -66,6 +66,27 @@ class HomeFragment : Fragment(), clickListener {
 
             // Navigate
             Navigation.findNavController(requireView()).navigate(action)
+        }
+
+        // Language Button (Toggles between English and Filipino)
+        var language = "English"
+        this.viewBinding.btnLanguage.setOnClickListener {
+            if (language == "English") {
+                // Change string resource
+                this.viewBinding.btnLanguage.text = getString(R.string.home_show_english)
+                language = "Filipino"
+
+                // Update list
+
+            } else {
+                // Change string resource
+                this.viewBinding.btnLanguage.text = getString(R.string.home_show_filipino)
+                language = "English"
+
+                // Update list
+            }
+
+            Toast.makeText(context, "You're now seeing: $language news", Toast.LENGTH_SHORT).show()
         }
     }
 
