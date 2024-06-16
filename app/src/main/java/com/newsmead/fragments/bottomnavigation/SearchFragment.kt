@@ -50,41 +50,38 @@ class SearchFragment : Fragment(), clickListener {
         binding.cgCategory.removeAllViews()
         binding.cgSources.removeAllViews()
 
-        // Fill with chips
-        for (category in categoryData) {
-            val chip = ChipSearchBinding.inflate(inflater, null, false).root
-            chip.text = category
-            chip.isChecked = false
+        // Fill cgCategory with chips
+        categoryData.forEachIndexed { index, category ->
+            val chip = ChipSearchBinding.inflate(inflater, null, false).root.apply {
+                id = View.generateViewId()
+                text = category
+                isChecked = false
 
-            // Launch category fragment when chip is clicked
-            chip.setOnClickListener {
-                // Action
-                val action = SearchFragmentDirections.actionSearchFragmentToArticleCategoryFragment(
-                    category
-                )
+                setOnClickListener {
+                    val action = SearchFragmentDirections.actionSearchFragmentToArticleCategoryFragment(
+                        category
+                    )
 
-                Navigation.findNavController(it).navigate(action)
+                    Navigation.findNavController(it).navigate(action)
+                }
             }
-
             binding.cgCategory.addView(chip)
         }
 
-        for (source in sourcesData) {
-            val chip = ChipSearchBinding.inflate(inflater, null, false).root
-            chip.text = source
-            chip.isChecked = false
+        sourcesData.forEachIndexed { index, source ->
+            val chip = ChipSearchBinding.inflate(inflater, null, false).root.apply {
+                id = View.generateViewId()
+                text = source
+                isChecked = false
 
-            // Launch source fragment when chip is clicked
-            chip.setOnClickListener {
-                // Action
-                val action =
-                    SearchFragmentDirections.actionSearchFragmentToArticleSearchSourceFragment(
+                setOnClickListener {
+                    val action = SearchFragmentDirections.actionSearchFragmentToArticleSearchSourceFragment(
                         source
                     )
 
-                Navigation.findNavController(it).navigate(action)
+                    Navigation.findNavController(it).navigate(action)
+                }
             }
-
             binding.cgSources.addView(chip)
         }
 
