@@ -90,6 +90,7 @@ class HomeFragment : Fragment(), clickListener {
                 sharedPreferences.edit().putString("language", "Filipino").apply()
 
                 // Update list
+                // TODO: Update list
 
             } else {
                 // Change string resource
@@ -98,6 +99,7 @@ class HomeFragment : Fragment(), clickListener {
                 sharedPreferences.edit().putString("language", "English").apply()
 
                 // Update list
+                // TODO: Update list
             }
 
             Toast.makeText(context, "You're now seeing: $language news", Toast.LENGTH_SHORT).show()

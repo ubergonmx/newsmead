@@ -118,6 +118,9 @@ object DataHelper {
         if (source != null) {
             articleUrl += "&source=$source"
         }
+        if (language != null) {
+            // TODO: Update the URL to include the language
+        }
         if (searchText != null && searchText != "") {
             articleUrl += "&text=$searchText"
         }
