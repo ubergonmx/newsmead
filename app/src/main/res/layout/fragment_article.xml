@@ -23,27 +23,10 @@
             android:layout_marginStart="16dp"
             android:background="@null"
             android:src="@drawable/arrow_back_ios_nofill_weight400"
-            app:tint="?secondaryIconColor"
-            app:layout_constraintBottom_toBottomOf="@+id/btnSaveList"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnSaveList" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSaveList"
-            style="@style/ButtonSmall_LowEmphasis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/arial_regular"
-            android:minHeight="0dp"
-            android:text="@string/article_save_to_list_btn"
-            app:icon="@drawable/ic_bookmark"
-            app:iconPadding="4dp"
-            app:iconSize="20dp"
-            app:iconTint="?secondaryButtonIconColor"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnArticleShare"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?secondaryIconColor" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnReadAloudArticle"
@@ -58,8 +41,26 @@
             app:iconSize="20dp"
             app:iconTint="?secondaryButtonIconColor"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnSaveList"
+            app:layout_constraintEnd_toStartOf="@+id/btnTranslateArticle"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTranslateArticle"
+            style="@style/ButtonSmall_LowEmphasis"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:minHeight="0dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:text="@string/article_translate_btn"
+            app:icon="@drawable/ic_translate"
+            app:iconPadding="4dp"
+            app:iconSize="20dp"
+            app:iconTint="?secondaryButtonIconColor"
+            app:layout_constraintBottom_toBottomOf="@+id/btnReadAloudArticle"
+            app:layout_constraintEnd_toStartOf="@+id/btnArticleShare"
+            app:layout_constraintTop_toTopOf="@+id/btnReadAloudArticle" />
 
         <ImageButton
             android:id="@+id/btnArticleShare"
@@ -68,10 +69,10 @@
             android:layout_marginEnd="16dp"
             android:background="@null"
             android:src="@drawable/share_nofill_weight400"
-            app:tint="?secondaryIconColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnSaveList" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?secondaryIconColor" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -218,20 +219,21 @@
                         app:layout_constraintTop_toBottomOf="@+id/tvArticleHeadline" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnTranslateArticle"
+                        android:id="@+id/btnSaveList"
                         style="@style/ButtonSmall_LowEmphasis"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:fontFamily="@font/arial_regular"
                         android:minHeight="0dp"
                         android:paddingTop="6dp"
                         android:paddingBottom="6dp"
-                        android:text="@string/article_translate_btn"
-                        app:icon="@drawable/ic_translate"
+                        android:text="@string/article_save_to_list_btn"
+                        app:icon="@drawable/ic_bookmark"
                         app:iconPadding="4dp"
-                        app:iconSize="20dp"
+                        app:iconSize="@dimen/common_padding"
                         app:iconTint="?secondaryButtonIconColor"
-                        app:layout_constraintBottom_toTopOf="@id/ivArticleFullImage"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tvArticleMinRead"
                         app:layout_constraintTop_toBottomOf="@+id/tvArticleHeadline" />
 
