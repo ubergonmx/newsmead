@@ -1,5 +1,7 @@
 package com.newsmead.fragments.bottomnavigation
 
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,6 +20,8 @@ import com.newsmead.recyclerviews.feed.ArticleAdapter
 import com.newsmead.recyclerviews.feed.clickListener
 class HomeFragment : Fragment(), clickListener {
 
+    // Shared preferences for current language
+    private lateinit var sharedPreferences: SharedPreferences
     private lateinit var articleAdapter: ArticleAdapter
     private lateinit var viewBinding: FragmentHomeBinding
 
@@ -32,6 +36,15 @@ class HomeFragment : Fragment(), clickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Shared preferences
+        this.sharedPreferences = requireActivity().getSharedPreferences("language", MODE_PRIVATE)
+
+        // Set language to English by default
+        var language = sharedPreferences.getString("language", "English")
+        if (language == "Filipino") {
+            this.viewBinding.btnLanguage.text = getString(R.string.home_show_english)
+        }
 
         // Start shimmer
         viewBinding.shimmerFeed.startShimmer()
@@ -69,12 +82,12 @@ class HomeFragment : Fragment(), clickListener {
         }
 
         // Language Button (Toggles between English and Filipino)
-        var language = "English"
         this.viewBinding.btnLanguage.setOnClickListener {
             if (language == "English") {
                 // Change string resource
                 this.viewBinding.btnLanguage.text = getString(R.string.home_show_english)
                 language = "Filipino"
+                sharedPreferences.edit().putString("language", "Filipino").apply()
 
                 // Update list
 
@@ -82,6 +95,7 @@ class HomeFragment : Fragment(), clickListener {
                 // Change string resource
                 this.viewBinding.btnLanguage.text = getString(R.string.home_show_filipino)
                 language = "English"
+                sharedPreferences.edit().putString("language", "English").apply()
 
                 // Update list
             }
