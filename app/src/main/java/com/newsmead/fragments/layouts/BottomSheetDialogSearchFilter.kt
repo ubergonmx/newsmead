@@ -2,7 +2,6 @@ package com.newsmead.fragments.layouts
 
 import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +13,6 @@ import com.newsmead.data.DataHelper
 
 import com.newsmead.databinding.BottomSheetDialogSearchFilterBinding
 import com.newsmead.databinding.ChipSearchBinding
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 
@@ -24,21 +21,23 @@ class BottomSheetDialogSearchFilter: BottomSheetDialogFragment() {
     private lateinit var binding: BottomSheetDialogSearchFilterBinding
     private var category: String? = "All"
     private var source: String = ""
+    private var language: String = ""
     private var sortBy: String = ""
     private var startDate: String = ""
     private var endDate: String = ""
     interface OnApplyFiltersListener {
-            fun onApplyFilters(category: String?, source: String, sortBy: String, startDate: String, endDate: String)
+            fun onApplyFilters(category: String?, source: String, language: String, sortBy: String, startDate: String, endDate: String)
     }
 
     var onApplyFiltersListener: OnApplyFiltersListener? = null
 
     companion object {
-        fun newInstance(category: String?, source: String, sortBy: String, startDate: String, endDate: String): BottomSheetDialogSearchFilter {
+        fun newInstance(category: String?, source: String, language: String, sortBy: String, startDate: String, endDate: String): BottomSheetDialogSearchFilter {
             val fragment = BottomSheetDialogSearchFilter()
             val args = Bundle()
             args.putString("category", category)
             args.putString("source", source)
+            args.putString("language", language)
             args.putString("sortBy", sortBy)
             args.putString("startDate", startDate)
             args.putString("endDate", endDate)
@@ -52,6 +51,7 @@ class BottomSheetDialogSearchFilter: BottomSheetDialogFragment() {
         if (arguments != null) {
             category = arguments?.getString("category")
             source = arguments?.getString("source") ?: ""
+            language = arguments?.getString("language") ?: ""
             sortBy = arguments?.getString("sortBy") ?: ""
             startDate = arguments?.getString("startDate") ?: ""
             endDate = arguments?.getString("endDate") ?: ""
@@ -70,6 +70,7 @@ class BottomSheetDialogSearchFilter: BottomSheetDialogFragment() {
 
         val categoryData = DataHelper.loadCategoryData()
         val sourcesData = DataHelper.loadSourcesData()
+        val languagesData = DataHelper.loadLanguagesData()
 
         // Fill chips
         for (category in categoryData) {
@@ -95,6 +96,19 @@ class BottomSheetDialogSearchFilter: BottomSheetDialogFragment() {
 
             chipBinding.setOnClickListener {
                 updateToSource(source)
+            }
+        }
+
+        for (language in languagesData) {
+            val chipBinding = ChipSearchBinding.inflate(inflater, container, false).root
+            chipBinding.text = language
+            if (language == this.language) {
+                chipBinding.isChecked = true
+            }
+            binding.cgDialogLanguage.addView(chipBinding)
+
+            chipBinding.setOnClickListener {
+                updateToLanguage(language)
             }
         }
 
@@ -146,34 +160,49 @@ class BottomSheetDialogSearchFilter: BottomSheetDialogFragment() {
         }
 
         binding.btnSearchFiltersApply.setOnClickListener {
-            onApplyFiltersListener?.onApplyFilters(this.category, this.source, this.sortBy, this.startDate, this.endDate)
+            onApplyFiltersListener?.onApplyFilters(this.category, this.source, this.language, this.sortBy, this.startDate, this.endDate)
             dismiss()
         }
 
         return binding.root
     }
 
-    private fun updateToCategory(category: String) {
-        // Uncheck all chips except for the one that was clicked
-        for (i in 0 until binding.cgDialogCategory.childCount) {
-            val chip = binding.cgDialogCategory.getChildAt(i) as Chip
-            if (chip.text != category) {
+    /**
+     * Select only one chip from a group
+     * @param selected The selected chip
+     * @param group The group of chips (0 = category, 1 = source, 2 = language)
+     */
+    private fun selectOnlyOneChip(selected:String, group:Int){
+        val chipGroup = when(group){
+            0 -> binding.cgDialogCategory
+            1 -> binding.cgDialogSource
+            2 -> binding.cgDialogLanguage
+            else -> return
+        }
+
+        for (i in 0 until chipGroup.childCount) {
+            val chip = chipGroup.getChildAt(i) as Chip
+            if (chip.text != selected) {
                 chip.isChecked = false
             }
         }
 
-        this.category = category
+        when(group){
+            0 -> category = selected
+            1 -> source = selected
+            2 -> language = selected
+        }
+    }
+
+    private fun updateToCategory(category: String) {
+        selectOnlyOneChip(category, 0)
     }
 
     private fun updateToSource(source: String) {
-        // Uncheck all chips except for the one that was clicked
-        for (i in 0 until binding.cgDialogSource.childCount) {
-            val chip = binding.cgDialogSource.getChildAt(i) as Chip
-            if (chip.text != source) {
-                chip.isChecked = false
-            }
-        }
+        selectOnlyOneChip(source, 1)
+    }
 
-        this.source = source
+    private fun updateToLanguage(language: String) {
+        selectOnlyOneChip(language, 2)
     }
 }

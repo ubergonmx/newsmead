@@ -92,6 +92,7 @@ object DataHelper {
         context: Context?,
         page: Int? = 1,
         source: String? = null,
+        language: String? = null,
         category: String? = null,
         startDate: String? = null,
         endDate: String? = null,
@@ -238,6 +239,13 @@ object DataHelper {
         data.add("Philstar")
         data.add("The Manila Bulletin")
         // data.add("TV5 News")
+        return data
+    }
+
+    fun loadLanguagesData(): ArrayList<String> {
+        val data = ArrayList<String>()
+        data.add("Filipino")
+        data.add("English")
         return data
     }
 

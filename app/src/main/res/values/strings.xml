@@ -131,6 +131,7 @@
     <string name="save_list_new">New List</string>
 
     <!-- bottom_sheet_dialog_search_filter -->
+    <string name="search_filter_language">Language</string>
     <string name="search_filter_sort_by">Sort By</string>
     <string name="search_filter_sort_by_most_relevant">Most Relevant</string>
     <string name="search_filter_sort_by_recent">Recent</string>
@@ -276,4 +277,5 @@
     <string name="menu_popup_rename">Rename</string>
     <string name="menu_popup_delete">Delete</string>
     <string name="article_text_loading">Article is loading... (If it does not load, please re-open this article.)</string>
+
 </resources>

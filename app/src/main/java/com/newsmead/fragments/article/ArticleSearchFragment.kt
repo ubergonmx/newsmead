@@ -28,6 +28,7 @@ class ArticleSearchFragment : Fragment(), clickListener {
     private lateinit var adapter: ArticleAdapter
     private var categoryVal: String = ""
     private var sourceVal: String = ""
+    private var languageVal: String = ""
     private var sortByVal: String = ""
     private var startDateVal: String = ""
     private var endDateVal: String = ""
@@ -74,15 +75,17 @@ class ArticleSearchFragment : Fragment(), clickListener {
             val bottomSheetDialogSearchFilter = BottomSheetDialogSearchFilter.newInstance(
                 categoryVal,
                 sourceVal,
+                languageVal,
                 sortByVal,
                 startDateVal,
                 endDateVal
             )
 
             bottomSheetDialogSearchFilter.onApplyFiltersListener = object : BottomSheetDialogSearchFilter.OnApplyFiltersListener {
-                override fun onApplyFilters(category: String?, source: String, sortBy: String, startDate: String, endDate: String) {
+                override fun onApplyFilters(category: String?, source: String, language: String, sortBy: String, startDate: String, endDate: String) {
                     categoryVal = category ?: ""
                     sourceVal = source
+                    languageVal = language
                     sortByVal = sortBy
                     startDateVal = startDate
                     endDateVal = endDate
@@ -126,7 +129,8 @@ class ArticleSearchFragment : Fragment(), clickListener {
 
     fun updateWithFilters() {
         val source = if (sourceVal == "") null else DataHelper.reverseSourceNameMap(sourceVal)
-        val category = if (categoryVal == "All" || categoryVal == "") null else categoryVal?.lowercase()
+        val category = if (categoryVal == "All" || categoryVal == "") null else categoryVal.lowercase()
+        val language = if (languageVal == "") "english" else languageVal.lowercase()
         val sortBy = sortByVal.lowercase()
         val startDate = if (startDateVal == "") null else startDateVal
         val endDate = if (endDateVal == "") null else endDateVal
@@ -136,6 +140,7 @@ class ArticleSearchFragment : Fragment(), clickListener {
                 context,
                 category=category,
                 source=source,
+                language=language,
                 startDate=startDate,
                 endDate=endDate,
                 searchText=searchQuery) {
