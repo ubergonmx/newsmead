@@ -103,7 +103,11 @@ object DataHelper {
         // Create an empty ArrayList
         val articles = ArrayList<Article>()
 
-        val baseUrl = "https://newsmead.southeastasia.cloudapp.azure.com"
+
+        var baseUrl = "https://newsmead.southeastasia.cloudapp.azure.com"
+        if (language != null && language != "English") {
+            baseUrl = "https://newsmead-fil.southeastasia.cloudapp.azure.com"
+        }
         var articleUrl = "$baseUrl/articles/?page=$page"
         
         val uid = FirebaseHelper.getUid()
@@ -117,9 +121,6 @@ object DataHelper {
         }
         if (source != null) {
             articleUrl += "&source=$source"
-        }
-        if (language != null) {
-            // TODO: Update the URL to include the language
         }
         if (searchText != null && searchText != "") {
             articleUrl += "&text=$searchText"

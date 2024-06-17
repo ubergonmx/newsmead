@@ -827,6 +827,7 @@ class FirebaseHelper {
                     "readTime" to article.readTime,
                     "body" to article.body,
                     "date" to article.date,
+                    "category" to article.category,
                     "url" to article.url,
                     "viewed" to currentDateTime
                 )

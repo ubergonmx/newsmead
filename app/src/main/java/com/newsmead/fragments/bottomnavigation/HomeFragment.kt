@@ -83,26 +83,36 @@ class HomeFragment : Fragment(), clickListener {
 
         // Language Button (Toggles between English and Filipino)
         this.viewBinding.btnLanguage.setOnClickListener {
+            viewBinding.rvFeed.visibility = View.GONE
+            viewBinding.shimmerFeed.startShimmer()
+            viewBinding.shimmerFeed.visibility = View.VISIBLE
+
             if (language == "English") {
                 // Change string resource
                 this.viewBinding.btnLanguage.text = getString(R.string.home_show_english)
                 language = "Filipino"
                 sharedPreferences.edit().putString("language", "Filipino").apply()
 
-                // Update list
-                // TODO: Update list
-
             } else {
                 // Change string resource
                 this.viewBinding.btnLanguage.text = getString(R.string.home_show_filipino)
                 language = "English"
                 sharedPreferences.edit().putString("language", "English").apply()
+            }
+            DataHelper.loadArticleData(context, language=language) { articles ->
+                if (FirebaseHelper.isNetworkAvailable(requireContext())) {
+                    // Stop the shimmer
+                    viewBinding.shimmerFeed.stopShimmer()
+                    viewBinding.shimmerFeed.visibility = View.GONE
+                    viewBinding.rvFeed.visibility = View.VISIBLE
+                    // Update the adapter with the retrieved articles
+                    articleAdapter.updateData(articles)
 
-                // Update list
-                // TODO: Update list
+
+                    Toast.makeText(context, "You're now seeing: $language news", Toast.LENGTH_SHORT).show()
+                }
             }
 
-            Toast.makeText(context, "You're now seeing: $language news", Toast.LENGTH_SHORT).show()
         }
     }
 
