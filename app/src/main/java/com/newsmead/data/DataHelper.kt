@@ -40,6 +40,7 @@ object DataHelper {
             "philstar", "Philstar" -> "source_philstar"
             "manilabulletin", "The Manila Bulletin" -> "source_manilabulletin"
             "news5", "TV5 News" -> "source_news5"
+            "abantenews", "Abante News" -> "source_abantenews"
             else -> "sample_source_image"
         }
     }
@@ -52,6 +53,7 @@ object DataHelper {
             "philstar" -> "Philstar"
             "manilabulletin" -> "The Manila Bulletin"
             "news5" -> "TV5 News"
+            "abantenews" -> "Abante News"
             else -> ""
         }
     }
@@ -64,6 +66,7 @@ object DataHelper {
             "Philstar" -> "philstar"
             "The Manila Bulletin" -> "manilabulletin"
             "TV5 News" -> "news5"
+            "Abante News" -> "abantenews"
             else -> ""
         }
     }
@@ -243,6 +246,7 @@ object DataHelper {
         data.add("Philstar")
         data.add("The Manila Bulletin")
         // data.add("TV5 News")
+        data.add("Abante News")
         return data
     }
 
