@@ -295,7 +295,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
             }
 
             // Load Recommended Articles
-            DataHelper.loadArticleData(context, pageSize = 10) { it ->
+            DataHelper.loadArticleData(context, pageSize = 7, language = language) { it ->
                 // Check if the fragment is still attached to a context
                 val ctx = context ?: return@loadArticleData
 
