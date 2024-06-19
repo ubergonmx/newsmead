@@ -3,6 +3,7 @@ package com.newsmead.models
 import android.os.Parcel
 import android.os.Parcelable
 import com.newsmead.R
+import org.intellij.lang.annotations.Language
 
 class Article: Parcelable {
     var source: String
@@ -19,6 +20,9 @@ class Article: Parcelable {
         private set
     var body: String = ""
         private set
+
+    var language: String
+        private set
     var readTime: String
         private set
     var url: String
@@ -26,8 +30,23 @@ class Article: Parcelable {
     var newsId:String = "0"
         private set
 
+    /**
+     * Constructor for an article.
+     * @param source The source of the article.
+     * @param sourceImage The URL of the image of the source.
+     * @param title The title of the article.
+     * @param imageURL The URL of the image of the article.
+     * @param date The date the article was published.
+     * @param body The body of the article.
+     * @param category The category of the article.
+     * @param language The language of the article.
+     * @param readTime The time it takes to read the article.
+     * @param url The URL of the article.
+     * @param newsId The ID of the article.
+     * @return An article object.
+     */
     constructor(source: String, sourceImage: String,
-                title: String, imageURL: String?, date: String, body: String, category: String, readTime: String, url: String, newsId:String) {
+                title: String, imageURL: String?, date: String, body: String, category: String, language: String, readTime: String, url: String, newsId:String) {
         this.source = source
         this.sourceImage = sourceImage
         this.title = title
@@ -35,6 +54,7 @@ class Article: Parcelable {
         this.date = date
         this.body = body
         this.category = category
+        this.language = language
         this.readTime = readTime
         this.url = url
         this.newsId = newsId
@@ -51,11 +71,13 @@ class Article: Parcelable {
         this.body = ""
         this.category = ""
         this.readTime = readTime
+        this.language = ""
         this.url = url
         this.newsId = "0"
     }
 
     constructor(parcel: Parcel) : this(
+        parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
@@ -80,6 +102,7 @@ class Article: Parcelable {
         dest.writeString(date)
         dest.writeString(body)
         dest.writeString(category)
+        dest.writeString(language)
         dest.writeString(readTime)
         dest.writeString(url)
         dest.writeString(newsId)

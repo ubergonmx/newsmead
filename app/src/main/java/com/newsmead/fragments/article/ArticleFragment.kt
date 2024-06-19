@@ -43,6 +43,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
     private lateinit var savedLists: ArrayList<SavedList>
     private lateinit var textToSpeech: TextToSpeech
     private var isTranslated = false
+    private var language = "english"
     private enum class ColorMode { LIGHT, DARK, SEPIA }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -83,7 +84,8 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
             "Article Date",
             "Article Body",
             "Article Category",
-            "Article Content",
+            "Article Language",
+            "Article Read Time",
             "url",
             "0"
         )
@@ -125,6 +127,15 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
         val readTime = article.readTime //+ " min read"
         binding.tvArticleMinRead.text = readTime
 
+        // Set language
+        language = article.language
+        if(language.lowercase() == "english"){
+            binding.btnTranslateArticle.text = "Filipino"
+        }
+        else{
+            binding.btnTranslateArticle.text = "English"
+        }
+
         // Read Aloud button
         binding.btnReadAloudArticle.setOnClickListener {
             binding.btnReadAloudArticle.isEnabled = false
@@ -140,6 +151,11 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
             }
             binding.btnReadAloudArticle.isEnabled = true
             binding.btnReadAloudArticle.isClickable = true
+        }
+
+        // If language is not english, hide the translate button
+        if(language.lowercase() != "english"){
+            binding.btnTranslateArticle.visibility = View.GONE
         }
 
         // Translate button
@@ -408,7 +424,7 @@ class ArticleFragment() : Fragment(), clickListener, TextToSpeech.OnInitListener
 
     // Function to convert text to speech
     private fun speak(text: String) {
-        if(!isTranslated){
+        if(!isTranslated && language.lowercase() == "english"){
             textToSpeech.setLanguage(Locale.ENGLISH)
             textToSpeech.voice = textToSpeech.voices.find { it.name.contains("en-us-x-iom-local") }
         }

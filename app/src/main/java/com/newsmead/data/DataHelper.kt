@@ -167,6 +167,7 @@ object DataHelper {
                             formatDate(article.getString("date")),
                             article.getString("body"),
                             article.getString("category"),
+                            article.getString("language"),
                             article.getString("read_time"),
                             article.getString("url"),
                             article.getInt("article_id").toString()
