@@ -109,7 +109,7 @@ object DataHelper {
 
         var baseUrl = "https://newsmead.southeastasia.cloudapp.azure.com"
         // Temporary fix for recommending Filipino articles - using the Filipino server
-        if (language != null && (language != "English" || language != "english")) {
+        if (language != null && language.lowercase() != "english") {
             baseUrl = "https://newsmead-fil.southeastasia.cloudapp.azure.com"
         }
         var articleUrl = "$baseUrl/articles/?page=$page"
