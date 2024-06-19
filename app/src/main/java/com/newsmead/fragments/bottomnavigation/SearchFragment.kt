@@ -124,7 +124,7 @@ class SearchFragment : Fragment(), clickListener {
 
         // Load data and update the adapter when available
         lifecycleScope.launch {
-            DataHelper.loadArticleData(context){
+            DataHelper.loadArticleData(context, pageSize = 5){
                 if (FirebaseHelper.isNetworkAvailable(requireContext())) {
                     // Stop the shimmer
                     binding.shimmerSearch.stopShimmer()

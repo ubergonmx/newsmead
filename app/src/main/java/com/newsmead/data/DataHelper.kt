@@ -108,7 +108,8 @@ object DataHelper {
 
 
         var baseUrl = "https://newsmead.southeastasia.cloudapp.azure.com"
-        if (language != null && language != "English") {
+        // Temporary fix for recommending Filipino articles - using the Filipino server
+        if (language != null && (language != "English" || language != "english")) {
             baseUrl = "https://newsmead-fil.southeastasia.cloudapp.azure.com"
         }
         var articleUrl = "$baseUrl/articles/?page=$page"
@@ -127,6 +128,10 @@ object DataHelper {
         }
         if (searchText != null && searchText != "") {
             articleUrl += "&text=$searchText"
+        }
+        if (language != null) {
+            url += "&language=$language"
+            articleUrl += "&language=$language"
         }
         if (startDate != null) {
             articleUrl += "&startDate=$startDate"
